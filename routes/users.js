@@ -4,6 +4,7 @@ const router = require("express").Router()
 const bcrypt = require("bcrypt")
 
 const UserModel = require("../models/usersModel")
+const BankModel = require("../models/bankModel")
 
 
 //Registration route
@@ -83,6 +84,25 @@ router.post("/login", async (req, res) => {
         })
     }
 
+})
+
+
+router.get("/personal-info/:username", async (req, res) => {
+    const data = await UserModel.findOne({
+        username: req.params.username
+    })
+    if (data) {
+        await delete data.hashPassword
+        const bankDetails = await BankModel.findOne({ username: data.username })
+        res.status(200).json({
+            body: data,
+            bankDetails: bankDetails
+        })
+    } else {
+        res.status(404).json({
+            message: "No User with that username"
+        })
+    }
 })
 
 
