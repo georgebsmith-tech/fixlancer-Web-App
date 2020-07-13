@@ -1,0 +1,89 @@
+
+const mongoose = require("mongoose")
+const router = require("express").Router()
+const bcrypt = require("bcrypt")
+
+const UserModel = require("../models/usersModel")
+
+
+//Registration route
+router.post("/register", async (req, res) => {
+    const body = req.body
+    if (body.solved) {
+        console.log("Puzzle solved")
+        const userRes = await UserModel.find({ username: body.username })
+        if (userRes.length >= 1) {
+            console.log("Username Exists")
+            res.status(404).json({
+                message: "Username already Exists"
+            })
+        }
+
+        const emailRes = await UserModel.find({ email: body.email })
+        if (emailRes.length >= 1) {
+            res.status(404).json({
+                message: "email already Exists"
+            })
+        }
+        const phoneRes = await UserModel.find({ phone: body.phone })
+        if (phoneRes.length >= 1) {
+            res.status(404).json({
+                message: "Someone is already using this number"
+            })
+        }
+
+    } else {
+        res.status(404).json({
+            message: "Puzzle not solved!"
+        })
+    }
+    body.hashPassword = (await bcrypt.hash(body.password, 15)).toString()
+    try {
+        const user = new UserModel(body)
+        const data = await user.save()
+        console.log("Data saved")
+
+        res.status(200).json({
+            message: "Data Saved!!",
+            body: data
+        })
+
+    } catch (err) {
+        res.status(404).json({
+            error: "Error"
+        })
+        throw err
+
+    }
+
+
+})
+
+
+router.post("/login", async (req, res) => {
+    const body = req.body
+    console.log(body)
+    const data = await UserModel.findOne({ username: body.username })
+    if (data) {
+        console.log(data)
+        const ispassword = await bcrypt.compare(body.password, data.hashPassword)
+        console.log(ispassword)
+        if (ispassword) {
+            res.status(200).json({
+                body: data
+            })
+        } else {
+            res.status(404).json({
+                message: "Incorrect  username or password"
+            })
+        }
+    } else {
+        res.status(404).json({
+            message: "Incorrect username or password"
+        })
+    }
+
+})
+
+
+module.exports = router
