@@ -23,6 +23,10 @@ const Schema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    createdAt: {
+        type: Date,
+        default: new Date().now
+    },
     email: {
         type: String,
         required: true,
@@ -47,6 +51,10 @@ const Schema = new mongoose.Schema({
     bio: {
         type: String
     },
+    usernameChanges: {
+        type: Number,
+        default: 0
+    }
 
 })
 const User = mongoose.model("User", Schema)

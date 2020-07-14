@@ -131,4 +131,28 @@ router.put("/register/:username", upload.single("photo"), async function (req, r
 })
 
 
+
+router.post("/bank-details/:username", async function (req, res) {
+    const data = await UserModel.findOne({ username: req.params.username })
+
+    if (data) {
+        const body = req.body
+        console.log(body)
+        const details = {
+            username: req.params.username,
+            accName: body.accName,
+            accNumber: body.accNumber,
+            bankName: body.bankName
+        }
+        const bankDetails = new BankModel(details)
+        const savedData = await bankDetails.save()
+        res.status(200).json(savedData)
+    } else {
+        res.status(401).json({
+            message: "No user with that information"
+        })
+    }
+})
+
+
 module.exports = router
