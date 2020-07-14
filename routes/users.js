@@ -122,4 +122,13 @@ router.get("/personal-info/:username", async (req, res) => {
 })
 
 
+router.put("/register/:username", upload.single("photo"), async function (req, res) {
+    const body = req.body
+    body.imageURL = req.file.path
+    const data = await UserModel.findOneAndUpdate({ username: req.params.username }, body, { new: true })
+
+    res.status(200).json(data)
+})
+
+
 module.exports = router

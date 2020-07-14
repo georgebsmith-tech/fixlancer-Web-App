@@ -11,11 +11,6 @@ app.use("/uploads", express.static("uploads"))
 
 app.use("/users", usersRoute)
 
-
-
-
-
-
 const PORT = process.env.port || 3000
 app.listen(PORT, function () {
     console.log("Now listening to port " + PORT)
