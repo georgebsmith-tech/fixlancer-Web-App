@@ -14,6 +14,10 @@ mongoose.connect(dataBaseUrl, { useNewUrlParser: true, useUnifiedTopology: true,
 
 
 const Schema = new mongoose.Schema({
+    imageURL: {
+        type: String
+
+    },
     username: {
         type: String,
         required: true,

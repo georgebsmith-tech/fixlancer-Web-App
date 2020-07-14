@@ -2,20 +2,35 @@
 const mongoose = require("mongoose")
 const router = require("express").Router()
 const bcrypt = require("bcrypt")
+const multer = require("multer")
 
 const UserModel = require("../models/usersModel")
 const BankModel = require("../models/bankModel")
-
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "./uploads/")
+    },
+    filename: function (req, file, cb) {
+        cb(null, new Date().toISOString().replace(":", "-") + file.originalname)
+    }
+})
+const upload = multer({
+    storage: storage, limits: {
+        fileSize: 1024 * 1025 * 10
+    }
+})
+// const upload = multer({ dest: "uploads/" })
 
 //Registration route
-router.post("/register", async (req, res) => {
+router.post("/register", upload.single("photo"), async (req, res) => {
+    console.log(req.file)
     const body = req.body
     if (body.solved) {
         console.log("Puzzle solved")
         const userRes = await UserModel.find({ username: body.username })
         if (userRes.length >= 1) {
             console.log("Username Exists")
-            res.status(404).json({
+            return res.status(404).json({
                 message: "Username already Exists"
             })
         }
@@ -39,6 +54,7 @@ router.post("/register", async (req, res) => {
         })
     }
     body.hashPassword = (await bcrypt.hash(body.password, 15)).toString()
+    body.imageURL = req.file.path
     try {
         const user = new UserModel(body)
         const data = await user.save()
@@ -74,12 +90,12 @@ router.post("/login", async (req, res) => {
                 body: data
             })
         } else {
-            res.status(404).json({
+            res.status(401).json({
                 message: "Incorrect  username or password"
             })
         }
     } else {
-        res.status(404).json({
+        res.status(401).json({
             message: "Incorrect username or password"
         })
     }
@@ -99,7 +115,7 @@ router.get("/personal-info/:username", async (req, res) => {
             bankDetails: bankDetails
         })
     } else {
-        res.status(404).json({
+        res.status(401).json({
             message: "No User with that username"
         })
     }
