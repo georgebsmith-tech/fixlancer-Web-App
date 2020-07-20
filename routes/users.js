@@ -22,10 +22,6 @@ AWS.config.update({
     region: process.env.AWS_REGION
 })
 
-// AWS.config.region = 'us-east-2'; // Region
-// AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-//     IdentityPoolId: 'us-east-2:6b0c4083-7b45-440d-8ca8-2fbf7bb2828f',
-// });
 
 const s3 = new AWS.S3()
 const storage = multerS3({
@@ -39,7 +35,7 @@ const storage = multerS3({
         cb(null, new Date().getTime().toString() + file.originalname)
     }
 })
-
+// console.log(process.env.MONGO_ATLAS_URI)
 const upload = multer({
     storage: storage, limits: {
         fileSize: 1024 * 1025 * 10
