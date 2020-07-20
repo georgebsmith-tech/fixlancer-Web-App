@@ -23,6 +23,7 @@
   "homepage": "https://github.com/georgebsmith-tech/fixlancer-Web-App#readme",
   "dependencies": {
     "aws-sdk": "^2.714.0",
+    "bcrypt": "^5.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "joi": "^14.3.1",
