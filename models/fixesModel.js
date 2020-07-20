@@ -11,58 +11,74 @@ mongoose.connect(dataBaseUrl, { useNewUrlParser: true, useUnifiedTopology: true,
     if (err) {
         console.log("error" + err)
     } else {
-        console.log("Categories Connction successful" + data)
+        console.log("Fix Connction successful")
     }
 
 })
 
-
-const OrdersByMonthSchema = new mongoose.Schema({
-    month: {
+const ExtraSchema = new mongoose.Schema({
+    description: {
         type: String,
-        unique: true
     },
-    amount: {
+    price: {
         type: Number,
-        default: 0
     }
 })
+
 
 const Schema = new mongoose.Schema({
-    user_id: {
+    username: {
         type: String,
-        unique: true,
+        required: true
+
+    },
+    title: {
+        type: String,
         required: true
     },
-    uid: {
+    description: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
-    total_visits: {
+    requirements: {
+        type: String,
+        required: true
+    },
+    price: {
         type: Number,
-        default: 0
+        required: true
     },
-    total_refs: {
+    category: {
+        type: String,
+        required: true
+    },
+    delivery_days: {
         type: Number,
-        default: 0
+        required: true
     },
-    total_earn: {
-        type: Number,
-        default: 0
+    tags: {
+        type: Array
     },
-    active: {
-        type: Boolean,
-        default: true
+    images_url: {
+        type: [String],
+        required: true
     },
-    total_orders: {
-        type: Number,
-        default: 0
-    },
-    orders_by_month: [OrdersByMonthSchema]
-
+    video: {
+        type: String
+    }
+    ,
+    extras: {
+        type: [ExtraSchema]
+    }
+    ,
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 
 })
-const Affiliate = mongoose.model("Affiliate", Schema)
 
-module.exports = Affiliate
+
+const Fix = mongoose.model("Fix", Schema)
+
+module.exports = Fix

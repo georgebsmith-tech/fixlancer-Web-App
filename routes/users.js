@@ -1,14 +1,17 @@
 
 const dotenv = require("dotenv")
 dotenv.config()
+
+const upload = require("../controlers/awsConfig")
+
+
+
 const mongoose = require("mongoose");
 
 const router = require("express").Router()
 const Joi = require("joi")
 const bcrypt = require("bcrypt")
-const multer = require("multer")
-const AWS = require("aws-sdk");
-const multerS3 = require("multer-s3");
+
 const jwt = require("jsonwebtoken");
 
 console.log(process.env.AWS_REGION)
@@ -16,31 +19,6 @@ console.log(process.env.AWS_REGION)
 const UserModel = require("../models/usersModel")
 const BankModel = require("../models/bankModel")
 
-AWS.config.update({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    region: process.env.AWS_REGION
-})
-
-
-const s3 = new AWS.S3()
-const storage = multerS3({
-    s3: s3,
-    acl: "public-read",
-    bucket: "fixlancerwebapp",
-    metadata: function (req, file, cb) {
-        cb(null, { fieldName: "Fixlancer_Web_App" })
-    },
-    key: function (req, file, cb) {
-        cb(null, new Date().getTime().toString() + file.originalname)
-    }
-})
-// console.log(process.env.MONGO_ATLAS_URI)
-const upload = multer({
-    storage: storage, limits: {
-        fileSize: 1024 * 1025 * 10
-    }
-})
 const singleUpload = upload.single("photo")
 
 router.get("/", async function (req, res) {
