@@ -6,13 +6,14 @@ const usersRoute = require("./routes/users")
 const categoriesRoute = require("./routes/categories")
 const pushNoticeRoute = require("./routes/pushRoutes")
 const affiliatesRoute = require("./routes/affiliates")
+const apiDocumentationRoutes = require("./routes/apiDocumentationRoutes")
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use("/uploads", express.static("uploads"))
 
 
-
+app.use(apiDocumentationRoutes)
 app.use("/api/users", usersRoute)
 app.use("/api/categories", categoriesRoute)
 app.use("/api/push-notice", pushNoticeRoute)
