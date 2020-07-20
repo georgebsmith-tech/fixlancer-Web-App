@@ -1,5 +1,8 @@
 {
   "name": "fixlancerwebapp",
+  "engines": {
+    "node": "12.13.0"
+  },
   "version": "1.0.0",
   "description": "Fixlancer webApp project",
   "main": "server.js",
