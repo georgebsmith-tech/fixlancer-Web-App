@@ -19,7 +19,7 @@ app.use("/api/categories", categoriesRoute)
 app.use("/api/push-notice", pushNoticeRoute)
 app.use("/api/affiliates", affiliatesRoute)
 
-const PORT = process.env.port || 3000
+const PORT = process.env.PORT || 3000
 app.listen(PORT, function () {
     console.log("Now listening to port " + PORT)
 })
