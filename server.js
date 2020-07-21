@@ -11,6 +11,14 @@ const fixRoutes = require("./routes/fixRoutes")
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+app.use((req, res, next) => {
+    res.header("Acecess-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "*")
+    if (req.method === "OPTIONS") {
+        res.header("Access-Control-Allow-Methods", 'PUT, POST, DELETE, GET, PATCH')
+        return res.status(200).json({})
+    }
+})
 app.use("/uploads", express.static("uploads"))
 
 

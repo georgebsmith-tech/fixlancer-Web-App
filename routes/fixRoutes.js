@@ -4,7 +4,6 @@ const upload = require("../controlers/awsConfig")
 
 const multiple_uploads = upload.array("photo")
 
-
 router.post("/", multiple_uploads, async (req, res) => {
     console.log(req.files)
     const reqBody = req.body
