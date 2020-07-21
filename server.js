@@ -18,6 +18,7 @@ app.use((req, res, next) => {
         res.header("Access-Control-Allow-Methods", 'PUT, POST, DELETE, GET, PATCH')
         return res.status(200).json({})
     }
+    next()
 })
 app.use("/uploads", express.static("uploads"))
 
