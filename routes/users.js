@@ -75,7 +75,7 @@ router.post("/register", async (req, res) => {
                     message: "Puzzle not solved!"
                 })
             }
-            body.hashPassword = (await bcrypt.hash(body.password, 15)).toString()
+            body.password = (await bcrypt.hash(body.password, 15)).toString()
             body.imageURL = req.file.location
             try {
                 const user = new UserModel(body)
@@ -113,7 +113,7 @@ router.post("/login", async (req, res) => {
     const data = await UserModel.findOne({ username: body.username })
     if (data) {
         console.log(data)
-        const ispassword = await bcrypt.compare(body.password, data.hashPassword)
+        const ispassword = await bcrypt.compare(body.password, data.password)
         console.log(ispassword)
         if (ispassword) {
             const userAuthToken = jwt.sign({ id: data.username }, process.env.USER_JWT_SECRET)

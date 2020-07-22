@@ -45,7 +45,7 @@ const Schema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    hashPassword: {
+    password: {
         type: String,
         required: true,
     },
