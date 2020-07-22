@@ -28,75 +28,73 @@ router.get("/", async function (req, res) {
 
 //Registration route
 router.post("/register", async (req, res) => {
-    singleUpload(req, res, async function (err) {
-        if (err) {
-            return res.send(err)
-        } else {
-            // const Schema = {
-            //     username: Joi.string().min(4).required()
-            // }
-
-            // Joi.validate(req.body, Schema)
-            //     .then(data => {
-            //         console.log(data)
-            //     })
-            //     .catch(err => {
-            //         res.status(400).send(err.details[0].message)
-            //         return
-            //     })
-
-            // console.log(req.file)
-            const body = req.body
-            if (body.solved) {
-                console.log("Puzzle solved")
-                const userRes = await UserModel.find({ username: body.username })
-                if (userRes.length >= 1) {
-                    console.log("Username Exists")
-                    return res.status(401).json({
-                        error: "Username already Exists"
-                    })
-                }
-
-                const emailRes = await UserModel.find({ email: body.email })
-                if (emailRes.length >= 1) {
-                    res.status(401).json({
-                        error: "email already Exists"
-                    })
-                }
-                const phoneRes = await UserModel.find({ phone: body.phone })
-                if (phoneRes.length >= 1) {
-                    res.status(401).json({
-                        error: "There's already a user with this number"
-                    })
-                }
-
-            } else {
-                res.status(401).json({
-                    message: "Puzzle not solved!"
-                })
-            }
-            body.password = (await bcrypt.hash(body.password, 15)).toString()
-            body.imageURL = req.file.location
-            try {
-                const user = new UserModel(body)
-                const data = await user.save()
-                console.log("Data saved")
-
-                res.status(200).json({
-                    created: true
-                })
-
-            } catch (err) {
-                return res.status(404).json({
-                    error: err
-                })
 
 
-            }
+    // const Schema = {
+    //     username: Joi.string().min(4).required()
+    // }
 
+    // Joi.validate(req.body, Schema)
+    //     .then(data => {
+    //         console.log(data)
+    //     })
+    //     .catch(err => {
+    //         res.status(400).send(err.details[0].message)
+    //         return
+    //     })
+
+    // console.log(req.file)
+    const body = req.body
+    if (body.solved) {
+        console.log("Puzzle solved")
+        const userRes = await UserModel.find({ username: body.username })
+        if (userRes.length >= 1) {
+            console.log("Username Exists")
+            return res.status(401).json({
+                error: "Username already Exists"
+            })
         }
 
-    })
+        const emailRes = await UserModel.find({ email: body.email })
+        if (emailRes.length >= 1) {
+            res.status(401).json({
+                error: "email already Exists"
+            })
+        }
+        const phoneRes = await UserModel.find({ phone: body.phone })
+        if (phoneRes.length >= 1) {
+            res.status(401).json({
+                error: "There's already a user with this number"
+            })
+        }
+
+    } else {
+        res.status(401).json({
+            message: "Puzzle not solved!"
+        })
+    }
+    body.password = (await bcrypt.hash(body.password, 15)).toString()
+    // body.imageURL = req.file.location
+    try {
+        const user = new UserModel(body)
+        const data = await user.save()
+        console.log("Data saved")
+
+        res.status(200).json({
+            created: true
+        })
+
+    } catch (err) {
+        return res.status(404).json({
+            error: err
+        })
+
+
+    }
+
+
+
+
 
 
 
