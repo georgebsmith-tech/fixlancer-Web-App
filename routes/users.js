@@ -52,26 +52,26 @@ router.post("/register", async (req, res) => {
                 const userRes = await UserModel.find({ username: body.username })
                 if (userRes.length >= 1) {
                     console.log("Username Exists")
-                    return res.status(404).json({
-                        message: "Username already Exists"
+                    return res.status(401).json({
+                        error: "Username already Exists"
                     })
                 }
 
                 const emailRes = await UserModel.find({ email: body.email })
                 if (emailRes.length >= 1) {
-                    res.status(404).json({
-                        message: "email already Exists"
+                    res.status(401).json({
+                        error: "email already Exists"
                     })
                 }
                 const phoneRes = await UserModel.find({ phone: body.phone })
                 if (phoneRes.length >= 1) {
-                    res.status(404).json({
-                        message: "Someone is already using this number"
+                    res.status(401).json({
+                        error: "There's already a user with this number"
                     })
                 }
 
             } else {
-                res.status(404).json({
+                res.status(401).json({
                     message: "Puzzle not solved!"
                 })
             }
@@ -83,15 +83,14 @@ router.post("/register", async (req, res) => {
                 console.log("Data saved")
 
                 res.status(200).json({
-                    message: "Data Saved!!",
-                    body: data
+                    created: true
                 })
 
             } catch (err) {
-                res.status(404).json({
-                    error: "Error"
+                return res.status(404).json({
+                    error: err
                 })
-                throw err
+
 
             }
 
@@ -119,7 +118,6 @@ router.post("/login", async (req, res) => {
         if (ispassword) {
             const userAuthToken = jwt.sign({ id: data.username }, process.env.USER_JWT_SECRET)
             res.status(200).header("token", userAuthToken).json({
-                body: data,
                 token: userAuthToken
             })
         } else {
