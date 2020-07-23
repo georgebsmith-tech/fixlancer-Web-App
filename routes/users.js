@@ -29,22 +29,8 @@ router.get("/", async function (req, res) {
 //Registration route
 router.post("/register", async (req, res) => {
 
-
-    // const Schema = {
-    //     username: Joi.string().min(4).required()
-    // }
-
-    // Joi.validate(req.body, Schema)
-    //     .then(data => {
-    //         console.log(data)
-    //     })
-    //     .catch(err => {
-    //         res.status(400).send(err.details[0].message)
-    //         return
-    //     })
-
-    // console.log(req.file)
     const body = req.body
+
     if (body.solved) {
         console.log("Puzzle solved")
         const userRes = await UserModel.find({ username: body.username })
@@ -54,6 +40,7 @@ router.post("/register", async (req, res) => {
                 error: "Username already Exists"
             })
         }
+
 
         const emailRes = await UserModel.find({ email: body.email })
         if (emailRes.length >= 1) {
@@ -67,10 +54,15 @@ router.post("/register", async (req, res) => {
                 error: "There's already a user with this number"
             })
         }
+        if (body.password !== body.confirm_password) {
+            return res.status(401).json({
+                error: "'password' and 'confirm password' fields must match "
+            })
+        }
 
     } else {
         res.status(401).json({
-            message: "Puzzle not solved!"
+            error: "Puzzle not solved!"
         })
     }
     body.password = (await bcrypt.hash(body.password, 15)).toString()
@@ -91,16 +83,6 @@ router.post("/register", async (req, res) => {
 
 
     }
-
-
-
-
-
-
-
-
-
-
 })
 
 
