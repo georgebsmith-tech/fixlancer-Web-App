@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
     const data = await CategoryModel.find()
     res.status(200).json({
-        body: data
+        data: data
     })
 
 })

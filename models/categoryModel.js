@@ -22,8 +22,9 @@ const Schema = new mongoose.Schema({
         unique: true,
         required: true
     },
-    items: {
-        type: Array,
+    number_of_fixes: {
+        type: Number,
+        default: 0
     },
 
     date: {

@@ -55,6 +55,10 @@ const Schema = new mongoose.Schema({
     usernameChanges: {
         type: Number,
         default: 0
+    },
+    country: {
+        type: String,
+        required: true
     }
 
 })

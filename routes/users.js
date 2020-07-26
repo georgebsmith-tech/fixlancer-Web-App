@@ -37,7 +37,8 @@ router.post("/register", async (req, res) => {
         if (userRes.length >= 1) {
             console.log("Username Exists")
             return res.status(401).json({
-                error: "Username already Exists"
+                error: "Username already Exists",
+                errorCode: 1
             })
         }
 
@@ -45,24 +46,29 @@ router.post("/register", async (req, res) => {
         const emailRes = await UserModel.find({ email: body.email })
         if (emailRes.length >= 1) {
             res.status(401).json({
-                error: "email already Exists"
+                error: "email already Exists",
+                errorCode: 2
+
             })
         }
         const phoneRes = await UserModel.find({ phone: body.phone })
         if (phoneRes.length >= 1) {
             res.status(401).json({
-                error: "There's already a user with this number"
+                error: "There's already a user with this number",
+                errorCode: 3
             })
         }
         if (body.password !== body.confirm_password) {
             return res.status(401).json({
-                error: "'password' and 'confirm password' fields must match "
+                error: "'password' and 'confirm password' fields must match ",
+                errorCode: 4
             })
         }
 
     } else {
         res.status(401).json({
-            error: "Puzzle not solved!"
+            error: "Puzzle not solved!",
+            errorCode: 5
         })
     }
     body.password = (await bcrypt.hash(body.password, 15)).toString()
