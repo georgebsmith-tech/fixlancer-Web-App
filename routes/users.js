@@ -137,6 +137,25 @@ router.post("/email", async (req, res) => {
         })
     }
 })
+router.post("/phone", async (req, res) => {
+    const data = await UserModel.findOne({
+        phone: req.body.phone
+    })
+    if (data) {
+        await delete data.hashPassword
+        const bankDetails = await BankModel.findOne({ username: data.username })
+        res.status(200).json({
+            data: data,
+            bankDetails: bankDetails,
+            found: true
+        })
+    } else {
+        res.status(200).json({
+            error: "No User with that username",
+            found: false
+        })
+    }
+})
 
 
 router.get("/:username", async (req, res) => {
