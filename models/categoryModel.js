@@ -15,6 +15,19 @@ mongoose.connect(dataBaseUrl, { useNewUrlParser: true, useUnifiedTopology: true,
 
 })
 
+const SubCat = new mongoose.Schema({
+    name: {
+        type: String
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    number_of_fixes: {
+        type: Number,
+        default: 0
+    }
+})
 
 const Schema = new mongoose.Schema({
     name: {
@@ -22,9 +35,12 @@ const Schema = new mongoose.Schema({
         unique: true,
         required: true
     },
-    number_of_fixes: {
+    number_of_subs: {
         type: Number,
         default: 0
+    },
+    subcat: {
+        type: [SubCat]
     },
 
     date: {

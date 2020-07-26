@@ -6,7 +6,7 @@ router.post("/", async (req, res) => {
     const data = await newCategory.save()
     res.status(200).json({
         message: "Recored added",
-        body: data
+        data: data
     })
 
 })
@@ -19,12 +19,25 @@ router.get("/", async (req, res) => {
 
 })
 
-router.get("/:category", (req, res) => {
-    res.status(200).send("gettingthe category: " + req.params.category)
-})
 
-router.post("/:category", (req, res) => {
-    res.status(200).send("Posting to the category: " + req.params.category)
+
+router.post("/:category", async (req, res) => {
+
+    const category = await CategoryModel.findOne({
+        name: req.params.category
+    })
+    console.log(category)
+    const sub = { name: req.body.name }
+    category.subcat.push(sub)
+    const data = await category.save()
+    res.status(200).send(data)
+})
+router.get("/:category", async (req, res) => {
+
+    const category = await CategoryModel.findOne({
+        name: req.params.category
+    })
+    res.status(200).send(category)
 })
 
 module.exports = router
