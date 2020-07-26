@@ -133,7 +133,7 @@ router.get("/:username", async (req, res) => {
             found: true
         })
     } else {
-        res.status(401).json({
+        res.status(200).json({
             error: "No User with that username",
             found: false
         })
