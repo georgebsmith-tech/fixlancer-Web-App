@@ -118,6 +118,25 @@ router.post("/login", async (req, res) => {
     }
 
 })
+router.post("/email", async (req, res) => {
+    const data = await UserModel.findOne({
+        email: req.body.email
+    })
+    if (data) {
+        await delete data.hashPassword
+        const bankDetails = await BankModel.findOne({ username: data.username })
+        res.status(200).json({
+            data: data,
+            bankDetails: bankDetails,
+            found: true
+        })
+    } else {
+        res.status(200).json({
+            error: "No User with that username",
+            found: false
+        })
+    }
+})
 
 
 router.get("/:username", async (req, res) => {
@@ -139,6 +158,9 @@ router.get("/:username", async (req, res) => {
         })
     }
 })
+
+
+
 
 
 router.put("/register/:username", upload.single("photo"), async function (req, res) {
