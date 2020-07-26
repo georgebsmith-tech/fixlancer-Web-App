@@ -120,7 +120,7 @@ router.post("/login", async (req, res) => {
 })
 
 
-router.get("/personal-info/:username", async (req, res) => {
+router.get("/:username", async (req, res) => {
     const data = await UserModel.findOne({
         username: req.params.username
     })
@@ -128,12 +128,14 @@ router.get("/personal-info/:username", async (req, res) => {
         await delete data.hashPassword
         const bankDetails = await BankModel.findOne({ username: data.username })
         res.status(200).json({
-            body: data,
-            bankDetails: bankDetails
+            data: data,
+            bankDetails: bankDetails,
+            found: true
         })
     } else {
         res.status(401).json({
-            message: "No User with that username"
+            error: "No User with that username",
+            found: false
         })
     }
 })
