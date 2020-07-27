@@ -99,21 +99,28 @@ router.post("/login", async (req, res) => {
     const data = await UserModel.findOne({ username: body.username })
     if (data) {
         console.log(data)
-        const ispassword = await bcrypt.compare(body.password, data.password)
+        const hash = data.password
+        console.log(hash)
+        const password = body.password
+        console.log(password)
+        const ispassword = await bcrypt.compare(password, hash)
         console.log(ispassword)
         if (ispassword) {
             const userAuthToken = jwt.sign({ id: data.username }, process.env.USER_JWT_SECRET)
             res.status(200).header("token", userAuthToken).json({
-                token: userAuthToken
+                token: userAuthToken,
+                loggedIn: true
             })
         } else {
             res.status(401).json({
-                message: "Incorrect  username or password"
+                message: "Incorrect  username or password",
+                loggedIn: false
             })
         }
     } else {
         res.status(401).json({
-            message: "Incorrect username or password"
+            message: "Incorrect username or password",
+            loggedIn: false
         })
     }
 
