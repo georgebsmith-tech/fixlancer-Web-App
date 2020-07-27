@@ -17,7 +17,8 @@ mongoose.connect(dataBaseUrl, { useNewUrlParser: true, useUnifiedTopology: true,
 
 const SubCat = new mongoose.Schema({
     name: {
-        type: String
+        type: String,
+        unique: true
     },
     createdAt: {
         type: Date,

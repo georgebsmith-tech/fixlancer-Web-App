@@ -21,10 +21,10 @@ router.get("/", async (req, res) => {
 
 
 
-router.post("/:category", async (req, res) => {
+router.post("/:id", async (req, res) => {
 
     const category = await CategoryModel.findOne({
-        name: req.params.category
+        _id: req.params.id
     })
     console.log(category)
     const sub = { name: req.body.name }
