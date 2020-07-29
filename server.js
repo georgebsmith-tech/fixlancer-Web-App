@@ -8,6 +8,7 @@ const pushNoticeRoute = require("./routes/pushRoutes")
 const affiliatesRoute = require("./routes/affiliates")
 const apiDocumentationRoutes = require("./routes/apiDocumentationRoutes")
 const fixRoutes = require("./routes/fixRoutes")
+const requestRoutes = require("./routes/requestsRoutes")
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
@@ -29,6 +30,8 @@ app.use("/api/categories", categoriesRoute)
 app.use("/api/push-notice", pushNoticeRoute)
 app.use("/api/affiliates", affiliatesRoute)
 app.use("/api/fixes", fixRoutes)
+app.use("/api/requests", requestRoutes)
+
 
 
 

@@ -59,6 +59,25 @@ const Schema = new mongoose.Schema({
     country: {
         type: String,
         required: true
+    },
+    last_seen: {
+        type: Date
+    },
+    active: {
+        type: Boolean,
+        default: true
+    },
+    requests: {
+        type: Array
+    },
+    orders: {
+        type: Array
+    },
+    sales: {
+        type: Array
+    },
+    notices: {
+        type: Array
     }
 
 })
