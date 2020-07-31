@@ -166,16 +166,26 @@ router.post("/phone", async (req, res) => {
 
 
 router.get("/:username", async (req, res) => {
+    const requestString = req.query
+
     const data = await UserModel.findOne({
         username: req.params.username
     })
     if (data) {
-        await delete data.hashPassword
         const bankDetails = await BankModel.findOne({ username: data.username })
+            .select({ bio: true, username: true })
         res.status(200).json({
-            data: data,
-            bankDetails: bankDetails,
-            found: true
+            username: data.username,
+            ungoing_sales: 0,
+            balance: 0,
+            unread_msgs: 0,
+            ungoing_orders: 0,
+            unread_notices: 0,
+            bio: "",
+            rating: 0
+
+
+
         })
     } else {
         res.status(200).json({
@@ -220,6 +230,11 @@ router.post("/bank-details/:username", async function (req, res) {
         })
     }
 })
+
+// router.get("/:username", async (req,res)=>{
+// const user = await UserModel.findOne({username:req.params.username})
+// console.log(user)
+// })
 
 
 module.exports = router

@@ -18,6 +18,14 @@ router.get("/", async (req, res) => {
     })
 
 })
+router.delete("/:id", async (req, res) => {
+    const data = await CategoryModel.findByIdAndDelete(req.params.id)
+    res.status(200).json({
+        data: data,
+        status: "Deleted"
+    })
+
+})
 
 
 
