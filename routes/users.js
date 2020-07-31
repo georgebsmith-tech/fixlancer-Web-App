@@ -175,14 +175,16 @@ router.get("/:username", async (req, res) => {
         const bankDetails = await BankModel.findOne({ username: data.username })
             .select({ bio: true, username: true })
         res.status(200).json({
-            username: data.username,
-            ungoing_sales: 0,
-            balance: 0,
-            unread_msgs: 0,
-            ungoing_orders: 0,
-            unread_notices: 0,
-            bio: "",
-            rating: 0
+            data: {
+                username: data.username,
+                ungoing_sales: 0,
+                balance: 0,
+                unread_msgs: 0,
+                ungoing_orders: 0,
+                unread_notices: 0,
+                bio: "",
+                rating: 0
+            }
 
 
 
