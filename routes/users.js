@@ -178,12 +178,16 @@ router.get("/:username", async (req, res) => {
             data: {
                 username: data.username,
                 ungoing_sales: 0,
-                balance: 0,
-                unread_msgs: 0,
-                ungoing_orders: 0,
-                unread_notices: 0,
+                summary: [["unread messages", 0],
+                ["balance", 0],
+                ["active sales", 0],
+                ["active orders", 0]
+
+                ],
+
                 bio: "",
-                rating: 0
+                rating: 0,
+                unread_notices: 0
             }
 
 
