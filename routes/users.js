@@ -18,6 +18,9 @@ console.log(process.env.AWS_REGION)
 
 const UserModel = require("../models/usersModel")
 const BankModel = require("../models/bankModel")
+const SalesModel = require("../models/salesModel")
+const OrdersModel = require("../models/ordersModel")
+const NoticesModel = require("../models/noticeModel")
 
 const singleUpload = upload.single("photo")
 
@@ -164,40 +167,108 @@ router.post("/phone", async (req, res) => {
     }
 })
 
+router.post("/:username/bank-details", async function (req, res) {
+    const data = await UserModel.findOne({ username: req.params.username })
+
+    if (data) {
+        const body = req.body
+        console.log(body)
+        const details = {
+            username: req.params.username,
+            accName: body.acc_name,
+            accNumber: body.acc_number,
+            bankName: body.bank_name
+        }
+        const bankDetails = new BankModel(details)
+        const savedData = await bankDetails.save()
+        res.status(200).json(savedData)
+    } else {
+        res.status(401).json({
+            message: "No user with that information"
+        })
+    }
+})
+
 
 router.get("/:username", async (req, res) => {
     const requestString = req.query
+    console.log(requestString)
+    if (requestString.content === "full") {
 
-    const data = await UserModel.findOne({
-        username: req.params.username
-    })
-    if (data) {
-        const bankDetails = await BankModel.findOne({ username: data.username })
-            .select({ bio: true, username: true })
-        res.status(200).json({
-            data: {
-                username: data.username,
-                ungoing_sales: 0,
-                summary: [["unread messages", 0],
-                ["balance", 0],
-                ["active sales", 0],
-                ["active orders", 0]
+        const data = await UserModel.findOne({ username: req.params.username })
+        let bankDetails = await BankModel.findOne({ username: data.username })
+        const unreadNotices = await NoticesModel.find({ user_id: data._id, read: false })
+        if (!bankDetails) bankDetails = {}
+        const ongoingSales = await SalesModel.find({ user_id: data._id, state: "ongoing" })
+        const ongoingOrders = await OrdersModel.find({ user_id: data._id, state: "ongoing" })
+        if (data) {
+            return res.status(200).json({
+                data: {
+                    full_name: data.fullName,
+                    username: data.username,
+                    city: data.city,
+                    phone: data.phone,
+                    bio: data.bio,
+                    unread_notices: unreadNotices.length,
+                    unread_msgs: 0,
+                    active_sales: ongoingSales.length,
+                    active_orders: ongoingOrders.length,
+                    balance: 0,
+                    bamk_details: {
+                        bank_name: bankDetails.bankName,
+                        acct_name: bankDetails.accName,
+                        acc_number: bankDetails.accNumber
+                    }
 
-                ],
-
-                bio: "",
-                rating: 0,
-                unread_notices: 0
-            }
+                }
+            })
 
 
-
-        })
+        } else {
+            return res.status(200).json({
+                error: "No User with that username",
+                found: false
+            })
+        }
     } else {
-        res.status(200).json({
-            error: "No User with that username",
-            found: false
-        })
+
+
+
+        const data = await UserModel.findOne({
+            username: req.params.username
+        }).select("bio username rating")
+        if (data) {
+            const ongoingSales = await SalesModel.find({ user_id: data._id, state: "ongoing" })
+            const ongoingOrders = await OrdersModel.find({ user_id: data._id, state: "ongoing" })
+            const unreadNotices = await NoticesModel.find({ user_id: data._id, read: false })
+
+
+            console.log(ongoingSales)
+
+
+            res.status(200).json({
+                data: {
+                    username: data.username,
+                    ungoing_sales: 0,
+                    summary: [["unread messages", 0],
+                    ["balance", 0],
+                    ["active sales", ongoingSales.length],
+                    ["active orders", ongoingOrders.length]
+
+                    ],
+
+                    bio: data.bio,
+                    rating: data.rating,
+                    unread_notices: unreadNotices.length
+                }
+
+            })
+        } else {
+            res.status(200).json({
+                error: "No User with that username",
+                found: false
+            })
+        }
     }
 })
 
@@ -215,27 +286,7 @@ router.put("/register/:username", upload.single("photo"), async function (req, r
 
 
 
-router.post("/bank-details/:username", async function (req, res) {
-    const data = await UserModel.findOne({ username: req.params.username })
 
-    if (data) {
-        const body = req.body
-        console.log(body)
-        const details = {
-            username: req.params.username,
-            accName: body.accName,
-            accNumber: body.accNumber,
-            bankName: body.bankName
-        }
-        const bankDetails = new BankModel(details)
-        const savedData = await bankDetails.save()
-        res.status(200).json(savedData)
-    } else {
-        res.status(401).json({
-            message: "No user with that information"
-        })
-    }
-})
 
 // router.get("/:username", async (req,res)=>{
 // const user = await UserModel.findOne({username:req.params.username})

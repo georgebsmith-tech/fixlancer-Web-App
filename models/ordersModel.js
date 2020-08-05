@@ -18,7 +18,7 @@ mongoose.connect(dataBaseUrl, { useNewUrlParser: true, useUnifiedTopology: true,
 
 
 const Schema = new mongoose.Schema({
-    username: {
+    user_id: {
         type: String,
         required: true
 
@@ -47,7 +47,7 @@ const Schema = new mongoose.Schema({
     state: {
         type: String,
         required: true,
-        default: "Ongoing" // other values are Delivered, canceled and completed
+        default: "ongoing" // other values are Delivered, canceled and completed
     }
 
 

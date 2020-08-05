@@ -1,0 +1,48 @@
+.finance-summary{
+    background: white;
+    padding: 18px 25px;
+    margin-top: 25px;
+    border-radius: 3px;
+    border: 1px solid #e3e6f0;
+    box-shadow: 0px 1px 1px #e3e6f0;
+}
+
+.withdrawal-summary{
+    background: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 3px;
+    border: 1px solid #e3e6f0;
+    
+    header{
+        background:#f8f9fc ;
+        padding: 18px 25px;
+        i{
+           margin-right: 6px;
+        }
+    }
+    &>div{
+        padding:55px 25px 20px 25px;
+    }
+}
+
+.finance-controlers{
+    text-align: center;
+    margin-bottom: 55px;
+    a{
+        margin-bottom: 15px;
+        display: block;
+        width: 100%;
+        border-radius: 6px;
+        padding: 10px;
+        outline: none;
+        border: 1px solid #f27415;
+        color: #f27415;
+    }
+
+    .trans-hist{
+        color: #374355;
+        border: 1px solid #ddd;
+    }
+}
+

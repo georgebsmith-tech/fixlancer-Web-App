@@ -18,7 +18,7 @@ mongoose.connect(dataBaseUrl, { useNewUrlParser: true, useUnifiedTopology: true,
 
 
 const Schema = new mongoose.Schema({
-    username: {
+    user_id: {
         type: String,
         required: true
 

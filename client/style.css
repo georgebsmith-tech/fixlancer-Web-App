@@ -1,6 +1,12 @@
 * {
   margin: 0px;
   padding: 0px;
+  box-sizing: border-box;
+  color: #5a5c69;
+}
+
+a {
+  text-decoration: none;
 }
 
 html {
@@ -9,10 +15,18 @@ html {
   line-height: 1.15;
 }
 
-.main {
+h1, h2, h3, h4, h5, h6 {
+  color: #5a5c69;
+}
+
+main {
   background: #fcfcfc;
-  padding: 10px 7px;
+  padding: 10px 15px;
   width: 100vw;
+}
+
+.post-requst {
+  padding: 10px 7px;
 }
 
 .form-container {
@@ -20,12 +34,166 @@ html {
   margin: 0px auto;
   padding: 7px 10px;
 }
+.form-container .form-title {
+  font-size: 1.5rem;
+  margin-bottom: 35px;
+}
 
 fieldset {
   border: none;
 }
 fieldset input, fieldset select, fieldset textarea {
   width: 100%;
+  padding: 7px 10px;
+  color: #6e707e;
+  border: 1px solid #d1d3e2;
+  border-radius: 0.35rem;
+  font-weight: 400;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  outline: none;
+}
+fieldset input:focus, fieldset select:focus, fieldset textarea:focus {
+  border: 4px solid rgba(105, 196, 248, 0.4);
+}
+fieldset button {
+  background: #415478;
+  padding: 10px 14px;
+  color: white;
+  border-radius: 7px;
+  font-size: 1rem;
+}
+
+.finance-summary {
+  background: white;
+  padding: 18px 25px;
+  margin-top: 25px;
+  border-radius: 3px;
+  border: 1px solid #e3e6f0;
+  box-shadow: 0px 1px 1px #e3e6f0;
+}
+
+.withdrawal-summary {
+  background: white;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 3px;
+  border: 1px solid #e3e6f0;
+}
+.withdrawal-summary header {
+  background: #f8f9fc;
+  padding: 18px 25px;
+}
+.withdrawal-summary header i {
+  margin-right: 6px;
+}
+.withdrawal-summary > div {
+  padding: 55px 25px 20px 25px;
+}
+
+.finance-controlers {
+  text-align: center;
+  margin-bottom: 55px;
+}
+.finance-controlers a {
+  margin-bottom: 15px;
+  display: block;
+  width: 100%;
+  border-radius: 6px;
+  padding: 10px;
+  outline: none;
+  border: 1px solid #f27415;
+  color: #f27415;
+}
+.finance-controlers .trans-hist {
+  color: #374355;
+  border: 1px solid #ddd;
+}
+
+.request {
+  background: white;
+  padding: 15px 20px 35px 20px;
+  display: grid;
+  column-gap: 10px;
+  grid-template-columns: 1fr 9fr;
+}
+
+.requests {
+  box-shadow: 2px 3px 8px 3px #e6e9f1;
+  margin-top: 27px;
+}
+
+.divider {
+  margin-top: 20px;
+  border-bottom: 1px solid #e3e6f0;
+  width: 80%;
+  margin: 0px auto;
+}
+
+.send-offer {
+  background: #415478;
+  display: inline-block;
+  color: white;
+  padding: 6px 15px;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.username-icon {
+  width: 1.6rem;
+  height: 1.6rem;
+  background: green;
+  color: white;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.4rem;
+  text-transform: capitalize;
+  margin-bottom: 15px;
+  color: #f27415;
+  font-weight: lighter;
+  padding-right: 50px;
+  display: inline-block;
+}
+
+.description {
+  padding-right: 50px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+.request-meta {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  column-gap: 20px;
+  padding-right: 55px;
+  margin-bottom: 35px;
+}
+.request-meta > div:nth-child(2) {
+  text-align: right;
+  font-size: 0.75rem;
+  color: #fe1b1b;
+}
+.request-meta > div:nth-child(2) i {
+  margin-right: 3px;
+  color: #fe1b1b;
+}
+
+.duration {
+  font-size: 0.75rem;
+  margin-bottom: 7px;
+}
+
+.amount {
+  font-size: 1.6rem;
+  font-weight: bolder;
 }
 
 /*# sourceMappingURL=style.css.map */

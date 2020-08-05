@@ -35,6 +35,7 @@ const Schema = new mongoose.Schema({
     },
     fullName: {
         type: String,
+        default: ""
     },
     city: {
         type: String,
@@ -50,7 +51,8 @@ const Schema = new mongoose.Schema({
         required: true,
     },
     bio: {
-        type: String
+        type: String,
+        default: ""
     },
     usernameChanges: {
         type: Number,
@@ -78,6 +80,10 @@ const Schema = new mongoose.Schema({
     },
     notices: {
         type: Array
+    },
+    rating: {
+        type: Number,
+        default: 0
     }
 
 })
