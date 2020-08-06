@@ -5,6 +5,10 @@
   color: #5a5c69;
 }
 
+ul {
+  list-style-type: none;
+}
+
 a {
   text-decoration: none;
 }
@@ -91,12 +95,23 @@ fieldset button {
 .withdrawal-summary > div {
   padding: 55px 25px 20px 25px;
 }
+.withdrawal-summary div.sect {
+  padding: 0px 25px 0px 25px;
+}
+.withdrawal-summary div.sect:nth-child(3) {
+  margin-top: 20px;
+}
 
 .finance-controlers {
   text-align: center;
   margin-bottom: 55px;
 }
-.finance-controlers a {
+.finance-controlers .trans-hist {
+  color: #374355;
+  border: 1px solid #ddd;
+}
+
+.button {
   margin-bottom: 15px;
   display: block;
   width: 100%;
@@ -106,9 +121,11 @@ fieldset button {
   border: 1px solid #f27415;
   color: #f27415;
 }
-.finance-controlers .trans-hist {
-  color: #374355;
-  border: 1px solid #ddd;
+
+button.button {
+  color: white;
+  background: #1cc88a;
+  border: 1px solid #1cc88a;
 }
 
 .request {

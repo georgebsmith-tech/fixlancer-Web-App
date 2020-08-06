@@ -276,6 +276,8 @@ router.get("/:username", async (req, res) => {
 
 
 
+
+
 router.put("/register/:username", upload.single("photo"), async function (req, res) {
     const body = req.body
     body.imageURL = req.file.path
@@ -283,6 +285,10 @@ router.put("/register/:username", upload.single("photo"), async function (req, r
 
     res.status(200).json(data)
 })
+
+
+const updateUserDetails = require("../controlers/users/updateUserDetails")
+router.patch("/:username", updateUserDetails)
 
 
 
