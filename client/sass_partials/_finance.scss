@@ -30,6 +30,26 @@
             margin-top: 20px;
         }
     }
+    .notifications{
+        padding: 0px;
+        line-height: 1.4;
+        border-bottom: 1px solid #ddd;
+        a{
+            display: block;
+            padding: 10px 15px 10px 10px;
+        }
+        span{
+            float: right;
+        }
+        em{
+            clear: both;
+        }
+        
+            
+        &:hover{
+                background-color:rgb(238, 237, 237);
+        }
+    }
 }
 
 

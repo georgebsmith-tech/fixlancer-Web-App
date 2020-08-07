@@ -69,6 +69,10 @@ fieldset button {
   font-size: 1rem;
 }
 
+.warning {
+  color: #fe1b1b;
+}
+
 .finance-summary {
   background: white;
   padding: 18px 25px;
@@ -100,6 +104,24 @@ fieldset button {
 }
 .withdrawal-summary div.sect:nth-child(3) {
   margin-top: 20px;
+}
+.withdrawal-summary .notifications {
+  padding: 0px;
+  line-height: 1.4;
+  border-bottom: 1px solid #ddd;
+}
+.withdrawal-summary .notifications a {
+  display: block;
+  padding: 10px 15px 10px 10px;
+}
+.withdrawal-summary .notifications span {
+  float: right;
+}
+.withdrawal-summary .notifications em {
+  clear: both;
+}
+.withdrawal-summary .notifications:hover {
+  background-color: #eeeded;
 }
 
 .finance-controlers {
@@ -211,6 +233,25 @@ button.button {
 .amount {
   font-size: 1.6rem;
   font-weight: bolder;
+}
+
+.form-group {
+  padding: 15px;
+  background-color: white;
+  margin-bottom: 25px;
+  box-shadow: 0px 0.15rem 1.75rem 0px rgba(58, 59, 69, 0.15);
+  border-radius: 5px;
+}
+
+.section-head {
+  background: #f8f9fc;
+  padding: 15px 25px;
+  border: 1px solid #fff;
+  box-shadow: 0px 0.15rem 1.75rem 0px rgba(58, 59, 69, 0.15);
+  border-radius: 5px;
+}
+.section-head i {
+  margin-right: 6px;
 }
 
 /*# sourceMappingURL=style.css.map */
