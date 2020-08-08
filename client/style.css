@@ -73,6 +73,10 @@ fieldset button {
   color: #fe1b1b;
 }
 
+i.fa.fa-star {
+  color: #ffae06;
+}
+
 .finance-summary {
   background: white;
   padding: 18px 25px;
@@ -150,7 +154,7 @@ button.button {
   border: 1px solid #1cc88a;
 }
 
-.request {
+.request, .order-and-sale {
   background: white;
   padding: 15px 20px 35px 20px;
   display: grid;
@@ -158,9 +162,10 @@ button.button {
   grid-template-columns: 1fr 9fr;
 }
 
-.requests {
-  box-shadow: 2px 3px 8px 3px #e6e9f1;
+.requests, .orders-and-sales {
+  box-shadow: 0px 0.15rem 1.75rem 0px rgba(58, 59, 69, 0.15);
   margin-top: 27px;
+  border-radius: 7px;
 }
 
 .divider {
@@ -252,6 +257,69 @@ button.button {
 }
 .section-head i {
   margin-right: 6px;
+}
+
+.sales-and-orders-headings {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: #f8f9fc;
+}
+.sales-and-orders-headings a {
+  display: block;
+  color: #2F9CDD;
+  text-align: center;
+  padding: 10px;
+  border-left: 2px solid #ddd;
+  font-size: 1.2rem;
+}
+.sales-and-orders-headings a:hover {
+  text-decoration: underline;
+}
+.sales-and-orders-headings a.active, .sales-and-orders-headings a.active span {
+  background: #5aba79;
+  color: white;
+}
+.sales-and-orders-headings a span {
+  color: #2F9CDD;
+}
+
+.order-and-sale {
+  grid-template-columns: 2fr 7fr;
+  padding: 15px 20px 5px 20px;
+}
+.order-and-sale .title {
+  font-size: 1rem;
+  padding-right: 10px;
+}
+
+img {
+  width: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+  display: block;
+}
+
+.sale-and-order-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.sale-and-order-meta .amount {
+  color: #5aba79;
+  font-size: 1.3rem;
+}
+
+.delivery-and-star {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+.delivery-and-star .date {
+  margin-right: 8px;
+}
+.delivery-and-star .fa-star {
+  margin-right: 4px;
 }
 
 /*# sourceMappingURL=style.css.map */

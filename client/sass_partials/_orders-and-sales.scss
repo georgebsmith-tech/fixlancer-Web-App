@@ -1,0 +1,68 @@
+.sales-and-orders-headings{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+   
+    background-color: #f8f9fc;
+
+    a{
+        display: block;
+        color: #2F9CDD;
+        text-align: center;
+        // background: red;
+        padding: 10px;
+        border-left: 2px solid #ddd;
+        font-size: 1.2rem;
+        &:hover{
+            text-decoration: underline;
+            
+        }
+        &.active,&.active span{
+            background: #5aba79;
+            color: white;
+        }
+        span{
+            color: #2F9CDD;
+        }
+    }
+}
+
+.order-and-sale{
+    grid-template-columns: 2fr 7fr;
+    padding: 15px 20px 5px 20px;
+    .title{
+        font-size: 1rem;
+        padding-right: 10px;
+    }
+}
+
+img{
+    width: 100%;
+    border-radius: 6px;
+    object-fit: cover;
+    display: block;
+    // height: 100%;
+}
+
+.sale-and-order-meta{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    .amount{
+        color:#5aba79;
+        font-size: 1.3rem;
+    }
+
+}
+.delivery-and-star{
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    .date{
+        margin-right: 8px;
+    }
+    .fa-star{
+        margin-right:4px;
+    }
+   
+}

@@ -1,4 +1,4 @@
-.request{
+.request,.order-and-sale{
     background: white;
     padding: 15px 20px 35px 20px;
     display: grid;
@@ -7,9 +7,10 @@
     
    
 }
-.requests{
-    box-shadow: 2px 3px 8px 3px#e6e9f1;
+.requests,.orders-and-sales{
+    box-shadow: 0px 0.15rem 1.75rem 0px rgba(58, 59, 69, 0.15);
     margin-top: 27px;
+    border-radius: 7px;
 
 }
 .divider{
