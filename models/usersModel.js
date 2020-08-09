@@ -84,6 +84,13 @@ const Schema = new mongoose.Schema({
     rating: {
         type: Number,
         default: 0
+    },
+    website: {
+        type: String,
+        default: ""
+    },
+    conversations: {
+        type: Array
     }
 
 })
