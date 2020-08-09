@@ -4,21 +4,22 @@ const app = express()
 const server = require("http").Server(app);
 const io = require("socket.io")(server)
 
-const usersRoute = require("./routes/users")
-const categoriesRoute = require("./routes/categories")
-const pushNoticeRoute = require("./routes/pushRoutes")
-const affiliatesRoute = require("./routes/affiliates")
-const apiDocumentationRoutes = require("./routes/apiDocumentationRoutes")
-const fixRoutes = require("./routes/fixRoutes")
-const requestRoutes = require("./routes/requestsRoutes")
-const salesRoutes = require("./routes/salesRoutes")
-const conversationRoutes = require("./routes/conversationRoutes")
+const usersRoute = require("./APIRoutes/users")
+const categoriesRoute = require("./APIRoutes/categories")
+const pushNoticeRoute = require("./APIRoutes/pushRoutes")
+const affiliatesRoute = require("./APIRoutes/affiliates")
+const apiDocumentationRoutes = require("./APIRoutes/apiDocumentationRoutes")
+const fixRoutes = require("./APIRoutes/fixRoutes")
+const requestRoutes = require("./APIRoutes/requestsRoutes")
+const salesRoutes = require("./APIRoutes/salesRoutes")
+const conversationRoutes = require("./APIRoutes/conversationRoutes")
 
 const ConversationModel = require("./models/conversationModel")
 
 app.use(express.urlencoded({ extended: false }))
 app.set("views", "views")
 app.set("view engine", "ejs")
+app.use(express.static("public"))
 app.use(express.json())
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*")
@@ -81,10 +82,36 @@ app.get("/chat-app", function (req, res) {
     res.render("chat-app")
 })
 
+app.get("/", (req, res) => {
+    res.render("index")
+})
+app.get("/login", (req, res) => {
+    res.render("login")
+})
+app.get("/register", (req, res) => {
+    res.render("register")
+})
+app.get("/dashboard", (req, res) => {
+    res.render("dashboard")
+})
+
+app.get("/dashboard/profile", (req, res) => {
+    res.render("profile")
+})
+
+app.get("/dashboard/profile/edit", (req, res) => {
+    res.render("edit")
+})
+
+app.get("/dashboard/profile", (req, res) => {
+    res.render("profile")
+})
+
+
 app.use("/uploads", express.static("uploads"))
 
 
-app.use(apiDocumentationRoutes)
+// app.use(apiDocumentationRoutes)
 app.use("/api/users", usersRoute)
 app.use("/api/categories", categoriesRoute)
 app.use("/api/push-notice", pushNoticeRoute)

@@ -27,6 +27,7 @@ main {
   background: #fcfcfc;
   padding: 10px 15px;
   width: 100vw;
+  min-height: 90vh;
 }
 
 .post-requst {
@@ -320,6 +321,33 @@ img {
 }
 .delivery-and-star .fa-star {
   margin-right: 4px;
+}
+
+@media only screen and (min-width: 769px) {
+  .sales-and-orders-headings {
+    display: flex;
+    padding: 5px 40px;
+  }
+  .sales-and-orders-headings a {
+    padding: 5px 40px;
+  }
+
+  .order-and-sale {
+    grid-template-columns: 3fr 7fr;
+  }
+  .order-and-sale .title {
+    font-size: 1.3rem;
+    padding-right: 10px;
+  }
+
+  .sales-order-more-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  }
+
+  .main {
+    padding: 20px 120px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
