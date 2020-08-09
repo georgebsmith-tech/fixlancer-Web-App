@@ -17,6 +17,8 @@ const conversationRoutes = require("./routes/conversationRoutes")
 const ConversationModel = require("./models/conversationModel")
 
 app.use(express.urlencoded({ extended: false }))
+app.set("views", "views")
+app.set("view engine", "ejs")
 app.use(express.json())
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*")
@@ -75,7 +77,9 @@ io.on("connection", socket => {
 
 
 
-
+app.get("/chat-app", function (req, res) {
+    res.render("chat-app")
+})
 
 app.use("/uploads", express.static("uploads"))
 
