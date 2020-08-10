@@ -1,0 +1,56 @@
+.profile{
+    background: white;
+    padding: 20px 20px 50px 20px ;
+    margin: 15px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+
+.online-status{
+    display: flex;
+    justify-content: flex-end;
+}
+.online-status div{
+    text-align: right;
+    padding: 8px;
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    width: fit-content;
+}
+
+
+// .user-online{
+//     color: #89E130;
+// }
+
+.online-icon{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 100px;
+    color:#89E130;
+    margin-right: 5px;
+    
+}
+
+.online-bg-color{
+    background: #89E130;
+}
+
+.online-color{
+    color:#89E130 ;
+}
+
+.edit-profile{
+    width: 95%;
+    margin: 30px auto;
+    border: 1px solid #ddd;
+    color:inherit;
+}
+
+.profile-icon{
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+}
