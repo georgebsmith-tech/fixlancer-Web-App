@@ -58,6 +58,7 @@
             <p>Go back to <a href="/">Home</a> | <a href="/login">Login</a></p>
         </div>
     </div>
+    <a href="/how-it-works" class="how-it-works-trigger" style="visibility: hidden;"></a>
 </body>
 
 <script>
@@ -477,6 +478,7 @@
                 return response.json();
             }).then(text => {
                 console.log(text);
+                window.location.href = "/how-it-works"
             }).catch(error => {
                 console.log(error);
             })
