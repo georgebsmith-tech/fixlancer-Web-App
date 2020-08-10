@@ -377,9 +377,56 @@ img {
 }
 
 .profile-icon {
-  width: 40px;
-  height: 40px;
+  width: 90px;
+  height: 90px;
   border-radius: 100px;
+  background: #024446;
+  margin: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.flex-center-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-item {
+  margin-bottom: 15px;
+  display: block;
+  font-size: 1.2rem;
+}
+
+.profile-username {
+  font-weight: bolder;
+  margin-top: -10px;
+  margin-bottom: 30px;
+}
+
+.profile-about {
+  padding: 15px;
+}
+
+.profile-bio {
+  background: white;
+  border-radius: 6px;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.about-item {
+  margin-bottom: 15px;
+}
+.about-item h2 {
+  margin-bottom: 15px;
+  padding-left: 7px;
+}
+.about-item .fix-container {
+  margin-top: 30px;
 }
 
 @media only screen and (min-width: 769px) {
@@ -443,6 +490,13 @@ img {
 
   .description {
     font-size: 1.2rem;
+  }
+
+  .grid-2-12 {
+    display: grid;
+    grid-template-columns: 1.2fr 2fr;
+    width: 80vw;
+    margin: 10px auto;
   }
 }
 
