@@ -103,9 +103,45 @@ app.get("/dashboard/profile/edit", (req, res) => {
     res.render("edit")
 })
 
+app.get("/dashboard/post-request", (req, res) => {
+    res.render("post-request")
+})
+
 app.get("/dashboard/profile", (req, res) => {
     res.render("profile")
 })
+
+app.get("/dashboard/my-orders", (req, res) => {
+    res.render("my-orders-ongoing")
+})
+app.get("/dashboard/my-orders/completed", (req, res) => {
+    res.render("my-orders-completed")
+})
+app.get("/dashboard/my-orders/cancelled", (req, res) => {
+    res.render("my-orders-cancelled")
+})
+app.get("/dashboard/my-orders/delivered", (req, res) => {
+    res.render("my-orders-delivered")
+})
+app.get("/dashboard/finance", (req, res) => {
+    res.render("finance")
+})
+
+app.get("/dashboard/finance/withdraw", (req, res) => {
+    res.render("finance-withdraw")
+})
+
+app.get("/dashboard/finance/transactions", (req, res) => {
+    res.render("finance-withdraw")
+})
+
+app.get("/dashboard/my-requests", (req, res) => {
+    res.render("my-requests")
+})
+
+
+
+
 
 
 app.use("/uploads", express.static("uploads"))

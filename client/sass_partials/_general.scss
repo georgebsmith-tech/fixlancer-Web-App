@@ -24,11 +24,13 @@ h1,h2,h3,h4,h5,h6{
 
 main{
     background: #fcfcfc;
-    padding: 10px 15px;
+    width: 100vw;
+    padding: 10px;
     width: 100vw;
     min-height: 90vh;
+    box-sizing: border-box;
 }
-.post-requst{
+.post-request{
     padding: 10px 7px;
 }
 
@@ -36,6 +38,7 @@ main{
     background:#fff;
     margin: 0px auto;
     padding: 7px 10px;
+    border-radius: 6px;
     .form-title{
         font-size: 1.5rem;
         margin-bottom: 35px;

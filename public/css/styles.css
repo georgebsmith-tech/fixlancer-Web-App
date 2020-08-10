@@ -25,12 +25,14 @@ h1, h2, h3, h4, h5, h6 {
 
 main {
   background: #fcfcfc;
-  padding: 10px 15px;
+  width: 100vw;
+  padding: 10px;
   width: 100vw;
   min-height: 90vh;
+  box-sizing: border-box;
 }
 
-.post-requst {
+.post-request {
   padding: 10px 7px;
 }
 
@@ -38,6 +40,7 @@ main {
   background: #fff;
   margin: 0px auto;
   padding: 7px 10px;
+  border-radius: 6px;
 }
 .form-container .form-title {
   font-size: 1.5rem;
@@ -132,6 +135,7 @@ i.fa.fa-star {
 .finance-controlers {
   text-align: center;
   margin-bottom: 55px;
+  margin-top: 25px;
 }
 .finance-controlers .trans-hist {
   color: #374355;
@@ -348,6 +352,43 @@ img {
   .main {
     padding: 20px 120px;
   }
+
+  .post-request {
+    width: 60vw;
+    padding: 20px 10px 10px 170px;
+  }
+
+  .form-container {
+    padding: 10px 40px 30px 20px;
+  }
+
+  .selections {
+    display: flex;
+    justify-content: space-between;
+  }
+  .selections fieldset {
+    width: 30%;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 15px;
+  }
+
+  .requests {
+    width: 60vw;
+  }
+
+  .username-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 2.1rem;
+  }
+
+  .description {
+    font-size: 1.2rem;
+  }
 }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=styles.css.map */

@@ -27,4 +27,43 @@
         padding: 20px 120px;
     }
 
+    .post-request{
+        width: 60vw;
+        padding: 20px 10px 10px 170px;
+    }
+    .form-container{
+        padding: 10px 40px 30px 20px;
+    }
+    .selections{
+        display: flex;
+        justify-content: space-between;
+        fieldset{
+            width: 30%;
+
+        }
+    }
+
+
+    .grid-2{
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 15px;
+    }
+
+
+    .requests{
+        width: 60vw;
+    }
+
+    .username-icon{
+        width: 70px;
+        height: 70px;
+        font-size: 2.1rem;
+    }
+
+    .description{
+        font-size: 1.2rem;
+    }
+    
+
 }
