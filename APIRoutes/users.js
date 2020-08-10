@@ -289,15 +289,4 @@ router.put("/register/:username", upload.single("photo"), async function (req, r
 
 const updateUserDetails = require("../controlers/users/updateUserDetails")
 router.patch("/:username", updateUserDetails)
-
-
-
-
-
-// router.get("/:username", async (req,res)=>{
-// const user = await UserModel.findOne({username:req.params.username})
-// console.log(user)
-// })
-
-
 module.exports = router

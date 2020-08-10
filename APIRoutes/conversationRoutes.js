@@ -18,8 +18,4 @@ router.get("/:username", async (req, res) => {
 
 })
 
-
-
-
-
 module.exports = router
