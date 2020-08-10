@@ -139,6 +139,10 @@ app.get("/dashboard/my-requests", (req, res) => {
     res.render("my-requests")
 })
 
+app.get("/how-it-works", (req, res) => {
+    res.render("how-it-works")
+})
+
 
 
 

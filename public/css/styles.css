@@ -429,6 +429,57 @@ img {
   margin-top: 30px;
 }
 
+.logo-wrapper {
+  width: 150px;
+  margin: 0px auto 30px auto;
+}
+
+.explore-header {
+  padding-top: 25px;
+  padding-bottom: 15px;
+  text-align: center;
+  background: #f2f2f2;
+}
+
+.welcome {
+  font-size: 1.5rem;
+}
+
+.how-it-works-q {
+  background: #f2f2f2;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.how-it-works-q + p {
+  padding: 20px 30px;
+  text-align: center;
+}
+
+.how-it-works-section {
+  margin-top: 40px;
+}
+
+main.how-it-works {
+  background: white;
+  padding: 40px 15px 70px 15px;
+}
+main.how-it-works h2 {
+  margin-bottom: 25px;
+}
+
+.hit-q-holder {
+  border: 1px solid #ddd;
+}
+
+.next-btn {
+  margin-top: 50px;
+  color: white;
+  background: #36b9cc;
+  border: 1px solid #36b9cc;
+}
+
 @media only screen and (min-width: 769px) {
   .sales-and-orders-headings {
     display: flex;
@@ -497,6 +548,11 @@ img {
     grid-template-columns: 1.2fr 2fr;
     width: 80vw;
     margin: 10px auto;
+  }
+
+  main.how-it-works {
+    width: 70vw;
+    margin: 0px auto;
   }
 }
 
