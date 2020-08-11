@@ -254,6 +254,99 @@ router.get("/u", async (req, res) => {
     }
 })
 
+router.get("/:username", async (req, res) => {
+    const requestString = req.query
+    // req.params.username = req.session.passport.user
+    // console.log("it is " + req.params.username)
+    console.log(requestString)
+    if (requestString.content === "full") {
+
+        const data = await UserModel.findOne({ username: req.params.username })
+        let bankDetails = await BankModel.findOne({ username: data.username })
+        const unreadNotices = await NoticesModel.find({ user_id: data._id, read: false })
+        if (!bankDetails) bankDetails = {}
+        const ongoingSales = await SalesModel.find({ user_id: data._id, state: "ongoing" })
+        const ongoingOrders = await OrdersModel.find({ user_id: data._id, state: "ongoing" })
+        if (data) {
+            return res.status(200).json({
+                data: {
+                    full_name: data.fullName,
+                    username: data.username,
+                    city: data.city,
+                    phone: data.phone,
+                    bio: data.bio,
+                    unread_notices: unreadNotices.length,
+                    unread_msgs: 0,
+                    active_sales: ongoingSales.length,
+                    active_orders: ongoingOrders.length,
+                    balance: 0,
+                    bamk_details: {
+                        bank_name: bankDetails.bankName,
+                        acct_name: bankDetails.accName,
+                        acc_number: bankDetails.accNumber
+                    }
+
+                }
+            })
+
+
+        } else {
+            return res.status(200).json({
+                error: "No User with that username",
+                found: false
+            })
+        }
+    } else if (requestString.content === "profile") {
+        const data = await UserModel.findOne({ username: req.params.username })
+        return res.status(200).json({
+            username: data.username,
+            rating: data.rating,
+            phone: data.phone,
+            bio: data.bio,
+            created_at: data.createdAt.toDateString()
+        })
+    } else {
+
+
+
+        const data = await UserModel.findOne({
+            username: req.params.username
+        }).select("bio username rating")
+        if (data) {
+            const ongoingSales = await SalesModel.find({ user_id: data._id, state: "ongoing" })
+            const ongoingOrders = await OrdersModel.find({ user_id: data._id, state: "ongoing" })
+            const unreadNotices = await NoticesModel.find({ user_id: data._id, read: false })
+
+
+            console.log(ongoingSales)
+
+
+            res.status(200).json({
+                data: {
+                    username: data.username,
+                    ungoing_sales: 0,
+                    summary: [["unread messages", 0],
+                    ["balance", 0],
+                    ["active sales", ongoingSales.length],
+                    ["active orders", ongoingOrders.length]
+
+                    ],
+
+                    bio: data.bio,
+                    rating: data.rating,
+                    unread_notices: unreadNotices.length
+                }
+
+            })
+        } else {
+            res.status(200).json({
+                error: "No User with that username",
+                found: false
+            })
+        }
+    }
+})
+
 
 
 
