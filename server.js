@@ -4,6 +4,17 @@ const app = express()
 const server = require("http").Server(app);
 const io = require("socket.io")(server)
 
+require("dotenv").config()
+
+
+
+const passport = require("passport")
+const flash = require("express-flash")
+const session = require("express-session")
+
+const initialize = require("./configuration/passportConfig")
+
+
 const usersRoute = require("./APIRoutes/users")
 const categoriesRoute = require("./APIRoutes/categories")
 const pushNoticeRoute = require("./APIRoutes/pushRoutes")
@@ -13,14 +24,56 @@ const fixRoutes = require("./APIRoutes/fixRoutes")
 const requestRoutes = require("./APIRoutes/requestsRoutes")
 const salesRoutes = require("./APIRoutes/salesRoutes")
 const conversationRoutes = require("./APIRoutes/conversationRoutes")
+const UserModel = require("./models/usersModel")
 
 const ConversationModel = require("./models/conversationModel")
+
+
+app.use(flash())
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+
+}))
+
+
+initialize(passport, async username => {
+    // console.log("The" + user)
+    console.log("initialize in server")
+    try {
+        const theUser = await UserModel.findOne({ username: username })
+        // console.log(theUser)
+        return theUser
+    } catch (err) {
+        throw err
+
+    }
+
+},
+    async id => {
+        try {
+            const deUser = await UserModel.findOne({ _id: id })
+            // console.log(theUser)
+            return deUser
+        } catch (err) {
+            throw err
+
+        }
+    })
+app.use(passport.initialize())
+app.use(passport.session())
+
+
 
 app.use(express.urlencoded({ extended: false }))
 app.set("views", "views")
 app.set("view engine", "ejs")
 app.use(express.static("public"))
 app.use(express.json())
+
+
+
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*")
     res.header("Access-Control-Allow-Headers", "*")
@@ -30,6 +83,13 @@ app.use((req, res, next) => {
     }
     next()
 })
+
+
+
+
+
+
+
 
 let users = {}
 io.on("connection", socket => {
@@ -77,8 +137,9 @@ io.on("connection", socket => {
 
 
 
+const checkUserAuthenticated = require("./middleware/userIsAuthenticated")
 
-app.get("/chat-app", function (req, res) {
+app.get("/chat-app", checkUserAuthenticated, function (req, res) {
     res.render("chat-app")
 })
 
@@ -91,30 +152,30 @@ app.get("/login", (req, res) => {
 app.get("/register", (req, res) => {
     res.render("register")
 })
-app.get("/dashboard", (req, res) => {
+app.get("/dashboard", checkUserAuthenticated, (req, res) => {
     res.render("dashboard")
 })
 
-app.get("/dashboard/profile", (req, res) => {
+app.get("/dashboard/profile", checkUserAuthenticated, (req, res) => {
     res.render("profile")
 })
 
-app.get("/dashboard/profile/edit", (req, res) => {
+app.get("/dashboard/profile/edit", checkUserAuthenticated, (req, res) => {
     res.render("edit")
 })
 
-app.get("/dashboard/post-request", (req, res) => {
+app.get("/dashboard/post-request", checkUserAuthenticated, (req, res) => {
     res.render("post-request")
 })
 
-app.get("/dashboard/profile", (req, res) => {
+app.get("/dashboard/profile", checkUserAuthenticated, (req, res) => {
     res.render("profile")
 })
 
-app.get("/dashboard/my-orders", (req, res) => {
+app.get("/dashboard/my-orders", checkUserAuthenticated, (req, res) => {
     res.render("my-orders-ongoing")
 })
-app.get("/dashboard/my-orders/completed", (req, res) => {
+app.get("/dashboard/my-orders/completed", checkUserAuthenticated, (req, res) => {
     res.render("my-orders-completed")
 })
 app.get("/dashboard/my-orders/cancelled", (req, res) => {
@@ -123,11 +184,11 @@ app.get("/dashboard/my-orders/cancelled", (req, res) => {
 app.get("/dashboard/my-orders/delivered", (req, res) => {
     res.render("my-orders-delivered")
 })
-app.get("/dashboard/finance", (req, res) => {
+app.get("/dashboard/finance", checkUserAuthenticated, (req, res) => {
     res.render("finance")
 })
 
-app.get("/dashboard/finance/withdraw", (req, res) => {
+app.get("/dashboard/finance/withdraw", checkUserAuthenticated, (req, res) => {
     res.render("finance-withdraw")
 })
 
