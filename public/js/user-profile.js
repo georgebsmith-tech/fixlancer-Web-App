@@ -5,6 +5,7 @@
     const userPhoneHolder = document.querySelector(".profile-phone")
     const userBioHolder = document.querySelector(".profile-bio")
     const userCreatedAtHolder = document.querySelector(".profile-created-at")
+    const userFixHeadingHolder = document.querySelector(".profile-fixes-heading")
 
 
     fetch("/api/users/u?content=profile"//, {
@@ -27,6 +28,7 @@
                 userBioHolder.innerText = data.bio
             }
             userCreatedAtHolder.innerText = `Member Since: ${data.created_at}`
+            userFixHeadingHolder.innerText = `Fixes by ${data.username}`
 
         })
 })()
