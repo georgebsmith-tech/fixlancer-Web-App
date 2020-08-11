@@ -204,11 +204,11 @@ app.get("/dashboard/my-requests", (req, res) => {
 app.get("/how-it-works", (req, res) => {
     res.render("how-it-works")
 })
-app.get("/profile", (req, res) => {
+app.get("/profile", checkUserAuthenticated, (req, res) => {
     res.redirect(`/${req.session.passport.user}`)
 })
 
-app.get("/:username", (req, res) => {
+app.get("/:username", checkUserAuthenticated, (req, res) => {
     res.render("profile")
 })
 
