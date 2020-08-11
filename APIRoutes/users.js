@@ -161,7 +161,7 @@ router.post("/:username/bank-details", async function (req, res) {
 })
 
 const checkUserAuthenticated = require("../middleware/userIsAuthenticated")
-router.get("/u", checkUserAuthenticated, async (req, res) => {
+router.get("/u", async (req, res) => {
     const requestString = req.query
     req.params.username = req.session.passport.user
     console.log("it is " + req.params.username)
@@ -203,6 +203,15 @@ router.get("/u", checkUserAuthenticated, async (req, res) => {
                 found: false
             })
         }
+    } else if (requestString.content === "profile") {
+        const data = await UserModel.findOne({ username: req.params.username })
+        return res.status(200).json({
+            username: data.username,
+            rating: data.rating,
+            phone: data.phone,
+            bio: data.bio,
+            created_at: data.createdAt.toDateString()
+        })
     } else {
 
 

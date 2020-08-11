@@ -159,9 +159,7 @@ app.get("/dashboard", checkUserAuthenticated, (req, res) => {
     res.render("dashboard")
 })
 
-app.get("/dashboard/profile", checkUserAuthenticated, (req, res) => {
-    res.render("profile")
-})
+
 
 app.get("/dashboard/profile/edit", checkUserAuthenticated, (req, res) => {
     res.render("edit")
@@ -205,6 +203,13 @@ app.get("/dashboard/my-requests", (req, res) => {
 
 app.get("/how-it-works", (req, res) => {
     res.render("how-it-works")
+})
+app.get("/profile", (req, res) => {
+    res.redirect(`/${req.session.passport.user}`)
+})
+
+app.get("/:username", (req, res) => {
+    res.render("profile")
 })
 
 
