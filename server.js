@@ -51,9 +51,9 @@ initialize(passport, async username => {
     }
 
 },
-    async id => {
+    async username => {
         try {
-            const deUser = await UserModel.findOne({ _id: id })
+            const deUser = await UserModel.findOne({ username })
             // console.log(theUser)
             return deUser
         } catch (err) {
@@ -153,6 +153,9 @@ app.get("/register", (req, res) => {
     res.render("register")
 })
 app.get("/dashboard", checkUserAuthenticated, (req, res) => {
+    console.log(`From dashboard: ${req.user}`)
+    console.log(req.user)
+    console.log(req.session.passport.user)
     res.render("dashboard")
 })
 

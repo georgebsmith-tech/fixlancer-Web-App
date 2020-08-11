@@ -160,9 +160,11 @@ router.post("/:username/bank-details", async function (req, res) {
     }
 })
 
-
-router.get("/:username", async (req, res) => {
+const checkUserAuthenticated = require("../middleware/userIsAuthenticated")
+router.get("/u", checkUserAuthenticated, async (req, res) => {
     const requestString = req.query
+    req.params.username = req.session.passport.user
+    console.log("it is " + req.params.username)
     console.log(requestString)
     if (requestString.content === "full") {
 

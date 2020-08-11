@@ -190,7 +190,7 @@
     })
     //////////////////////////////
     function fetchSummary() {
-        fetch("https://fixlancer.herokuapp.com/api/users/wilson001?content=full").then(response => {
+        fetch("/api/users/u?content=full").then(response => {
             if (!response.ok) {
                 throw Error('Error');
             }
