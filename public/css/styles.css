@@ -220,11 +220,14 @@ main.request-page {
 }
 
 .recommended-image-wrapper {
-  max-height: 90px;
+  height: 90px;
   overflow-y: hidden;
   object-fit: cover;
   border-radius: 6px;
   max-width: 90px;
+}
+.recommended-image-wrapper img {
+  height: 100%;
 }
 
 .recommendations {
