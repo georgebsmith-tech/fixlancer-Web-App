@@ -138,15 +138,17 @@ io.on("connection", socket => {
 
 
 const checkUserAuthenticated = require("./middleware/userIsAuthenticated")
+const checkUserNotAuthenticated = require("./middleware/userIsNotauthenticated")
+
 
 app.get("/chat-app", checkUserAuthenticated, function (req, res) {
     res.render("chat-app")
 })
 
-app.get("/", (req, res) => {
+app.get("/", checkUserNotAuthenticated, (req, res) => {
     res.render("index")
 })
-app.get("/login", (req, res) => {
+app.get("/login", checkUserNotAuthenticated, (req, res) => {
     res.render("login")
 })
 app.get("/register", (req, res) => {
@@ -197,7 +199,7 @@ app.get("/dashboard/finance/transactions", (req, res) => {
     res.render("finance-withdraw")
 })
 
-app.get("/dashboard/my-requests", (req, res) => {
+app.get("/dashboard/my-requests", checkUserAuthenticated, (req, res) => {
     res.render("my-requests")
 })
 
