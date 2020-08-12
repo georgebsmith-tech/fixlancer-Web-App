@@ -47,8 +47,10 @@ const Schema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    prices: {
+        type: [Number]
     }
-
 
 })
 const Category = mongoose.model("Category", Schema)

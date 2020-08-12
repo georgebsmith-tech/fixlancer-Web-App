@@ -49,13 +49,16 @@ const Schema = new mongoose.Schema({
         type: String,
         required: true
     },
+    sub_category: {
+        type: String,
+        required: true
+    },
     createdAt: {
         type: Date,
         default: Date.now
     },
     status: {
         type: String,
-        required: true,
         default: "Open" // other values are Awarded and Closed
     },
     offers: {
@@ -64,6 +67,10 @@ const Schema = new mongoose.Schema({
     approved: {
         type: Boolean,
         default: false
+    },
+    delivery: {
+        type: Number,
+        required: true
     }
 
 

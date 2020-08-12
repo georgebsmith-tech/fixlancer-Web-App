@@ -28,7 +28,7 @@
     }
 
     .post-request{
-        width: 60vw;
+        width: 65vw;
         padding: 20px 10px 10px 170px;
     }
     .form-container{
@@ -56,9 +56,10 @@
     }
 
     .username-icon{
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
         font-size: 2.1rem;
+        margin-left: 10px;
     }
 
     .description{
@@ -84,7 +85,7 @@
     }
 
     main.request-page{
-        padding:15px 170px 30px 170px ;
+        padding:15px 160px 30px 160px ;
     }
     .a-recommendation{
         border-radius: 0;
@@ -101,7 +102,7 @@
         }
     }
     .recommended-image-wrapper{
-        max-height: 110px;
+        height: 100px;
         overflow-y: hidden;
         object-fit: cover;
         border-radius: 0;
@@ -146,3 +147,13 @@
     }
 
 }
+
+
+@media only screen and(min-width: 1024px){
+ 
+    .grid-responsive-6{
+        
+        grid-template-columns: repeat(6,1fr); 
+    }
+     
+ }

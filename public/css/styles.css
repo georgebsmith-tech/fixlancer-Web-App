@@ -75,6 +75,10 @@ fieldset button {
   color: white;
   border-radius: 7px;
   font-size: 1rem;
+  margin-top: 15px;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid #415478;
 }
 
 .warning {
@@ -169,6 +173,9 @@ button.button {
   display: grid;
   column-gap: 10px;
   grid-template-columns: 1fr 9fr;
+}
+.request:first-child, .order-and-sale:first-child {
+  padding-top: 20px;
 }
 
 .requests, .orders-and-sales {
@@ -269,6 +276,7 @@ main.request-page {
   font-weight: lighter;
   padding-right: 50px;
   display: inline-block;
+  color: #f27415;
 }
 
 .amount-and-user {
@@ -604,7 +612,7 @@ main.how-it-works h2 {
   }
 
   .post-request {
-    width: 60vw;
+    width: 65vw;
     padding: 20px 10px 10px 170px;
   }
 
@@ -631,9 +639,10 @@ main.how-it-works h2 {
   }
 
   .username-icon {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     font-size: 2.1rem;
+    margin-left: 10px;
   }
 
   .description {
@@ -657,7 +666,7 @@ main.how-it-works h2 {
   }
 
   main.request-page {
-    padding: 15px 170px 30px 170px;
+    padding: 15px 160px 30px 160px;
   }
 
   .a-recommendation {
@@ -674,7 +683,7 @@ main.how-it-works h2 {
   }
 
   .recommended-image-wrapper {
-    max-height: 110px;
+    height: 100px;
     overflow-y: hidden;
     object-fit: cover;
     border-radius: 0;
@@ -717,6 +726,11 @@ main.how-it-works h2 {
 
   .recommended-username-mobile {
     display: none;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .grid-responsive-6 {
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 

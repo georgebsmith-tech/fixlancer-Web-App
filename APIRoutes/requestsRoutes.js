@@ -10,12 +10,22 @@ router.post("/", async (req, res) => {
     })
 })
 router.get("/", async (req, res) => {
-    const data = await RequestModel.find()
+    let user = req.session.passport.user
+    const data = await RequestModel.find({ username: user })
     res.status(200).json({
         number_of_records: data.length,
         data: data
     })
 })
+
+// router.get("/", async (req, res) => {
+//     const data = await RequestModel.find()
+//     res.status(200).json({
+//         number_of_records: data.length,
+//         data: data
+//     })
+// })
+
 
 
 

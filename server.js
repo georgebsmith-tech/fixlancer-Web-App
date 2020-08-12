@@ -167,7 +167,7 @@ app.get("/dashboard/profile/edit", checkUserAuthenticated, (req, res) => {
     res.render("edit")
 })
 
-app.get("/dashboard/post-request", checkUserAuthenticated, (req, res) => {
+app.get("/dashboard/post-job-request", (req, res) => {
     res.render("post-request")
 })
 
@@ -199,7 +199,7 @@ app.get("/dashboard/finance/transactions", (req, res) => {
     res.render("finance-withdraw")
 })
 
-app.get("/dashboard/my-requests", checkUserAuthenticated, (req, res) => {
+app.get("/dashboard/my-requests", (req, res) => {
     res.render("my-requests")
 })
 
@@ -223,6 +223,7 @@ app.use("/uploads", express.static("uploads"))
 
 
 // app.use(apiDocumentationRoutes)
+app.use("/api/my-requests", requestRoutes)
 app.use("/api/users", usersRoute)
 app.use("/api/categories", categoriesRoute)
 app.use("/api/push-notice", pushNoticeRoute)

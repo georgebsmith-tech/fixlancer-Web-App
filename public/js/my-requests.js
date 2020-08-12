@@ -2,12 +2,33 @@
 
     const recommendHolder = document.querySelector(".grid-responsive-6")
     console.log(recommendHolder)
+    fetch("/api/requests")
+        .then(resp => { })
+        .then(data => { })
 
     const resp = await fetch("/api/fixes?state=random&count=6")
     const data = await resp.json()
-    // console.log(data)
+    console.log(data)
     const documentFra = new DocumentFragment()
-    data.forEach((fix, index) => {
+    data.forEach(fix => {
+        let ratings = fix.ratings
+
+        console.log(ratings)
+        let sum_of_ratings = 0;
+
+        let average_rating
+        let number_of_ratings = ratings.length
+        if (number_of_ratings !== 0) {
+
+            ratings.forEach(rating => {
+                sum_of_ratings += rating * 1
+            })
+            average_rating = (sum_of_ratings / number_of_ratings).toFixed(1)
+            console.log(average_rating)
+
+
+        }
+        // console.log(sum_of_ratings)
         let aRecommendation = document.createElement("div")
         aRecommendation.classList.add("a-recommendation")
         aRecommendation.innerHTML = `
@@ -33,7 +54,7 @@
                             </span>
                             <span class="fix-rating">
                                 <i class="fa fa-star"></i>
-                                <span>4.5(3)</span>
+                                <span>${average_rating}(${number_of_ratings})</span>
                             </span>
                         </small>
                     </div>
@@ -59,6 +80,7 @@
                     </div>
                 </div>`
         documentFra.appendChild(aRecommendation)
+
     })
     recommendHolder.appendChild(documentFra)
 

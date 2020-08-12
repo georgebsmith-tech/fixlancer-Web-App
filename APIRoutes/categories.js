@@ -12,10 +12,27 @@ router.post("/", async (req, res) => {
 })
 
 router.get("/", async (req, res) => {
+    const reqString = req.query
+    if (reqString.content === "slim") {
+        const data = await CategoryModel.find().select("name prices")
+        return res.status(200).json({
+            data: data
+        })
+    }
     const data = await CategoryModel.find()
-    res.status(200).json({
+    return res.status(200).json({
         data: data
     })
+
+})
+router.patch("/:id/price", async (req, res) => {
+    const data = await CategoryModel.findOne({ _id: req.params.id }).select("prices")
+    data.prices.push(req.body.price)
+    data.save()
+        .then(newrecord => {
+            return res.status(200).json(newrecord)
+        })
+
 
 })
 

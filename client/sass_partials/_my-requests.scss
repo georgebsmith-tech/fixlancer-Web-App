@@ -4,6 +4,9 @@
     display: grid;
     column-gap: 10px;
     grid-template-columns: 1fr 9fr;
+    &:first-child{
+        padding-top: 20px;
+    }
     
    
 }
@@ -107,6 +110,7 @@ main.request-page{
     font-weight: lighter;
     padding-right: 50px;
     display: inline-block;
+    color:#f27415;
     
 }
 .amount-and-user{
