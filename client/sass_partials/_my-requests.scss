@@ -21,6 +21,10 @@
 
 }
 
+main.request-page{
+    padding:15px 20px 30px 20px ;
+}
+
 .send-offer{
     background: #415478;
     display: inline-block;
@@ -30,6 +34,41 @@
     text-align: center;
     font-size: 0.8rem;
     line-height: 1.6;
+}
+
+.recommended-fix-top{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap:10px;
+}
+.a-recommendation{
+    background: white;
+    padding: 10px;
+    // margin: 10px;
+    border-radius: 7px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px
+}
+
+.grid-responsive-6{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    column-gap: 25px;
+}
+
+.recommended-image-wrapper{
+    max-height: 90px;
+    overflow-y: hidden;
+    object-fit: cover;
+    border-radius: 6px;
+    max-width: 90px;
+}
+
+.recommendations{
+    margin-top: 50px;
+    h2{
+        margin-bottom: 25px;
+    }
 }
 
 .username-icon{
@@ -44,15 +83,72 @@
     align-items: center;
     
 }
+
+.recommended-fix-title{
+    line-height: 1.7;
+    font-size: 0.9rem;
+}
+
+.recoomended-username-desktop{
+    display: none;
+}
+
+.trust{
+    margin-left: 20px;
+    color:#f27415;
+}
 .title{
     font-size: 1.4rem;
     text-transform: capitalize;
     margin-bottom: 15px;
-    color: #f27415;
     font-weight: lighter;
     padding-right: 50px;
     display: inline-block;
     
+}
+.amount-and-user{
+    margin-top:12px;
+    display: flex;
+    justify-content: space-between;
+    // width: 100%;
+}
+
+
+.recommended-desktop{
+    display: none;
+}
+
+.recommended-mobile{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.fix-amount-green{
+    color:#5aba79;
+    font-weight: bold;
+}
+
+
+.recommended-username-desktop{
+    display: none;
+}
+.fix-rating{
+    margin-left: 20px;
+}
+
+.duration-and-rating-trust{
+    margin-top: 9px;
+    display: inline-block;
+   
+    
+}
+
+.hide{
+    display: none;
+}
+
+.orange{
+    color: #f27415;
 }
 .description{
     padding-right: 50px;

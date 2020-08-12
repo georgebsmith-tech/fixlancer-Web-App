@@ -18,12 +18,27 @@ router.post("/", multiple_uploads, async (req, res) => {
     })
 })
 router.get("/", async (req, res) => {
+    const reqString = req.query
+    const state = reqString.state
+    const count = reqString.count
+    if (state === "random") {
+        const data = await FixModel.aggregate([{ $sample: { size: count * 1 } }])
+        return res.status(200).json(data)
+    }
+    if (state === "featured") {
+        return res.status(200).json({
+            state,
+            count: "default"
+        })
+    }
     const data = await FixModel.find()
     res.status(200).json({
         number_of_records: data.length,
         data: data
     })
 })
+
+
 
 
 

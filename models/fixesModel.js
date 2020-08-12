@@ -67,6 +67,15 @@ const Schema = new mongoose.Schema({
         type: String
     }
     ,
+    featured: {
+        type: Boolean,
+        default: false
+    },
+    trusted: {
+        type: Boolean,
+        default: false
+    }
+    ,
     extras: {
         type: [ExtraSchema]
     }
