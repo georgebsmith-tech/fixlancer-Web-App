@@ -46,15 +46,27 @@
         if (!toggleFlag) {
 
 
-            mobileNavContainer.parentElement.classList.remove("hide")
-            document.querySelector(".header-buy-chopbar").classList.remove("hide")
+            mobileNavContainer.style.display = "block"
+            document.querySelector(".header-buy-chopbar").style.display = "flex"
             toggleFlag = true
         } else {
-            mobileNavContainer.parentElement.classList.add("hide")
-            document.querySelector(".header-buy-chopbar").classList.add("hide")
+            mobileNavContainer.style.display = "none"
+            document.querySelector(".header-buy-chopbar").style.display = "none"
             toggleFlag = false
         }
 
+    })
+
+    document.querySelectorAll("main,footer,header").forEach(element => {
+        console.log("body and others")
+        element.addEventListener("click", function () {
+            if (flag1 || flag2) {
+                dropDownProfileHolder.classList.add("hide")
+                dropDownRequestHolder.classList.add("hide")
+                flag2 = true
+                flag2 = true
+            }
+        })
     })
 
 

@@ -161,7 +161,9 @@ app.get("/dashboard", checkUserAuthenticated, (req, res) => {
     res.render("dashboard")
 })
 
-
+app.get("/dashboard/affiliate", checkUserAuthenticated, (req, res) => {
+    res.render("affiliate")
+})
 
 app.get("/dashboard/profile/edit", checkUserAuthenticated, (req, res) => {
     res.render("edit")
