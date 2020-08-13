@@ -43,8 +43,9 @@ main {
 .form-container {
   background: #fff;
   margin: 0px auto;
-  padding: 7px 10px;
-  border-radius: 6px;
+  padding: 7px 10px 30px 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
 }
 .form-container .form-title {
   font-size: 1.5rem;
@@ -87,6 +88,145 @@ fieldset button {
 
 i.fa.fa-star {
   color: #ffae06;
+}
+
+.main-footer {
+  padding: 20px;
+  background: white;
+  width: 100vw;
+  overflow: hidden;
+}
+.main-footer section {
+  display: flex;
+  widows: 100%;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-nav-item-container {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-bottom: 7px;
+}
+.footer-nav-item-container a {
+  display: inline-block;
+  padding: 5px 0px 6px 7px;
+  font-size: 0.9rem;
+}
+
+.copy-right {
+  padding: 5px 0px 12px 7px;
+  display: inline-block;
+}
+
+.toggle-nav {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  padding: 6px;
+  border-radius: 6px;
+  background: white;
+}
+.toggle-nav:hover {
+  cursor: pointer;
+}
+.toggle-nav div {
+  width: 20px;
+  height: 4px;
+  border-radius: 50px;
+  background: #cecccc;
+  margin-top: 3px;
+}
+
+.main-header {
+  padding: 0px 15px 0px 15px;
+  box-sizing: border-box;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.header-buy-chopbar {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  padding-top: 20px;
+}
+
+.chopbarh-img {
+  width: 30px;
+  height: 100%;
+  border-radius: 10px;
+  margin-right: 7px;
+}
+
+.logo-mini {
+  width: 52px;
+}
+
+.mobile-nav-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px 0px;
+  width: 80vw;
+}
+
+.search-input-wwrapper .fa-search {
+  position: relative;
+  z-index: 2;
+  color: red;
+}
+
+.flex-right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex-right input {
+  display: inline-block;
+  padding-right: 10px;
+  max-width: 140px;
+  padding: 8px;
+  border-radius: 7px;
+  outline: none;
+  border: 1px solid #ddd;
+}
+.flex-right .fa {
+  display: inline-block;
+  padding: 0px 10px;
+  font-size: 1.2rem;
+}
+.flex-right .fa-envelope {
+  margin-left: 10px;
+}
+
+.mobile-nav-container .fa {
+  margin-left: 6px;
+}
+.mobile-nav-container > li {
+  border-bottom: 0.5px solid #fafafa;
+  position: relative;
+}
+.mobile-nav-container > li ul {
+  position: absolute;
+  background: white;
+  z-index: 2;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  top: 32px;
+  left: 10px;
+  padding-right: 40px;
+}
+.mobile-nav-container > li .drop {
+  padding: 5px 10px;
+}
+.mobile-nav-container a {
+  display: inline-block;
+  padding: 11px 10px;
 }
 
 .finance-summary {
@@ -614,6 +754,10 @@ main.how-it-works h2 {
   .post-request {
     width: 65vw;
     padding: 20px 10px 10px 170px;
+  }
+
+  main.post-a-request-main {
+    padding-bottom: 10px;
   }
 
   .form-container {
