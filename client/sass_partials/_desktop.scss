@@ -174,7 +174,8 @@
         align-items: center;
         width: 100vw;
         justify-content: space-between;
-        padding: 8px 15px;
+        padding: 8px 25px;
+        padding-right: 30px;
 
     }
 
@@ -217,7 +218,8 @@
         .fa{
             padding-left: 2px;
         }
-       ;
+       
+       
     }
 
     .top-revenue{
@@ -235,6 +237,43 @@
         }        
     }
 
+
+    .avatar-menu-holder{
+    position: relative;
+    .drop-down-container{
+        position: absolute;
+        top: 58px;
+        left: -20px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        width: 120px;
+        padding: 10px;
+        a{
+            margin-top:10px;
+            display: inline-block;
+        }
+        
+    }
+    }
+    .revenue-menu-holder{
+        position: relative;
+        .drop-down-container{
+            position: absolute;
+            top: 58px;
+            left: -90px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            width: 200px;
+            padding: 10px;
+            a{
+                margin-top:10px;
+                display: inline-block;
+            }
+            
+        }
+    }
    
 
 }

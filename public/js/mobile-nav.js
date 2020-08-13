@@ -3,9 +3,50 @@
     const dropDownRequests = document.querySelector(".drop-down-requests")
     const dropDownProfileHolder = document.querySelector(".drop-profile")
     const dropDownRequestHolder = document.querySelector(".drop-requests")
-    let flag1 = false, flag2 = false
+    const avatarDropDown = document.querySelector(".top-profile-avatar-container")
+    const revenueDropDown = document.querySelector(".top-revenue")
+
+    let flag1 = false, flag2 = false, flag3 = false, flag4 = false
     const mobileNavContainer = document.querySelector(".mobile-nav-container")
     const toggleNavHandler = document.querySelector(".toggle-nav")
+
+
+    revenueDropDown.addEventListener("click", function (e) {
+        e.stopPropagation()
+        document.querySelector(".for-revenue").classList.remove("hide")
+        flag4 = true
+        if (flag1) {
+            dropDownProfileHolder.classList.add("hide")
+            flag1 = false
+        }
+        if (flag2) {
+            dropDownRequestHolder.classList.add("hide")
+            flag2 = false
+        }
+        if (flag3) {
+            document.querySelector(".for-avatar").classList.add("hide")
+            flag3 = false
+        }
+    })
+
+    avatarDropDown.addEventListener("click", function (e) {
+        e.stopPropagation()
+        document.querySelector(".for-avatar").classList.remove("hide")
+        flag3 = true
+        if (flag1) {
+            dropDownProfileHolder.classList.add("hide")
+            flag1 = false
+        }
+        if (flag2) {
+            dropDownRequestHolder.classList.add("hide")
+            flag2 = false
+        }
+
+        if (flag4) {
+            document.querySelector(".for-revenue").classList.add("hide")
+            flag4 = false
+        }
+    })
     mobileNavContainer.addEventListener("click", function () {
         if (flag1 || flag2) {
             dropDownProfileHolder.classList.add("hide")
@@ -27,6 +68,14 @@
             dropDownRequestHolder.classList.add("hide")
             flag2 = false
         }
+        if (flag3) {
+            document.querySelector(".for-avatar").classList.add("hide")
+            flag3 = false
+        }
+        if (flag4) {
+            document.querySelector(".for-revenue").classList.add("hide")
+            flag4 = false
+        }
 
     })
 
@@ -39,6 +88,14 @@
             if (flag1) {
                 dropDownProfileHolder.classList.add("hide")
                 flag1 = false
+            }
+            if (flag3) {
+                document.querySelector(".for-avatar").classList.add("hide")
+                flag3 = false
+            }
+            if (flag4) {
+                document.querySelector(".for-revenue").classList.add("hide")
+                flag4 = false
             }
         })
     let toggleFlag = false
@@ -60,11 +117,16 @@
     document.querySelectorAll("main,footer,header").forEach(element => {
         console.log("body and others")
         element.addEventListener("click", function () {
-            if (flag1 || flag2) {
+            if (flag1 || flag2 || flag3 || flag4) {
+                document.querySelector(".for-avatar").classList.add("hide")
+                document.querySelector(".for-revenue").classList.add("hide")
                 dropDownProfileHolder.classList.add("hide")
                 dropDownRequestHolder.classList.add("hide")
+
                 flag2 = true
                 flag2 = true
+                flag3 = true
+                flag4 = true
             }
         })
     })

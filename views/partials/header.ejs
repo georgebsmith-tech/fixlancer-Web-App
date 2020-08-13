@@ -13,7 +13,8 @@
     </div>
     <div class="header-left">
         <div class="logo-maxi-container">
-            <img src="../images/logo.png" alt="">
+
+            <img src="../../images/logo.png" alt="">
         </div>
         <ul class="mobile-nav-container">
             <li>
@@ -35,13 +36,13 @@
 
             </li>
             <li>
-                <a href="">Sales <span>(0)</span></a>
+                <a href="/dashboard/my-sales">Sales <span>(0)</span></a>
             </li>
             <li>
-                <a href="">Orders <span>(2)</span></a>
+                <a href="/dashboard/my-orders">Orders <span>(2)</span></a>
             </li>
             <li>
-                <a href="">Start Selling </a>
+                <a href="/dashboard/create-a-fix">Start Selling </a>
             </li>
             <li>
                 <a href="/dashboard/affiliate">Affiliate </a>
@@ -67,14 +68,32 @@
             <a href="">
                 <i class="fa fa-bell"></i>
             </a>
-            <a href="" class="desktop top-profile-avatar-container">
-                <span>B</span>
-                <i class="fa fa-caret-down"></i>
-            </a>
-            <a href="" class="top-revenue">
-                <span>₦34,432</span>
-                <i class="fa fa-caret-down"></i>
-            </a>
+            <div class="avatar-menu-holder">
+                <a href="#" class="desktop top-profile-avatar-container">
+                    <span>B</span>
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="drop-down-container for-avatar hide">
+                    <li><a href="/dashboard/profile" class="drop">View Profile</a></li>
+                    <li><a href="/dashboard/edit" class="drop">Edit Profile</a></li>
+                    <li><a href="/log-out" class="drop">Log Out</a></li>
+                </ul>
+            </div>
+            <div class="revenue-menu-holder">
+                <a href="#" class="top-revenue">
+                    <span>₦34,432</span>
+                    <i class="fa fa-caret-down"></i>
+
+                </a>
+                <ul class="drop-down-container hide for-revenue">
+                    <li><a href="/dashboard" class="drop">Dashboard</a></li>
+                    <li><a href="/dashboard/finance/withdraw" class="drop">Request Withdrawal</a></li>
+                    <li><a href="/dashboard/finance/withdraw" class="drop">Deposit funds</a></li>
+                    <li><a href="/dashboard/finance/withdraw" class="drop">Buy ChopBarh Vouchers</a></li>
+                </ul>
+
+            </div>
+
 
         </div>
     </div>

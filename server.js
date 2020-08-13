@@ -169,7 +169,7 @@ app.get("/dashboard/profile/edit", checkUserAuthenticated, (req, res) => {
     res.render("edit")
 })
 
-app.get("/dashboard/post-job-request", (req, res) => {
+app.get("/dashboard/post-job-request", checkUserAuthenticated, (req, res) => {
     res.render("post-request")
 })
 
@@ -183,10 +183,10 @@ app.get("/dashboard/my-orders", checkUserAuthenticated, (req, res) => {
 app.get("/dashboard/my-orders/completed", checkUserAuthenticated, (req, res) => {
     res.render("my-orders-completed")
 })
-app.get("/dashboard/my-orders/cancelled", (req, res) => {
+app.get("/dashboard/my-orders/cancelled", checkUserAuthenticated, (req, res) => {
     res.render("my-orders-cancelled")
 })
-app.get("/dashboard/my-orders/delivered", (req, res) => {
+app.get("/dashboard/my-orders/delivered", checkUserAuthenticated, (req, res) => {
     res.render("my-orders-delivered")
 })
 app.get("/dashboard/finance", checkUserAuthenticated, (req, res) => {
@@ -197,12 +197,18 @@ app.get("/dashboard/finance/withdraw", checkUserAuthenticated, (req, res) => {
     res.render("finance-withdraw")
 })
 
-app.get("/dashboard/finance/transactions", (req, res) => {
+app.get("/dashboard/finance/transactions", checkUserAuthenticated, (req, res) => {
     res.render("finance-withdraw")
 })
+app.get("/dashboard/finance/notices", checkUserAuthenticated, (req, res) => {
+    res.render("finance-notices")
+})
 
-app.get("/dashboard/my-requests", (req, res) => {
+app.get("/dashboard/my-requests", checkUserAuthenticated, (req, res) => {
     res.render("my-requests")
+})
+app.get("/dashboard/edit", checkUserAuthenticated, (req, res) => {
+    res.render("edit")
 })
 
 app.get("/how-it-works", (req, res) => {
@@ -210,6 +216,10 @@ app.get("/how-it-works", (req, res) => {
 })
 app.get("/profile", checkUserAuthenticated, (req, res) => {
     res.redirect(`/${req.session.passport.user}`)
+})
+app.get("/log-out", checkUserAuthenticated, (req, res) => {
+    req.logOut()
+    res.redirect("/")
 })
 
 app.get("/:username", checkUserAuthenticated, (req, res) => {

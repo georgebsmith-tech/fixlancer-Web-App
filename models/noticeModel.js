@@ -18,7 +18,7 @@ mongoose.connect(dataBaseUrl, { useNewUrlParser: true, useUnifiedTopology: true,
 
 
 const Schema = new mongoose.Schema({
-    user_id: {
+    username: {
         type: String,
         required: true
 
@@ -27,7 +27,7 @@ const Schema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    seller: {
+    type: {
         type: String,
         require: true
     },

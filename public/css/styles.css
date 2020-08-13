@@ -26,9 +26,9 @@ h1, h2, h3, h4, h5, h6 {
 main {
   background: #fcfcfc;
   width: 100vw;
-  padding: 10px;
+  padding: 15px;
   width: 100vw;
-  min-height: 77vh;
+  min-height: 80vh;
   box-sizing: border-box;
 }
 
@@ -269,7 +269,7 @@ i.fa.fa-star {
   margin-top: 30px;
   margin-bottom: 30px;
   border-radius: 3px;
-  border: 1px solid #e3e6f0;
+  border: 1px solid #ddd;
 }
 .withdrawal-summary header {
   background: #f8f9fc;
@@ -577,6 +577,10 @@ img {
   border-radius: 6px;
   object-fit: cover;
   display: block;
+}
+
+.fa-circle, .fa-clock {
+  font-size: 0.7rem;
 }
 
 .sale-and-order-meta {
@@ -918,7 +922,8 @@ main.how-it-works h2 {
     align-items: center;
     width: 100vw;
     justify-content: space-between;
-    padding: 8px 15px;
+    padding: 8px 25px;
+    padding-right: 30px;
   }
 
   .logo-maxi-container {
@@ -975,6 +980,42 @@ main.how-it-works h2 {
     color: #f27415;
     padding: 0px;
     margin: 0px;
+  }
+
+  .avatar-menu-holder {
+    position: relative;
+  }
+  .avatar-menu-holder .drop-down-container {
+    position: absolute;
+    top: 58px;
+    left: -20px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    width: 120px;
+    padding: 10px;
+  }
+  .avatar-menu-holder .drop-down-container a {
+    margin-top: 10px;
+    display: inline-block;
+  }
+
+  .revenue-menu-holder {
+    position: relative;
+  }
+  .revenue-menu-holder .drop-down-container {
+    position: absolute;
+    top: 58px;
+    left: -90px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    width: 200px;
+    padding: 10px;
+  }
+  .revenue-menu-holder .drop-down-container a {
+    margin-top: 10px;
+    display: inline-block;
   }
 }
 @media only screen and (min-width: 1024px) {
