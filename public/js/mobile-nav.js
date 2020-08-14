@@ -1,4 +1,22 @@
 (function () {
+
+    fetch("/api/users/u")
+        .then(resp => {
+            return resp.json()
+        })
+        .then(data => {
+            console.log(data.data)
+            document.querySelector(".top-profile-avatar-container span").textContent = data.data.username[0].toUpperCase()
+
+            document.querySelector(".top-revenue span").textContent = "₦" + data.data.summary[1][1]
+
+            document.querySelector(".header-ongoing-sales").textContent = "(" + data.data.summary[2][1] + ")"
+
+
+            document.querySelector(".header-ongoing-orders").textContent = "(" + data.data.summary[3][1] + ")"
+        })
+
+
     const dropDownProfile = document.querySelector(".drop-down-profile")
     const dropDownRequests = document.querySelector(".drop-down-requests")
     const dropDownProfileHolder = document.querySelector(".drop-profile")
@@ -134,5 +152,5 @@
 
 
 
-    //     console.log(mobileNavContainer.classList)
+
 })()

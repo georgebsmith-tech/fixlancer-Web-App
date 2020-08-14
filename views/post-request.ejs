@@ -15,11 +15,12 @@
             <section class="form-container">
                 <h3 class="form-title">What service do you want fixed? </h3>
                 <form action="">
-                    <fieldset><input type="text" placeholder="Title"></fieldset>
+                    <fieldset><input type="text" placeholder="Title" name="post-title" id="post-title"></fieldset>
 
                     <fieldset>
-                        <textarea name="" id="" placeholder="Describe the job you want done. Be detailed as possible..."
-                            cols="30" rows="6"></textarea>
+                        <textarea name="post-descr" id="post-descr"
+                            placeholder="Describe the job you want done. Be detailed as possible..." cols="30"
+                            rows="6"></textarea>
                     </fieldset>
                     <div class="selections">
                         <fieldset>
@@ -33,15 +34,20 @@
                             </select>
                         </fieldset>
                         <fieldset>
-                            <select name="" id="" data-placeholder="Please select a category..">
+                            <select name="delivery" id="delivery" data-placeholder="Please select a category..">
                                 <option value="">Delivery Days</option>
-                                <option value="">2 days</option>
+                                <option value="2">2 days</option>
+                                <option value="3">3 days</option>
+                                <option value="4">4 days</option>
+                                <option value="14">14 days</option>
+                                <option value="21">21 days</option>
+                                <option value="30">30 days</option>
                             </select>
                         </fieldset>
                     </div>
 
                     <fieldset>
-                        <button>Submit Post</button>
+                        <button class="submit-post-request">Submit Post</button>
                     </fieldset>
 
 

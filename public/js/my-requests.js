@@ -1,19 +1,72 @@
 (async function () {
 
     const recommendHolder = document.querySelector(".grid-responsive-6")
-    console.log(recommendHolder)
-    fetch("/api/requests")
-        .then(resp => { })
-        .then(data => { })
+    const requestsHolder = document.querySelector(".requests")
+    // console.log(recommendHolder)
+    fetch("/api/requests?a_user=true")
+        .then(resp => { return resp.json() })
+        .then(data => {
+            console.log(data)
+            if (data.number_of_records === 0) {
+                requestsHolder.innerHTML = "No job Request Found"
+                requestsHolder.setAttribute("style", "padding:15px;background:white;")
+                // console.log(requestsHolder)
+            } else {
+                const docFrag = new DocumentFragment()
+                data.data.forEach(request => {
+                    let time = new Date(Date.parse(request.createdAt))
+                    console.log(typeof time)
+                    // console.log(typeof request.createdAt)
+                    const requestHolder = document.createElement("section")
+                    requestHolder.innerHTML = `<div class="request">
+                            <div>
+                                <div class="username-icon">${request.username[0].toUpperCase()}</div>
+                            </div>
+                            <div>
+                                <header>
+                                    <a href="#" class="title">${request.title}</a>
+                                </header>
+                                <p class="description">${request.description}
+                                </p>
+                                <div class="duration">
+                                    <i class="fas fa-clock"></i> ${request.delivery} day(s)
+                                </div>
+                                <div class="request-meta">
+                                    <div>
+
+                                        <div class="amount">
+                                            ₦${request.price}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <i class="fa fa-exclamation-triangle"></i>Not approved
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="#">${request.username} </a>-
+                                    <span> ${time.toDateString()}</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                    </section>`
+                    docFrag.appendChild(requestHolder)
+                })
+                requestsHolder.appendChild(docFrag)
+
+
+            }
+        })
 
     const resp = await fetch("/api/fixes?state=random&count=6")
     const data = await resp.json()
-    console.log(data)
+    // console.log(data)
     const documentFra = new DocumentFragment()
     data.forEach(fix => {
         let ratings = fix.ratings
 
-        console.log(ratings)
+        // console.log(ratings)
         let sum_of_ratings = 0;
 
         let average_rating
@@ -24,7 +77,7 @@
                 sum_of_ratings += rating * 1
             })
             average_rating = (sum_of_ratings / number_of_ratings).toFixed(1)
-            console.log(average_rating)
+            // console.log(average_rating)
 
 
         }

@@ -189,6 +189,24 @@ app.get("/dashboard/my-orders/cancelled", checkUserAuthenticated, (req, res) => 
 app.get("/dashboard/my-orders/delivered", checkUserAuthenticated, (req, res) => {
     res.render("my-orders-delivered")
 })
+
+
+app.get("/dashboard/my-sales/delivered", checkUserAuthenticated, (req, res) => {
+    res.render("my-sales-delivered")
+})
+
+app.get("/dashboard/my-sales/", checkUserAuthenticated, (req, res) => {
+    res.render("my-sales-ongoing")
+})
+app.get("/dashboard/my-sales/completed", checkUserAuthenticated, (req, res) => {
+    res.render("my-sales-completed")
+})
+
+app.get("/dashboard/my-sales/cancelled", checkUserAuthenticated, (req, res) => {
+    res.render("my-sales-cancelled")
+})
+
+
 app.get("/dashboard/finance", checkUserAuthenticated, (req, res) => {
     res.render("finance")
 })
@@ -205,7 +223,9 @@ app.get("/dashboard/finance/notices", checkUserAuthenticated, (req, res) => {
 })
 
 app.get("/dashboard/my-requests", checkUserAuthenticated, (req, res) => {
-    res.render("my-requests")
+    const notice = req.query.notice
+    console.log(notice)
+    res.render("my-requests", { notice })
 })
 app.get("/dashboard/edit", checkUserAuthenticated, (req, res) => {
     res.render("edit")
@@ -235,7 +255,7 @@ app.use("/uploads", express.static("uploads"))
 
 
 // app.use(apiDocumentationRoutes)
-app.use("/api/my-requests", requestRoutes)
+app.use("/api/requests", requestRoutes)
 app.use("/api/users", usersRoute)
 app.use("/api/categories", categoriesRoute)
 app.use("/api/push-notice", pushNoticeRoute)

@@ -34,6 +34,12 @@ main{
     padding: 10px 7px;
 }
 
+.new-post-notice{
+    background: #1cc88a;
+    padding: 10px;
+    color: white;
+}
+
 .center-text{
     text-align: center;
 }
@@ -52,6 +58,7 @@ main{
         
         // font-weight: 400;
     }
+
 }
 fieldset{
     border: none;
@@ -63,13 +70,15 @@ fieldset{
         border-radius: 0.35rem;
         font-weight: 400;
         font-size: 1.1rem;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         line-height: 1.5;
         outline: none;
         &:focus{
             border: 4px solid rgba(105, 196, 248,0.4);
         }
     }
+    
+
     button{
         background:#415478;
         padding: 10px 14px;
@@ -119,7 +128,7 @@ i.fa.fa-star{
     padding-bottom: 7px;
     a{
         display: inline-block;
-        padding: 5px 0px 6px 7px;
+        padding: 5px 0px 6px 12px;
         font-size: 0.9rem;
     }
 }
