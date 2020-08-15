@@ -2,172 +2,194 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-
-    <title>Document</title>
+    <%- include('./partials/head.ejs') %>
+    <script defer src="../../js/create-fix.js"></script>
 </head>
 
 <body>
-
+    <%- include('./partials/header.ejs') %>
     <main class="main">
 
         <h1>Create a Fix to start Selling</h1>
-        <section class="form-group">
+        <form id="fix-form" name="fix-form">
+            <section class="form-group the-first">
+                <div>
+                    <fieldset>
+                        <textarea name="fix-title" id="fix-title" cols="30" rows="2"
+                            placeholder="Enter fix title"></textarea>
+
+                </div>
+                <small class="important">* Your fix title should start with "i will" or "i can"</small>
+
+            </section>
+            <section class="form-group-2-in-row">
+                <div>
+                    <div class="section-head">
+                        <span>Description</span>
+
+                    </div>
+                    <section class="form-group">
+                        <div>
+                            <fieldset>
+                                <textarea name="fix-descr" id="fix-descr" cols="30" rows="8"
+                                    placeholder="Be detailed as possible"></textarea>
+                            </fieldset>
+                            <small class="warning">* Posting of contact information will result in permanent blocking of
+                                your
+                                account</small>
+                        </div>
+                    </section>
+                </div>
+
+                <div>
+                    <div class="section-head">
+                        <span>Details you need to start the project</span>
+
+                    </div>
+                    <section class="form-group">
+                        <div>
+                            <fieldset>
+                                <textarea name="fix-details" id="fix-details" cols="30" rows="8"
+                                    placeholder="Enter details here"></textarea>
+                                <small class="warning">* Do not request for contact details</small>
+                            </fieldset>
+
+                        </div>
+                    </section>
+                </div>
+            </section>
+            <section class="form-group-4-in-row">
+                <div>
+
+
+                    <fieldset>
+                        <select name="fix-price" id="fix-price" data-placeholder="Please select a category..">
+                            <option value="">Select Price</option>
+                            <option value="1000">₦1000</option>
+                            <option value="2000">₦2000</option>
+                            <option value="3000">₦3000</option>
+                        </select>
+                    </fieldset>
+                </div>
+                <div>
+
+
+                    <fieldset>
+                        <select name="fix-category" id="fix-category" data-placeholder="Please select a category..">
+                            <option value="">SelectCategory...</option>
+                        </select>
+                    </fieldset>
+                </div>
+
+                <div>
+                    <fieldset>
+                        <select name="fix-delivery" id="fix-delivery" data-placeholder="Please select a category..">
+                            <option value="">Delivery Days</option>
+                            <option value="1">1 day</option>
+                            <option value="2">2 days</option>
+                            <option value="3">2 days</option>
+                        </select>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <input type="text" placeholder="Enter Each tag separated by comms(optional)" name="fix-tags"
+                            id="fix-tags">
+                    </fieldset>
+                </div>
+            </section>
+            <section class="form-group-2-in-row">
+                <div>
+                    <div class="section-head">
+                        <i class="fa fa-camera"></i><span>Image Upload</span>
+
+                    </div>
+
+                    <section class="form-group">
+                        <div>
+
+                            <fieldset>
+                                <input type="file" name="photo" id="photo">
+                            </fieldset>
+
+                        </div>
+                        <div>
+
+                            <fieldset>
+                                <input type="file" name="photo" id="photo">
+                            </fieldset>
+
+                        </div>
+                        <div>
+
+                            <fieldset>
+                                <input type="file" name="photo" id="photo">
+                            </fieldset>
+
+                        </div>
+                    </section>
+                </div>
+                <div>
+                    <div class="section-head">
+                        <i class="fa fa-camera-retro"></i><span>Video Upload</span>
+                    </div>
+
+                    <section class="form-group">
+
+                        <div>
+                            <fieldset>
+                                <input type="file" name="video" id="video">
+                            </fieldset>
+
+                        </div>
+                    </section>
+                </div>
+            </section>
             <div>
-                <fieldset>
-                    <input type="text" placeholder="Enter Fix title">
+                <div class="section-head">
+                    <i class="fa fa-plus"></i>
 
-            </div>
-            <small>* Your fix title should start with "i will" or "i can"</small>
-
-        </section>
-
-        <div>
-            <div class="section-head">
-                <span>Description</span>
-
-            </div>
-            <section class="form-group">
-                <div>
-                    <fieldset>
-                        <textarea name="" id="" cols="30" rows="8" placeholder="Be detailed as possible"></textarea>
-                    </fieldset>
-                    <small class="warning">* Posting of contact information will result in permanent blocking of your
-                        account</small>
-                </div>
-            </section>
-        </div>
-
-        <div>
-            <div class="section-head">
-                <span>Details you need to start the project</span>
-
-            </div>
-            <section class="form-group">
-                <div>
-                    <fieldset>
-                        <textarea name="" id="" cols="30" rows="8" placeholder="Enter details here"></textarea>
-                        <small class="warning">* Do not request for contact details</small>
-                    </fieldset>
+                    <span>Extra</span>
 
                 </div>
-            </section>
-        </div>
-        <div>
+                <div class="grid-2-3-1">
+                    <section class="form-group grid-2-1">
+                        <div>
+                            <fieldset>
+                                <input type="text" placeholder="Enter what you will do for extra" name="extra-descr"
+                                    id="extra-descr">
+                            </fieldset>
+                        </div>
 
+                        <div>
+                            <fieldset>
+                                <input type="number" placeholder="Amount" name="extra-amount" id="extra-amount">
+                            </fieldset>
+                        </div>
+
+                        <div>
+                            <fieldset>
+                                <input type="text" placeholder="Enter what you will do for extra" name="extra-descr"
+                                    id="extra-descr">
+                            </fieldset>
+                        </div>
+                        <div>
+                            <fieldset>
+                                <input type="number" placeholder="Amount" name="extra-amount" id="extra-amount">
+                            </fieldset>
+                        </div>
+                        < </section>
+                            <section></section>
+                </div>
+            </div>
 
             <fieldset>
-                <select name="" id="" data-placeholder="Please select a category..">
-                    <option value="">Select a Category...</option>
-                </select>
+                <button class="create-fix-btn">Create Fix</button>
             </fieldset>
-        </div>
-        <div>
-
-
-            <fieldset>
-                <select name="" id="" data-placeholder="Please select a category..">
-                    <option value="">Select Price</option>
-                </select>
-            </fieldset>
-        </div>
-        <div>
-            <fieldset>
-                <select name="" id="" data-placeholder="Please select a category..">
-                    <option value="">Delivery Days</option>
-                    <option value="">2 days</option>
-                </select>
-            </fieldset>
-        </div>
-        <div>
-            <fieldset>
-                <input type="text" placeholder="Enter Each tag separated by comms(optional)">
-            </fieldset>
-        </div>
-        <div>
-            <div class="section-head">
-                <i class="fa fa-camera"></i><span>Image Upload</span>
-
-            </div>
-
-            <section class="form-group">
-                <div>
-
-                    <fieldset>
-                        <input type="file">
-                    </fieldset>
-
-                </div>
-                <div>
-
-                    <fieldset>
-                        <input type="file">
-                    </fieldset>
-
-                </div>
-                <div>
-
-                    <fieldset>
-                        <input type="file">
-                    </fieldset>
-
-                </div>
-            </section>
-        </div>
-        <div>
-            <div class="section-head">
-                <i class="fa fa-camera-retro"></i><span>Video Upload</span>
-            </div>
-
-            <section class="form-group">
-
-                <div>
-                    <fieldset>
-                        <input type="file">
-                    </fieldset>
-
-                </div>
-            </section>
-        </div>
-
-        <div>
-            <div class="section-head">
-                Extra
-            </div>
-            <section class="form-group">
-                <div>
-                    <fieldset>
-                        <input type="text" placeholder="Enter what you will do for extra">
-                    </fieldset>
-                </div>
-                <div>
-                    <fieldset>
-                        <input type="number" placeholder="Amount">
-                    </fieldset>
-                </div>
-                <div>
-                    <fieldset>
-                        <input type="text" placeholder="Enter what you will do for extra">
-                    </fieldset>
-                </div>
-                <div>
-                    <fieldset>
-                        <input type="number" placeholder="Amount">
-                    </fieldset>
-                </div>
-            </section>
-        </div>
-
-        <fieldset>
-            <button>Create Fix</button>
-        </fieldset>
+        </form>
 
     </main>
-
+    <%- include('./partials/footer.ejs') %>
 </body>
 
 </html>

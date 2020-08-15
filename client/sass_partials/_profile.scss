@@ -1,9 +1,9 @@
 .profile{
     background: white;
     padding: 20px 20px 50px 20px ;
-    margin: 15px;
     border-radius: 6px;
     border: 1px solid #ddd;
+    margin: 10px 5px;
 }
 
 
@@ -13,11 +13,17 @@
 }
 .online-status div{
     text-align: right;
-    padding: 8px;
+    display: flex;
+    padding: 9px;
     border-radius: 50px;
     border: 1px solid #ddd;
     width: fit-content;
 }
+
+.online-status{
+    font-size: 1.4rem;
+}
+
 
 
 // .user-online{
@@ -26,8 +32,8 @@
 
 .online-icon{
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 13px;
+    height: 13px;
     border-radius: 100px;
     color:#89E130;
     margin-right: 5px;
@@ -47,6 +53,7 @@
     margin: 30px auto;
     border: 1px solid #ddd;
     color:inherit;
+    font-size: 1.5rem;
 }
 
 .profile-icon{
@@ -59,8 +66,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.8rem;
-    font-weight: bold;
+    font-size: 4rem;
+
 }
 
 .flex-center-wrapper{
@@ -72,19 +79,21 @@
 
 
 .profile-item{
-    margin-bottom: 15px;
+    margin-bottom: 17px;
     display: block;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 .profile-username{
     font-weight: bolder;
     margin-top: -10px;
     margin-bottom: 30px;
+    font-size: 1.6rem;
+    color: black;
 }
 
 .profile-about{
-    padding:15px ;
+    padding:15px 5px;
 }
 
 
@@ -93,6 +102,7 @@
     border-radius: 6px;
     padding: 10px;
     border: 1px solid #ddd;
+    font-size: 1.6rem;
 }
 
 
@@ -101,9 +111,13 @@
     h2{
         margin-bottom: 15px;
         padding-left: 7px;
+        font-size: 2rem;
+        font-weight: bolder;
+        color: black;
         
     }
     .fix-container{
         margin-top: 30px;
+        font-size: 1.6rem;
     }
 }

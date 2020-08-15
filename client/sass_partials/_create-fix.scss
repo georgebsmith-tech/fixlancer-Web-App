@@ -4,6 +4,8 @@
     margin-bottom: 25px;
     box-shadow: 0px 0.15rem 1.75rem 0px rgba(58, 59, 69, 0.15);
     border-radius: 5px;
+    
+   
 }
 
 .section-head{
@@ -16,4 +18,18 @@
        margin-right: 6px;
     }
 
+}
+
+.important,.warning{
+    font-size: 1.3rem;
+}
+
+.form-group.the-first{
+    margin-top: 15px;
+}
+
+.section-head span,.section-head i{
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: black;
 }

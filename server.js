@@ -165,6 +165,10 @@ app.get("/dashboard/affiliate", checkUserAuthenticated, (req, res) => {
     res.render("affiliate")
 })
 
+app.get("/dashboard/create-a-fix", (req, res) => {
+    res.render("create-fix")
+})
+
 app.get("/dashboard/profile/edit", checkUserAuthenticated, (req, res) => {
     res.render("edit")
 })

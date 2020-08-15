@@ -42,8 +42,8 @@
                                         <i class="fa fa-exclamation-triangle"></i>Not approved
                                     </div>
                                 </div>
-                                <div>
-                                    <a href="#">${request.username} </a>-
+                                <div class="username-and-date">
+                                    <a href="/dashboard/profile">${request.username} </a>-
                                     <span> ${time.toDateString()}</span>
                                 </div>
 

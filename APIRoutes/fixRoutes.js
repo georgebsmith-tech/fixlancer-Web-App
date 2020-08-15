@@ -5,8 +5,11 @@ const upload = require("../controlers/awsConfig")
 const multiple_uploads = upload.array("photo")
 
 router.post("/", multiple_uploads, async (req, res) => {
-    console.log(req.files)
     const reqBody = req.body
+    console.log(reqBody)
+    console.log("Files" + req.files)
+    reqBody.username = req.session.passport.user
+
     reqBody.images_url = []
     req.files.forEach(file => {
         reqBody.images_url.push(file.location)

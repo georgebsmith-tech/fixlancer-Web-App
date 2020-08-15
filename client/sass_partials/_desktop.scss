@@ -66,7 +66,8 @@
     }
 
     .description{
-        font-size: 1.2rem;
+        font-size: 1.7rem;
+        font-weight: bolder;
     }
 
     .grid-2-12{
@@ -127,7 +128,10 @@
     .recommended-desktop{
         display: flex;
         justify-content: space-between;
-        padding: 10px;
+        padding: 0px 10px 10px 10px;
+        small{
+            font-size: 1.4rem;
+        }
     }
     .fa-clock{
         font-size: 0.8rem;
@@ -142,6 +146,9 @@
         margin: 10px;
         .fa-circle{
             margin-right: 4px;
+        }
+        i,small{
+            font-size: 1.3rem;
         }
     }
 
@@ -197,7 +204,7 @@
         outline: none;
         border-radius: 5px;
         border: 1px solid #ddd;
-        font-size: 1rem;
+        font-size: 1.6rem;
     }
 
     .top-profile-avatar-container{
@@ -274,6 +281,34 @@
             
         }
     }
+
+    .form-group-2-in-row{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        column-gap: 15px;
+    }
+    .form-group-4-in-row{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        column-gap: 10px;
+    }
+
+    .form-group.grid-2-1{
+        display: grid;
+        grid-template-columns: 2.2fr 1fr;
+        column-gap: 15px;
+        box-shadow: none;
+    }
+
+    .grid-2-3-1{
+        background: white;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 15px;
+        box-shadow: 0px 0.15rem 1.75rem 0px rgba(58, 59, 69, 0.15);
+        margin-bottom: 20px;
+    }
+    
    
 
 }

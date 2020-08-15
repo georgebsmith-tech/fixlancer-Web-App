@@ -25,7 +25,7 @@
 }
 
 main.request-page{
-    padding:15px 20px 30px 20px ;
+    padding:15px 15px 30px 15px ;
 }
 
 .send-offer{
@@ -78,8 +78,8 @@ main.request-page{
 }
 
 .username-icon{
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 2.2rem;
+    height:  2.2rem;
     background: green;
     color: white;
     border-radius: 50px;
@@ -92,7 +92,7 @@ main.request-page{
 
 .recommended-fix-title{
     line-height: 1.7;
-    font-size: 0.9rem;
+    font-size: 1.5rem;
 }
 
 .recoomended-username-desktop{
@@ -104,10 +104,10 @@ main.request-page{
     color:#f27415;
 }
 .title{
-    font-size: 1.4rem;
+    font-size: 1.9rem;
     text-transform: capitalize;
     margin-bottom: 15px;
-    font-weight: lighter;
+    font-weight: 600;
     padding-right: 50px;
     display: inline-block;
     color:#f27415;
@@ -129,10 +129,14 @@ main.request-page{
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+    i,small{
+        font-size: 1.2rem;
+    }
 }
 .fix-amount-green{
     color:#5aba79;
     font-weight: bold;
+    font-size: 1.7rem;
 }
 
 
@@ -141,11 +145,27 @@ main.request-page{
 }
 .fix-rating{
     margin-left: 20px;
+    font-size: 1.4rem;
 }
+.username-and-date{
+    a,span{
+        font-size: 1.1rem;
+    }
+    a{
+        color:  #98a8e4;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}
+
 
 .duration-and-rating-trust{
     margin-top: 9px;
     display: inline-block;
+    i,span{
+        font-size: 1.3rem;
+    }
    
     
 }
@@ -160,7 +180,7 @@ main.request-page{
 .description{
     padding-right: 50px;
     margin-bottom: 15px;
-    font-size: 1rem;
+    font-size: 1.6rem;
 }
 .request-meta{
     display: grid;
@@ -171,20 +191,21 @@ main.request-page{
     
     &>div:nth-child(2){
         text-align: right;
-        font-size: 0.75rem;
+        font-size: 1.1rem;
         color: #fe1b1b;
         i{
             margin-right: 3px;
             color: #fe1b1b;
+            font-size: 1.1rem;
         }
     }
 }
 
 .duration{
-    font-size: 0.75rem;
+    font-size: 1.2rem;
     margin-bottom: 7px;
 }
 .amount{
-    font-size: 1.6rem;
+    font-size: 2.3rem;
     font-weight: bolder;
 }

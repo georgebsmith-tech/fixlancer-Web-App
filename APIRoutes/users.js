@@ -27,6 +27,7 @@ const singleUpload = upload.single("photo")
 router.get("/", async function (req, res) {
     const data = await UserModel.find()
     res.status(200).send(data)
+
 })
 
 //Registration route
