@@ -202,13 +202,13 @@
     //////////////////////
     //FEATURED FIX//
     function fetchData() {
-        fetch("https://fixlancer.herokuapp.com/api/fixes").then(response => {
+        fetch("https://fixlancer.herokuapp.com/api/fixes?state=random&count=4").then(response => {
             if (!response.ok) {
                 throw Error('Error');
             }
             return response.json();
         }).then(data => {
-            const arr = data.data
+            const arr = data
             console.log(Object.values(arr[0])[0]);
             const featured = document.querySelector('.featured-fixes');
             const html = arr.map(fix => {
