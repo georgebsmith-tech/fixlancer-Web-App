@@ -1134,6 +1134,16 @@ main.request-page {
   border-radius: 5px;
 }
 
+.create-fix-subcategory {
+  margin-top: -12px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  column-gap: 12px;
+}
+
 .section-head {
   background: #f8f9fc;
   padding: 15px 25px;
@@ -1385,6 +1395,73 @@ main.how-it-works h2 {
   color: white;
   background: #36b9cc;
   border: 1px solid #36b9cc;
+}
+
+.job-request-alert {
+  padding: 20px 10px 10px 10px;
+  background: white;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.job-request-alert h1 {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 90px;
+}
+
+.alert-form-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+.alert-form-wrapper > div {
+  border-radius: 5px;
+  box-shadow: 0px 0.15rem 1.75rem 0px rgba(58, 59, 69, 0.15);
+}
+.alert-form-wrapper form {
+  padding: 0px 10px 10px 10px;
+}
+.alert-form-wrapper button {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #374355;
+  font-size: 1.5rem;
+  color: white;
+  margin-top: 10px;
+  background: #415478;
+}
+.alert-form-wrapper button:hover {
+  cursor: pointer;
+}
+.alert-form-wrapper h2 {
+  font-size: 1.6rem;
+  font-weight: bolder;
+  padding: 20px;
+  background: #f8f9fc;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+.alert-form-wrapper .alert-check, .alert-form-wrapper div {
+  font: 400 13.3333px Arial;
+  font-size: 1.4rem;
+}
+.alert-form-wrapper div {
+  margin-bottom: 10px;
+}
+.alert-form-wrapper .alert-check {
+  margin-right: 5px;
+}
+
+.unsubscribe {
+  text-align: center;
+  font-size: 1.4rem;
+  margin-top: 10px;
 }
 
 @media only screen and (min-width: 991px) {
@@ -1669,9 +1746,7 @@ main.how-it-works h2 {
     column-gap: 10px;
   }
 
-  .form-group.grid-2-1 {
-    display: grid;
-    grid-template-columns: 2.2fr 1fr;
+  .form-group.no-sahdow {
     column-gap: 15px;
     box-shadow: none;
   }

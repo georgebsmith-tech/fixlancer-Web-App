@@ -52,6 +52,10 @@ const Schema = new mongoose.Schema({
         type: String,
         required: true
     },
+    subcategory: {
+        type: String,
+        required: true
+    },
     delivery_days: {
         type: Number,
         required: true

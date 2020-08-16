@@ -14,10 +14,17 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
     const reqString = req.query
     if (reqString.content === "slim") {
+        if (reqString.subcat === "true") {
+            const data = await CategoryModel.find().select("name subcat")
+            return res.status(200).json({
+                data: data
+            })
+        }
         const data = await CategoryModel.find().select("name prices")
         return res.status(200).json({
             data: data
         })
+
     }
     const data = await CategoryModel.find()
     return res.status(200).json({

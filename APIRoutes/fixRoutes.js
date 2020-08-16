@@ -2,16 +2,42 @@ const router = require("express").Router()
 const FixModel = require("../models/fixesModel");
 const upload = require("../controlers/awsConfig")
 
-const multiple_uploads = upload.array("photo")
+// const multiple_uploads = upload.array("photo")
+const multiple_uploads = upload.fields(
+    [
+        {
+            name: 'video', maxCount: 1
+        }, {
+            name: 'photo', maxCount: 3
+        }
+    ]
+)
 
 router.post("/", multiple_uploads, async (req, res) => {
     const reqBody = req.body
     console.log(reqBody)
-    console.log("Files" + req.files)
+    console.log(req.files)
+    // return res.json({
+    //     message: "done"
+    // })
     reqBody.username = req.session.passport.user
 
     reqBody.images_url = []
-    req.files.forEach(file => {
+    reqBody.extras = [
+        {
+            description: reqBody.extra1_desc,
+            price: reqBody.extra1_amount
+        },
+        {
+            description: reqBody.extra2_desc,
+            price: reqBody.extra2_amount
+        }
+
+    ]
+
+    reqBody.tags = reqBody.tags.split(",")
+    reqBody.video = req.files.video[0].location
+    req.files.photo.forEach(file => {
         reqBody.images_url.push(file.location)
     })
     const fix = new FixModel(reqBody)

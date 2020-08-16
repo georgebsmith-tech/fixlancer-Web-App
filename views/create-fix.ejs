@@ -59,6 +59,7 @@
                 </div>
             </section>
             <section class="form-group-4-in-row">
+
                 <div>
 
 
@@ -72,13 +73,25 @@
                     </fieldset>
                 </div>
                 <div>
+                    <div>
 
 
-                    <fieldset>
-                        <select name="fix-category" id="fix-category" data-placeholder="Please select a category..">
-                            <option value="">SelectCategory...</option>
-                        </select>
-                    </fieldset>
+                        <fieldset>
+                            <select name="fix-category" id="fix-category" data-placeholder="Please select a category..">
+                                <option value="">Select Category...</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div class="create-fix-subcategory hide">
+
+
+                        <fieldset>
+                            <select name="fix-subcategory" id="fix-subcategory"
+                                data-placeholder="Please select a subcategory..">
+                                <option value="">Select Subcategory...</option>
+                            </select>
+                        </fieldset>
+                    </div>
                 </div>
 
                 <div>
@@ -149,37 +162,42 @@
                 <div class="section-head">
                     <i class="fa fa-plus"></i>
 
-                    <span>Extra</span>
+                    <span>Extra</span><br>
+                    <span style="margin-top: 10px; display: inline-block;font-size: 1.5rem;">Enter What you will do for
+                        extra</span>
 
                 </div>
                 <div class="grid-2-3-1">
-                    <section class="form-group grid-2-1">
-                        <div>
-                            <fieldset>
-                                <input type="text" placeholder="Enter what you will do for extra" name="extra-descr"
-                                    id="extra-descr">
-                            </fieldset>
-                        </div>
+                    <section class="form-group no-sahdow">
+                        <div class="grid-2">
+                            <div>
+                                <fieldset>
+                                    <input type="text" placeholder="Extra description" name="extra-descr"
+                                        id="extra-descr">
+                                </fieldset>
+                            </div>
 
-                        <div>
-                            <fieldset>
-                                <input type="number" placeholder="Amount" name="extra-amount" id="extra-amount">
-                            </fieldset>
+                            <div>
+                                <fieldset>
+                                    <input type="number" placeholder="Amount" name="extra-amount" id="extra-amount">
+                                </fieldset>
+                            </div>
                         </div>
-
-                        <div>
-                            <fieldset>
-                                <input type="text" placeholder="Enter what you will do for extra" name="extra-descr"
-                                    id="extra-descr">
-                            </fieldset>
+                        <div class="grid-2">
+                            <div>
+                                <fieldset>
+                                    <input type="text" placeholder="Extra description" name="extra-descr"
+                                        id="extra-descr">
+                                </fieldset>
+                            </div>
+                            <div>
+                                <fieldset>
+                                    <input type="number" placeholder="Amount" name="extra-amount" id="extra-amount">
+                                </fieldset>
+                            </div>
                         </div>
-                        <div>
-                            <fieldset>
-                                <input type="number" placeholder="Amount" name="extra-amount" id="extra-amount">
-                            </fieldset>
-                        </div>
-                        < </section>
-                            <section></section>
+                    </section>
+                    <section></section>
                 </div>
             </div>
 
