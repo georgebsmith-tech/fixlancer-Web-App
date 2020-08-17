@@ -110,7 +110,7 @@
                             star.setAttribute("class", "fa fa-star")
                             const span_star = document.createElement("span")
                             //    span_star.setAttribute("class","delivery")
-                            span_star.textContent = `${number_of_ratings} (${average_rating})`
+                            span_star.textContent = `${saverage_rating} (${number_of_rating})`
                             div_rating.appendChild(star)
                             div_rating.appendChild(span_star)
                             userFixPriceAndrating.appendChild(div_delivery)
