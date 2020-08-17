@@ -121,3 +121,67 @@
         font-size: 1.6rem;
     }
 }
+
+.scroll-container{
+    overflow-x: scroll;
+}
+.fix-container{
+    min-width: 490px;
+    display: flex;
+    
+}
+.fix-price{
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: #5aba79;
+}
+
+.user-fix-title{
+    padding: 10px;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.price-and-ratings{
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    .fa-clock,.delivery{
+        font-size: 1.2rem;
+    }
+    .rating-or-trust{
+        display: none;
+        .fa-star,span{
+            font-size: 1.4rem;
+        }
+        
+        
+    }
+    
+}
+
+.fix-image-wrapper{
+    height: 150px;
+    margin-bottom: 7px;
+    img{
+        border-radius: 0px;
+        // object-fit: contain;
+        height: 100%;
+    }
+}
+
+.fix-user-status{
+    padding-left: 10px;
+    span,i{
+        font-size: 1.2rem;
+    }
+}
+.user-fix{
+    background: white;
+    // display: inline-block;
+    width: 210px;
+    margin-right: 30px;
+    border: 1px solid #ddd;
+
+    
+}

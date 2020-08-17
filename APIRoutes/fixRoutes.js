@@ -67,6 +67,14 @@ router.get("/", async (req, res) => {
     })
 })
 
+router.get("/:username", async (req, res) => {
+    const data = await FixModel.find({ username: req.params.username })
+    res.status(200).json({
+        number_of_records: data.length,
+        data: data
+    })
+})
+
 
 
 

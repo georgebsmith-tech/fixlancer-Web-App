@@ -121,6 +121,28 @@
 
     }
 
+    //user fix
+    .scroll-container{
+        overflow-x: hidden;
+    }
+    .price-and-ratings{
+        .rating-or-trust{
+            display: block;
+        }
+    }
+
+    .fix-container{
+        display: grid;
+        grid-template-columns:repeat(3,1fr);
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+    }
+    .user-fix{
+        margin: 10px;
+        width: auto;
+    }
+
     .recommended-mobile{
         display: none;
     }

@@ -69,7 +69,7 @@
         // console.log(ratings)
         let sum_of_ratings = 0;
 
-        let average_rating
+        let average_rating = 0
         let number_of_ratings = ratings.length
         if (number_of_ratings !== 0) {
 

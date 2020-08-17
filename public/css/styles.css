@@ -1346,6 +1346,65 @@ img {
   font-size: 1.6rem;
 }
 
+.scroll-container {
+  overflow-x: scroll;
+}
+
+.fix-container {
+  min-width: 490px;
+  display: flex;
+}
+
+.fix-price {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: #5aba79;
+}
+
+.user-fix-title {
+  padding: 10px;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.price-and-ratings {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+.price-and-ratings .fa-clock, .price-and-ratings .delivery {
+  font-size: 1.2rem;
+}
+.price-and-ratings .rating-or-trust {
+  display: none;
+}
+.price-and-ratings .rating-or-trust .fa-star, .price-and-ratings .rating-or-trust span {
+  font-size: 1.4rem;
+}
+
+.fix-image-wrapper {
+  height: 150px;
+  margin-bottom: 7px;
+}
+.fix-image-wrapper img {
+  border-radius: 0px;
+  height: 100%;
+}
+
+.fix-user-status {
+  padding-left: 10px;
+}
+.fix-user-status span, .fix-user-status i {
+  font-size: 1.2rem;
+}
+
+.user-fix {
+  background: white;
+  width: 210px;
+  margin-right: 30px;
+  border: 1px solid #ddd;
+}
+
 .logo-wrapper {
   width: 150px;
   margin: 0px auto 30px auto;
@@ -1580,6 +1639,27 @@ main.how-it-works h2 {
 
   .duration-and-rating-trust {
     display: none;
+  }
+
+  .scroll-container {
+    overflow-x: hidden;
+  }
+
+  .price-and-ratings .rating-or-trust {
+    display: block;
+  }
+
+  .fix-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .user-fix {
+    margin: 10px;
+    width: auto;
   }
 
   .recommended-mobile {

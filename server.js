@@ -181,7 +181,7 @@ app.get("/dashboard/post-job-request", checkUserAuthenticated, (req, res) => {
     res.render("post-request")
 })
 
-app.get("/dashboard/profile", checkUserAuthenticated, (req, res) => {
+app.get("/dashboard/profile", (req, res) => {
     res.render("profile")
 })
 
