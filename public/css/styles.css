@@ -1252,6 +1252,7 @@ img {
 .online-status div {
   text-align: right;
   display: flex;
+  align-items: center;
   padding: 9px;
   border-radius: 50px;
   border: 1px solid #ddd;
@@ -1316,7 +1317,6 @@ img {
   margin-top: -10px;
   margin-bottom: 30px;
   font-size: 1.6rem;
-  color: black;
 }
 
 .profile-about {
@@ -1339,7 +1339,6 @@ img {
   padding-left: 7px;
   font-size: 2rem;
   font-weight: bolder;
-  color: black;
 }
 .about-item .fix-container {
   margin-top: 30px;
@@ -1362,14 +1361,14 @@ img {
 }
 
 .user-fix-title {
-  padding: 10px;
+  padding: 10px 10px 0px 10px;
   font-weight: 500;
   font-size: 1.5rem;
 }
 
 .price-and-ratings {
   display: flex;
-  padding: 10px;
+  padding: 5px 10px;
   justify-content: space-between;
 }
 .price-and-ratings .fa-clock, .price-and-ratings .delivery {
