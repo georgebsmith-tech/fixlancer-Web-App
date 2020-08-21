@@ -2,6 +2,25 @@
 
 
 @media only screen and(min-width:991px){
+    .grid-2-21{
+        display:grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap:30px;
+    }
+    .grid-2-13{
+        display:grid;
+        grid-template-columns: 1.4fr 3fr;
+        column-gap:30px;
+    }
+
+    //detailed fix
+    .about-fix-section{
+        .image-carousel-wrapper{
+            &>div{
+                padding:10px 40px;
+            }
+        }
+    }
 
     .sales-and-orders-headings{
         display: flex;

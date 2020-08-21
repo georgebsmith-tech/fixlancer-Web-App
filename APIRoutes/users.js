@@ -281,6 +281,7 @@ router.get("/:username", async (req, res) => {
                     active_sales: ongoingSales.length,
                     active_orders: ongoingOrders.length,
                     balance: 0,
+                    userColor: data.userColor,
                     bamk_details: {
                         bank_name: bankDetails.bankName,
                         acct_name: bankDetails.accName,
@@ -304,6 +305,7 @@ router.get("/:username", async (req, res) => {
             rating: data.rating,
             phone: data.phone,
             bio: data.bio,
+            userColor: data.userColor,
             created_at: data.createdAt.toDateString()
         })
     } else {
@@ -312,7 +314,7 @@ router.get("/:username", async (req, res) => {
 
         const data = await UserModel.findOne({
             username: req.params.username
-        }).select("bio username rating")
+        }).select("bio username rating userColor")
         if (data) {
             const ongoingSales = await SalesModel.find({ user_id: data._id, state: "ongoing" })
             const ongoingOrders = await OrdersModel.find({ user_id: data._id, state: "ongoing" })
@@ -332,6 +334,7 @@ router.get("/:username", async (req, res) => {
                     ["active orders", ongoingOrders.length]
 
                     ],
+                    userColor: data.userColor,
 
                     bio: data.bio,
                     rating: data.rating,
@@ -347,10 +350,6 @@ router.get("/:username", async (req, res) => {
         }
     }
 })
-
-
-
-
 
 
 

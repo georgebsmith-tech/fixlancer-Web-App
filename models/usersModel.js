@@ -14,7 +14,13 @@ mongoose.connect(dataBaseUrl, { useNewUrlParser: true, useUnifiedTopology: true,
 
 })
 
-
+function getColor() {
+    const r = Math.random() * 128
+    const g = Math.random() * 128
+    const b = Math.random() * 128
+    return `rgb(${r},${g},${b})`
+}
+const color = getColor()
 const Schema = new mongoose.Schema({
     imageURL: {
         type: String
@@ -95,9 +101,15 @@ const Schema = new mongoose.Schema({
     online: {
         type: Boolean,
         default: true
+    },
+    userColor: {
+        type: String,
+        default: "rgb(120,80,10)"
     }
 
 })
+
+
 const User = mongoose.model("User", Schema)
 
 module.exports = User

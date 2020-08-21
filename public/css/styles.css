@@ -1637,6 +1637,70 @@ a.control-btn {
   border-bottom: 1px solid #ddd;
 }
 
+.about-fix-section .corousel-container {
+  position: relative;
+  overflow: hidden;
+  margin-top: 10px;
+}
+.about-fix-section .carousel-nav {
+  top: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.about-fix-section .carousel-nav i {
+  border-radius: 50px;
+  font-size: 4.5rem;
+  display: flex;
+  width: 35px;
+  height: 35px;
+  background: #ddd;
+  justify-content: center;
+  align-items: center;
+}
+.about-fix-section .image-carousel-wrapper {
+  display: flex;
+  width: 300%;
+}
+.about-fix-section .image-carousel-wrapper > div {
+  width: 33.333333%;
+  padding: 10px;
+}
+.about-fix-section .image-carousel-wrapper img {
+  border-radius: 0px;
+  object-fit: contain;
+}
+.about-fix-section .carousel-tombnail {
+  display: flex;
+  justify-content: center;
+}
+.about-fix-section .carousel-tombnail > div {
+  position: relative;
+  box-sizing: border-box;
+  width: 56px;
+  height: 50px;
+  overflow: hidden;
+  margin-right: 6px;
+  border: 1px solid #eeeded;
+  box-shadow: 1px 1px 1px 2px rgba(58, 59, 69, 0.15);
+}
+.about-fix-section .carousel-tombnail > div div {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.2);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.about-fix-section .carousel-tombnail img {
+  width: 100%;
+  border-radius: 0px;
+  height: 100%;
+  object-fit: cover;
+}
 .about-fix-section .category-and-subcategory {
   margin-top: 70px;
   font-size: 1.3rem;
@@ -1698,14 +1762,29 @@ a.control-btn {
 .about-fix-section button {
   margin-top: 30px;
 }
-.about-fix-section a.control-btn {
-  padding: 10px;
+.about-fix-section .orange-btn {
   background: #f27415;
   border-color: #f27415;
   color: white;
 }
 
 @media only screen and (min-width: 991px) {
+  .grid-2-21 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 30px;
+  }
+
+  .grid-2-13 {
+    display: grid;
+    grid-template-columns: 1.4fr 3fr;
+    column-gap: 30px;
+  }
+
+  .about-fix-section .image-carousel-wrapper > div {
+    padding: 10px 40px;
+  }
+
   .sales-and-orders-headings {
     display: flex;
     padding: 5px 40px;

@@ -87,8 +87,11 @@
                             fixid.appendChild(userStatus)
                             const userFixTitle = document.createElement("div")
                             userFixTitle.setAttribute("class", "user-fix-title")
+                            const tagUserFixTitle = document.createElement("a")
+                            tagUserFixTitle.setAttribute("href", `/fix/${fix.subcatSlug}/${fix.titleSlug}`)
                             userFixTitle.textContent = `${fix.title.substr(0, 45)}...`
-                            fixid.appendChild(userFixTitle)
+                            tagUserFixTitle.appendChild(userFixTitle)
+                            fixid.appendChild(tagUserFixTitle)
 
                             const userFixPriceAndrating = document.createElement("div")
                             userFixPriceAndrating.setAttribute("class", "price-and-ratings")
