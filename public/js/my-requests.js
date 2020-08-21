@@ -1,5 +1,7 @@
 (async function () {
-
+    function commafy(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
     const recommendHolder = document.querySelector(".grid-responsive-6")
     const requestsHolder = document.querySelector(".requests")
     // console.log(recommendHolder)
@@ -14,6 +16,7 @@
             } else {
                 const docFrag = new DocumentFragment()
                 data.data.forEach(request => {
+
                     let time = new Date(Date.parse(request.createdAt))
                     console.log(typeof time)
                     // console.log(typeof request.createdAt)
@@ -35,7 +38,7 @@
                                     <div>
 
                                         <div class="amount">
-                                            ₦${request.price}
+                                            ₦${commafy(request.price)}
                                         </div>
                                     </div>
                                     <div>
@@ -64,39 +67,44 @@
     // console.log(data)
     const documentFra = new DocumentFragment()
     data.forEach(fix => {
-        let ratings = fix.ratings
+        if (fix.titleSlug) {
+            let ratings = fix.ratings
 
-        // console.log(ratings)
-        let sum_of_ratings = 0;
+            // console.log(ratings)
+            let sum_of_ratings = 0;
 
-        let average_rating = 0
-        let number_of_ratings = ratings.length
-        if (number_of_ratings !== 0) {
+            let average_rating = 0
+            let number_of_ratings = ratings.length
+            if (number_of_ratings !== 0) {
 
-            ratings.forEach(rating => {
-                sum_of_ratings += rating * 1
-            })
-            average_rating = (sum_of_ratings / number_of_ratings).toFixed(1)
-            // console.log(average_rating)
+                ratings.forEach(rating => {
+                    sum_of_ratings += rating * 1
+                })
+                average_rating = (sum_of_ratings / number_of_ratings).toFixed(1)
+                // console.log(average_rating)
 
 
-        }
-        // console.log(sum_of_ratings)
-        let aRecommendation = document.createElement("div")
-        aRecommendation.classList.add("a-recommendation")
-        aRecommendation.innerHTML = `
+            }
+            // console.log(sum_of_ratings)
+            let aRecommendation = document.createElement("div")
+            aRecommendation.classList.add("a-recommendation")
+            aRecommendation.innerHTML = `
                 <div class="recommended-fix-top">
                     <div class="recommended-image-wrapper">
+                        <a href="/fix/${fix.subcatSlug}/${fix.titleSlug}">
                         <img src="${fix.images_url[0]}"
                             alt="">
+                        </a>
                     </div>
                     <div>
                         <div class="recoomended-username-desktop">
                             <i class="fa fa-circle"></i>
                             <small>${fix.username}</small>
                         </div>
+                        <a href="/fix/${fix.subcatSlug}/${fix.titleSlug}" >
                         <p class="recommended-fix-title">${fix.title.substr(0, 45)}...
                         </p>
+                        </a>
                         <small class="duration-and-rating-trust">
                             <span>
                                 <i class="fas fa-clock"></i> <span>${fix.delivery_days} day(s)</span>
@@ -119,7 +127,7 @@
                             <small>${fix.username}</small>
                         </div>
                         <div class="fix-amount-green">
-                            ₦${fix.price}
+                            ₦${commafy(fix.price)}
                         </div>
                     </div>
                     <div class="recommended-desktop">
@@ -132,7 +140,8 @@
                         </div>
                     </div>
                 </div>`
-        documentFra.appendChild(aRecommendation)
+            documentFra.appendChild(aRecommendation)
+        }
 
     })
     recommendHolder.appendChild(documentFra)

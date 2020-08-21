@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv")
 dotenv.config()
+const slugify = require("slugify");
+slugify.extend({ '#': 'sharp', '+': "plus", "-": "minus", "*": "times", "&": "and" })
 
 
 const dataBaseUrl = process.env.MONGO_ATLAS_URI
@@ -90,9 +92,40 @@ const Schema = new mongoose.Schema({
     },
     ratings: {
         type: [Number]
+    },
+    titleSlug: {
+        type: String,
+        required: true
+    },
+    subcatSlug: {
+        type: String,
+        required: true
+    },
+    views: {
+        type: Number,
+        default: 0
     }
 
+
+
 })
+
+Schema.pre("validate", function (next) {
+    if (this.subcategory) {
+        this.subcatSlug = slugify(this.subcategory.toLowerCase());
+    }
+    if (this.title) {
+        this.titleSlug = slugify(this.title, {
+            lower: true,
+            strict: true,
+        })
+    }
+
+
+    next()
+})
+
+
 
 
 const Fix = mongoose.model("Fix", Schema)

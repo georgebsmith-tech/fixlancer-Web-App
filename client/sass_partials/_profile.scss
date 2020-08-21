@@ -23,6 +23,10 @@
 
 .online-status{
     font-size: 1.4rem;
+    i.fa{
+        margin-right: 3px;
+        font-size: 1.2rem;
+    }
 }
 
 
@@ -47,6 +51,16 @@
 
 .online-color{
     color:#89E130 ;
+}
+.online-color{
+    color:#89E130 ;
+}
+
+.user-online{
+    color:#89E130 ;
+}
+.user-offline{
+    color:inherit ;
 }
 
 .edit-profile{

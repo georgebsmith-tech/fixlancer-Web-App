@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+</head>
+
+<body>
+    <%- include('./partials/header.ejs') %>
+    <main class="main">
+        <section class="about-fix-section">
+            <h1>
+                <%= fix.title %>
+            </h1>
+
+            <div class="fix-meta">
+                <div>
+                    <i class="fas fa-clock"></i>
+                    <span><%= fix.delivery_days%> day(s)</span> <span> delivery</span>
+                </div>
+                <div>
+
+                    <% if(fix.ratings.length>0){ %>
+                    <% let theSum=0 %>
+                    <% for(let rating of fix.ratings){ %>
+                    <% theSum +=rating*1 %>
+
+                    <% } %>
+                    <i class="fa fa-star"></i>
+                    <span><%= (theSum/(fix.ratings.length)).toFixed(1) %>(<%= fix.ratings.length %>) ratings</span>
+                    <% }else{ %>
+                    <i class="fa fa-star" style="color: inherit;"></i>
+                    <span>0</span>
+                    <% } %>
+
+                </div>
+                <div>
+                    <i class="fa fa-eye"></i>
+                    <span><%= fix.views %></span>
+                    <span> Views</span>
+                </div>
+            </div>
+            <div>
+                <h2>About this Fix</h2>
+                <p>
+                    <%= fix.description %>
+                </p>
+            </div>
+            <div class="category-and-subcategory">
+                This fix is posted in <a href=""><%= fix.subcategory %></a>, <a href=""><%= fix.category %></a>
+            </div>
+            <div>
+                <button class="control-btn">Contact Seller</button>
+                <a href="" class="control-btn center-text">Order Now ₦<%= fix.price %></a>
+            </div>
+            <div>
+                <h2 class="border-bottom">
+                    Ratings
+                </h2>
+                <div style="font-size: 1.6rem;padding: 40px 10px 30px 10px;">
+                    No reviews Yet
+                </div>
+            </div>
+        </section>
+
+        <a href="" class="control-btn center-text">Edit fix ₦<%= fix.price %></a>
+        <section id="about-seller-section">
+
+            <h2>About the Seller</h2>
+            <div>
+                <div class="online-status" style="padding: 10px 15px 15px 10px;">
+                    <div>
+                        <i class="fa fa-circle user-offline"></i>
+
+                        <span class="user-offline">Offline</span>
+                    </div>
+                </div>
+                <div class="center-text flex-center">
+                    <div>
+                        <div class="seller-username-icon">
+                            <%= fix.username[0].toUpperCase() %>
+                        </div>
+
+                    </div>
+                    <div>
+                        <img src="" alt="">
+                    </div>
+                    <div class="fix-seller-username">
+                        <a href=""><%= fix.username %></a>
+                    </div>
+                </div>
+                <div class="center-text seller-bio">
+                    <%= user.bio %>
+
+                </div>
+
+                <div class="center-text rating-wrapper">
+                    <% if(fix.ratings.length>0){ %>
+                    <% let theSum=0 %>
+                    <% for(let rating of fix.ratings){ %>
+                    <% theSum +=rating*1 %>
+
+                    <% } %>
+                    <span>Rating:</span>
+                    <i class="fa fa-star star-bad"></i>
+                    <span><%= (theSum/(fix.ratings.length)).toFixed(1) %>(<%= fix.ratings.length %>)</span>
+                    <% }else{ %>
+                    <span>Rating:</span>
+                    <i class="fa fa-star star-bad"></i>
+                    <span>0</span>
+                    <% } %>
+
+                </div>
+                <div class="center-text user-ongoing-orders">
+                    <i class="fas fa-clock text-success"></i> <span>Ongoing Orders:</span>
+                    <span><%= user.summary[3][1]%></span>
+                </div>
+                <div class="contact-seller-wrapper">
+                    <button>Contact Seller</button>
+                </div>
+                <div class="secured">
+                    <div>
+                        <i class="fas fa-shield-alt text-success"></i>
+                    </div>
+                    <div class="center-text">
+                        <div><strong>100% Secured</strong></div>
+                        <div>
+                            Job is done or Money back
+                        </div>
+                    </div>
+                    <div></div>
+                </div>
+                <div
+                    style="padding: 10px; font-size: 1.6rem;color: #374355;line-height: 1.5; border-top: 1px solid #ddd;">
+                    Your funds are held on Escrow and not sent to the seller. When an order is placed, a page is created
+                    where you can communicate with the seller
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

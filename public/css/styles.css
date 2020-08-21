@@ -561,7 +561,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  color: #5a5c69;
+  color: #374355;
   font-family: Nunito;
   font-weight: 400;
 }
@@ -616,6 +616,16 @@ main {
 
 .center-text {
   text-align: center;
+}
+
+.text-success {
+  color: #1cc88a;
+}
+
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .form-container {
@@ -1262,6 +1272,10 @@ img {
 .online-status {
   font-size: 1.4rem;
 }
+.online-status i.fa {
+  margin-right: 3px;
+  font-size: 1.2rem;
+}
 
 .online-icon {
   display: inline-block;
@@ -1278,6 +1292,18 @@ img {
 
 .online-color {
   color: #89E130;
+}
+
+.online-color {
+  color: #89E130;
+}
+
+.user-online {
+  color: #89E130;
+}
+
+.user-offline {
+  color: inherit;
 }
 
 .edit-profile {
@@ -1520,6 +1546,163 @@ main.how-it-works h2 {
   text-align: center;
   font-size: 1.4rem;
   margin-top: 10px;
+}
+
+a.control-btn {
+  padding: 10px;
+  background: white;
+  border: 1px solid #36b9cc;
+  color: #36b9cc;
+  width: 100%;
+  display: block;
+  border-radius: 6px;
+  margin-bottom: -30px;
+  font-size: 1.6rem;
+}
+
+#about-seller-section {
+  margin-top: 40px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 7px 7px 0 0;
+}
+#about-seller-section h2 {
+  padding: 20px 0px 30px 20px;
+  font-size: 2rem;
+  font-weight: bolder;
+  background: #fcfcfc;
+}
+#about-seller-section .contact-seller-wrapper {
+  padding: 20px;
+  background: #f8f9fc;
+}
+#about-seller-section button {
+  display: block;
+  width: 100%;
+  background: white;
+  padding: 7px;
+  font-size: 1.6rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+#about-seller-section .user-ongoing-orders, #about-seller-section .rating-wrapper {
+  font-size: 1.6rem;
+  padding: 15px 0px;
+  border-top: 1px solid #ddd;
+}
+#about-seller-section i {
+  font-size: 1.6rem;
+}
+#about-seller-section .seller-bio {
+  font-size: 1.7rem;
+  padding: 20px 15px;
+}
+#about-seller-section .secured {
+  padding: 15px 10px;
+  display: flex;
+  font-size: 1.6rem;
+  justify-content: space-around;
+  align-items: center;
+}
+#about-seller-section .secured i {
+  font-size: 4.5rem;
+}
+#about-seller-section .secured .center-text div:first-child {
+  font-size: 1.9rem;
+  padding-bottom: 15px;
+}
+#about-seller-section .secured .center-text div:first-child strong {
+  font-weight: bolder;
+}
+#about-seller-section .fix-seller-username {
+  margin-bottom: 10px;
+}
+#about-seller-section .fix-seller-username a {
+  font-size: 1.6rem;
+}
+#about-seller-section .seller-username-icon {
+  width: 80px;
+  height: 80px;
+  background: green;
+  font-size: 3.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 50px;
+  margin-bottom: 10px;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #ddd;
+}
+
+.about-fix-section .category-and-subcategory {
+  margin-top: 70px;
+  font-size: 1.3rem;
+}
+.about-fix-section .category-and-subcategory a {
+  font-size: 1.3rem;
+  color: #36b9cc;
+}
+.about-fix-section .category-and-subcategory a:hover {
+  text-decoration: underline;
+}
+.about-fix-section h1 {
+  font-size: 2.1rem;
+  font-weight: bolder;
+  margin: 30px 0px 20px 0px;
+}
+.about-fix-section h2 {
+  margin-top: 40px;
+  font-size: 2rem;
+  font-weight: bolder;
+  background: #fcfcfc;
+  margin-bottom: 5px;
+  padding-bottom: 15px;
+}
+.about-fix-section p {
+  font-size: 1.6rem;
+  line-height: 1.4;
+}
+.about-fix-section .fix-meta {
+  display: flex;
+  font-size: 1.3rem;
+  flex-wrap: wrap;
+}
+.about-fix-section .fix-meta i {
+  font-size: 1.3rem;
+  margin-right: 3px;
+}
+.about-fix-section .fix-meta div:first-child {
+  padding-right: 12px;
+}
+.about-fix-section .fix-meta div:nth-child(2) {
+  padding: 0px 12px 0px 12px;
+  border-left: 2px solid grey;
+  border-right: 2px solid grey;
+}
+.about-fix-section .fix-meta div:last-child {
+  padding-left: 12px;
+}
+.about-fix-section .control-btn {
+  display: block;
+  width: 100%;
+  background: white;
+  padding: 7px;
+  font-size: 1.6rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.about-fix-section button {
+  margin-top: 30px;
+}
+.about-fix-section a.control-btn {
+  padding: 10px;
+  background: #f27415;
+  border-color: #f27415;
+  color: white;
 }
 
 @media only screen and (min-width: 991px) {

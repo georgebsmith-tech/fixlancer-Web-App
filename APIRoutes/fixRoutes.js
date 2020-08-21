@@ -36,10 +36,15 @@ router.post("/", multiple_uploads, async (req, res) => {
     ]
 
     reqBody.tags = reqBody.tags.split(",")
-    reqBody.video = req.files.video[0].location
-    req.files.photo.forEach(file => {
-        reqBody.images_url.push(file.location)
-    })
+    if (req.files.video) {
+        reqBody.video = req.files.video[0].location
+    }
+    if (req.files.photo) {
+        req.files.photo.forEach(file => {
+            reqBody.images_url.push(file.location)
+        })
+    }
+
     const fix = new FixModel(reqBody)
     const data = await fix.save()
     return res.status(200).send({

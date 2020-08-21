@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const app = express()
 const server = require("http").Server(app);
 const io = require("socket.io")(server)
+const axios = require("axios").default
 
 require("dotenv").config()
 
@@ -137,6 +138,9 @@ io.on("connection", socket => {
 
 
 
+
+
+
 const checkUserAuthenticated = require("./middleware/userIsAuthenticated")
 const checkUserNotAuthenticated = require("./middleware/userIsNotauthenticated")
 
@@ -248,6 +252,20 @@ app.get("/profile", checkUserAuthenticated, (req, res) => {
 app.get("/log-out", checkUserAuthenticated, (req, res) => {
     req.logOut()
     res.redirect("/")
+})
+
+const FixModel = require("./models/fixesModel")
+
+app.get("/fix/:subcat/:titleSlug", async (req, res) => {
+    const fix = await FixModel.findOne({ titleSlug: req.params.titleSlug })
+    const resp = await axios.get(`https://fixlancer.herokuapp.com/api/users/${fix.username}`)
+    const user = resp.data.data
+
+    console.log(user)
+    console.log(fix)
+
+
+    res.render("fix-detailed", { fix, user })
 })
 
 app.get("/:username", checkUserAuthenticated, (req, res) => {

@@ -91,6 +91,10 @@ const Schema = new mongoose.Schema({
     },
     conversations: {
         type: Array
+    },
+    online: {
+        type: Boolean,
+        default: true
     }
 
 })

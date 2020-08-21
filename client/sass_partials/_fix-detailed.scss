@@ -1,0 +1,173 @@
+a.control-btn{
+    padding: 10px;
+    background: white;
+    border:1px solid #36b9cc;
+    color: #36b9cc;
+    width: 100%;
+    display: block;
+    border-radius: 6px;
+    margin-bottom: -30px;
+    font-size: 1.6rem;
+}
+#about-seller-section{
+    margin-top: 40px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 7px 7px 0 0;
+
+   
+
+    h2{
+        padding:20px  0px 30px 20px;
+        font-size: 2rem;
+        font-weight: bolder;
+        background: #fcfcfc;
+
+    }
+
+    .contact-seller-wrapper{
+        padding: 20px;
+        background: #f8f9fc;
+    }
+    button{
+        display: block;
+        width: 100%;
+        background: white;
+        padding: 7px;
+        font-size: 1.6rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+    }
+
+    .user-ongoing-orders,.rating-wrapper{
+        font-size: 1.6rem;
+        padding: 15px 0px;
+        border-top: 1px solid #ddd;
+
+    }
+    i{
+        font-size: 1.6rem;
+    }
+
+    .seller-bio{
+        font-size: 1.7rem;
+        padding: 20px 15px;
+    }
+
+    .secured{
+        padding: 15px 10px;
+        display: flex;
+        font-size: 1.6rem;
+        justify-content: space-around;
+        align-items: center;
+        i{
+            font-size: 4.5rem;
+        }
+        .center-text{
+            div:first-child{
+                font-size: 1.9rem;
+                padding-bottom: 15px;
+                strong{
+                    font-weight: bolder;
+                }
+            }
+        }
+    }
+
+    .fix-seller-username{
+        margin-bottom: 10px;
+        a{
+            font-size: 1.6rem;
+        }
+    }
+
+    .seller-username-icon{
+        width: 80px;
+        height: 80px;
+        background:green;
+        font-size: 3.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        border-radius: 50px;
+        margin-bottom: 10px;
+    }
+}
+
+.border-bottom{
+    border-bottom: 1px solid #ddd;
+}
+.about-fix-section{
+
+    .category-and-subcategory{
+        margin-top: 70px;
+        font-size: 1.3rem;
+        a{
+            font-size: 1.3rem;
+            color: #36b9cc;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+    h1{
+        font-size: 2.1rem;
+        font-weight: bolder;
+        margin: 30px 0px 20px 0px;
+    }
+    h2{
+        margin-top: 40px;
+        font-size: 2rem;
+        font-weight: bolder;
+        background: #fcfcfc;
+        margin-bottom: 5px;
+        padding-bottom: 15px;
+       
+    }
+    p{
+        font-size: 1.6rem;
+        line-height: 1.4;
+    }
+    .fix-meta{
+        display: flex;
+        font-size: 1.3rem;
+        flex-wrap: wrap;
+        i{
+            font-size: 1.3rem;  
+            margin-right: 3px;
+        }
+        div:first-child{
+            padding-right: 12px;
+        }
+        div:nth-child(2){
+            padding: 0px 12px 0px 12px;
+            border-left: 2px solid grey;
+            border-right: 2px solid grey;
+        }
+        div:last-child{
+            padding-left: 12px;
+        }
+
+    }
+    .control-btn{
+        display: block;
+        width: 100%;
+        background: white;
+        padding: 7px;
+        font-size: 1.6rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        margin-bottom:10px ;
+        
+    }
+    button{
+        margin-top: 30px;
+    }
+    a.control-btn{
+        padding: 10px;
+        background: #f27415;
+        border-color: #f27415;
+        color: white;
+    }
+}
