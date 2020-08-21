@@ -628,6 +628,10 @@ main {
   align-items: center;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 .form-container {
   background: #fff;
   margin: 0px auto;
