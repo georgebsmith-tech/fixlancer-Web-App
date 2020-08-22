@@ -259,6 +259,7 @@ const FixModel = require("./models/fixesModel")
 app.get("/fix/:subcat/:titleSlug", async (req, res) => {
     const fix = await FixModel.findOne({ titleSlug: req.params.titleSlug })
     const userFixes = await FixModel.find({ username: fix.username })
+    const recommendations = await FixModel.find({ category: fix.category }).limit(6)
     const resp = await axios.get(`https://fixlancer.herokuapp.com/api/users/${fix.username}`)
     const user = resp.data.data
 
@@ -267,7 +268,7 @@ app.get("/fix/:subcat/:titleSlug", async (req, res) => {
     console.log(userFixes)
 
 
-    res.render("fix-detailed", { fix, user, userFixes })
+    res.render("fix-detailed", { fix, user, userFixes, recommendations })
 })
 
 app.get("/:username", checkUserAuthenticated, (req, res) => {
