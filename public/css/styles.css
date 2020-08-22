@@ -595,6 +595,19 @@ h1, h2, h3, h4, h5, h6 {
   color: #5a5c69;
 }
 
+.tags {
+  margin-top: 50px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 5px;
+  background: white;
+  font-size: 1.5rem;
+  margin-right: 5px;
+  border-radius: 50px;
+}
+
 main {
   background: #fcfcfc;
   width: 100vw;
@@ -1446,11 +1459,11 @@ img {
   font-size: 1.4rem;
 }
 
-.fix-image-wrapper {
+.afix-image-wrapper {
   height: 150px;
   margin-bottom: 7px;
 }
-.fix-image-wrapper img {
+.afix-image-wrapper img {
   border-radius: 0px;
   height: 100%;
 }
@@ -1691,6 +1704,7 @@ a.control-btn {
   align-items: center;
 }
 .about-fix-section .carousel-nav i {
+  cursor: pointer;
   border-radius: 50px;
   font-size: 4.5rem;
   display: flex;
@@ -1707,10 +1721,13 @@ a.control-btn {
 .about-fix-section .image-carousel-wrapper > div {
   width: 33.333333%;
   padding: 10px;
+  max-width: 847px;
+  max-height: 476px;
 }
 .about-fix-section .image-carousel-wrapper img {
   border-radius: 0px;
   object-fit: contain;
+  height: 100%;
 }
 .about-fix-section .carousel-tombnail {
   display: flex;
@@ -1810,10 +1827,55 @@ a.control-btn {
 .fix-image-wrapper {
   width: 90px;
   height: 80px;
+  margin-bottom: 5px;
 }
 .fix-image-wrapper img {
   border-radius: 4px;
   border: 1px solid #ddd;
+  object-fit: cover;
+  height: 100%;
+}
+
+.scroll-6-item {
+  width: 190px;
+  border-radius: 0px;
+  background: white;
+  margin-right: 25px;
+  border: 1px solid #ddd;
+}
+.scroll-6-item .scroll-6-image-wrapper {
+  height: 150px;
+  margin-bottom: 6px;
+}
+.scroll-6-item img {
+  border-radius: 0px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.scroll6-wrapper {
+  display: flex;
+  width: fit-content;
+}
+
+.scroll-6-user-fix-title {
+  font-size: 1.6rem;
+  line-height: 1.3;
+  padding: 5px 10px;
+  margin-top: 10px;
+}
+
+.fix-footer {
+  display: flex;
+  padding: 7px 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+.fix-footer span {
+  font-size: 1.3rem;
+}
+.fix-footer i {
+  font-size: 1.2rem;
 }
 
 @media only screen and (min-width: 991px) {
@@ -2020,6 +2082,10 @@ a.control-btn {
     max-width: 300px;
     width: 300px;
     min-width: 200px;
+  }
+
+  .fix-image-wrapper {
+    height: 100px !important;
   }
 
   .main-header {

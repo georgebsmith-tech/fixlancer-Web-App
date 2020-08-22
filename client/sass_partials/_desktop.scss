@@ -215,7 +215,9 @@
         width: 300px;
         min-width: 200px;
     }
-    
+    .fix-image-wrapper{
+        height: 100px !important;
+    }
 
     .main-header{
         display: flex;

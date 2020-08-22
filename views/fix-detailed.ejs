@@ -53,10 +53,13 @@
 
                     </div>
                     <div class="carousel-nav">
+                        <% if(fix.images_url.length!==1){ %>
                         <i class="fa fa-angle-left"></i>
                         <i class="fa fa-angle-right"></i>
+                        <% }%>
                     </div>
                 </div>
+                <% if(fix.images_url.length!==1){ %>
 
                 <div class="carousel-tombnail">
                     <% fix.images_url.forEach((image,id)=>{ %>
@@ -67,11 +70,17 @@
                     <% }) %>
 
                 </div>
+                <% } %>
                 <div>
                     <h2>About this Fix</h2>
                     <p>
                         <%= fix.description %>
                     </p>
+                </div>
+                <div class="tags">
+                    <% fix.tags.forEach(tag=>{ %>
+                    <a href="" class="tag anchor-hover-blue-underline"><%= tag%></a>
+                    <% })%>
                 </div>
                 <div class="category-and-subcategory">
                     This fix is posted in <a href=""><%= fix.subcategory %></a>, <a href=""><%= fix.category %></a>
@@ -178,14 +187,17 @@
         </div>
         <section>
             <div>
-                <h2 style="font-size: 2rem;font-weight: bolder;padding-bottom: 25px;">More fixes by <%= fix.username %>
+                <% if(userFixes.length>1){ %>
+                <h2 style="font-size: 2rem;font-weight: bolder;margin: 25px 0px;">More fixes by <%= fix.username %>
                 </h2>
+                <% }%>
+
                 <div class="grid-responsive-max6">
                     <% for(let aFix of userFixes){ %>
                     <% if(aFix.titleSlug===fix.titleSlug) continue %>
                     <div class="fix-card">
                         <div class="grid-2-12-card">
-                            <a href="">
+                            <a href="/fix/<%= aFix.subcatSlug %>/<%= aFix.titleSlug %>">
                                 <div class="fix-image-wrapper">
                                     <img src="<%= aFix.images_url[0] %>" alt="">
                                 </div>
@@ -196,7 +208,8 @@
 
                             </div>
                             <div>
-                                <a href="" class="anchor-hover-blue-underline fix-title block">
+                                <a href="/fix/<%= aFix.subcatSlug %>/<%= aFix.titleSlug %>"
+                                    class="anchor-hover-blue-underline fix-title block">
                                     <%= aFix.title.toLowerCase().substr(0,40) %>...
                                 </a>
                                 <div class="duration-and-rating-trust">
@@ -230,6 +243,43 @@
                 </div>
             </div>
 
+        </section>
+        <section>
+            <div>
+                <h2 style="font-size: 2rem;font-weight: bolder;margin: 25px 0px;">Recommended for you</h2>
+                <div style="overflow-x: auto;">
+                    <div class="scroll6-wrapper">
+                        <% for(let recommendation of userFixes){ %>
+                        <div class="scroll-6-item">
+                            <div class="scroll-6-image-wrapper">
+                                <img src="<%= recommendation.images_url[0] %>" alt="">
+                            </div>
+                            <div class="fix-user-status scroll-6-user-status">
+                                <i class="fa fa-circle"></i>
+                                <span><%= recommendation.username %></span>
+                            </div>
+
+                            <a href="/fix/<%=recommendation.subcatSlug %>/<%= recommendation.titleSlug %>"
+                                class="scroll-6-user-fix-title block anchor-hover-blue-underline">
+                                <%= recommendation.title.substr(0,40).toLowerCase()%>
+                            </a>
+                            <div class="fix-footer">
+                                <div>
+                                    <i class="fas fa-clock"></i>
+                                    <span>
+                                        <%= recommendation.delivery_days%> day(s)
+                                    </span>
+                                </div>
+                                <div class="fix-amount-green">
+                                    ₦<%= recommendation.price%>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+
+                    </div>
+                    <div>
+                    </div>
         </section>
 
 

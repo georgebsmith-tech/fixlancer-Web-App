@@ -64,7 +64,7 @@
                             let fixid = document.createElement("div")
                             fixid.classList.add("user-fix")
                             const fiximageDiv = document.createElement("div")
-                            fiximageDiv.setAttribute("class", "fix-image-wrapper")
+                            fiximageDiv.setAttribute("class", "afix-image-wrapper")
                             const fixImage = document.createElement("img")
                             fixImage.setAttribute("src", fix.images_url[0])
                             fiximageDiv.appendChild(fixImage)
