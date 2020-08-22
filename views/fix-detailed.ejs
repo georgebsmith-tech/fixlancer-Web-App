@@ -28,7 +28,7 @@
 
                         <% } %>
                         <i class="fa fa-star"></i>
-                        <span><%= (theSum/(fix.ratings.length)).toFixed(1) %>(<%= fix.ratings.length %>) ratings</span>
+                        <span><%= (theSum/(fix.ratings.length)).toFixed(1) %>(<%= fix.ratings.length %> reviews) </span>
                         <% }else{ %>
                         <i class="fa fa-star" style="color: inherit;"></i>
                         <span>0</span>
@@ -49,15 +49,15 @@
                         </div>
 
                         <% }) %>
-                         
-                       
+
+
                     </div>
                     <div class="carousel-nav">
-                            <i class="fa fa-angle-left"></i>
-                            <i class="fa fa-angle-right"></i>
+                        <i class="fa fa-angle-left"></i>
+                        <i class="fa fa-angle-right"></i>
+                    </div>
                 </div>
-                </div>
-                
+
                 <div class="carousel-tombnail">
                     <% fix.images_url.forEach((image,id)=>{ %>
                     <div data-id="<%= id*1+1 %>">
@@ -65,7 +65,7 @@
                         <div></div>
                     </div>
                     <% }) %>
-                    
+
                 </div>
                 <div>
                     <h2>About this Fix</h2>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="grid-2-13">
                     <div>
-                         <button class="control-btn">Contact Seller</button>
+                        <button class="control-btn">Contact Seller</button>
                     </div>
                     <div>
                         <button class="control-btn center-text orange-btn">Order Now ₦<%= fix.price %></button>
@@ -113,11 +113,11 @@
                                 </div>
 
                             </div>
-                            <style>
+                            <!-- <style>
                                 .seller-username-icon {
                                     background-color: <%=user.userColor%>;
                                 }
-                            </style>
+                            </style> -->
                             <div>
                                 <img src="" alt="">
                             </div>
@@ -176,6 +176,61 @@
                 </section>
             </section>
         </div>
+        <section>
+            <div>
+                <h2 style="font-size: 2rem;font-weight: bolder;padding-bottom: 25px;">More fixes by <%= fix.username %>
+                </h2>
+                <div class="grid-responsive-max6">
+                    <% for(let aFix of userFixes){ %>
+                    <% if(aFix.titleSlug===fix.titleSlug) continue %>
+                    <div class="fix-card">
+                        <div class="grid-2-12-card">
+                            <a href="">
+                                <div class="fix-image-wrapper">
+                                    <img src="<%= aFix.images_url[0] %>" alt="">
+                                </div>
+                            </a>
+                            <div class="fix-username-and-presence desktop padding-sides" style="padding-bottom:10px;">
+                                <i class="fa fa-circle"></i>
+                                <span style="font-weight: bold;"> <%= aFix.username%></span>
+
+                            </div>
+                            <div>
+                                <a href="" class="anchor-hover-blue-underline fix-title block">
+                                    <%= aFix.title.toLowerCase().substr(0,40) %>...
+                                </a>
+                                <div class="duration-and-rating-trust">
+                                    <i class="fas fa-clock"></i>
+                                    <span><%= aFix.delivery_days %> day(s)</span>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="amount-and-user">
+                            <div class="duration-and-rating-trust desktop" style="padding-bottom:10px">
+                                <i class="fas fa-clock"></i>
+                                <span><%= aFix.delivery_days %> day(s)</span>
+
+                            </div>
+                            <div class="fix-username-and-presence mobile" style="padding-bottom:10px;">
+                                <i class="fa fa-circle"></i>
+                                <span style="font-weight: bold;"> <%= aFix.username%></span>
+
+                            </div>
+                            <div class="fix-amount-green">
+                                ₦<%= aFix.price%>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <% } %>
+                </div>
+            </div>
+
+        </section>
 
 
     </main>

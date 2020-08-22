@@ -248,3 +248,13 @@ a.control-btn{
 
 
 }
+
+.fix-image-wrapper{
+    width: 90px;
+    height: 80px;
+    
+    img{
+        border-radius: 4px;
+        border: 1px solid #ddd;
+    }
+}

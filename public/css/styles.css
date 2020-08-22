@@ -848,12 +848,46 @@ i.fa.fa-star {
   color: #3193cc;
 }
 
+.fix-title {
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+.block {
+  display: block;
+}
+
+.anchor-hover-blue-underline:hover {
+  color: #36b9cc;
+  text-decoration: underline;
+}
+
+.grid-2-12-card {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 10px;
+}
+
 .desktop {
-  display: none;
+  display: none !important;
 }
 
 .search-bar-maxi, .top-revenue {
   display: none;
+}
+
+.fix-card {
+  background: white;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.grid-responsive-max6 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  column-gap: 10px;
 }
 
 .finance-summary {
@@ -1047,9 +1081,10 @@ main.request-page {
 }
 
 .amount-and-user {
-  margin-top: 12px;
+  margin-top: 10px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .recommended-desktop {
@@ -1090,12 +1125,12 @@ main.request-page {
   text-decoration: underline;
 }
 
-.duration-and-rating-trust {
+.duration-and-rating-trust, .fix-username-and-presence {
   margin-top: 9px;
   display: inline-block;
 }
-.duration-and-rating-trust i, .duration-and-rating-trust span {
-  font-size: 1.3rem;
+.duration-and-rating-trust i, .duration-and-rating-trust span, .fix-username-and-presence i, .fix-username-and-presence span {
+  font-size: 1.2rem;
 }
 
 .hide {
@@ -1772,6 +1807,15 @@ a.control-btn {
   color: white;
 }
 
+.fix-image-wrapper {
+  width: 90px;
+  height: 80px;
+}
+.fix-image-wrapper img {
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
 @media only screen and (min-width: 991px) {
   .grid-2-21 {
     display: grid;
@@ -1811,7 +1855,7 @@ a.control-btn {
   }
 
   .main {
-    padding: 20px 120px;
+    padding: 20px 200px;
   }
 
   .post-request {
@@ -2104,9 +2148,48 @@ a.control-btn {
     box-shadow: 0px 0.15rem 1.75rem 0px rgba(58, 59, 69, 0.15);
     margin-bottom: 20px;
   }
+
+  .fix-card {
+    padding: 0px;
+  }
+
+  .fix-image-wrapper {
+    width: 100%;
+    height: 90px;
+  }
+  .fix-image-wrapper img {
+    border-radius: 0;
+  }
+
+  .fix-title {
+    padding: 0px 10px;
+    box-sizing: border-box;
+  }
+
+  div.grid-2-12-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .desktop {
+    display: block !important;
+  }
+
+  .mobile {
+    display: none !important;
+  }
+
+  .padding-sides {
+    padding: 0px 10px;
+  }
+
+  .fix-username-and-presence.desktop {
+    margin-top: 0px;
+  }
 }
 @media only screen and (min-width: 1024px) {
-  .grid-responsive-6 {
+  .grid-responsive-6, .grid-responsive-max6 {
+    width: 100%;
     grid-template-columns: repeat(6, 1fr);
   }
 }

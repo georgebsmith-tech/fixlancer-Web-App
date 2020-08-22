@@ -630,7 +630,6 @@ main{
   align-items: center;
 }
 
-
 button:hover{
   cursor:pointer;
 }
@@ -877,14 +876,46 @@ i.fa.fa-star{
 
     
 }
+.fix-title{
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+.block{
+  display: block;
+}
+
+.anchor-hover-blue-underline:hover{
+  color: #36b9cc;
+  text-decoration: underline;
+
+}
+
+.grid-2-12-card{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 10px;
+}
 
 .desktop{
-    display: none;
+    display: none !important;
 }
 
 .search-bar-maxi,.top-revenue{
     display: none;
 }
+// fix card for uniformity
 
+.fix-card{
+  background: white;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 10px;
+}
+.grid-responsive-max6{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  column-gap: 10px;
+}
 
 

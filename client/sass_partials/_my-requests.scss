@@ -114,9 +114,10 @@ main.request-page{
     
 }
 .amount-and-user{
-    margin-top:12px;
+    margin-top:10px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     // width: 100%;
 }
 
@@ -160,11 +161,11 @@ main.request-page{
 }
 
 
-.duration-and-rating-trust{
+.duration-and-rating-trust,.fix-username-and-presence{
     margin-top: 9px;
     display: inline-block;
     i,span{
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
    
     
