@@ -263,14 +263,26 @@ app.get("/fix/:subcat/:titleSlug", async (req, res) => {
     const resp = await axios.get(`https://fixlancer.herokuapp.com/api/users/${fix.username}`)
     const user = resp.data.data
 
-    console.log(user)
-    console.log(fix)
-    console.log(userFixes)
+    // console.log(user)
+    // console.log(fix)
+    // console.log(userFixes)
+    const sessionPassport = req.session.passport
+    let loggedInUser;
+    if (sessionPassport) {
+        loggedInUser = sessionPassport.user
+    }
 
 
-    res.render("fix-detailed", { fix, user, userFixes, recommendations })
+    res.render("fix-detailed", { fix, user, userFixes, recommendations, loggedInUser })
 })
 
+
+app.get("/order-fix/:titleSlug", async function (req, res) {
+    const fix = await FixModel.findOne({ titleSlug: req.params.titleSlug })
+    console.log(fix)
+    res.render("order-fix", { fix })
+
+})
 app.get("/:username", checkUserAuthenticated, (req, res) => {
     res.render("profile")
 })

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+</head>
+
+<body>
+    <main class="main" style="background-color: white;">
+        <div>
+            <a href="" class="block">
+                <i class="fa fa-angle-double-lef"></i>
+                <span>Back</span>
+            </a>
+        </div>
+        <div>
+            <div>
+                <img src="<%= fix.images_url[0] %>" alt="">
+            </div>
+            <div>
+                <a class="block" href="/fix/<%= fix.subcatSlug %>/<%= fix.titleSlug%>">
+                    <%= fix.title %>
+                </a>
+                <div>
+                    <div>
+                        by <a href="/<%= fix.username %>"><%= fix.username%></a>
+                    </div>
+                    <div>
+                        <i class="fas fa-clock"></i>
+                        <span><%= fix.delivery_days %> day(s)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section>
+            <div class="flex-between">
+                <div>
+                    Available Balance
+                </div>
+                <div>1212223</div>
+            </div>
+            <div class="flex-between">
+                <div>
+                    Fix Price
+                </div>
+                <div>
+                    <%= fix.price%>
+                </div>
+            </div>
+            <div>
+                <input type="text" placeholder="Enter promo code">
+                <button>Apply</button>
+            </div>
+            <div class="flex-between">
+                <div>Fee</div>
+                <div>323444</div>
+            </div>
+            <div class="flex-between">
+                <div>
+                    <strong>Total Price</strong>
+                </div>
+                <div>
+                    234432233
+                </div>
+
+            </div>
+        </section>
+        <div>
+            <button class="button">Proceed to Purchase</button>
+        </div>
+        <div class="center-text">
+            <i class="fa fa-exclamation"></i>
+            You won't be charged yet
+        </div>
+        <div class="center-text">
+            <div>
+                Having difficulties making payment?
+            </div>
+            <a href="">Contact Us</a>
+        </div>
+
+
+
+
+    </main>
+
+</body>
+
+</html>

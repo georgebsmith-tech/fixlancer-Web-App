@@ -85,14 +85,18 @@
                 <div class="category-and-subcategory">
                     This fix is posted in <a href=""><%= fix.subcategory %></a>, <a href=""><%= fix.category %></a>
                 </div>
+                <% if(user.username!==loggedInUser){ %>
                 <div class="grid-2-13">
                     <div>
                         <button class="control-btn">Contact Seller</button>
                     </div>
                     <div>
-                        <button class="control-btn center-text orange-btn">Order Now ₦<%= fix.price %></button>
+                        <button class="control-btn center-text orange-btn"
+                            onclick="location.href='/order-fix/<%= fix.titleSlug %>'">Order
+                            Now ₦<%= fix.price %></button>
                     </div>
                 </div>
+                <%}%>
                 <div>
                     <h2 class="border-bottom">
                         Ratings
@@ -103,7 +107,9 @@
                 </div>
             </section>
             <section>
+                <% if(user.username===loggedInUser){ %>
                 <a href="" class="control-btn center-text">Edit fix ₦<%= fix.price %></a>
+                <% } %>
                 <section id="about-seller-section">
 
                     <h2>About the Seller</h2>
@@ -160,10 +166,12 @@
                             <i class="fas fa-clock text-success"></i> <span>Ongoing Orders:</span>
                             <span><%= user.summary[3][1]%></span>
                         </div>
+                        <% if(user.username!==loggedInUser){ %>
                         <div class="contact-seller-wrapper">
                             <button>Contact Seller</button>
                         </div>
-                        <div class="secured">
+                        <% } %>
+                        <div class="secured" style="border-top: 1px solid #ddd;">
                             <div>
                                 <i class="fas fa-shield-alt text-success"></i>
                             </div>

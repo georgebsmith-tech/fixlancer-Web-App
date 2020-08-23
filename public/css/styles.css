@@ -595,6 +595,12 @@ h1, h2, h3, h4, h5, h6 {
   color: #5a5c69;
 }
 
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .tags {
   margin-top: 50px;
 }
