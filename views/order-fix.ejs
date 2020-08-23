@@ -19,7 +19,7 @@
         <div class="order-fix-main">
             <div>
                 <div>
-                    <a href="" class="block back-btn center-text ">
+                    <a href="/fix/<%= fix.subcatSlug %>/<%= fix.titleSlug%>" class="block back-btn center-text ">
                         <i class="fa fa-angle-double-left text-link"></i>
                         <span class="text-link">Back</span>
                     </a>
@@ -49,14 +49,14 @@
                         <div>
                             Available Balance
                         </div>
-                        <div>₦1212223</div>
+                        <div>₦<%= balance%>.00</div>
                     </div>
                     <div class="flex-between font15" style="margin-bottom: 7px;">
                         <div>
                             Fix Price
                         </div>
                         <div>
-                            ₦<%= fix.price%>
+                            ₦<%= fix.price%>.00
                         </div>
                     </div>
                     <div style="margin-bottom: 40px;">
@@ -65,21 +65,26 @@
                     </div>
                     <div class="flex-between" style="margin-bottom:10px;">
                         <div>Fee</div>
-                        <div>₦323444</div>
+                        <div>₦<%= fee %></div>
                     </div>
                     <div class="flex-between">
                         <div>
                             <strong class="bold">Total Price</strong>
                         </div>
                         <div class="bold">
-                            ₦234432233
+                            ₦<%= total %>.00
                         </div>
 
                     </div>
                 </section>
                 <div>
+                    <% if(total!==0){ %>
                     <button class="button" id="order-purchase-btn" style="margin-top: 15px;">Proceed to
                         Purchase</button>
+                    <% }else{%>
+                    <button class="button" id="order-purchase-btn" style="margin-top: 15px;">Confirm and pay</button>
+                    <% } %>
+
                 </div>
                 <div class="center-text font15">
                     <i class="fas fa-info-circle font15"></i>

@@ -1,11 +1,9 @@
-post http://localhost:3000/api/revenues
+get http://localhost:3000/api/refunds/Betty
 Content-Type: application/json
 
 {
     "username":"Betty",
-    "amount":1000,
-    "referral":"Smith"
+    "amount":11000,
+    "forFix":"5f1629feeef0803f8c6c5534"
 }
-
-
 

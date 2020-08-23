@@ -21,14 +21,20 @@ const categoriesRoute = require("./APIRoutes/categories")
 const pushNoticeRoute = require("./APIRoutes/pushRoutes")
 const affiliatesRoute = require("./APIRoutes/affiliates")
 const revenuesRoutes = require("./APIRoutes/revenueRoutes")
+const refundRoutes = require("./APIRoutes/refundRoutes")
+const depositRoutes = require("./APIRoutes/depositRoutes")
 const apiDocumentationRoutes = require("./APIRoutes/apiDocumentationRoutes")
 const fixRoutes = require("./APIRoutes/fixRoutes")
 const requestRoutes = require("./APIRoutes/requestsRoutes")
 const salesRoutes = require("./APIRoutes/salesRoutes")
 const conversationRoutes = require("./APIRoutes/conversationRoutes")
+const RevenueModel = require("./models/revenueModel")
 const UserModel = require("./models/usersModel")
 
 const ConversationModel = require("./models/conversationModel")
+const DepositModel = require("./models/depositModel")
+
+const RefundModel = require("./models/refundModel")
 
 
 app.use(flash())
@@ -280,8 +286,42 @@ app.get("/fix/:subcat/:titleSlug", async (req, res) => {
 
 app.get("/order-fix/:titleSlug", async function (req, res) {
     const fix = await FixModel.findOne({ titleSlug: req.params.titleSlug })
-    console.log(fix)
-    res.render("order-fix", { fix })
+    let balance = 0;
+    let refundAmount = 0;
+    console.log(balance)
+    if (req.session.passport) {
+
+        const revenue = await RevenueModel.findOne({ username: req.session.passport.user })
+        if (revenue) {
+            balance += revenue.amount
+            console.log(balance)
+        }
+
+
+        const deposit = await DepositModel.findOne({ username: req.session.passport.user })
+        if (deposit) {
+            balance += deposit.amount
+            console.log(balance)
+        }
+
+        const refund = await RefundModel.findOne({ username: req.session.passport.user })
+        if (refund) {
+            refundAmount = refund.amount
+            balance += refundAmount
+            console.log(balance)
+        }
+
+    }
+
+    let total = fix.price - balance
+
+    let fee = fix.price - refundAmount > 0 ? 0.05 * (fix.price - refundAmount) : 0
+    total += fee
+    if (total < 0) total = 0
+
+
+    // console.log(fix)
+    res.render("order-fix", { fix, balance, total, fee })
 
 })
 app.get("/:username", checkUserAuthenticated, (req, res) => {
@@ -306,6 +346,8 @@ app.use("/api/fixes", fixRoutes)
 app.use("/api/sales", salesRoutes)
 app.use("/api/chats", conversationRoutes)
 app.use("/api/revenues", revenuesRoutes)
+app.use("/api/deposits", depositRoutes)
+app.use("/api/refunds", refundRoutes)
 // conversationRoutes
 
 
