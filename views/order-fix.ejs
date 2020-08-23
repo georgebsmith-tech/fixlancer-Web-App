@@ -6,80 +6,103 @@
 </head>
 
 <body>
-    <main class="main" style="background-color: white;">
-        <div>
-            <a href="" class="block">
-                <i class="fa fa-angle-double-lef"></i>
-                <span>Back</span>
-            </a>
+
+    <header class="explore-header" style="background-color: white;">
+        <div class="logo-wrapper">
+            <img src="../images/logo.png" alt="">
         </div>
-        <div>
+        <div class="header-caption">
+            <h1> Order Fix</h1>
+        </div>
+    </header>
+    <main class="main" style="background-color: white; padding:15px ;">
+        <div class="order-fix-main">
             <div>
-                <img src="<%= fix.images_url[0] %>" alt="">
-            </div>
-            <div>
-                <a class="block" href="/fix/<%= fix.subcatSlug %>/<%= fix.titleSlug%>">
-                    <%= fix.title %>
-                </a>
                 <div>
+                    <a href="" class="block back-btn center-text ">
+                        <i class="fa fa-angle-double-left text-link"></i>
+                        <span class="text-link">Back</span>
+                    </a>
+                </div>
+                <div class="order-top-grid">
                     <div>
-                        by <a href="/<%= fix.username %>"><%= fix.username%></a>
+                        <img src="<%= fix.images_url[0] %>" alt="">
                     </div>
                     <div>
-                        <i class="fas fa-clock"></i>
-                        <span><%= fix.delivery_days %> day(s)</span>
+                        <a class="block fix-title" href="/fix/<%= fix.subcatSlug %>/<%= fix.titleSlug%>">
+                            <%= fix.title %>
+                        </a>
+                        <div class="order-fix-meta">
+                            <div>
+                                by <a href="/<%= fix.username %>" class="text-link"><%= fix.username%></a>
+                            </div>
+                            <div>
+                                <i class="fas fa-clock"></i>
+                                <span><%= fix.delivery_days %> day(s)</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <section>
-            <div class="flex-between">
+                <section class="border-smooth padd10 font15">
+                    <div class="flex-between"
+                        style="margin-bottom: 40px;padding: 5px 0px; border-bottom: 1px solid #ddd;">
+                        <div>
+                            Available Balance
+                        </div>
+                        <div>₦1212223</div>
+                    </div>
+                    <div class="flex-between font15" style="margin-bottom: 7px;">
+                        <div>
+                            Fix Price
+                        </div>
+                        <div>
+                            ₦<%= fix.price%>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 40px;">
+                        <input type="text" placeholder="Enter promo code" class="promo-input">
+                        <button class="button promo-apply">Apply</button>
+                    </div>
+                    <div class="flex-between" style="margin-bottom:10px;">
+                        <div>Fee</div>
+                        <div>₦323444</div>
+                    </div>
+                    <div class="flex-between">
+                        <div>
+                            <strong class="bold">Total Price</strong>
+                        </div>
+                        <div class="bold">
+                            ₦234432233
+                        </div>
+
+                    </div>
+                </section>
                 <div>
-                    Available Balance
+                    <button class="button" id="order-purchase-btn" style="margin-top: 15px;">Proceed to
+                        Purchase</button>
                 </div>
-                <div>1212223</div>
-            </div>
-            <div class="flex-between">
-                <div>
-                    Fix Price
+                <div class="center-text font15">
+                    <i class="fas fa-info-circle font15"></i>
+                    You won't be charged yet
                 </div>
-                <div>
-                    <%= fix.price%>
-                </div>
-            </div>
-            <div>
-                <input type="text" placeholder="Enter promo code">
-                <button>Apply</button>
-            </div>
-            <div class="flex-between">
-                <div>Fee</div>
-                <div>323444</div>
-            </div>
-            <div class="flex-between">
-                <div>
-                    <strong>Total Price</strong>
-                </div>
-                <div>
-                    234432233
+                <div class="center-text border-smooth font15 get-help">
+                    <div>
+                        Having difficulties making payment?
+                    </div>
+                    <a href="" class="text-link">Contact Us</a>
                 </div>
 
+                <div class="tips">
+                    <h2>Important Tips:</h2>
+                    <ul>
+                        <li>* Your funds are held on escrow and not sent directly to the seller.</li>
+                        <li>* Seller can only receive funds when you release it upon satisfaction with the work done.
+                        </li>
+                        <li>* 100% Money Back Guarantee if you are not satisfied with the work done.</li>
+                    </ul>
+                </div>
             </div>
-        </section>
-        <div>
-            <button class="button">Proceed to Purchase</button>
         </div>
-        <div class="center-text">
-            <i class="fa fa-exclamation"></i>
-            You won't be charged yet
-        </div>
-        <div class="center-text">
-            <div>
-                Having difficulties making payment?
-            </div>
-            <a href="">Contact Us</a>
-        </div>
-
-
 
 
     </main>

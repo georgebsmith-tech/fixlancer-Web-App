@@ -1,0 +1,11 @@
+post http://localhost:3000/api/revenues
+Content-Type: application/json
+
+{
+    "username":"Betty",
+    "amount":1000,
+    "referral":"Smith"
+}
+
+
+

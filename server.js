@@ -20,6 +20,7 @@ const usersRoute = require("./APIRoutes/users")
 const categoriesRoute = require("./APIRoutes/categories")
 const pushNoticeRoute = require("./APIRoutes/pushRoutes")
 const affiliatesRoute = require("./APIRoutes/affiliates")
+const revenuesRoutes = require("./APIRoutes/revenueRoutes")
 const apiDocumentationRoutes = require("./APIRoutes/apiDocumentationRoutes")
 const fixRoutes = require("./APIRoutes/fixRoutes")
 const requestRoutes = require("./APIRoutes/requestsRoutes")
@@ -304,6 +305,7 @@ app.use("/api/affiliates", affiliatesRoute)
 app.use("/api/fixes", fixRoutes)
 app.use("/api/sales", salesRoutes)
 app.use("/api/chats", conversationRoutes)
+app.use("/api/revenues", revenuesRoutes)
 // conversationRoutes
 
 
