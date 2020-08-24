@@ -173,7 +173,7 @@ router.get("/u", async (req, res) => {
     console.log(requestString)
     let balance = 0;
     if (requestString.content === "full") {
-
+        let username = req.params.username
         const data = await UserModel.findOne({ username: req.params.username })
         let bankDetails = await BankModel.findOne({ username: data.username })
         const unreadNotices = await NoticesModel.find({ user_id: data._id, read: false })

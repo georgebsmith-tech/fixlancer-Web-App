@@ -16,24 +16,30 @@
             <div>
                 <section class="withdrawal-summary">
                     <header> <i class="fa fa-bar-chart"></i>Request Withdrwals</header>
-                    <div class="sect">
+                    <div class="sect"
+                        style="margin:15px 25px 35px 25px;padding-left: 10px; border-left: 3px solid #1cc88a;">
                         <div>Revenues: <span>₦<%= revenue.toFixed(2) %></span></div>
                     </div>
                     <div class="sect">
                         <fieldset>
-                            <label for="amount">- Enter Amount</label>
+                            <label for=" amount">- Enter Amount</label>
                             <input type="number" placeholder="Amount" name="amount">
                         </fieldset>
                     </div>
-                    <div>
-                        <div>
-                            <span>Account Name: </span><span></span>
-                        </div>
-                        <div>
-                            <span>Account No.: </span><span></span>
-                        </div>
-                        <div>
-                            <span>Bank: </span><span></span>
+                    <div class="finance-bank-details" style="padding-top: 10px;">
+                        <div class="border-smooth">
+                            <a class="overlay-bank flex-center block" href="/dashboard/edit">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <div>
+                                <span>Account Name: </span><span></span>
+                            </div>
+                            <div>
+                                <span>Account No.: </span><span></span>
+                            </div>
+                            <div>
+                                <span>Bank: </span><span></span>
+                            </div>
                         </div>
                     </div>
                     <div class="sect">
