@@ -21,6 +21,10 @@ const BankModel = require("../models/bankModel")
 const SalesModel = require("../models/salesModel")
 const OrdersModel = require("../models/ordersModel")
 const NoticesModel = require("../models/noticeModel")
+const RevenueModel = require("../models/revenueModel")
+const DepositModel = require("../models/depositModel")
+const RefundModel = require("../models/refundModel")
+
 
 const singleUpload = upload.single("photo")
 
@@ -167,6 +171,7 @@ router.get("/u", async (req, res) => {
     req.params.username = req.session.passport.user
     console.log("it is " + req.params.username)
     console.log(requestString)
+    let balance = 0;
     if (requestString.content === "full") {
 
         const data = await UserModel.findOne({ username: req.params.username })
@@ -175,6 +180,17 @@ router.get("/u", async (req, res) => {
         if (!bankDetails) bankDetails = {}
         const ongoingSales = await SalesModel.find({ user_id: data._id, state: "ongoing" })
         const ongoingOrders = await OrdersModel.find({ user_id: data._id, state: "ongoing" })
+        const userRevenue = await RevenueModel.findOne({ username: username })
+        if (userRevenue)
+            balance += userRevenue.amount
+
+        const userDeposit = await DepositModel.findOne({ username: username })
+        if (userDeposit)
+            balance += userDeposit.amount
+        const userRefund = await RefundModel.findOne({ username: username })
+        if (userRefund)
+            balance += userRefund.amount
+
         if (data) {
             return res.status(200).json({
                 data: {
@@ -187,7 +203,7 @@ router.get("/u", async (req, res) => {
                     unread_msgs: 0,
                     active_sales: ongoingSales.length,
                     active_orders: ongoingOrders.length,
-                    balance: 0,
+                    balance,
                     bamk_details: {
                         bank_name: bankDetails.bankName,
                         acct_name: bankDetails.accName,
@@ -224,6 +240,16 @@ router.get("/u", async (req, res) => {
             const ongoingSales = await SalesModel.find({ user_id: data._id, state: "ongoing" })
             const ongoingOrders = await OrdersModel.find({ user_id: data._id, state: "ongoing" })
             const unreadNotices = await NoticesModel.find({ user_id: data._id, read: false })
+            const userRevenue = await RevenueModel.findOne({ username: req.params.username })
+            if (userRevenue)
+                balance += userRevenue.amount
+
+            const userDeposit = await DepositModel.findOne({ username: req.params.username })
+            if (userDeposit)
+                balance += userDeposit.amount
+            const userRefund = await RefundModel.findOne({ username: req.params.username })
+            if (userRefund)
+                balance += userRefund.amount
 
 
             console.log(ongoingSales)
@@ -234,7 +260,7 @@ router.get("/u", async (req, res) => {
                     username: data.username,
                     ungoing_sales: 0,
                     summary: [["unread messages", 0],
-                    ["balance", 0],
+                    ["balance", balance],
                     ["active sales", ongoingSales.length],
                     ["active orders", ongoingOrders.length]
 

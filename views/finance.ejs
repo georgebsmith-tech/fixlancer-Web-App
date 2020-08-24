@@ -2,28 +2,30 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
 
-    <title>Document</title>
+
+    <%- include('./partials/head.ejs')%>
 </head>
 
 <body>
+    <%- include('./partials/header.ejs')%>
 
     <main class="main">
 
         <h1>Finance</h1>
-        <div class="grid-2">
+        <div class="grid-2-21">
             <div>
                 <section class="finance-summary">
-                    <div>Revenues: <span>₦0.00</span></div>
-                    <div>Deposit: <span>₦0.00</span></div>
+                    <div>Revenues: <span>₦<%= revenue.toFixed(2) %></span></div>
+                    <% if (deposit>0){%>
+                    <div>Deposit: <span>₦<%= deposit.toFixed(2) %></span></div>
+                    <%}%>
+                    <% if (refund>0){%>
+                    <div>Refunds: <span>₦<%= refund.toFixed(2) %></span></div>
+                    <%}%>
                 </section>
-                <section class="withdrawal-summary">
-                    <header> <i class="fa fa-bar-chart"></i>Withdrwals</header>
+                <section class="withdrawal-summary bold">
+                    <header class="bold"> <i class="fa fa-bar-chart"></i>Withdrwals</header>
                     <div>
                         No Withdrwals yet
                     </div>
@@ -31,16 +33,16 @@
             </div>
             <section class="finance-controlers">
                 <div>
-                    <a href="/dashboard/finance/withdraw" class="button">Request Withdrwal</a>
+                    <a href="/dashboard/finance/withdraw" class="button font16">Request Withdrwal</a>
                 </div>
                 <div>
-                    <a href="/dashboard/finance/transactions" class="trans-hist button">Transaction History</a>
+                    <a href="/dashboard/finance/transactions" class="trans-hist button font16">Transaction History</a>
                 </div>
             </section>
         </div>
 
     </main>
-
+    <%- include('./partials/footer.ejs')%>
 </body>
 
 </html>

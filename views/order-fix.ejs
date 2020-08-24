@@ -49,14 +49,14 @@
                         <div>
                             Available Balance
                         </div>
-                        <div>₦<%= balance%>.00</div>
+                        <div>₦<%= balance.toFixed(2) %></div>
                     </div>
                     <div class="flex-between font15" style="margin-bottom: 25px;">
                         <div>
                             Fix Price
                         </div>
                         <div>
-                            ₦<%= fix.price%>.00
+                            ₦<%= fix.price.toFixed(2) %>
                         </div>
                     </div>
                     <div style="margin-bottom: 25px;">
@@ -65,14 +65,14 @@
                     </div>
                     <div class="flex-between" style="margin-bottom:10px;">
                         <div>Fee</div>
-                        <div>₦<%= fee %></div>
+                        <div>₦<%= fee.toFixed(2) %></div>
                     </div>
                     <div class="flex-between">
                         <div>
                             <strong class="bold">Total Price</strong>
                         </div>
                         <div class="bold">
-                            ₦<%= total %>.00
+                            ₦<%= total.toFixed(2) %>
                         </div>
 
                     </div>

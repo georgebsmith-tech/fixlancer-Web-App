@@ -1,4 +1,6 @@
 (function () {
+    const mobileFinanceContainer = document.querySelector(".mobile-finance")
+    console.log(mobileFinanceContainer)
 
     fetch("/api/users/u")
         .then(resp => {
@@ -9,6 +11,7 @@
             document.querySelector(".top-profile-avatar-container span").textContent = data.data.username[0].toUpperCase()
 
             document.querySelector(".top-revenue span").textContent = "₦" + data.data.summary[1][1]
+            mobileFinanceContainer.querySelectorAll("span")[1].textContent = `₦${data.data.summary[1][1]}`
 
             document.querySelector(".header-ongoing-sales").textContent = "(" + data.data.summary[2][1] + ")"
 
@@ -23,6 +26,7 @@
     const dropDownRequestHolder = document.querySelector(".drop-requests")
     const avatarDropDown = document.querySelector(".top-profile-avatar-container")
     const revenueDropDown = document.querySelector(".top-revenue")
+
 
     let flag1 = false, flag2 = false, flag3 = false, flag4 = false
     const mobileNavContainer = document.querySelector(".mobile-nav-container")
@@ -123,10 +127,13 @@
 
             mobileNavContainer.style.display = "block"
             document.querySelector(".header-buy-chopbar").style.display = "flex"
+            mobileFinanceContainer.classList.remove("hide")
             toggleFlag = true
         } else {
             mobileNavContainer.style.display = "none"
             document.querySelector(".header-buy-chopbar").style.display = "none"
+            mobileFinanceContainer.classList.add("hide")
+
             toggleFlag = false
         }
 

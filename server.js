@@ -226,16 +226,43 @@ app.get("/dashboard/my-sales/cancelled", checkUserAuthenticated, (req, res) => {
 })
 
 
-app.get("/dashboard/finance", checkUserAuthenticated, (req, res) => {
-    res.render("finance")
+app.get("/dashboard/finance", async (req, res) => {
+    let revenue = 0;
+    let deposit = 0;
+    let refund = 0;
+    const user = req.session.passport ? req.session.passport.user : undefined
+
+    const revenueData = await RevenueModel.findOne({ username: user })
+    if (revenueData)
+        revenue = revenueData.amount
+
+    const depositData = await DepositModel.findOne({ username: user })
+    if (depositData)
+        deposit = depositData.amount
+    const refundData = await RefundModel.findOne({ username: user })
+    if (refundData)
+        refund = refundData.amount
+
+
+
+    res.render("finance", {
+        revenue, deposit, refund
+    })
 })
 
-app.get("/dashboard/finance/withdraw", checkUserAuthenticated, (req, res) => {
-    res.render("finance-withdraw")
+app.get("/dashboard/finance/withdraw", async (req, res) => {
+    let revenue = 0;
+    const user = req.session.passport ? req.session.passport.user : undefined
+
+    const revenueData = await RevenueModel.findOne({ username: user })
+    if (revenueData)
+        revenue = revenueData.amount
+    res.render("finance-withdraw", { revenue })
 })
 
-app.get("/dashboard/finance/transactions", checkUserAuthenticated, (req, res) => {
-    res.render("finance-withdraw")
+app.get("/dashboard/finance/transactions", async (req, res) => {
+
+    res.render("finance-w", { revenue })
 })
 app.get("/dashboard/finance/notices", checkUserAuthenticated, (req, res) => {
     res.render("finance-notices")
