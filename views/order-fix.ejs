@@ -78,7 +78,7 @@
                     </div>
                 </section>
                 <div>
-                    <% if(total!==0){ %>
+                    <% if(total>balance){ %>
                     <button class="button" id="order-purchase-btn" style="margin-top: 15px;">Proceed to
                         Purchase</button>
                     <% }else{%>
@@ -86,10 +86,12 @@
                     <% } %>
 
                 </div>
+                <% if(total>balance){ %>
                 <div class="center-text font15">
                     <i class="fas fa-info-circle font15"></i>
                     You won't be charged yet
                 </div>
+                <%}%>
                 <div class="center-text border-smooth font15 get-help">
                     <div>
                         Having difficulties making payment?

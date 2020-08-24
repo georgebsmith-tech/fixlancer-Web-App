@@ -317,7 +317,7 @@ app.get("/order-fix/:titleSlug", async function (req, res) {
 
     let fee = fix.price - refundAmount > 0 ? 0.05 * (fix.price - refundAmount) : 0
     total += fee
-    if (total < 0) total = 0
+    if (total < 0) total = fix.price + fee
 
 
     // console.log(fix)
