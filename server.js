@@ -178,14 +178,15 @@ let domain = "https://fixlancer.herokuapp.com"
 app.get("/dashboard/inbox", async (req, res) => {
     let recipient = req.query.with;
     let loggedUser;
-    console.log("1 Got here")
+    // console.log("1 Got here")
     if (!req.session.passport) { loggedUser = "Smith" }
     else { loggedUser = req.session.passport.user }
     if (recipient) {
-        console.log("2 Got here")
+        // console.log("2 Got here")
         let chats = await axios.get(`${domain}/api/chats/${loggedUser}?with=${recipient}`)
-        console.log("3 Got here")
+        // console.log("3 Got here")
         chats = chats.data.data
+        console.log(chats)
         res.render("chat-detailed", { chats, loggedUser })
         return
     }
