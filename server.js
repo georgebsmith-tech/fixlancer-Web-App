@@ -167,8 +167,6 @@ app.get("/register", (req, res) => {
 })
 app.get("/dashboard", checkUserAuthenticated, (req, res) => {
     console.log(`From dashboard: ${req.user}`)
-    // console.log(req.user)
-    // console.log(req.session.passport.user)
     res.render("dashboard")
 })
 
@@ -209,8 +207,7 @@ app.get("/dashboard/inbox", async (req, res) => {
 
 
     })
-    // console.log("Hi you!!")
-    // console.log(theConversations)
+
 
 })
 
