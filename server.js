@@ -182,32 +182,36 @@ app.get("/dashboard/inbox", async (req, res) => {
     const resp = await axios.get(`${domain}/api/chats/${loggedUser}`)
 
     const conversations = resp.data.data
-    let users = conversations.map(user => { return [user.to, user.from] }).map(pair => {
-        if (pair[0] !== loggedUser) {
-            return pair[0]
-        }
-        return pair[1]
-    })
-
-    let theConversations = [];
-    console.log(users)
-    users = [...new Set(users)]
-    console.log(users)
-
-    await users.forEach(async user => {
-        let data = await ConversationModel.find().or([{ from: user }, { to: user }])
-
-        theConversations.push(data.slice(-1)[0])
-        if (users.slice(-1)[0] === user) {
-            console.log(theConversations)
-            theConversations = theConversations.reverse()
-            res.render("chats", { theConversations, loggedUser })
-            return
-
-        }
-
+    res.render("chats", {
+        theConversations: conversations, loggedUser
 
     })
+    // let users = conversations.map(user => { return [user.to, user.from] }).map(pair => {
+    //     if (pair[0] !== loggedUser) {
+    //         return pair[0]
+    //     }
+    //     return pair[1]
+    // })
+
+    // let theConversations = [];
+    // console.log(users)
+    // users = [...new Set(users)]
+    // console.log(users)
+
+    // await users.forEach(async user => {
+    //     let data = await ConversationModel.find().or([{ from: user }, { to: user }])
+
+    //     theConversations.push(data.slice(-1)[0])
+    //     if (users.slice(-1)[0] === user) {
+    //         console.log(theConversations)
+    //         theConversations = theConversations.reverse()
+    //         res.render("chats", { theConversations, loggedUser })
+    //         return
+
+    //     }
+
+
+    // })
 
 })
 
