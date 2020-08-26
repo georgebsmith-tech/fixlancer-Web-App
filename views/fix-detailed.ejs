@@ -3,11 +3,51 @@
 
 <head>
     <%- include('./partials/head.ejs') %>
+    <script defer src="../../js/chats.js"></script>
 </head>
 
 <body>
+    <div class="modal hide">
+        <div>
+            <div class="modal-content border-smooth">
+                <header class="modal-header">
+                    <div class="flex-between">
+                        <div>
+                            <i class="fa fa-comments font16" style="margin: 0px 5px 0px 10px;"></i><span
+                                class="font15 bold">Contact Seller</span>
+                        </div>
+                        <div>
+                            <i class="fa fa-close font16"></i>
+                        </div>
+
+                    </div>
+                </header>
+                <div class="modal-body padd20">
+                    <div class="font15">
+                        Note: Sharing of contact details is not allowed e.g Phone Number, Whatsapp, Email
+                    </div>
+                    <div>
+                        <textarea name="" id="" cols="30" rows="6" class="border-smooth chat-message"
+                            placeholder="Explain the services you want done..."></textarea>
+                        <input type="hidden" id="receiver" value="<%= fix.username%>">
+                        <input type="hidden" id="sender" value="<%= loggedInUser%>">
+                    </div>
+                    <div style="display: flex; justify-content: flex-end;">
+                        <button class="button font15 send-chat-btn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
     <%- include('./partials/header.ejs') %>
     <main class="main">
+        <div class="flex-between chat-send-notice font15 bg-green hide">
+            <div class="text-white">
+                Your message has been sent
+            </div>
+            <a href="/dashboard/inbox" class="font15 view-in-btn block link-hover">View in inbox</a>
+        </div>
         <div class="grid-2-21">
             <section class="about-fix-section">
                 <h1>
@@ -88,7 +128,7 @@
                 <% if(user.username!==loggedInUser){ %>
                 <div class="grid-2-13">
                     <div>
-                        <button class="control-btn">Contact Seller</button>
+                        <button class="control-btn contact-seller-btn">Contact Seller</button>
                     </div>
                     <div>
                         <button class="control-btn center-text orange-btn"
@@ -168,7 +208,7 @@
                         </div>
                         <% if(user.username!==loggedInUser){ %>
                         <div class="contact-seller-wrapper">
-                            <button>Contact Seller</button>
+                            <button class="contact-seller-btn">Contact Seller</button>
                         </div>
                         <% } %>
                         <div class="secured" style="border-top: 1px solid #ddd;">

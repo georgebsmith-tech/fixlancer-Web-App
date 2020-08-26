@@ -99,7 +99,7 @@
                             style="cursor:pointer !important;font-size:14px;float:left;width:100%;margin-bottom:10px; border-style: none; "
                             type="file" name="avatar">
                     </div>
-                    <input type="password" name="password" id="">
+                    <input type="password" name="password" id="" placeholder="Password">
                     <input type="password" name="re_password" placeholder="Repeat Password" id="">
                     <p style="width:100%;float:left;margin-top:25px; color: #5a5c69;">
                         <i class="fa fa-university"></i> Bank Transfer Details</p>
@@ -169,6 +169,26 @@
     let job = document.querySelector('#job');
     let avatar = document.querySelector('#avatar');
     let balance = document.querySelector('#mylist');
+    const sales = document.querySelector('.sales')
+    const orders = document.querySelector('.orders')
+    const theBalance = document.querySelector('.ok')
+    const user = document.querySelector('.hello');
+    const username = document.querySelector('#username')
+    const city = document.querySelector('#city')
+    const number = document.querySelector('#number')
+
+    function getUserUpdate() {
+        let formData = new FormData()
+
+        formData.append("username", username)
+        formData.append("username", username)
+        for (key of formData.keys())
+            console.log(key)
+
+    }
+    getUserUpdate()
+
+
 
     document.addEventListener('click', (e) => {
         if ((e.target.className === 'job' || e.target.className === 'hello' || e.target.className === 'ok') && !drop) {
@@ -198,13 +218,8 @@
             return response.json();
         }).then(obj => {
             const data = obj.data
-            const sales = document.querySelector('.sales')
-            const orders = document.querySelector('.orders')
-            const balance = document.querySelector('.ok')
-            const user = document.querySelector('.hello');
-            const username = document.querySelector('#username')
-            const city = document.querySelector('#city')
-            const number = document.querySelector('#number')
+            console.log(data)
+
             const html3 = `
                 <a href="#">Sales(${data['active_sales']})</a>
             `;
@@ -217,7 +232,7 @@
             const html5 = `
                      ₦${data['balance']}
                 `;
-            balance.insertAdjacentText('afterbegin', html5)
+            theBalance.insertAdjacentText('afterbegin', html5)
             const text = `
                 ${data['username'][0]}
             `
@@ -260,6 +275,8 @@
         }
 
     })
+
+
 
 </script>
 

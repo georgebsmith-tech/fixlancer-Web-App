@@ -1,0 +1,51 @@
+.modal{
+    z-index: 4;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100vw;
+    height:100%;
+    background: rgba(0,0,0,0.3);
+    padding: 5px;
+    overflow: hidden;
+}
+
+.modal-content{
+    // position: fixed;
+    // top: 70px;
+    background: white;
+    // width: 100%;
+    margin: 10px;
+    margin-top: 70px;
+    
+   
+}
+
+.modal-header{
+    background: #f8f9fc;
+    border-bottom: 1px solid #e3e6f0;
+    padding: 20px 15px;
+
+}
+
+.chat-message{
+    margin-top: 20px;
+    padding: 10px 15px;
+    width: 100%;
+    outline: none;
+}
+
+.send-chat-btn{
+    margin-top: 15px;
+    width: fit-content;
+    padding: 8px 13px;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.fa-close{
+    &:hover{
+        cursor: pointer;
+    }
+}

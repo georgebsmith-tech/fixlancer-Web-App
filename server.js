@@ -175,6 +175,9 @@ app.get("/dashboard", checkUserAuthenticated, (req, res) => {
 app.get("/dashboard/affiliate", checkUserAuthenticated, (req, res) => {
     res.render("affiliate")
 })
+app.get("/dashboard/inbox", (req, res) => {
+    res.render("chats")
+})
 
 app.get("/alert", (req, res) => {
     res.render("alert")

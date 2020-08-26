@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("./partials/head.ejs")%>
+</head>
+
+<body>
+    <%- include("./partials/header.ejs")%>
+    <main class="main">
+        <section class="font16 bg-white border-smooth">
+            <div class="padd30 border-bottom">All conversations</div>
+            <ul>
+                <% for(let x in [1,3]){ %>
+
+                <li>
+                    <a href="" class="block inbox-summary border-bottom">
+                        <div class="grid">
+                            <div>
+                                <span>Y</span>
+                            </div>
+                            <div>
+                                <span class="bold block desktop">Smith123</span>
+                                <span class="who bold">Me</span>
+                                <span> Hi, i'm smith and i need help</span>
+                            </div>
+                        </div>
+                        <div class="flex-end">just now</div>
+                    </a>
+                </li>
+                <%}%>
+            </ul>
+        </section>
+    </main>
+
+
+
+    <%- include("./partials/footer.ejs")%>
+</body>
+
+</html>

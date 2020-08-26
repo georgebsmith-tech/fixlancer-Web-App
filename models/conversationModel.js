@@ -34,6 +34,15 @@ const Schema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
+    },
+    delivered: {
+        type: Boolean,
+        default: true
+
+    },
+    read: {
+        type: Boolean,
+        default: false
     }
 
 })

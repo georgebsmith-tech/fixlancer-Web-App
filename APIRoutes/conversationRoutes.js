@@ -18,4 +18,19 @@ router.get("/:username", async (req, res) => {
 
 })
 
+router.post("/", async (req, res) => {
+    const reqBody = req.body
+    // console.log(reqBody)
+    if (reqBody.from && reqBody.to && reqBody.message !== "") {
+        const chat = new ConversationModel(reqBody)
+        const data = await chat.save()
+        return res.status(201).json(data)
+    }
+    return res.status(401).json({
+        error: "All fields are required"
+    })
+
+
+})
+
 module.exports = router

@@ -696,6 +696,15 @@ button:hover {
   font-size: 1.3rem;
 }
 
+.link-hover:hover {
+  text-decoration: underline;
+  color: #36b9cc;
+}
+
+.bg-green {
+  background: #1cc88a;
+}
+
 .form-container {
   background: #fff;
   margin: 0px auto;
@@ -777,10 +786,31 @@ i.fa.fa-star {
   display: inline-block;
 }
 
+.text-white {
+  color: white;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.padd30 {
+  padding: 30px;
+}
+
+.bg-white {
+  background: white;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #ddd;
+}
+
 .toggle-nav {
   position: absolute;
   right: 14px;
-  top: 18px;
+  top: 21px;
   padding: 6px;
   border-radius: 6px;
   background: white;
@@ -794,6 +824,14 @@ i.fa.fa-star {
   border-radius: 50px;
   background: #a7a6a6;
   margin-top: 3px;
+}
+
+.padd20 {
+  padding: 20px;
+}
+
+.modal-body > div:first-child {
+  line-height: 1.6;
 }
 
 .main-header {
@@ -1940,6 +1978,18 @@ a.control-btn {
   height: 100%;
 }
 
+.chat-send-notice {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.view-in-btn {
+  background: white;
+  padding: 7px 5px;
+  border-radius: 6px;
+}
+
 .scroll-6-item {
   width: 190px;
   border-radius: 0px;
@@ -2067,6 +2117,62 @@ a.control-btn {
   margin-bottom: 10px;
   font-size: 1.2rem;
   line-height: 1.5;
+}
+
+.modal {
+  z-index: 4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 5px;
+  overflow: hidden;
+}
+
+.modal-content {
+  background: white;
+  margin: 10px;
+  margin-top: 70px;
+}
+
+.modal-header {
+  background: #f8f9fc;
+  border-bottom: 1px solid #e3e6f0;
+  padding: 20px 15px;
+}
+
+.chat-message {
+  margin-top: 20px;
+  padding: 10px 15px;
+  width: 100%;
+  outline: none;
+}
+
+.send-chat-btn {
+  margin-top: 15px;
+  width: fit-content;
+  padding: 8px 13px;
+}
+.send-chat-btn:hover {
+  cursor: pointer;
+}
+
+.fa-close:hover {
+  cursor: pointer;
+}
+
+.inbox-summary {
+  padding: 10px;
+}
+.inbox-summary .grid {
+  display: grid;
+  grid-template-columns: 35px auto;
+  column-gap: 5px;
+}
+.inbox-summary:hover {
+  background: #eeeded;
 }
 
 @media only screen and (min-width: 991px) {
