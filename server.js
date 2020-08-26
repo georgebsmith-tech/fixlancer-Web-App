@@ -201,12 +201,14 @@ app.get("/dashboard/inbox", async (req, res) => {
         if (users.slice(-1)[0] === user) {
             console.log(theConversations)
             theConversations = theConversations.reverse()
-            return res.render("chats", { theConversations, loggedUser })
+            res.render("chats", { theConversations, loggedUser })
+            return
 
         }
 
 
     })
+
 
 
 })
