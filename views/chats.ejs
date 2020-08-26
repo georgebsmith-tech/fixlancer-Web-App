@@ -22,9 +22,9 @@
                             <div>
                                 <span class="bold block desktop">Smith123</span>
                                 <% if(conversation.from===loggedUser){ %>
-                                <span class="who bold">Me</span>
+                                <span class="who bold">Me:</span>
                                 <%}else{%>
-                                <span class="who bold"><%= conversation.from %></span>
+                                <span class="who bold"><%= conversation.from %>:</span>
                                 <%}%>
                                 <span><%= conversation.message%></span>
                             </div>
