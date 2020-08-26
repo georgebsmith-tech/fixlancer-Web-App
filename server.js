@@ -176,9 +176,20 @@ app.get("/dashboard/affiliate", checkUserAuthenticated, (req, res) => {
 let domain = "https://fixlancer.herokuapp.com"
 // domain = "http://localhost:3000"
 app.get("/dashboard/inbox", async (req, res) => {
+    let recipient = req.query.with;
     let loggedUser;
+    console.log("1 Got here")
     if (!req.session.passport) { loggedUser = "Smith" }
     else { loggedUser = req.session.passport.user }
+    if (recipient) {
+        console.log("2 Got here")
+        let chats = await axios.get(`${domain}/api/chats/${loggedUser}?with=${recipient}`)
+        console.log("3 Got here")
+        chats = chats.data.data
+        res.render("chat-detailed", { chats, loggedUser })
+        return
+    }
+
     const resp = await axios.get(`${domain}/api/chats/${loggedUser}`)
 
     const conversations = resp.data.data
@@ -196,14 +207,14 @@ app.get("/dashboard/inbox", async (req, res) => {
     let theConversations = [];
     console.log(users)
     users = [...new Set(users)]
-    console.log(users)
+    // console.log(users)
 
     await users.forEach(async user => {
         let data = await ConversationModel.find().or([{ from: user }, { to: user }])
 
         theConversations.push(data.slice(-1)[0])
         if (users.slice(-1)[0] === user) {
-            console.log(theConversations)
+            // console.log(theConversations)
             theConversations = theConversations.reverse()
             res.render("chats", { theConversations, loggedUser })
             return

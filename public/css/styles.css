@@ -799,6 +799,22 @@ i.fa.fa-star {
   padding: 30px;
 }
 
+.padd10-bottom {
+  padding-bottom: 10px;
+}
+
+.padd20-bottom {
+  padding-bottom: 20px;
+}
+
+.padd30-bottom {
+  padding-bottom: 30px;
+}
+
+.font10 {
+  font-size: 1rem;
+}
+
 .font14 {
   font-size: 1.4rem;
 }
@@ -2177,6 +2193,18 @@ a.control-btn {
 }
 .inbox-summary:hover {
   background: #eeeded;
+}
+
+.message-received, .message-sent {
+  width: fit-content;
+  background: white;
+  max-width: 80%;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+.message-sent {
+  background: #e7e5e5;
 }
 
 @media only screen and (min-width: 991px) {

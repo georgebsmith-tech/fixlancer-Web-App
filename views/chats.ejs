@@ -13,26 +13,40 @@
             <ul>
                 <% for(let conversation of theConversations ){ %>
 
-                <l class="font15">
-                    <a href="" class="block inbox-summary border-bottom">
-                        <div class="grid">
-                            <div>
-                                <span><%= conversation.from[0].toUpperCase() %></span>
+                <li class="font15">
+                    <%if(conversation.from===loggedUser){ %>
+                    <a href="/dashboard/inbox?with=<%=conversation.to %>" class="block inbox-summary border-bottom">
+                        <%}else{%>
+                        <a href="/dashboard/inbox?with=<%=conversation.from %>"
+                            class="block inbox-summary border-bottom">
+                            <%}%>
+                    <div class="grid">
+                        <div>
+                            <%if(conversation.from===loggedUser){ %>
+                            <span><%= conversation.to[0].toUpperCase() %></span>
+                            <%}else{%>
+                            <span><%= conversation.from[0].toUpperCase() %></span>
+                            <%}%>
                             </div>
                             <div>
-                                <span class="bold block desktop">Smith123</span>
+                                <%if(conversation.from===loggedUser){ %>
+                            <span class="bold block desktop"><%= conversation.to %></span>
+                            <%}else{%>
+                            <span class="bold block desktop"><%= conversation.from %></span>
+                            <%}%>
+                                
                                 <% if(conversation.from===loggedUser){ %>
-                                <span class="who bold">Me:</span>
-                                <%}else{%>
-                                <span class="who bold"><%= conversation.from %>:</span>
-                                <%}%>
+                            <span class="who bold">Me:</span>
+                            <%}else{%>
+                            <span class="who bold"><%= conversation.from %>:</span>
+                            <%}%>
                                 <span><%= conversation.message%></span>
                             </div>
-                        </div>
-                        <div class="flex-end"><%= conversation.createdAt.toDateString() %></div>
-                    </a>
-                    </li>
-                    <%}%>
+                            </div>
+                            <div class="flex-end"><%= conversation.createdAt.toDateString() %></div>
+                        </a>
+                </li>
+                <%}%>
             </ul>
         </section>
     </main>
