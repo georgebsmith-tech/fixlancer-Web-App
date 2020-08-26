@@ -9,13 +9,22 @@ router.get("/", async function (req, res) {
 })
 
 router.get("/:username", async (req, res) => {
-    const from = req.params.username
-    const to = req.query.with
-    const data = await ConversationModel.find().or([{ from, to }, { from: to, to: from }])
-    res.status(200).json({
+    let to = req.query.with
+    if (to) {
+        console.log(req.params.username)
+        console.log(to)
+
+        const data = await ConversationModel.find().or([{ from: req.params.username, to }, { from: to, to: req.params.username }])
+        return res.status(200).json({
+            data
+        })
+    }
+    const username = req.params.username
+    console.log(username)
+    const data = await ConversationModel.find().or([{ from: username }, { to: username }])
+    return res.status(200).json({
         data
     })
-
 })
 
 router.post("/", async (req, res) => {
