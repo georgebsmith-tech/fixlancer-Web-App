@@ -2212,7 +2212,7 @@ a.control-btn {
 }
 
 .message-container {
-  height: 60vh;
+  height: 55vh;
   overflow-y: auto;
 }
 .message-container textarea {
