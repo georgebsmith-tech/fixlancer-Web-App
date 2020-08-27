@@ -113,20 +113,35 @@ io.on("connection", socket => {
 
     })
 
-    socket.on("disconnect", (user) => {
+    socket.on("disconnect", (msg) => {
         console.log("User disconnected!!")
-        delete users[user]
+        console.log("Lolzzz" + msg)
+        let usernames = Object.keys(users)
+        console.log(usernames)
+        console.log(users)
+        console.log(socket.id)
+        for (let x = 0; x < usernames.length; x++) {
+            if (users[usernames[x]] === socket.id) {
+                delete users[usernames[x]]
+                break
+            }
+        }
+        // cons
+        // delete users[user]
         console.log(users)
     })
-    socket.on("typing", function (user) {
-        socket.broadcast.emit("typing-status", user)
+    socket.on("typing", function (data) {
+        // socket.broadcast.emit("typing-status", user)
+        io.to(users[data.receiver]).emit("typing-status", data.name)
     })
     socket.on("stopped-typing", function (user) {
         socket.broadcast.emit("stopped-typing", user)
     })
 
     socket.on("chat", async function (data) {
-        // socket.broadcast.emit("chat", data)
+        // console.log(data)
+        // console.log(users)
+        socket.broadcast.emit("chat", data)
         let socketId = users[data.receiver]
         io.to(socketId).emit("chat", { sender: data.sender, message: data.message })
         const record = {
@@ -186,7 +201,7 @@ app.get("/dashboard/inbox", async (req, res) => {
         let chats = await axios.get(`${domain}/api/chats/${loggedUser}?with=${recipient}`)
         // console.log("3 Got here")
         chats = chats.data.data
-        console.log(chats)
+        // console.log(chats)
         res.render("chat-detailed", { chats, loggedUser, recipient })
         return
     }
@@ -206,9 +221,9 @@ app.get("/dashboard/inbox", async (req, res) => {
     })
 
     let theConversations = [];
-    console.log(users)
+    // console.log(users)
     users = [...new Set(users)]
-    console.log(users)
+    // console.log(users)
 
 
     await users.forEach(async (user, index) => {
@@ -217,7 +232,7 @@ app.get("/dashboard/inbox", async (req, res) => {
         theConversations.push(data.slice(-1)[0])
         if (index * 1 === users.length - 1) {
             theConversations = theConversations.reverse()
-            console.log(`The converse:${theConversations}`)
+            // console.log(`The converse:${theConversations}`)
             res.render("chats", { theConversations, loggedUser })
             return
         }

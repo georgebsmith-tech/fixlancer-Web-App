@@ -20,6 +20,7 @@
                 <div>
                     <i class="fa fa-circle" style="font-size: 1.3rem;"></i>
                     <span class="bold font13"><%= recipient %></span>
+                    <span class="typing-status hide"></span>
                 </div>
                 <div>
                     <i class="fa fa-angle-double-left bold font13 "></i>
@@ -31,13 +32,8 @@
                 <% if(chat.from===loggedUser){%>
 
                 <div class="flex-end">
-
-
                     <div class="padd10 message-sent font13 ">
-
                         <div>
-
-
                             <div class="padd20-bottom">
                                 <%= chat.message%>
                             </div>
@@ -51,10 +47,7 @@
                 <%}else{%>
                 <div class="flex-start">
                     <div class="padd10 message-received font13">
-
                         <div>
-
-
                             <div class="padd20-bottom">
                                 <%= chat.message%>
                             </div>
@@ -63,7 +56,6 @@
                     </div>
                 </div>
                 <%}%>
-
             <%})%>
             </div>
 

@@ -19,10 +19,10 @@
 
     const messageInput = document.querySelector("#message")
 
-    const status = document.querySelector(".status");
+    const status = document.querySelector(".typing-status");
 
     messageInput.addEventListener("focus", function (e) {
-        socket.emit("typing", name)
+        socket.emit("typing", { name, receiver })
     });
 
     messageInput.addEventListener("blur", function (e) {
@@ -30,49 +30,71 @@
     });
 
     socket.on("typing-status", function (user) {
-        status.style.display = "block"
+        status.classList.remove("hide")
         status.textContent = `${user} is typing`
     });
 
     socket.on("stopped-typing", function (user) {
-        status.style.display = "none"
+        status.classList.add("hide")
     });
     document.querySelector(".send-chat-button").addEventListener("click", (e) => {
         console.log("clicked")
         let message = messageInput.value
         console.log(message)
-        return
+        // return
         socket.emit("chat", { sender: name, receiver, message })
+        // return
+        const msgContainer = document.createElement("div")
+        msgContainer.classList.add("flex-end")
+        const msgWrapper = document.createElement("div")
+        msgContainer.setAttribute("class", "padd10 message-sent font13")
+        msgContainer.appendChild(msgWrapper)
         const div = document.createElement("div")
-        div.classList.add("sender")
-        div.textContent = `Me: ${messageInput.value}`
-        document.querySelector(".messages").appendChild(div);
+        msgWrapper.appendChild(div)
+        const theMessageDiv = document.createElement("div")
+        theMessageDiv.textContent = message
+        theMessageDiv.classList.add("padd20-bottom")
+        div.appendChild(theMessageDiv)
+
+
+        // time and reading status
+        const timeDiv = document.createElement("div")
+        timeDiv.textContent = "just now"
+        timeDiv.setAttribute("class", "flex-end font10")
+        div.appendChild(timeDiv)
+        const check1 = document.createElement("i")
+        check1.setAttribute("class", "fa fa-check orange")
+        const check2 = document.createElement("i")
+        check2.setAttribute("class", "fa fa-check orange")
+        timeDiv.appendChild(check1)
+        timeDiv.appendChild(check2)
+
+
+        // div.classList.add("sender")
+        // div.textContent = `Me: ${messageInput.value}`
+        document.querySelector(".message-container").appendChild(msgContainer);
         messageInput.value = ""
 
     })
     socket.on("chat", function (data) {
+        console.log(data)
+        const msgContainer = document.createElement("div")
+        msgContainer.classList.add("flex-start")
+        const msgWrapper = document.createElement("div")
+        msgContainer.setAttribute("class", "padd10 message-received font13")
+        msgContainer.appendChild(msgWrapper)
         const div = document.createElement("div")
-        div.classList.add("reciever")
-        div.textContent = `${data.sender}: ${data.message}`
-        document.querySelector(".messages").appendChild(div)
+        msgWrapper.appendChild(div)
+        const theMessageDiv = document.createElement("div")
+        theMessageDiv.textContent = data.message
+        theMessageDiv.classList.add("padd20-bottom")
+        div.appendChild(theMessageDiv)
+
+        const timeDiv = document.createElement("div")
+        timeDiv.textContent = "just now"
+        timeDiv.setAttribute("class", "flex-end font10")
+        div.appendChild(timeDiv)
+        document.querySelector(".message-container").appendChild(msgContainer);
     });
 
-    const onlineHolder = document.querySelector(".online");
-
-    socket.on("online-users", function (users) {
-        users.forEach(user => {
-            // if (user === name) onlineHolder.innerHTML += `<button disabled>${user}</button><br>`
-            // else {
-            //     onlineHolder.innerHTML += `<button class="to" onclick=selectUser(this.innerText)>${user}</button><br>`
-
-            // }
-
-
-        });
-    });
-    function selectUser(to) {
-        console.log(receiver)
-        receiver = to
-        console.log(receiver)
-    }
 })()
