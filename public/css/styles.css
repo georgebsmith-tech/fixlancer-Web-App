@@ -2207,6 +2207,32 @@ a.control-btn {
   background: #e7e5e5;
 }
 
+.message-container {
+  height: 56vh;
+  overflow-y: auto;
+}
+.message-container textarea {
+  margin-bottom: 5px;
+}
+
+.fill-width {
+  width: 100%;
+}
+
+.padd8 {
+  padding: 8px;
+}
+
+.outline-none {
+  outline: none;
+}
+
+.send-chat-button {
+  margin-top: 5px;
+  width: fit-content;
+  padding: 6px 12px;
+}
+
 @media only screen and (min-width: 991px) {
   .grid-2-21 {
     display: grid;

@@ -187,7 +187,7 @@ app.get("/dashboard/inbox", async (req, res) => {
         // console.log("3 Got here")
         chats = chats.data.data
         console.log(chats)
-        res.render("chat-detailed", { chats, loggedUser })
+        res.render("chat-detailed", { chats, loggedUser, recipient })
         return
     }
 
@@ -208,22 +208,23 @@ app.get("/dashboard/inbox", async (req, res) => {
     let theConversations = [];
     console.log(users)
     users = [...new Set(users)]
-    // console.log(users)
+    console.log(users)
 
-    await users.forEach(async user => {
-        let data = await ConversationModel.find().or([{ from: user }, { to: user }])
+
+    await users.forEach(async (user, index) => {
+        let data = await ConversationModel.find().or([{ from: user, to: loggedUser }, { to: user, from: loggedUser }])
 
         theConversations.push(data.slice(-1)[0])
-        if (users.slice(-1)[0] === user) {
-            // console.log(theConversations)
+        if (index * 1 === users.length - 1) {
             theConversations = theConversations.reverse()
+            console.log(`The converse:${theConversations}`)
             res.render("chats", { theConversations, loggedUser })
             return
-
         }
 
-
     })
+
+
 
 })
 

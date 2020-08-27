@@ -15,3 +15,26 @@
     
 
 }
+
+.message-container{
+    height: 56vh;
+    overflow-y:auto;
+    textarea{
+        margin-bottom: 5px;
+    }
+}
+
+.fill-width{
+    width: 100%;
+}
+.padd8{
+    padding: 8px;
+}
+.outline-none{
+    outline: none;
+}
+.send-chat-button{
+ margin-top: 5px;
+ width: fit-content;
+ padding: 6px 12px;
+}
