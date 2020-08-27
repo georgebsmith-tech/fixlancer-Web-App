@@ -16,9 +16,11 @@
 .message-received{
     border:1px solid #ddd;
 }
-
+.main{
+    height: 90vh;
+}
 .message-container{
-    height: 49vh;
+    height: 65vh;
     overflow-y:auto;
     textarea{
         margin-bottom: 5px;

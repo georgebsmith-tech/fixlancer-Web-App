@@ -10,7 +10,7 @@
 
 <body>
     <%- include('./partials/header.ejs')%>
-    <main class="main">
+    <main class="main" id="main">
         <input type="hidden" id="hidden-username" value="<%= loggedUser%>">
         <input type="hidden" id="hidden-receiver" value="<%= recipient %>">
 
@@ -38,8 +38,8 @@
                                 <%= chat.message%>
                             </div>
                             <div class="flex-end font10"><%= chat.createdAt %>
-                                <i class="fa fa-check orange"></i>
-                                <i class="fa fa-check orange"></i></div>
+                                <i class="fa fa-check text-blue"></i>
+                                <i class="fa fa-check text-blue"></i></div>
                         </div>
                     </div>
                 </div>

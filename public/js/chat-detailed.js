@@ -1,4 +1,5 @@
 (function () {
+    document.querySelector(".message-container").scrollTop = document.querySelector(".message-container").scrollHeight
     let name = document.querySelector("#hidden-username").value
     console.log(name)
     let receiver = document.querySelector("#hidden-receiver").value
@@ -47,7 +48,7 @@
         const msgContainer = document.createElement("div")
         msgContainer.classList.add("flex-end")
         const msgWrapper = document.createElement("div")
-        msgContainer.setAttribute("class", "padd10 message-sent font13")
+        msgWrapper.setAttribute("class", "padd10 message-sent font13")
         msgContainer.appendChild(msgWrapper)
         const div = document.createElement("div")
         msgWrapper.appendChild(div)
@@ -63,9 +64,9 @@
         timeDiv.setAttribute("class", "flex-end font10")
         div.appendChild(timeDiv)
         const check1 = document.createElement("i")
-        check1.setAttribute("class", "fa fa-check orange")
+        check1.setAttribute("class", "fa fa-check text-blue")
         const check2 = document.createElement("i")
-        check2.setAttribute("class", "fa fa-check orange")
+        check2.setAttribute("class", "fa fa-check text-blue")
         timeDiv.appendChild(check1)
         timeDiv.appendChild(check2)
 
@@ -74,14 +75,15 @@
         // div.textContent = `Me: ${messageInput.value}`
         document.querySelector(".message-container").appendChild(msgContainer);
         messageInput.value = ""
+        document.querySelector(".message-container").scrollTop = document.querySelector(".message-container").scrollHeight
 
     })
     socket.on("chat", function (data) {
-        console.log(data)
+        // console.log(data)
         const msgContainer = document.createElement("div")
         msgContainer.classList.add("flex-start")
         const msgWrapper = document.createElement("div")
-        msgContainer.setAttribute("class", "padd10 message-received font13")
+        msgWrapper.setAttribute("class", "padd10 message-received font13")
         msgContainer.appendChild(msgWrapper)
         const div = document.createElement("div")
         msgWrapper.appendChild(div)
@@ -95,6 +97,8 @@
         timeDiv.setAttribute("class", "flex-end font10")
         div.appendChild(timeDiv)
         document.querySelector(".message-container").appendChild(msgContainer);
+        document.querySelector(".message-container>div:last-child").getElementsByClassName.display = "none"
+        document.querySelector(".message-container").scrollTop = document.querySelector(".message-container").scrollHeight
     });
 
 })()

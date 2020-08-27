@@ -811,6 +811,10 @@ i.fa.fa-star {
   padding-bottom: 30px;
 }
 
+.text-blue {
+  color: blue;
+}
+
 .font10 {
   font-size: 1rem;
 }
@@ -2211,8 +2215,12 @@ a.control-btn {
   border: 1px solid #ddd;
 }
 
+.main {
+  height: 90vh;
+}
+
 .message-container {
-  height: 49vh;
+  height: 65vh;
   overflow-y: auto;
 }
 .message-container textarea {
