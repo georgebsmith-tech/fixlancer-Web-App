@@ -2208,7 +2208,7 @@ a.control-btn {
 }
 
 .message-container {
-  height: 56vh;
+  height: 52vh;
   overflow-y: auto;
 }
 .message-container textarea {
