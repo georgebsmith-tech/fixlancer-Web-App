@@ -2204,11 +2204,15 @@ a.control-btn {
 }
 
 .message-sent {
-  background: #e7e5e5;
+  background: #f2f2f2;
+}
+
+.message-received {
+  border: 1px solid #ddd;
 }
 
 .message-container {
-  height: 52vh;
+  height: 60vh;
   overflow-y: auto;
 }
 .message-container textarea {

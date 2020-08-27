@@ -8,7 +8,7 @@
     }
 
 
-    let socket = io("https://fixlancer.herokuapp.com")
+    let socket = io()
 
     socket.on("new-user", function (user) {
         console.log(user)

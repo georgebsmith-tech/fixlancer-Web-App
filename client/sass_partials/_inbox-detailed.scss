@@ -10,14 +10,15 @@
 }
 
 .message-sent{
-    background: rgb(231, 229, 229);
+    background: #f2f2f2;
 
-    
-
+}
+.message-received{
+    border:1px solid #ddd;
 }
 
 .message-container{
-    height: 52vh;
+    height: 60vh;
     overflow-y:auto;
     textarea{
         margin-bottom: 5px;
