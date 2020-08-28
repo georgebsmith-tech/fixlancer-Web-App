@@ -13,14 +13,20 @@
     <main class="main" id="main">
         <input type="hidden" id="hidden-username" value="<%= loggedUser%>">
         <input type="hidden" id="hidden-receiver" value="<%= recipient %>">
+        <input type="hidden" id="hidden-receiver-color" value="<%= userColorData.userColor %>">
 
 
         <section>
             <div class="flex-between border-bottom  padd10 bg-white">
-                <div>
-                    <i class="fa fa-circle" style="font-size: 1.3rem;"></i>
-                    <span class="bold font13"><%= recipient %></span>
-                    <span class="typing-status hide"></span>
+                <div style="display: flex;align-items: center;">
+
+                    <span style="width: 20px;height: 20px;margin-right: 5px;"
+                        class="font13 flex-center circle text-white user-icon bold"><%= recipient[0].toUpperCase() %></span>
+                    <span class="bold font13 margin5-right"><%= recipient %></span>
+                    <i class="fa fa-circle user-online margin5-right" style="font-size: 1.3rem;"></i>
+                    <span class="font13  margin5-right">Active now</span>
+
+                    <em class="typing-status invisible font13"></em>
                 </div>
                 <div>
                     <i class="fa fa-angle-double-left bold font13 "></i>
@@ -57,11 +63,14 @@
                 </div>
                 <%}%>
             <%})%>
+
             </div>
+
 
 
         </section>
         <div class="message-control bg-white padd10 padd10-bottom">
+            <div style="margin-top: -5px;"><em class="typing-status invisible"></em></div>
             <div>
                 <textarea name="" cols="30" rows="2" class="fill-width padd8 outline-none border-smooth"
                     placeholder="Enter your message..." id="message"></textarea>

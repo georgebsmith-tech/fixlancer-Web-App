@@ -811,6 +811,24 @@ i.fa.fa-star {
   padding-bottom: 30px;
 }
 
+.circle {
+  border-radius: 50px;
+}
+
+.margin5-right {
+  margin-right: 5px;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
 .text-blue {
   color: blue;
 }

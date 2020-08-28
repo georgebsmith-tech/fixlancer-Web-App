@@ -1,4 +1,7 @@
 (function () {
+
+    const userIcon = document.querySelector(".user-icon")
+    userIcon.style.backgroundColor = document.querySelector("#hidden-receiver-color").value
     const msgMainContainer = document.querySelector(".message-container")
     msgMainContainer.scrollTop = document.querySelector(".message-container").scrollHeight
     let name = document.querySelector("#hidden-username").value
@@ -6,8 +9,9 @@
     let receiver = document.querySelector("#hidden-receiver").value
     console.log(receiver)
     function newUser(name) {
-        socket.emit("new-user", name);
+        socket.emit("new-user", { name, receiver });
     }
+
 
 
     let socket = io()
@@ -16,12 +20,24 @@
         console.log(user)
     })
 
+    socket.on("message-read", function (status) {
+        const divs = msgMainContainer.querySelectorAll(".message-sent .flex-end .unread")
+        divs.forEach(i => {
+            i.classList.add("text-blue")
+            const check1 = document.createElement("i")
+            check1.setAttribute("class", "fa fa-check text-blue")
+            i.parentElement.appendChild(check1)
+
+        })
+    })
     newUser(name)
+
+
 
 
     const messageInput = document.querySelector("#message")
 
-    const status = document.querySelector(".typing-status");
+    const status = document.querySelectorAll(".typing-status");
 
     messageInput.addEventListener("focus", function (e) {
         socket.emit("typing", { name, receiver })
@@ -32,12 +48,18 @@
     });
 
     socket.on("typing-status", function (user) {
-        status.classList.remove("hide")
-        status.textContent = `${user} is typing`
+        status.forEach(obj => {
+            obj.classList.remove("invisible")
+            obj.textContent = `${user} is typing`
+        })
+
     });
 
     socket.on("stopped-typing", function (user) {
-        status.classList.add("hide")
+        status.forEach(obj => {
+            obj.classList.add("invisible")
+            obj.textContent = `${user} is typing`
+        })
     });
     document.querySelector(".send-chat-button").addEventListener("click", (e) => {
         console.log("clicked")
@@ -92,11 +114,12 @@
         document.querySelector(".message-container>div:last-child").getElementsByClassName.display = "none"
         document.querySelector(".message-container").scrollTop = document.querySelector(".message-container").scrollHeight
     });
+
     socket.on("message-sent", function (data) {
         const divs = msgMainContainer.querySelectorAll(".message-sent .flex-end")
         if (data.status === "sent") {
             const check1 = document.createElement("i")
-            check1.setAttribute("class", "fa fa-check")
+            check1.setAttribute("class", "fa fa-check unread")
             //.appendChild(check1)
             divs[divs.length - 1].appendChild(check1)
 

@@ -108,6 +108,10 @@ const Schema = new mongoose.Schema({
     }
 
 })
+Schema.pre("validate", function (next) {
+    this.userColor = getColor();
+    next()
+})
 
 
 const User = mongoose.model("User", Schema)

@@ -96,20 +96,23 @@ app.use((req, res, next) => {
 
 
 
-
-
-
 let users = {}
+function changeMessageToRead(data, io) {
+    io.to(users[data.receiver]).emit("message-read", { read: true })
+}
+
+
 io.on("connection", socket => {
     console.log("A user connected")
 
-    socket.on("new-user", (user) => {
-        console.log("New user: " + user)
-        // socket.user = user
-        users[user] = socket.id
+
+    socket.on("new-user", (data) => {
+        console.log("New user: " + data.name)
+        users[data.name] = socket.id
+        changeMessageToRead(data, io)
         console.log(users)
-        socket.broadcast.emit("new-user", user)
-        io.to(users[user]).emit("online-users", Object.keys(users))
+        socket.broadcast.emit("new-user", data.name)
+        io.to(users[data.name]).emit("online-users", Object.keys(users))
 
     })
 
@@ -200,12 +203,11 @@ app.get("/dashboard/inbox", async (req, res) => {
     if (!req.session.passport) { loggedUser = "Smith" }
     else { loggedUser = req.session.passport.user }
     if (recipient) {
-        // console.log("2 Got here")
+        const userColorData = await UserModel.findOne({ username: recipient }).select("userColor")
+        console.log(userColorData.userColor)
         let chats = await axios.get(`${domain}/api/chats/${loggedUser}?with=${recipient}`)
-        // console.log("3 Got here")
         chats = chats.data.data
-        // console.log(chats)
-        res.render("chat-detailed", { chats, loggedUser, recipient })
+        res.render("chat-detailed", { chats, loggedUser, recipient, userColorData })
         return
     }
 
