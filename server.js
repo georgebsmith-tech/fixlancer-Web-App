@@ -98,6 +98,15 @@ app.use((req, res, next) => {
 
 let users = {}
 function changeMessageToRead(data, io) {
+    ConversationModel.find({ read: false, from: data.receiver, to: data.name })
+        .then(data => {
+            data.forEach(async chat => {
+                let readData = await ConversationModel.findOneAndUpdate({ _id: chat._id }, { read: true }, { new: true })
+
+                // console.log(readData)
+            })
+            // console.log(data)
+        })
     io.to(users[data.receiver]).emit("message-read", { read: true })
 }
 
@@ -147,13 +156,15 @@ io.on("connection", socket => {
             let socketId = users[data.receiver]
             io.to(socketId).emit("chat", { sender: data.sender, message: data.message })
             io.to(users[data.sender]).emit("message-sent", { status: "seen" })
+
         } else {
             io.to(users[data.sender]).emit("message-sent", { status: "sent" })
         }
         const record = {
             from: data.sender,
             to: data.receiver,
-            message: data.message
+            message: data.message,
+            read: false
         }
 
         const converse = new ConversationModel(record)
