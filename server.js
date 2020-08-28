@@ -139,11 +139,14 @@ io.on("connection", socket => {
     })
 
     socket.on("chat", async function (data) {
-        // console.log(data)
-        // console.log(users)
-        socket.broadcast.emit("chat", data)
-        let socketId = users[data.receiver]
-        io.to(socketId).emit("chat", { sender: data.sender, message: data.message })
+
+        if (Object.keys(users).find(username => { return username === data.receiver })) {
+            let socketId = users[data.receiver]
+            io.to(socketId).emit("chat", { sender: data.sender, message: data.message })
+            io.to(users[data.sender]).emit("message-sent", { status: "seen" })
+        } else {
+            io.to(users[data.sender]).emit("message-sent", { status: "sent" })
+        }
         const record = {
             from: data.sender,
             to: data.receiver,

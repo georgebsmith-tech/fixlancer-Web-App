@@ -1,5 +1,6 @@
 (function () {
-    document.querySelector(".message-container").scrollTop = document.querySelector(".message-container").scrollHeight
+    const msgMainContainer = document.querySelector(".message-container")
+    msgMainContainer.scrollTop = document.querySelector(".message-container").scrollHeight
     let name = document.querySelector("#hidden-username").value
     console.log(name)
     let receiver = document.querySelector("#hidden-receiver").value
@@ -63,19 +64,10 @@
         timeDiv.textContent = "just now"
         timeDiv.setAttribute("class", "flex-end font10")
         div.appendChild(timeDiv)
-        const check1 = document.createElement("i")
-        check1.setAttribute("class", "fa fa-check text-blue")
-        const check2 = document.createElement("i")
-        check2.setAttribute("class", "fa fa-check text-blue")
-        timeDiv.appendChild(check1)
-        timeDiv.appendChild(check2)
 
-
-        // div.classList.add("sender")
-        // div.textContent = `Me: ${messageInput.value}`
         document.querySelector(".message-container").appendChild(msgContainer);
         messageInput.value = ""
-        document.querySelector(".message-container").scrollTop = document.querySelector(".message-container").scrollHeight
+        msgMainContainer.scrollTop = msgMainContainer.scrollHeight
 
     })
     socket.on("chat", function (data) {
@@ -100,5 +92,31 @@
         document.querySelector(".message-container>div:last-child").getElementsByClassName.display = "none"
         document.querySelector(".message-container").scrollTop = document.querySelector(".message-container").scrollHeight
     });
+    socket.on("message-sent", function (data) {
+        const divs = msgMainContainer.querySelectorAll(".message-sent .flex-end")
+        if (data.status === "sent") {
+            const check1 = document.createElement("i")
+            check1.setAttribute("class", "fa fa-check")
+            //.appendChild(check1)
+            divs[divs.length - 1].appendChild(check1)
+
+        } else if (data.status === "seen") {
+            const check1 = document.createElement("i")
+            check1.setAttribute("class", "fa fa-check text-blue")
+            const check2 = document.createElement("i")
+            check2.setAttribute("class", "fa fa-check text-blue")
+            divs[divs.length - 1].appendChild(check1)
+            divs[divs.length - 1].appendChild(check2)
+        }
+
+
+    })
+
+    window.addEventListener("focus", function () {
+        console.log("focussed!!")
+    })
+    window.addEventListener("blur", function () {
+        console.log("blur!!")
+    })
 
 })()
