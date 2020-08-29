@@ -26,10 +26,14 @@
                     <% if(online){ %>
                     <i class="fa fa-circle user-online margin5-right" style="font-size: 1.3rem;"></i>
                     <span class="font13  margin5-right">Active now</span>
-                    <%}else{%>
+                    <%}else if(timeElapse>=60*24*7){%>
                     <i class="fa fa-circle margin5-right" style="font-size: 1.3rem;"></i>
                     <span class="font13  margin5-right">Offline</span>
+                    <%}else{%>
+                    <i class="fa fa-circle margin5-right text-orange" style="font-size: 1.3rem;"></i>
+                    <span class="font13  margin5-right ">Away</span>
                     <%}%>
+
                     
 
                     <em class="typing-status invisible font13"></em>

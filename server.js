@@ -237,7 +237,10 @@ app.get("/dashboard/inbox", async (req, res) => {
         console.log(userColorData.userColor)
         let chats = await axios.get(`${domain}/api/chats/${loggedUser}?with=${recipient}`)
         chats = chats.data.data
-        let timeElapse=(date-userColorData.last_seen)(1000*60)
+        console.log(userColorData.last_seen)
+        console.log(typeof userColorData.last_seen.toDateString())
+        console.log(userColorData.last_seen.toDateString())
+        let timeElapse=(date-userColorData.last_seen)/(1000*60)
         console.log(`Minutes passed:${timeElapse}`)
         res.render("chat-detailed", { chats, loggedUser, recipient, userColorData, online: userColorData.online,timeElapse })
         return
