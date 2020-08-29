@@ -120,6 +120,9 @@ function changeMessageToRead(data, io) {
         })
     io.to(users[data.receiver]).emit("message-read", { read: true })
 }
+function changeUserStatus(data,io){
+    io.to(users[data.receiver]).emit("user-online",{online:true})
+}
 
 
 io.on("connection", socket => {
@@ -130,6 +133,7 @@ io.on("connection", socket => {
         console.log("New user: " + data.name)
         users[data.name] = socket.id
         changeMessageToRead(data, io)
+        changeUserStatus(data,io)
         console.log(users)
         socket.broadcast.emit("new-user", data.name)
         io.to(users[data.name]).emit("online-users", Object.keys(users))

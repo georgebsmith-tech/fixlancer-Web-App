@@ -190,3 +190,12 @@ window.addEventListener("focus", function () {
     }
   
 })
+
+window.addEventListener("offline",function(){
+    console.log("offline")
+    fetch(`/api/users/leaving?user=${theUser}`)
+})
+window.addEventListener("online",function(){
+    fetch(`/api/users/leaving?user=${theUser}&online=true`)
+    console.log("online")
+})

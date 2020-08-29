@@ -69,7 +69,8 @@ const Schema = new mongoose.Schema({
         required: true
     },
     last_seen: {
-        type: Date
+        type: Date,
+        default:Date.now
     },
     active: {
         type: Boolean,

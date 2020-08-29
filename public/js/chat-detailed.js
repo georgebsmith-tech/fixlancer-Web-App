@@ -55,6 +55,15 @@
 
     });
 
+    socket.on("user-online",function(data){
+        document.querySelector(".online-status-icon").style.color="#89E130"
+        document.querySelector(".online-status-text").textContent="Active now"
+        console.log(document.querySelector(".online-status-icon"))
+        console.log(document.querySelector(".online-status-text"))
+            
+        
+    })
+
     socket.on("stopped-typing", function (user) {
         status.forEach(obj => {
             obj.classList.add("invisible")

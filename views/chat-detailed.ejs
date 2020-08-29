@@ -24,14 +24,14 @@
                         class="font13 flex-center circle text-white user-icon bold"><%= recipient[0].toUpperCase() %></span>
                     <span class="bold font13 margin5-right"><%= recipient %></span>
                     <% if(online){ %>
-                    <i class="fa fa-circle user-online margin5-right" style="font-size: 1.3rem;"></i>
-                    <span class="font13  margin5-right">Active now</span>
+                    <i class="fa fa-circle user-online margin5-right online-status-icon" style="font-size: 1.3rem;"></i>
+                    <span class="font13  margin5-right online-status-text">Active now</span>
                     <%}else if(timeElapse>=60*24*7){%>
-                    <i class="fa fa-circle margin5-right" style="font-size: 1.3rem;"></i>
-                    <span class="font13  margin5-right">Offline</span>
+                    <i class="fa fa-circle margin5-right online-status-icon" style="font-size: 1.3rem;"></i>
+                    <span class="font13 margin5-right online-status-text">Offline</span>
                     <%}else{%>
-                    <i class="fa fa-circle margin5-right text-orange" style="font-size: 1.3rem;"></i>
-                    <span class="font13  margin5-right ">Away</span>
+                    <i class="fa fa-circle margin5-right text-orange online-status-icon" style="font-size: 1.3rem;"></i>
+                    <span class="font13 margin5-right online-status-text">Away</span>
                     <%}%>
 
                     
