@@ -226,6 +226,7 @@
             return response.json();
         }).then(obj => {
             const data = obj.data
+            document.cookie=`username=${data.username}`
             const sales = document.querySelector('.sales')
             const orders = document.querySelector('.orders')
             const balance = document.querySelector('.ok')

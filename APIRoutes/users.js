@@ -34,6 +34,28 @@ router.get("/", async function (req, res) {
 
 })
 
+router.get("/leaving", (req, res) => {
+    let user=req.query.user
+    if(req.query.online){
+        UserModel.findOneAndUpdate({username:user},{online:true},{new:true})
+        .then(data=>{
+        console.log(data)
+
+          })
+          console.log("back!!!!!!!!!!!")
+        
+    }else{
+
+   let date = new Date()
+    UserModel.findOneAndUpdate({username:user},{online:false,last_seen:date},{new:true})
+    .then(data=>{
+        console.log(data)
+
+    })
+    console.log("leaving!!!!!!!!!!!")
+     }
+})
+
 //Registration route
 router.post("/register", async (req, res) => {
 

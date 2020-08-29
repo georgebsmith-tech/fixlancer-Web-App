@@ -11,8 +11,8 @@ router.get("/", async function (req, res) {
 router.get("/:username", async (req, res) => {
     let to = req.query.with
     if (to) {
-        console.log(req.params.username)
-        console.log(to)
+        // console.log(req.params.username)
+        // console.log(to)
 
         const data = await ConversationModel.find().or([{ from: req.params.username, to }, { from: to, to: req.params.username }])
         return res.status(200).json({

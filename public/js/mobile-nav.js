@@ -161,3 +161,32 @@
 
 
 })()
+let e=0;
+let s=0;
+let timeOut;
+let theUser;
+window.addEventListener("blur", function () {
+    theUser=document.cookie.split(";").map(item=>{return item.trim()}).find(cookie=>{return cookie.includes("username=")}).split("=")[1]
+    s=new Date()
+    console.log(" the blur")
+    console.log(theUser)
+    timeOut=setTimeout(() => {
+        fetch(`/api/users/leaving?user=${theUser}`)
+        // &online=true
+    }, 60000*5);
+    
+})
+window.addEventListener("focus", function () {
+    theUser=document.cookie.split(";").map(item=>{return item.trim()}).find(cookie=>{return cookie.includes("username=")}).split("=")[1]
+    clearTimeout(timeOut)
+    e= new Date()
+    console.log(" the focus")
+    console.log(theUser)
+    
+    let d=e-s
+    if(d>=1000*60*5){
+        fetch(`/api/users/leaving?user=${theUser}&online=true`)
+        console.log(d)
+    }
+  
+})

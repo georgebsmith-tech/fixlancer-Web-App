@@ -1906,7 +1906,7 @@ a.control-btn {
   width: 33.333333%;
   padding: 10px;
   max-width: 847px;
-  max-height: 476px;
+  max-height: 328px;
 }
 .about-fix-section .image-carousel-wrapper img {
   border-radius: 0px;
@@ -2234,7 +2234,7 @@ a.control-btn {
 }
 
 .main {
-  height: 90vh;
+  min-height: 77vh;
 }
 
 .message-container {
@@ -2278,6 +2278,8 @@ a.control-btn {
 
   .about-fix-section .image-carousel-wrapper > div {
     padding: 10px 40px;
+    max-width: 847px;
+    max-height: 476px;
   }
 
   .sales-and-orders-headings {
