@@ -120,8 +120,8 @@ function changeMessageToRead(data, io) {
         })
     io.to(users[data.receiver]).emit("message-read", { read: true })
 }
-function changeUserStatus(socket,user){
-    socket.broadcast.emit("user-online",user)
+function changeUserStatus(socket, user) {
+    socket.broadcast.emit("user-online", user)
 }
 
 
@@ -133,18 +133,18 @@ io.on("connection", socket => {
         console.log("New user: " + data.name)
         users[data.name] = socket.id
         changeMessageToRead(data, io)
-        changeUserStatus(socket,data.name)
+        changeUserStatus(socket, data.name)
         console.log(users)
         socket.broadcast.emit("new-user", data.name)
         io.to(users[data.name]).emit("online-users", Object.keys(users))
 
     })
 
-    socket.on("user-offline",function(user){
-        socket.broadcast.emit("user-offline",user)
+    socket.on("user-offline", function (user) {
+        socket.broadcast.emit("user-offline", user)
     })
-    socket.on("user-online",function(user){
-        changeUserStatus(socket,user)
+    socket.on("user-online", function (user) {
+        changeUserStatus(socket, user)
     })
 
     socket.on("disconnect", (msg) => {
@@ -221,13 +221,13 @@ app.get("/register", (req, res) => {
 })
 app.get("/dashboard", checkUserAuthenticated, (req, res) => {
 
-     let user=req.session.passport.user
-     
-    UserModel.findOneAndUpdate({username:user},{online:true},{new:true})
-    .then(data=>{
-        console.log(data)
+    let user = req.session.passport.user
 
-    })
+    UserModel.findOneAndUpdate({ username: user }, { online: true }, { new: true })
+        .then(data => {
+            console.log(data)
+
+        })
     res.render("dashboard")
 })
 
@@ -243,7 +243,7 @@ app.get("/dashboard/inbox", async (req, res) => {
     if (!req.session.passport) { loggedUser = "Smith" }
     else { loggedUser = req.session.passport.user }
     if (recipient) {
-        let date= new Date()
+        let date = new Date()
 
         const userColorData = await UserModel.findOne({ username: recipient }).select("userColor online last_seen")
         console.log(userColorData.userColor)
@@ -252,19 +252,38 @@ app.get("/dashboard/inbox", async (req, res) => {
         console.log(userColorData.last_seen)
         console.log(typeof userColorData.last_seen.toDateString())
         console.log(userColorData.last_seen.toDateString())
-        let timeElapse=(date-userColorData.last_seen)/(1000*60)
+        let timeElapse = (date - userColorData.last_seen) / (1000 * 60)
+        if (timeElapse > 60 * 24 * 365) {
+            theTime = parseInt(timeElapse / (60 * 24 * 365));
+            ago = theTime === 1 ? `${theTime} yr` : `${theTime} yrs`
+
+
+        } else if (timeElapse - 5 > 60 * 24 * 30) {
+            theTime = parseInt((timeElapse - 5) / (60 * 24 * 30));
+            ago = theTime === 1 ? `${theTime} month` : `${theTime} months`
+        } else if (timeElapse - 5 > 60 * 24 * 7) {
+            theTime = parseInt((timeElapse - 5) / (60 * 24 * 7));
+            ago = theTime === 1 ? `${theTime} wk` : `${theTime} wks`
+        }
+        else if (timeElapse - 5 > 60 * 24) {
+            theTime = parseInt((timeElapse - 5) / (60 * 24));
+            ago = theTime === 1 ? `${theTime} day` : `${theTime} days`
+        } else if (timeElapse - 5 > 60) {
+            theTime = parseInt((timeElapse - 5) / (60));
+            ago = theTime === 1 ? `${theTime} hr` : `${theTime} hrs`
+        } else ago = timeElapse - 5 === 1 ? `${parseInt(timeElapse - 5)} ,in` : `${parseInt(timeElapse - 5)} mins`
         console.log(`Minutes passed:${timeElapse}`)
-        res.render("chat-detailed", { chats, loggedUser, recipient, userColorData, online: userColorData.online,timeElapse })
+        res.render("chat-detailed", { chats, loggedUser, recipient, userColorData, online: userColorData.online, timeElapse, ago })
         return
     }
 
     const resp = await axios.get(`${domain}/api/chats/${loggedUser}`)
 
     const conversations = resp.data.data
-   if (conversations.length===0){
-       res.render("chats", { theConversations:conversations, loggedUser })
-            return
-   }
+    if (conversations.length === 0) {
+        res.render("chats", { theConversations: conversations, loggedUser })
+        return
+    }
     let users = conversations.map(user => { return [user.to, user.from] }).map(pair => {
         if (pair[0] !== loggedUser) {
             return pair[0]
@@ -408,11 +427,11 @@ app.get("/profile", checkUserAuthenticated, (req, res) => {
 app.get("/log-out", checkUserAuthenticated, (req, res) => {
     let user = req.session.passport.user
     let date = new Date()
-    UserModel.findOneAndUpdate({username:user},{online:false,last_seen:date},{new:true})
-    .then(data=>{
-        console.log(data)
+    UserModel.findOneAndUpdate({ username: user }, { online: false, last_seen: date }, { new: true })
+        .then(data => {
+            console.log(data)
 
-    })
+        })
     console.log("leaving!!!!!!!!!!!")
     req.logOut()
     res.redirect("/")

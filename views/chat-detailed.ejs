@@ -29,7 +29,7 @@
                     <span class="font13 margin5-right online-status-text">Offline</span>
                     <%}else{%>
                     <i class="fa fa-circle margin5-right text-orange online-status-icon" style="font-size: 1.3rem;"></i>
-                    <span class="font13 margin5-right online-status-text">Away</span>
+                    <span class="font13 margin5-right online-status-text">Away(<%= ago %> ago)</span>
                     <%}%>
 
                     
@@ -72,21 +72,22 @@
                                                     <%= chat.message%>
                                                 </div>
                                                 <div class="flex-end font10"><%= chat.createdAt %></div>
-                 </div>
-                    </div>
-                </div>
-                <%}%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <%}%>
             <%})%>
 
-             </div>
+                                </div>
         </section>
         <div class="message-control bg-white padd10 padd10-bottom">
             <div style="margin-top: -5px;"><em class="typing-status invisible"></em></div>
             <div style="position:relative">
                 <textarea name="" cols="30" rows="2" class="fill-width padd8 outline-none border-smooth"
                     placeholder="Enter your message..." id="message"></textarea>
-                <small style="position:absolute;top:57px;left:10px;font-size:1rem" class="font12 text-red hide chat-input-error"> <i class="fa fa-exclamation text-red"></i>
-                Message input field can no be empty</small>
+                <small style="position:absolute;top:57px;left:10px;font-size:1rem"
+                    class="font12 text-red hide chat-input-error"> <i class="fa fa-exclamation text-red"></i>
+                    Message input field can no be empty</small>
             </div>
             <div style="margin-top: 5px;" class="flex-between">
                 <div>
