@@ -31,6 +31,15 @@
         })
     })
     newUser(name)
+    socket.on("user-offline",function(user){
+        console.log("offline user:"+user)
+        if(receiver===user){
+            console.log("YESSSSSSSSSS")
+            changeStatus("Away","#f27415")
+        }else{
+            console.log("NOOOOOOOOOOOOOO")
+        }
+    })
 
 
 
@@ -54,12 +63,21 @@
         })
 
     });
-
-    socket.on("user-online",function(data){
-        document.querySelector(".online-status-icon").style.color="#89E130"
-        document.querySelector(".online-status-text").textContent="Active now"
+    function changeStatus(state,color){
+ document.querySelector(".online-status-icon").style.color=color
+        document.querySelector(".online-status-text").textContent=state
         console.log(document.querySelector(".online-status-icon"))
         console.log(document.querySelector(".online-status-text"))
+    }
+
+    socket.on("user-online",function(user){
+        if(user===receiver){
+            changeStatus("Active now","#89E130")
+            console.log("They're same")
+
+        }else{
+            console.log("No, they're not same")
+        }
             
         
     })

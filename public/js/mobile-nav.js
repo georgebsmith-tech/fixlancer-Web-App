@@ -161,6 +161,9 @@
 
 
 })()
+
+const socket=io()
+// console.log(socket)
 let e=0;
 let s=0;
 let timeOut;
@@ -171,7 +174,9 @@ window.addEventListener("blur", function () {
     console.log(" the blur")
     console.log(theUser)
     timeOut=setTimeout(() => {
+        socket.emit("user-offline",theUser)
         fetch(`/api/users/leaving?user=${theUser}`)
+
         // &online=true
     }, 60000*5);
     
@@ -186,6 +191,7 @@ window.addEventListener("focus", function () {
     let d=e-s
     if(d>=1000*60*5){
         fetch(`/api/users/leaving?user=${theUser}&online=true`)
+        socket.emit("user-online",theUser)
         console.log(d)
     }
   
@@ -194,8 +200,10 @@ window.addEventListener("focus", function () {
 window.addEventListener("offline",function(){
     console.log("offline")
     fetch(`/api/users/leaving?user=${theUser}`)
+    socket.emit("user-offline",theUser)
 })
 window.addEventListener("online",function(){
     fetch(`/api/users/leaving?user=${theUser}&online=true`)
-    console.log("online")
+    console.log("onlineeeeeeeeeee")
+    socket.emit("user-online",theUser)
 })
