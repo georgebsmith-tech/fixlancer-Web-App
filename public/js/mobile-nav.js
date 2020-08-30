@@ -162,55 +162,55 @@
     // For users' presence online
 
 
-    const socket=io()
+    const socket = io()
 
-// console.log(socket)
-let e=0;
-let s=0;
-let timeOut;
-let theUser=document.cookie.split(";").map(item=>{return item.trim()}).find(cookie=>{return cookie.includes("username=")}).split("=")[1]
-window.addEventListener("blur", function () {
-    s=new Date()
-    console.log(" the blur")
-    console.log(theUser)
-    timeOut=setTimeout(() => {
-        socket.emit("user-offline",theUser)
+    // console.log(socket)
+    let e = 0;
+    let s = 0;
+    let timeOut;
+    let theUser = document.cookie.split(";").map(item => { return item.trim() }).find(cookie => { return cookie.includes("username=") }).split("=")[1]
+    window.addEventListener("blur", function () {
+        s = new Date()
+        console.log(" the blur")
+        console.log(theUser)
+        timeOut = setTimeout(() => {
+            socket.emit("user-offline", theUser)
+            fetch(`/api/users/leaving?user=${theUser}`)
+
+            // &online=true
+        }, 600000 * 6);
+
+    })
+    window.addEventListener("focus", function () {
+        clearTimeout(timeOut)
+        e = new Date()
+        console.log(" the focus")
+        console.log(theUser)
+
+        let d = e - s
+        if (d >= 1000 * 60 * 6) {
+            fetch(`/api/users/leaving?user=${theUser}&online=true`)
+            socket.emit("user-online", theUser)
+            console.log(d)
+        }
+
+    })
+
+    window.addEventListener("offline", function () {
+        console.log("offline")
         fetch(`/api/users/leaving?user=${theUser}`)
-
-        // &online=true
-    }, 60000*5);
-    
-})
-window.addEventListener("focus", function () {
-    clearTimeout(timeOut)
-    e= new Date()
-    console.log(" the focus")
-    console.log(theUser)
-    
-    let d=e-s
-    if(d>=1000*60*5){
+        socket.emit("user-offline", theUser)
+    })
+    window.addEventListener("online", function () {
         fetch(`/api/users/leaving?user=${theUser}&online=true`)
-        socket.emit("user-online",theUser)
-        console.log(d)
-    }
-  
-})
-
-window.addEventListener("offline",function(){
-    console.log("offline")
-    fetch(`/api/users/leaving?user=${theUser}`)
-    socket.emit("user-offline",theUser)
-})
-window.addEventListener("online",function(){
-    fetch(`/api/users/leaving?user=${theUser}&online=true`)
-    console.log("onlineeeeeeeeeee")
-    socket.emit("user-online",theUser)
-})
+        console.log("onlineeeeeeeeeee")
+        socket.emit("user-online", theUser)
+    })
 
 
 
-socket.emit("user-online",theUser)
-console.log("got here")
+    socket.emit("user-online", theUser)
+    console.log("got here")
 
 
 

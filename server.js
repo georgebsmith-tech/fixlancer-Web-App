@@ -252,12 +252,12 @@ app.get("/dashboard/inbox", async (req, res) => {
         console.log(userColorData.last_seen)
         // console.log(typeof userColorData.last_seen.toDateString())
         // console.log(userColorData.last_seen.toDateString())
-        let timeElapse = (date - userColorData.last_seen) / (1000 * 60)
+        let timeElapse = parseInt((date - userColorData.last_seen) / (1000 * 60))
         if ((timeElapse - 5) > 60 * 24 * 365) {
             console.log(timeElapse - 5)
             theTime = parseInt(timeElapse / (60 * 24 * 365));
             ago = theTime === 1 ? `${theTime} yr` : `${theTime} yrs`
-
+            console.log(ago)
 
         } else if ((timeElapse - 5) > 60 * 24 * 30) {
             console.log(timeElapse - 5)
@@ -266,18 +266,22 @@ app.get("/dashboard/inbox", async (req, res) => {
         } else if ((timeElapse - 5) > 60 * 24 * 7) {
             theTime = parseInt((timeElapse - 5) / (60 * 24 * 7));
             ago = theTime === 1 ? `${theTime} wk` : `${theTime} wks`
+            console.log(ago)
         }
         else if ((timeElapse - 5) > 60 * 24) {
             console.log(timeElapse - 5)
             theTime = parseInt((timeElapse - 5) / (60 * 24));
             ago = theTime === 1 ? `${theTime} day` : `${theTime} days`
+            console.log(ago)
         } else if ((timeElapse - 5) > 60) {
             console.log(timeElapse - 5)
-            theTime = parseInt((timeElapse - 5) / (60));
+            theTime = parseInt((timeElapse - 6) / (60));
             ago = theTime === 1 ? `${theTime} hr` : `${theTime} hrs`
+            console.log(ago)
         } else {
             console.log(timeElapse - 5)
             ago = parseInt(timeElapse - 5) === 1 ? `${parseInt(timeElapse - 5)} min` : `${parseInt(timeElapse - 5)} mins`
+            console.log(ago)
         }
         console.log(`Minutes passed:${timeElapse}`)
         res.render("chat-detailed", { chats, loggedUser, recipient, userColorData, online: userColorData.online, timeElapse, ago })

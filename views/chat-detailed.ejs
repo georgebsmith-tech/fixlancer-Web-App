@@ -21,7 +21,7 @@
                     <span style="width: 20px;height: 20px;margin-right: 5px;"
                         class="font13 flex-center circle text-white user-icon bold"><%= recipient[0].toUpperCase() %></span>
                     <span class="bold font13 margin5-right"><%= recipient %></span>
-                    <% if(online){ %>
+                    <% if(online || 5>timeElapse){ %>
                     <i class="fa fa-circle user-online margin5-right online-status-icon" style="font-size: 1.3rem;"></i>
                     <span class="font13  margin5-right online-status-text">Active now</span>
                     <%}else if(timeElapse>=60*24*7){%>
