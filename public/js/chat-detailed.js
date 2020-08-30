@@ -89,8 +89,16 @@
         })
     });
     document.querySelector(".send-chat-button").addEventListener("click", (e) => {
+
         console.log("clicked")
         let message = messageInput.value
+        if(message===""){
+            messageInput.style.border="1px solid red"
+            document.querySelector(".chat-input-error").classList.remove("hide")
+            return 
+        }
+         messageInput.style.border="1px solid #ddd"
+        document.querySelector(".chat-input-error").classList.add("hide")
         console.log(message)
         // return
         socket.emit("chat", { sender: name, receiver, message })

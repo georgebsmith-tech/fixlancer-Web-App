@@ -849,6 +849,10 @@ i.fa.fa-star {
   border-bottom: 1px solid #ddd;
 }
 
+.text-red {
+  color: red;
+}
+
 .toggle-nav {
   position: absolute;
   right: 14px;
