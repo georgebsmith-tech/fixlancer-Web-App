@@ -811,6 +811,15 @@ i.fa.fa-star {
   padding-bottom: 30px;
 }
 
+.margin20-top {
+  margin-top: 20px;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .circle {
   border-radius: 50px;
 }
@@ -2265,6 +2274,51 @@ a.control-btn {
   margin-top: 5px;
   width: fit-content;
   padding: 6px 12px;
+}
+
+.fix-categories {
+  position: relative;
+  background: transparent;
+  cursor: pointer;
+  padding: 6px 12px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 3px;
+}
+.fix-categories .option {
+  width: 100px;
+}
+.fix-categories .option:hover {
+  cursor: pointer;
+}
+.fix-categories .options {
+  display: none;
+  position: absolute;
+  background: white;
+  z-index: 2;
+  padding: 10px 25px;
+  width: fit-content;
+  top: 32px;
+}
+.fix-categories:hover .options {
+  display: block;
+}
+
+.search-by-cat-container {
+  position: relative;
+}
+.search-by-cat-container i {
+  position: absolute;
+  right: 15px;
+  top: 11px;
+  cursor: pointer;
+}
+
+.search-by-cat {
+  margin-top: 4px;
+  padding: 7px 12px;
+  width: 100%;
+  outline: none;
 }
 
 @media only screen and (min-width: 991px) {
