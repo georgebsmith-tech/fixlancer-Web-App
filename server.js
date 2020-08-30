@@ -246,12 +246,10 @@ app.get("/dashboard/inbox", async (req, res) => {
         let date = new Date()
 
         const userColorData = await UserModel.findOne({ username: recipient }).select("userColor online last_seen")
-        console.log(userColorData.userColor)
+        // console.log(userColorData.userColor)
         let chats = await axios.get(`${domain}/api/chats/${loggedUser}?with=${recipient}`)
         chats = chats.data.data
         console.log(userColorData.last_seen)
-        // console.log(typeof userColorData.last_seen.toDateString())
-        // console.log(userColorData.last_seen.toDateString())
         let timeElapse = parseInt((date - userColorData.last_seen) / (1000 * 60))
         if ((timeElapse - 5) > 60 * 24 * 365) {
             console.log(timeElapse - 5)
@@ -283,8 +281,8 @@ app.get("/dashboard/inbox", async (req, res) => {
             ago = parseInt(timeElapse - 5) === 1 ? `${parseInt(timeElapse - 5)} min` : `${parseInt(timeElapse - 5)} mins`
             console.log(ago)
         }
-        console.log(`Minutes passed:${timeElapse}`)
-        res.render("chat-detailed", { chats, loggedUser, recipient, userColorData, online: userColorData.online, timeElapse, ago })
+
+        res.render("chat-detailed", { chats, loggedUser, recipient, userColorData, online: userColorData.online, timeElapse })
         return
     }
 
@@ -303,15 +301,12 @@ app.get("/dashboard/inbox", async (req, res) => {
     })
 
     let theConversations = [];
-    // console.log(users)
     users = [...new Set(users)]
-    // console.log(users)
 
 
     await users.forEach(async (user, index) => {
         let data = await ConversationModel.find().or([{ from: user, to: loggedUser }, { to: user, from: loggedUser }])
 
-        // theConversations.push(data.slice(-1)[0])
         const userColorData = await UserModel.findOne({ username: user }).select("userColor online last_seen")
         let deConversation = {
             from: data.slice(-1)[0].from,
@@ -324,7 +319,7 @@ app.get("/dashboard/inbox", async (req, res) => {
         console.log(deConversation)
         if (index * 1 === users.length - 1) {
             theConversations = theConversations.reverse()
-            // console.log(`The converse:${theConversations}`)
+
             res.render("chats", { theConversations, loggedUser })
             return
         }
@@ -338,8 +333,9 @@ app.get("/dashboard/inbox", async (req, res) => {
 app.get("/alert", (req, res) => {
     res.render("alert")
 })
-app.get("/search-fix", (req, res) => {
-    res.render("search-fix")
+app.get("/search-fix", async (req, res) => {
+    const fixes = await FixModel.find().limit(12)
+    res.render("search-fix", { fixes })
 })
 
 app.get("/dashboard/create-a-fix", (req, res) => {

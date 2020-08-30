@@ -4,28 +4,92 @@
 <head>
     <%- include('./partials/head.ejs') %>
     <script defer src="../js/user-profile.js"></script>
+    <script defer src="../../js/search-fix.js"></script>
 
 </head>
 
 <body>
     <%- include('./partials/header.ejs') %>
     <main class="main" style="min-height:69vh">
-        <section>
-            <div>
+        <section class="margin20-top">
+            <div class="flex">
                 <% for(let i of [1,2,3,4,5,6,6]){ %>
-                <select name="categories" id="">
-                    <option value="this is a value">My vlaue1</option>
-                    <option value="this is a value">>My vlaue2</option>
-                    <option value="this is a value">>My vlaue2</option>
-                </select>
+                <div id="" class="fix-categories circle font15">
+                    <span>category<%= i %></span>
+                    <i class="fa fa-caret-down"></i>
+                    <div class="options border-smooth">
+                        <% for(let item of [1,2,3,4]){ %>
+                        <div data-value="this is a value" class="option center-text">My vlaue<%= item %></div>
+                        <%}%>
+                    </div>
+
+                </div>
                 <%}%>
-        
-    </div>
-    </section>
 
-    
+                    </div>
+        </section>
+        <section class="margin20-top">
+            <div class="font14">Showing search results for: <span class="bold">writing</span> </div>
+            <div class="search-by-cat-container">
+                <input type="text" class="border-smooth search-by-cat" value="">
+                <i class="fa fa-search font16 search-btn-body"></i>
+            </div>
 
-    
+            <div class="margin20-top grid-responsive-max6">
+                <% for(let aFix of fixes){ %>
+                <div class="fix-card">
+                    <div class="grid-2-12-card">
+                        <a href="/fix/<%= aFix.subcatSlug %>/<%= aFix.titleSlug %>">
+                            <div class="fix-image-wrapper">
+                                <img src="<%= aFix.images_url[0] %>" alt="">
+                            </div>
+                        </a>
+                        <div class="fix-username-and-presence desktop padding-sides" style="padding-bottom:10px;">
+                            <i class="fa fa-circle"></i>
+                            <span style="font-weight: bold;"> <%= aFix.username%></span>
+
+                        </div>
+                        <div>
+                            <a href="/fix/<%= aFix.subcatSlug %>/<%= aFix.titleSlug %>"
+                                class="anchor-hover-blue-underline fix-title block">
+                                <%= aFix.title.toLowerCase().substr(0,40) %>...
+                            </a>
+                            <div class="duration-and-rating-trust">
+                                <i class="fas fa-clock"></i>
+                                <span><%= aFix.delivery_days %> day(s)</span>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="amount-and-user">
+                        <div class="duration-and-rating-trust desktop" style="padding-bottom:10px">
+                            <i class="fas fa-clock"></i>
+                            <span><%= aFix.delivery_days %> day(s)</span>
+
+                        </div>
+                        <div class="fix-username-and-presence mobile" style="padding-bottom:10px;">
+                            <i class="fa fa-circle"></i>
+                            <span style="font-weight: bold;"> <%= aFix.username%></span>
+
+                        </div>
+                        <div class="fix-amount-green">
+                            ₦<%= aFix.price%>
+                        </div>
+                    </div>
+
+                </div>
+                <%}%>
+
+            </div>
+
+
+        </section>
+
+
+
+
     </main>
     <%- include('./partials/footer.ejs') %>
 </body>
