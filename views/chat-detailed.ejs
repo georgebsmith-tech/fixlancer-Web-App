@@ -27,7 +27,7 @@
                     <%}else if(timeElapse>=60*24*7){%>
                     <i class="fa fa-circle margin5-right online-status-icon" style="font-size: 1.3rem;"></i>
                     <span class="font13 margin5-right online-status-text">Offline</span>
-                    <%}else{%>
+                    <%}else if(timeElapse>=5){%>
                     <i class="fa fa-circle margin5-right text-orange online-status-icon" style="font-size: 1.3rem;"></i>
                     <span class="font13 margin5-right online-status-text">Away(<%= ago %> ago)</span>
                     <%}%>
