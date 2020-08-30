@@ -246,10 +246,8 @@ app.get("/dashboard/inbox", async (req, res) => {
         let date = new Date()
 
         const userColorData = await UserModel.findOne({ username: recipient }).select("userColor online last_seen")
-        // console.log(userColorData.userColor)
         let chats = await axios.get(`${domain}/api/chats/${loggedUser}?with=${recipient}`)
         chats = chats.data.data
-        console.log(userColorData.last_seen)
         let timeElapse = parseInt((date - userColorData.last_seen) / (1000 * 60))
         if ((timeElapse - 5) > 60 * 24 * 365) {
             console.log(timeElapse - 5)
@@ -282,7 +280,7 @@ app.get("/dashboard/inbox", async (req, res) => {
             console.log(ago)
         }
 
-        res.render("chat-detailed", { chats, loggedUser, recipient, userColorData, online: userColorData.online, timeElapse })
+        res.render("chat-detailed", { chats, loggedUser, recipient, userColorData, online: userColorData.online, timeElapse, ago })
         return
     }
 
