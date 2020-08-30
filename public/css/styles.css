@@ -2221,6 +2221,18 @@ a.control-btn {
   background: #eeeded;
 }
 
+.user-avatar {
+  margin-top: -5px;
+  border-radius: 50px;
+  display: flex;
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  background: red;
+  color: white;
+}
+
 .message-received, .message-sent {
   width: fit-content;
   background: white;

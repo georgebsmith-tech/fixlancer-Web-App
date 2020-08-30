@@ -9,3 +9,16 @@
         background: rgb(238, 237, 237);
     }
 }
+
+
+.user-avatar{
+    margin-top: -5px;
+    border-radius: 50px;
+    display: flex;
+    width: 30px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    background: red;
+    color: white;
+}

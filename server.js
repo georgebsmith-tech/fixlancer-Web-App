@@ -300,7 +300,17 @@ app.get("/dashboard/inbox", async (req, res) => {
     await users.forEach(async (user, index) => {
         let data = await ConversationModel.find().or([{ from: user, to: loggedUser }, { to: user, from: loggedUser }])
 
-        theConversations.push(data.slice(-1)[0])
+        // theConversations.push(data.slice(-1)[0])
+        const userColorData = await UserModel.findOne({ username: user }).select("userColor online last_seen")
+        let deConversation = {
+            from: data.slice(-1)[0].from,
+            to: data.slice(-1)[0].to,
+            message: data.slice(-1)[0].message,
+            userColor: userColorData.userColor,
+            createdAt: data.slice(-1)[0].createdAt.toDateString()
+        }
+        theConversations.push(deConversation)
+        console.log(deConversation)
         if (index * 1 === users.length - 1) {
             theConversations = theConversations.reverse()
             // console.log(`The converse:${theConversations}`)
