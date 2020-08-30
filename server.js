@@ -143,7 +143,7 @@ io.on("connection", socket => {
     socket.on("user-offline",function(user){
         socket.broadcast.emit("user-offline",user)
     })
-    socket.on("online-offline",function(user){
+    socket.on("user-online",function(user){
         changeUserStatus(socket,user)
     })
 
@@ -222,6 +222,7 @@ app.get("/register", (req, res) => {
 app.get("/dashboard", checkUserAuthenticated, (req, res) => {
 
      let user=req.session.passport.user
+     
     UserModel.findOneAndUpdate({username:user},{online:true},{new:true})
     .then(data=>{
         console.log(data)

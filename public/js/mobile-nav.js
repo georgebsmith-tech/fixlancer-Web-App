@@ -159,17 +159,17 @@
 
 
 
+    // For users' presence online
 
-})()
 
-const socket=io()
+    const socket=io()
+
 // console.log(socket)
 let e=0;
 let s=0;
 let timeOut;
-let theUser;
+let theUser=document.cookie.split(";").map(item=>{return item.trim()}).find(cookie=>{return cookie.includes("username=")}).split("=")[1]
 window.addEventListener("blur", function () {
-    theUser=document.cookie.split(";").map(item=>{return item.trim()}).find(cookie=>{return cookie.includes("username=")}).split("=")[1]
     s=new Date()
     console.log(" the blur")
     console.log(theUser)
@@ -182,7 +182,6 @@ window.addEventListener("blur", function () {
     
 })
 window.addEventListener("focus", function () {
-    theUser=document.cookie.split(";").map(item=>{return item.trim()}).find(cookie=>{return cookie.includes("username=")}).split("=")[1]
     clearTimeout(timeOut)
     e= new Date()
     console.log(" the focus")
@@ -207,3 +206,22 @@ window.addEventListener("online",function(){
     console.log("onlineeeeeeeeeee")
     socket.emit("user-online",theUser)
 })
+
+
+
+socket.emit("user-online",theUser)
+console.log("got here")
+
+
+
+
+
+})()
+
+
+
+
+
+
+
+
