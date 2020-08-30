@@ -10,8 +10,15 @@
 <body>
     <%- include('./partials/header.ejs') %>
     <main class="main" style="min-height:69vh">
-    <section>
-    <div>
+        <section>
+            <div>
+                <% for(let i of [1,2,3,4,5,6,6]){ %>
+                <select name="categories" id="">
+                    <option value="this is a value">My vlaue1</option>
+                    <option value="this is a value">>My vlaue2</option>
+                    <option value="this is a value">>My vlaue2</option>
+                </select>
+                <%}%>
         
     </div>
     </section>
