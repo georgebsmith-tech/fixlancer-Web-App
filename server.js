@@ -297,6 +297,9 @@ app.get("/dashboard/inbox", async (req, res) => {
 app.get("/alert", (req, res) => {
     res.render("alert")
 })
+app.get("/search-fix", (req, res) => {
+    res.render("search-fix")
+})
 
 app.get("/dashboard/create-a-fix", (req, res) => {
     res.render("create-fix")
