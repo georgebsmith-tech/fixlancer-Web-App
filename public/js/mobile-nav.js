@@ -1,6 +1,13 @@
 (function () {
     const mobileFinanceContainer = document.querySelector(".mobile-finance")
-    console.log(mobileFinanceContainer)
+    const mobileSearchInput = document.querySelector(".search-mobile-header")
+    const mobileSearcHandler = document.querySelector(".search-mobile-header+i")
+    // console.log(mobileSearchInput)
+    mobileSearcHandler.addEventListener("click", function () {
+        const searchTerm = mobileSearchInput.value.trim()
+
+        location.href = `/search-fix?term=${searchTerm}&pg=1`
+    })
 
     fetch("/api/users/u")
         .then(resp => {

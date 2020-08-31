@@ -209,6 +209,9 @@ const checkUserNotAuthenticated = require("./middleware/userIsNotauthenticated")
 app.get("/chat-app", checkUserAuthenticated, function (req, res) {
     res.render("chat-app")
 })
+app.get("/home", function (req, res) {
+    res.render("home")
+})
 
 app.get("/", checkUserNotAuthenticated, (req, res) => {
     res.render("index")
@@ -249,34 +252,24 @@ app.get("/dashboard/inbox", async (req, res) => {
         let chats = await axios.get(`${domain}/api/chats/${loggedUser}?with=${recipient}`)
         chats = chats.data.data
         let timeElapse = parseInt((date - userColorData.last_seen) / (1000 * 60))
-        if ((timeElapse - 5) > 60 * 24 * 365) {
-            console.log(timeElapse - 5)
-            theTime = parseInt(timeElapse / (60 * 24 * 365));
-            ago = theTime === 1 ? `${theTime} yr` : `${theTime} yrs`
-            console.log(ago)
-
-        } else if ((timeElapse - 5) > 60 * 24 * 30) {
-            console.log(timeElapse - 5)
-            theTime = parseInt((timeElapse - 5) / (60 * 24 * 30));
-            ago = theTime === 1 ? `${theTime} month` : `${theTime} months`
-        } else if ((timeElapse - 5) > 60 * 24 * 7) {
+        if ((timeElapse - 5) > 60 * 24 * 7) {
             theTime = parseInt((timeElapse - 5) / (60 * 24 * 7));
-            ago = theTime === 1 ? `${theTime} wk` : `${theTime} wks`
-            console.log(ago)
+            ago = `${theTime}w`
+            // console.log(ago)
         }
         else if ((timeElapse - 5) > 60 * 24) {
             console.log(timeElapse - 5)
             theTime = parseInt((timeElapse - 5) / (60 * 24));
-            ago = theTime === 1 ? `${theTime} day` : `${theTime} days`
+            ago = `${theTime}d`
             console.log(ago)
         } else if ((timeElapse - 5) > 60) {
             console.log(timeElapse - 5)
             theTime = parseInt((timeElapse - 6) / (60));
-            ago = theTime === 1 ? `${theTime} hr` : `${theTime} hrs`
+            ago = `${theTime}h`
             console.log(ago)
         } else {
             console.log(timeElapse - 5)
-            ago = parseInt(timeElapse - 5) === 1 ? `${parseInt(timeElapse - 5)} min` : `${parseInt(timeElapse - 5)} mins`
+            ago = `${parseInt(timeElapse - 5)}m`
             console.log(ago)
         }
 
@@ -321,19 +314,25 @@ app.get("/dashboard/inbox", async (req, res) => {
             res.render("chats", { theConversations, loggedUser })
             return
         }
-
     })
-
-
-
 })
 
 app.get("/alert", (req, res) => {
     res.render("alert")
 })
 app.get("/search-fix", async (req, res) => {
-    const fixes = await FixModel.find().limit(12)
-    res.render("search-fix", { fixes })
+    let pageSize = 4
+    let rawTerm = req.query.term
+    let page = req.query.pg * 1
+    let skip = (page - 1) * pageSize
+    term = new RegExp(rawTerm, "i")
+    let count = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).count()
+    let pages = Math.ceil(count / pageSize)
+
+
+    const fixes = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).skip(skip).limit(pageSize)
+
+    res.render("search-fix", { fixes, pages, rawTerm })
 })
 
 app.get("/dashboard/create-a-fix", (req, res) => {
@@ -364,7 +363,6 @@ app.get("/dashboard/my-orders/cancelled", checkUserAuthenticated, (req, res) => 
 app.get("/dashboard/my-orders/delivered", checkUserAuthenticated, (req, res) => {
     res.render("my-orders-delivered")
 })
-
 
 app.get("/dashboard/my-sales/delivered", checkUserAuthenticated, (req, res) => {
     res.render("my-sales-delivered")

@@ -598,6 +598,13 @@ h1,h2,h3,h4,h5,h6{
     color: #5a5c69;
 }
 
+
+.grid-responsive-max4{
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+}
+
 .flex-between{
   display: flex;
   justify-content: space-between;
@@ -947,11 +954,14 @@ button.header-top-btn,a.header-top-btn{
 }
 
 .search-input-wwrapper{
+  position: relative;
     
     .fa-search{
-        position: relative;
+        position: absolute;
         z-index: 2;
-        color: red;
+        right: 1px;
+        top: 7px;
+        cursor: pointer;
     }
 }
 .mobile-finance{

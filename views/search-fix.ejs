@@ -28,14 +28,26 @@
 
                     </div>
         </section>
-        <section class="margin20-top">
-            <div class="font14">Showing search results for: <span class="bold">writing</span> </div>
+        <section class="margin20-top" style="position: relative;">
+            <div style="position: absolute; background: rgb(0,0,0,0.2);width: 100%;height: 100%;top: 0px;left: 0px;z-index: 3;"
+                class="flex-center search-loader hide">
+                <div style="width: 80px
+; height: 80px;" class="circle bg-white flex-center">
+
+                    <div style="width: 20px
+; height: 20px;" class="circle bg-orange">
+
+                    </div>
+                </div>
+            </div>
+            <div class="font14">Showing search results for: <span class="bold showing-category"><%= rawTerm %></span>
+            </div>
             <div class="search-by-cat-container">
-                <input type="text" class="border-smooth search-by-cat" value="">
+                <input type="text" class="border-smooth search-by-cat" value="<%= rawTerm %>">
                 <i class="fa fa-search font16 search-btn-body"></i>
             </div>
 
-            <div class="margin20-top grid-responsive-max6">
+            <div class="margin20-top grid-responsive-max4 search-fixes">
                 <% for(let aFix of fixes){ %>
                 <div class="fix-card">
                     <div class="grid-2-12-card">
@@ -85,6 +97,18 @@
             </div>
 
 
+        </section>
+        <section>
+            <ul class="search-pagination"> 
+                <% for(let i=1; i<=pages;i++){ %>
+                <li>
+                    <a href="">
+                        <%= i %>
+                    </a>
+                </li>
+
+                <%} %>
+                </ul>
         </section>
 
 

@@ -595,6 +595,12 @@ h1, h2, h3, h4, h5, h6 {
   color: #5a5c69;
 }
 
+.grid-responsive-max4 {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
 .flex-between {
   display: flex;
   justify-content: space-between;
@@ -934,10 +940,15 @@ button.header-top-btn, a.header-top-btn {
   width: 80vw;
 }
 
-.search-input-wwrapper .fa-search {
+.search-input-wwrapper {
   position: relative;
+}
+.search-input-wwrapper .fa-search {
+  position: absolute;
   z-index: 2;
-  color: red;
+  right: 1px;
+  top: 7px;
+  cursor: pointer;
 }
 
 .mobile-finance {
@@ -2684,6 +2695,10 @@ a.control-btn {
     border-radius: 0;
   }
 
+  .grid-responsive-max4 .grid-2-12-card .fix-image-wrapper {
+    height: 160px !important;
+  }
+
   .fix-title {
     padding: 0px 10px;
     box-sizing: border-box;
@@ -2714,6 +2729,11 @@ a.control-btn {
   .grid-responsive-6, .grid-responsive-max6 {
     width: 100%;
     grid-template-columns: repeat(6, 1fr);
+  }
+
+  .grid-responsive-max4 {
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 

@@ -107,7 +107,11 @@
         
         grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
         
+
+        
     }
+
+
 
     main.request-page{
         padding:15px 160px 30px 160px ;
@@ -365,12 +369,23 @@
             border-radius: 0;
         }
     }
+
+    .grid-responsive-max4{
+        .grid-2-12-card{
+            .fix-image-wrapper{
+                height: 160px !important;
+            }
+        }
+        
+
+    }
     .fix-title{
         padding: 0px 10px;
         box-sizing: border-box;
     }
+   
 
-    div.grid-2-12-card{
+   div.grid-2-12-card{
         display: flex;
         flex-direction: column;
     }
@@ -402,5 +417,12 @@
         
         grid-template-columns: repeat(6,1fr); 
     }
+    
+    .grid-responsive-max4{
+        width: 100%;
+        grid-template-columns: repeat(4,1fr); 
+
+    }
+
      
  }
