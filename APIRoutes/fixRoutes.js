@@ -52,12 +52,14 @@ router.post("/", multiple_uploads, async (req, res) => {
     })
 })
 router.get("/", async (req, res) => {
+
     const reqString = req.query
     const state = reqString.state
     const count = reqString.count * 1
     const limit = reqString.limit * 1
-    const skip = reqString.skip * 1
     const term = reqString.q
+    const page = reqString.pg * 1
+    const skip = (page - 1) * limit
     if (state === "random") {
         const data = await FixModel.aggregate([{ $sample: { size: count * 1 } }])
         return res.status(200).json(data)
@@ -72,11 +74,9 @@ router.get("/", async (req, res) => {
         let reg = new RegExp(term, "i")
         console.log(reg)
 
-        const data = await FixModel.find().or([{ title: reg }, { description: reg }, { tags: reg }])
+        const data = await FixModel.find().or([{ title: reg }, { description: reg }, { tags: reg }]).skip(skip).limit(limit)
         return res.status(200).send({
-            state,
-            limit,
-            skip,
+            term,
             data
         })
     }

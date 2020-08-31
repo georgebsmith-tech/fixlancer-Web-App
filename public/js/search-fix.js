@@ -1,10 +1,32 @@
+
 (function () {
     const searchBtn = document.querySelector(".search-btn-body")
-    searchBtn.addEventListener("click", function () {
-        let searchLoaderHandler = document.querySelector(".search-loader")
-        searchLoaderHandler.classList.remove("hide")
+    let searchLoaderHandler = document.querySelector(".search-loader")
 
-        let term = document.querySelector(".search-by-cat").value
+    const nextBtn = document.querySelector(".next-result")
+
+    nextBtn.addEventListener("click", async function () {
+
+        let term = document.querySelector(".search-by-cat").value.trim()
+
+        searchLoaderHandler.classList.remove("hide")
+        const resp = await fetch(`/api/fixes?state=search&limit=4&pg=${this.dataset.next}&q=${term}`)
+        const data = await resp.json()
+        console.log(data)
+        renderResult(data)
+
+    })
+
+    searchBtn.addEventListener("click", function () {
+
+
+
+        let term = document.querySelector(".search-by-cat").value.trim()
+        if (term === "") {
+            alert("No na!!!")
+            return
+        }
+        searchLoaderHandler.classList.remove("hide")
         document.querySelector(".showing-category").textContent = term
         console.log(term)
         fetch(`/api/fixes?state=search&limit=12&skip=7&q=${term}`)
@@ -12,13 +34,18 @@
                 return resp.json()
             })
             .then(data => {
-                document.querySelector(".search-fixes").innerHTML = ""
+                renderResult(data)
+            })
+    })
 
-                data.data.forEach(aFix => {
+    function renderResult(data) {
+        document.querySelector(".search-fixes").innerHTML = ""
+
+        data.data.forEach(aFix => {
 
 
 
-                    let fix = `<div class="fix-card">
+            let fix = `<div class="fix-card">
                             <div class="grid-2-12-card">
                                 <a href="/fix/${aFix.subcatSlug}/${aFix.titleSlug}">
                                     <div class="fix-image-wrapper">
@@ -61,13 +88,10 @@
                             </div>
 
                 </div>`
-                    // console.log(fix)
-                    // docFrag.appendChild(fix)
-                    searchLoaderHandler.classList.add("hide")
-                    document.querySelector(".search-fixes").insertAdjacentHTML("afterbegin", fix)
-                })
-                // document.querySelector(".search-fixes").insertAdjacentHTML("afterbegin", docFrag)
-
-            })
-    })
+            // console.log(fix)
+            // docFrag.appendChild(fix)
+            searchLoaderHandler.classList.add("hide")
+            document.querySelector(".search-fixes").insertAdjacentHTML("afterbegin", fix)
+        })
+    }
 })()

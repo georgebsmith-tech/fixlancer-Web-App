@@ -99,16 +99,18 @@
 
         </section>
         <section>
-            <ul class="search-pagination"> 
-                <% for(let i=1; i<=pages;i++){ %>
-                <li>
-                    <a href="">
-                        <%= i %>
-                    </a>
-                </li>
+            <div class="search-pagination"> 
+                <% if(pages!==1){%>
 
-                <%} %>
-                </ul>
+
+                <div class="font16">
+                    <span>Page 1</span>
+
+                    <i class="fa fa-caret-right next-result" style="cursor: pointer;" data-next="2"></i>
+                </div>
+
+                <%}%>
+            </div>
         </section>
 
 
