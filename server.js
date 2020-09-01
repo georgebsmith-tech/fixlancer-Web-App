@@ -195,6 +195,7 @@ io.on("connection", socket => {
             io.to(users[data.sender]).emit("message-sent", { status: "seen" })
             read = true
         } else {
+            io.to(socketId).emit("chat", { sender: data.sender, message: data.message })
             io.to(users[data.sender]).emit("message-sent", { status: "sent" })
             read = false
         }
