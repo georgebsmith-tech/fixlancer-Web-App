@@ -19,6 +19,7 @@
     socket.on("new-user", function (user) {
         console.log(user)
     })
+    socket.emit("chat-active", { user: name, active: true, receiver })
 
     socket.on("message-read", function (status) {
         const divs = msgMainContainer.querySelectorAll(".message-sent .flex-end .unread")
@@ -31,12 +32,12 @@
         })
     })
     newUser(name)
-    socket.on("user-offline",function(user){
-        console.log("offline user:"+user)
-        if(receiver===user){
+    socket.on("user-offline", function (user) {
+        console.log("offline user:" + user)
+        if (receiver === user) {
             console.log("YESSSSSSSSSS")
-            changeStatus("Away","#f27415")
-        }else{
+            changeStatus("Away", "#f27415")
+        } else {
             console.log("NOOOOOOOOOOOOOO")
         }
     })
@@ -59,27 +60,27 @@
     socket.on("typing-status", function (user) {
         status.forEach(obj => {
             obj.classList.remove("invisible")
-            obj.textContent = `${user} is typing`
+            obj.innerHTML = `<i class="fa fa-pencil"></i> is typing...`
         })
 
     });
-    function changeStatus(state,color){
- document.querySelector(".online-status-icon").style.color=color
-        document.querySelector(".online-status-text").textContent=state
+    function changeStatus(state, color) {
+        document.querySelector(".online-status-icon").style.color = color
+        document.querySelector(".online-status-text").textContent = state
         console.log(document.querySelector(".online-status-icon"))
         console.log(document.querySelector(".online-status-text"))
     }
 
-    socket.on("user-online",function(user){
-        if(user===receiver){
-            changeStatus("Active now","#89E130")
+    socket.on("user-online", function (user) {
+        if (user === receiver) {
+            changeStatus("Active now", "#89E130")
             console.log("They're same")
 
-        }else{
+        } else {
             console.log("No, they're not same")
         }
-            
-        
+
+
     })
 
     socket.on("stopped-typing", function (user) {
@@ -92,16 +93,20 @@
 
         console.log("clicked")
         let message = messageInput.value
-        if(message===""){
-            messageInput.style.border="1px solid red"
+        if (message === "") {
+            messageInput.style.border = "1px solid red"
             document.querySelector(".chat-input-error").classList.remove("hide")
-            return 
+            return
         }
-         messageInput.style.border="1px solid #ddd"
+        messageInput.style.border = "1px solid #ddd"
         document.querySelector(".chat-input-error").classList.add("hide")
         console.log(message)
         // return
-        socket.emit("chat", { sender: name, receiver, message })
+        let state;
+        if (document.querySelector(".online-status-text").textContent === "Active now") state = "seen"
+        else
+            state = "sent"
+        socket.emit("chat", { sender: name, receiver, message, state })
         // return
         const msgContainer = document.createElement("div")
         msgContainer.classList.add("flex-end")
@@ -172,8 +177,10 @@
 
     window.addEventListener("focus", function () {
         console.log("focussed!!")
+        socket.emit("chat-active", { user: name, active: true, receiver })
     })
     window.addEventListener("blur", function () {
+        socket.emit("chat-active", { user: name, active: false, receiver })
         console.log("blur!!")
     })
 

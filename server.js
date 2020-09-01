@@ -108,6 +108,7 @@ app.use((req, res, next) => {
 
 
 let users = {}
+let activeChats = {}
 function changeMessageToRead(data, io) {
     ConversationModel.find({ read: false, from: data.receiver, to: data.name })
         .then(data => {
@@ -128,9 +129,23 @@ function changeUserStatus(socket, user) {
 io.on("connection", socket => {
     console.log("A user connected")
 
+    socket.on("chat-active", function (data) {
+        console.log(`Active user: ${data.user}`)
+        console.log(`Before Active chats:`)
+        console.log(activeChats)
+        if (data.active)
+            activeChats[data.user] = data.receiver
+        else {
+            delete activeChats[data.user]
+
+        }
+        console.log(`After Active chats:`)
+        console.log(activeChats)
+    })
+
 
     socket.on("new-user", (data) => {
-        console.log("New user: " + data.name)
+        // console.log("New user: " + data.name)
         users[data.name] = socket.id
         changeMessageToRead(data, io)
         changeUserStatus(socket, data.name)
@@ -173,25 +188,27 @@ io.on("connection", socket => {
     })
 
     socket.on("chat", async function (data) {
-
-        if (Object.keys(users).find(username => { return username === data.receiver })) {
+        let read;
+        if (activeChats[data.receiver] === data.sender) {
             let socketId = users[data.receiver]
             io.to(socketId).emit("chat", { sender: data.sender, message: data.message })
             io.to(users[data.sender]).emit("message-sent", { status: "seen" })
-
+            read = true
         } else {
             io.to(users[data.sender]).emit("message-sent", { status: "sent" })
+            read = false
         }
         const record = {
             from: data.sender,
             to: data.receiver,
             message: data.message,
-            read: false
+            read
         }
+        console.log(record)
 
         const converse = new ConversationModel(record)
         const newConverse = await converse.save()
-        console.log(newConverse)
+        // console.log(newConverse)
 
 
     })
