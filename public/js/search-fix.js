@@ -5,17 +5,23 @@
 
     const nextBtn = document.querySelector(".next-result")
 
-    nextBtn.addEventListener("click", async function () {
+
+    async function fetchAndRenderData() {
+
 
         let term = document.querySelector(".search-by-cat").value.trim()
 
         searchLoaderHandler.classList.remove("hide")
-        const resp = await fetch(`/api/fixes?state=search&limit=4&pg=${this.dataset.next}&q=${term}`)
+        const resp = await fetch(`/api/fixes?state=search&limit=4&pg=${this.dataset.pg}&q=${term}`)
         const data = await resp.json()
         console.log(data)
-        renderResult(data)
+        renderResult(data, this.dataset.pg)
 
-    })
+
+    }
+
+    nextBtn.addEventListener("click", fetchAndRenderData)
+
 
     searchBtn.addEventListener("click", function () {
 
@@ -37,8 +43,9 @@
                 renderResult(data)
             })
     })
+    let prevBtn;
 
-    function renderResult(data) {
+    function renderResult(data, pres) {
         document.querySelector(".search-fixes").innerHTML = ""
 
         data.data.forEach(aFix => {
@@ -88,10 +95,18 @@
                             </div>
 
                 </div>`
-            // console.log(fix)
-            // docFrag.appendChild(fix)
             searchLoaderHandler.classList.add("hide")
             document.querySelector(".search-fixes").insertAdjacentHTML("afterbegin", fix)
         })
+        if (pres * 1 > 1) {
+            prevBtn = document.querySelector(".previous-result")
+            prevBtn.style.visibility = "visible"
+            prevBtn.setAttribute("data-pg", `${pres - 1}`)
+            prevBtn.addEventListener("click", fetchAndRenderData)
+        } else {
+            prevBtn.style.visibility = "hidden"
+        }
+        nextBtn.setAttribute("data-pg", `${pres * 1 + 1}`)
+        document.querySelector(".current-page").textContent = `Page ${pres}`
     }
 })()

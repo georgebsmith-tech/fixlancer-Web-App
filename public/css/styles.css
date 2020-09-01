@@ -2344,6 +2344,21 @@ a.control-btn {
   outline: none;
 }
 
+.page-nav-holder .fa {
+  margin: 0px 7px;
+  background: white;
+  padding: 5px 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+.page-nav-holder span {
+  padding: 5px 8px;
+  color: white;
+  background: #5a5c69;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
 @media only screen and (min-width: 991px) {
   .grid-2-21 {
     display: grid;

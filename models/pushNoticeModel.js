@@ -11,7 +11,7 @@ mongoose.connect(dataBaseUrl, { useNewUrlParser: true, useUnifiedTopology: true,
     if (err) {
         console.log("error" + err)
     } else {
-        console.log("Categories Connction successful" + data)
+        console.log("push Connction successful" + data)
     }
 
 })

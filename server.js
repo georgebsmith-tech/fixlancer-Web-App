@@ -324,6 +324,7 @@ app.get("/dashboard/inbox", async (req, res) => {
         }
     })
 })
+const CategoriesModel = require("./models/categoryModel")
 
 app.get("/alert", (req, res) => {
     res.render("alert")
@@ -337,10 +338,12 @@ app.get("/search-fix", async (req, res) => {
     let count = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).count()
     let pages = Math.ceil(count / pageSize)
 
-
+    // let resp = await axios.get("/api/categories")
+    let categories = await CategoriesModel.find()
+    console.log(categories)
     const fixes = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).skip(skip).limit(pageSize)
-    console.log(fixes)
-    res.render("search-fix", { fixes, pages, rawTerm })
+    // console.log(fixes)
+    res.render("search-fix", { fixes, pages, rawTerm, categories })
 })
 
 app.get("/dashboard/create-a-fix", (req, res) => {

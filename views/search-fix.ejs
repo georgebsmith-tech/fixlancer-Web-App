@@ -10,16 +10,22 @@
 
 <body>
     <%- include('./partials/header.ejs') %>
-    <main class="main" style="min-height:69vh">
+    <main class="main" style="min-height:69vh;position: relative;">
         <section class="margin20-top">
             <div class="flex">
-                <% for(let i of [1,2,3,4,5,6,6]){ %>
+                <% for(let category of categories){ %>
                 <div id="" class="fix-categories circle font15">
-                    <span>category<%= i %></span>
-                    <i class="fa fa-caret-down"></i>
+                    <div>
+                        <span><%= category.name %></span>
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+
                     <div class="options border-smooth">
-                        <% for(let item of [1,2,3,4]){ %>
-                        <div data-value="this is a value" class="option center-text">My vlaue<%= item %></div>
+                        <div class="center-text">
+                            <a href="">(View all)</a>
+                        </div>
+                        <% for(let subcat of category.subcat ){ %>
+                        <div data-value="<%= subcat.name %>" class="option center-text"><%= subcat.name %></div>
                         <%}%>
                     </div>
 
@@ -103,10 +109,12 @@
                 <% if(pages!==1){%>
 
 
-                <div class="font16">
-                    <span>Page 1</span>
+                <div class="font16 page-nav-holder flex-center" style="flex-direction: row;">
+                    <i class="fa fa-caret-left previous-result" style="cursor: pointer;visibility: hidden;"
+                        data-pg=""></i>
+                    <span class="current-page">Page 1</span>
 
-                    <i class="fa fa-caret-right next-result" style="cursor: pointer;" data-next="2"></i>
+                    <i class="fa fa-caret-right next-result" style="cursor: pointer;" data-pg="2"></i>
                 </div>
 
                 <%}%>
