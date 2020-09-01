@@ -12,10 +12,6 @@
         socket.emit("new-user", { name, receiver });
     }
 
-
-
-    let socket = io()
-
     socket.on("new-user", function (user) {
         console.log(user)
     })
@@ -133,7 +129,6 @@
 
     })
     socket.on("chat", function (data) {
-        // console.log(data)
         const msgContainer = document.createElement("div")
         msgContainer.classList.add("flex-start")
         const msgWrapper = document.createElement("div")
@@ -157,19 +152,17 @@
 
     socket.on("message-sent", function (data) {
         const divs = msgMainContainer.querySelectorAll(".message-sent .flex-end")
-        if (data.status === "sent") {
-            const check1 = document.createElement("i")
-            check1.setAttribute("class", "fa fa-check unread")
-            //.appendChild(check1)
-            divs[divs.length - 1].appendChild(check1)
-
-        } else if (data.status === "seen") {
+        if (data.status === "seen") {
             const check1 = document.createElement("i")
             check1.setAttribute("class", "fa fa-check text-blue")
             const check2 = document.createElement("i")
             check2.setAttribute("class", "fa fa-check text-blue")
             divs[divs.length - 1].appendChild(check1)
             divs[divs.length - 1].appendChild(check2)
+        } else if (data.status === "sent") {
+            const check1 = document.createElement("i")
+            check1.setAttribute("class", "fa fa-check unread")
+            divs[divs.length - 1].appendChild(check1)
         }
 
 

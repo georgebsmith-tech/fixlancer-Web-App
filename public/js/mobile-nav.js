@@ -1,3 +1,5 @@
+
+const socket = io();
 (function () {
     const mobileFinanceContainer = document.querySelector(".mobile-finance")
     const mobileSearchInput = document.querySelector(".search-mobile-header")
@@ -169,7 +171,7 @@
     // For users' presence online
 
 
-    const socket = io()
+
 
     // console.log(socket)
     let e = 0;
@@ -223,7 +225,7 @@
 
 
 
-})()
+})();
 
 
 

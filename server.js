@@ -114,10 +114,8 @@ function changeMessageToRead(data, io) {
         .then(data => {
             data.forEach(async chat => {
                 let readData = await ConversationModel.findOneAndUpdate({ _id: chat._id }, { read: true }, { new: true })
-
-                // console.log(readData)
             })
-            // console.log(data)
+
         })
     io.to(users[data.receiver]).emit("message-read", { read: true })
 }
@@ -164,23 +162,16 @@ io.on("connection", socket => {
 
     socket.on("disconnect", (msg) => {
         console.log("User disconnected!!")
-        console.log("Lolzzz" + msg)
         let usernames = Object.keys(users)
-        console.log(usernames)
-        console.log(users)
-        console.log(socket.id)
         for (let x = 0; x < usernames.length; x++) {
             if (users[usernames[x]] === socket.id) {
                 delete users[usernames[x]]
                 break
             }
         }
-        // cons
-        // delete users[user]
         console.log(users)
     })
     socket.on("typing", function (data) {
-        // socket.broadcast.emit("typing-status", user)
         io.to(users[data.receiver]).emit("typing-status", data.name)
     })
     socket.on("stopped-typing", function (user) {
@@ -189,13 +180,12 @@ io.on("connection", socket => {
 
     socket.on("chat", async function (data) {
         let read;
+        let socketId = users[data.receiver]
+        io.to(socketId).emit("chat", { sender: data.sender, message: data.message })
         if (activeChats[data.receiver] === data.sender) {
-            let socketId = users[data.receiver]
-            io.to(socketId).emit("chat", { sender: data.sender, message: data.message })
             io.to(users[data.sender]).emit("message-sent", { status: "seen" })
             read = true
         } else {
-            io.to(socketId).emit("chat", { sender: data.sender, message: data.message })
             io.to(users[data.sender]).emit("message-sent", { status: "sent" })
             read = false
         }
