@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv")
 dotenv.config()
+const slugify = require("slugify");
+slugify.extend({ '#': 'sharp', '+': "plus", "-": "minus", "*": "times", "&": "and", "/": "or" })
 
 
 const dataBaseUrl = process.env.MONGO_ATLAS_URI
@@ -50,8 +52,22 @@ const Schema = new mongoose.Schema({
     },
     prices: {
         type: [Number]
+    },
+    catSlug: {
+        type: String,
+        required: true
     }
 
+})
+
+Schema.pre("validate", function (next) {
+    if (this.name) {
+        this.catSlug = slugify(this.name,
+            {
+                lower: true,
+                strict: true
+            })
+    }
 })
 const Category = mongoose.model("Category", Schema)
 

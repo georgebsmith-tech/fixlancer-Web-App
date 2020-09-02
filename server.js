@@ -47,15 +47,11 @@ app.use(session({
 
 
 initialize(passport, async username => {
-    // console.log("The" + user)
-    console.log("initialize in server")
     try {
         const theUser = await UserModel.findOne({ username: username })
-        // console.log(theUser)
         return theUser
     } catch (err) {
         throw err
-
     }
 
 },
@@ -220,6 +216,10 @@ app.get("/chat-app", checkUserAuthenticated, function (req, res) {
 app.get("/home", function (req, res) {
     res.render("home")
 })
+app.get("/section/:catSlug", function (req, res) {
+    console.log(req.params.catSlug)
+    res.render("fix-category")
+})
 
 app.get("/", checkUserNotAuthenticated, (req, res) => {
     res.render("index")
@@ -330,20 +330,39 @@ app.get("/alert", (req, res) => {
     res.render("alert")
 })
 app.get("/search-fix", async (req, res) => {
+    let term;
     let pageSize = 4
-    let rawTerm = req.query.term
+    let searchQuery = req.query.term
+    let rawTerms = searchQuery.split(" ")
     let page = req.query.pg * 1
     let skip = (page - 1) * pageSize
-    term = new RegExp(rawTerm, "i")
-    let count = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).count()
-    let pages = Math.ceil(count / pageSize)
+    if (rawTerms.length === 1) {
+        term = new RegExp(rawTerms[0], "i")
+        console.log(rawTerms)
+        console.log(term)
+    } else {
+        let form = `(${rawTerms[0]})`
+        for (let item of rawTerms) {
+            form += `|(${item})`
+            console.log(form)
+        }
+        term = new RegExp(form, "i")
+        console.log(rawTerms)
+        console.log(term)
+        // return
+    }
 
-    // let resp = await axios.get("/api/categories")
+    let count = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).countDocuments()
+    let pages = Math.ceil(count / pageSize)
+    console.log(count)
+    console.log(pages)
+
+
     let categories = await CategoriesModel.find()
     console.log(categories)
     const fixes = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).skip(skip).limit(pageSize)
     // console.log(fixes)
-    res.render("search-fix", { fixes, pages, rawTerm, categories })
+    res.render("search-fix", { fixes, pages, rawTerm: searchQuery, categories })
 })
 
 app.get("/dashboard/create-a-fix", (req, res) => {

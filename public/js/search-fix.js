@@ -35,18 +35,27 @@
         searchLoaderHandler.classList.remove("hide")
         document.querySelector(".showing-category").textContent = term
         console.log(term)
-        fetch(`/api/fixes?state=search&limit=12&skip=7&q=${term}`)
+        fetch(`/api/fixes?state=search&limit=4&q=${term}&pg=1`)
             .then(resp => {
                 return resp.json()
             })
             .then(data => {
-                renderResult(data)
+                renderResult(data, "1")
             })
     })
     let prevBtn;
 
     function renderResult(data, pres) {
         document.querySelector(".search-fixes").innerHTML = ""
+        if (data.data.length == 0) {
+
+            searchLoaderHandler.classList.add("hide")
+            document.querySelector(".search-pagination").classList.add("hide")
+            document.querySelector(".no-results").classList.remove("hide")
+            return
+        } else {
+            document.querySelector(".no-results").classList.add("hide")
+        }
 
         data.data.forEach(aFix => {
 

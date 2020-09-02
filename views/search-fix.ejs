@@ -22,7 +22,7 @@
 
                     <div class="options border-smooth">
                         <div class="center-text">
-                            <a href="">(View all)</a>
+                            <a href="/section/<%= category.catSlug%>">(View all)</a>
                         </div>
                         <% for(let subcat of category.subcat ){ %>
                         <div data-value="<%= subcat.name %>" class="option center-text"><%= subcat.name %></div>
@@ -52,6 +52,15 @@
                 <input type="text" class="border-smooth search-by-cat" value="<%= rawTerm %>">
                 <i class="fa fa-search font16 search-btn-body"></i>
             </div>
+            <% if(fixes.length===0){ %>
+            <div class="center-text font13 flex-center bold no-results" style="flex-direction: row;margin-top: 40px;">
+                <div>
+                    <img src="https://www.fixlancer.com/wp-content/themes/fixFIX/images/search_icn.png" alt=""
+                        style="width: 22px;margin-bottom: -8px;display:inline;">
+                    Sorry we could not find any results, try a different search.
+                </div>
+            </div>
+            <%} %>
 
             <div class="margin20-top grid-responsive-max4 search-fixes">
                 <% for(let aFix of fixes){ %>
@@ -106,7 +115,7 @@
         </section>
         <section>
             <div class="search-pagination"> 
-                <% if(pages!==1){%>
+                <% if(pages>1){%>
 
 
                 <div class="font16 page-nav-holder flex-center" style="flex-direction: row;">
@@ -120,6 +129,12 @@
                 <%}%>
             </div>
         </section>
+        <div class="center-text font13 flex-center bold hide no-results" style="flex-direction: row;">
+            <div>
+        <img src="https://www.fixlancer.com/wp-content/themes/fixFIX/images/search_icn.png" alt="" style="width: 22px;margin-bottom: -8px;display:inline;">
+            Sorry we could not find any results, try a different search.
+        </div>
+        </div>
 
 
 

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv")
 dotenv.config()
 const slugify = require("slugify");
-slugify.extend({ '#': 'sharp', '+': "plus", "-": "minus", "*": "times", "&": "and" })
+slugify.extend({ '#': 'sharp', '+': "plus", "-": "minus", "*": "times", "&": "and", "/": "or" })
 
 
 const dataBaseUrl = process.env.MONGO_ATLAS_URI
@@ -117,7 +117,7 @@ Schema.pre("validate", function (next) {
     if (this.title) {
         this.titleSlug = slugify(this.title, {
             lower: true,
-            strict: true,
+            strict: true
         })
     }
 
