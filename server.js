@@ -338,18 +338,13 @@ app.get("/search-fix", async (req, res) => {
     let skip = (page - 1) * pageSize
     if (rawTerms.length === 1) {
         term = new RegExp(rawTerms[0], "i")
-        console.log(rawTerms)
-        console.log(term)
     } else {
         let form = `(${rawTerms[0]})`
         for (let item of rawTerms) {
             form += `|(${item})`
-            console.log(form)
         }
         term = new RegExp(form, "i")
-        console.log(rawTerms)
-        console.log(term)
-        // return
+
     }
 
     let count = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).countDocuments()

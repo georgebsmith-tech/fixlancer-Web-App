@@ -52,12 +52,13 @@ router.post("/", multiple_uploads, async (req, res) => {
     })
 })
 router.get("/", async (req, res) => {
-
+    let term;
     const reqString = req.query
     const state = reqString.state
     const count = reqString.count * 1
     const limit = reqString.limit * 1
-    const term = reqString.q
+    const searchQuery = reqString.q
+    let rawTerms = searchQuery.split(" ")
     const page = reqString.pg * 1
     const skip = (page - 1) * limit
     if (state === "random") {
@@ -71,6 +72,21 @@ router.get("/", async (req, res) => {
         })
     }
     if (state === "search") {
+        if (rawTerms.length === 1) {
+            term = new RegExp(rawTerms[0], "i")
+            console.log(rawTerms)
+            console.log(term)
+        } else {
+            let form = `(${rawTerms[0]})`
+            for (let item of rawTerms) {
+                form += `|(${item})`
+                console.log(form)
+            }
+            term = new RegExp(form, "i")
+            console.log(rawTerms)
+            console.log(term)
+            // return
+        }
         let reg = new RegExp(term, "i")
         console.log(reg)
 
