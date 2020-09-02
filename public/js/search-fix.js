@@ -108,5 +108,11 @@
         }
         nextBtn.setAttribute("data-pg", `${pres * 1 + 1}`)
         document.querySelector(".current-page").textContent = `Page ${pres}`
+        history.pushState({}, "new page", `example.com/foo/${pres}`)
+        if (pres * 1 === document.querySelector(".current-page").dataset.maxpage * 1) {
+            nextBtn.style.visibility = "hidden"
+        } else {
+            nextBtn.style.visibility = "visible"
+        }
     }
 })()
