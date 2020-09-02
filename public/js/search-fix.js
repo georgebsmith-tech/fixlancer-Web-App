@@ -4,12 +4,12 @@
     let searchLoaderHandler = document.querySelector(".search-loader")
 
     const nextBtn = document.querySelector(".next-result")
-
+    let term
 
     async function fetchAndRenderData() {
 
 
-        let term = document.querySelector(".search-by-cat").value.trim()
+        term = document.querySelector(".search-by-cat").value.trim()
 
         searchLoaderHandler.classList.remove("hide")
         const resp = await fetch(`/api/fixes?state=search&limit=4&pg=${this.dataset.pg}&q=${term}`)
@@ -108,7 +108,7 @@
         }
         nextBtn.setAttribute("data-pg", `${pres * 1 + 1}`)
         document.querySelector(".current-page").textContent = `Page ${pres}`
-        history.pushState({}, "new page", `example.com/foo/${pres}`)
+        history.pushState({}, "new page", `/search-fix?term=${term}&pg=${pres}`)
         if (pres * 1 === document.querySelector(".current-page").dataset.maxpage * 1) {
             nextBtn.style.visibility = "hidden"
         } else {
