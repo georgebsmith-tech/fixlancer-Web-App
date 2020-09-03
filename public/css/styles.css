@@ -595,6 +595,14 @@ h1, h2, h3, h4, h5, h6 {
   color: #5a5c69;
 }
 
+.margin10-top {
+  margin-top: 10px;
+}
+
+.margin15-top {
+  margin-top: 15px;
+}
+
 .grid-responsive-max4 {
   display: grid;
   row-gap: 0px;
@@ -679,6 +687,10 @@ main {
 
 .center-text {
   text-align: center;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
 }
 
 .text-success {

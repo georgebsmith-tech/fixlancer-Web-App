@@ -8,7 +8,23 @@
 <body>
     <%- include('./partials/header.ejs')%>
 
-    <main>
+    <main class="main">
+        <div class="margin15-top">
+            <div class="bg-white border-smooth padd10 font16">
+                Fixes in <span class="bold"><%= fixes[0].category %></span>
+
+            </div>
+        </div>
+        <div style=" overflow: auto;" class="margin10-top">
+            <div class="flex" style="flex-wrap: nowrap;">
+                <% subcat.forEach(sub=>{ %>
+                <div class="font15 block">
+                    <%= sub.name %>
+
+                </div>
+                <%})%>
+            </div>
+        </div>
         <% if(fixes.length===0){ %>
         <div class="center-text font13 flex-center bold no-results" style="flex-direction: row;margin-top: 40px;">
             <div>

@@ -218,12 +218,12 @@ app.get("/home", function (req, res) {
 })
 app.get("/section/:catSlug", async function (req, res) {
     const catSlug = req.params.catSlug
-    const catName = await CategoriesModel.findOne({ catSlug }).select("name")
-    const fixes = await FixModel.find({ category: catName.name })
-    console.log(catName)
+    const cat = await CategoriesModel.findOne({ catSlug }).select("name subcat")
+    const fixes = await FixModel.find({ category: cat.name })
+    // console.log(catName)
     const pages = Math.ceil(fixes.length / 4)
     console.log(fixes)
-    res.render("fix-category", { fixes, pages })
+    res.render("fix-category", { fixes, pages, subcat: cat.subcat })
 })
 
 app.get("/", checkUserNotAuthenticated, (req, res) => {
