@@ -2381,7 +2381,6 @@ a.control-btn {
 
 .cat-scroll-container {
   flex-wrap: nowrap;
-  justify-content: space-between;
 }
 .cat-scroll-container > div {
   padding: 5px 20px;

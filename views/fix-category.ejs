@@ -3,6 +3,7 @@
 
 <head>
     <%- include('./partials/head.ejs')%>
+    <script defer src="../../js/fix-category.js"></script>
 </head>
 
 <body>
@@ -16,11 +17,10 @@
             </div>
         </div>
         <div style=" overflow: auto;" class="margin10-top">
-            <div class="flex cat-scroll-container">
+            <div class="cat-scroll-container" style="display: flex;">
                 <% subcat.forEach(sub=>{ %>
-                <div class="font15 block circle">
+                <div class="font15 block circle subcatBtn" data-subcatslug="<%= sub.slug %>">
                     <%= sub.name %>
-
                 </div>
                 <%})%>
             </div>

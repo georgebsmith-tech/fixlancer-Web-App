@@ -58,7 +58,12 @@ router.get("/", async (req, res) => {
     const count = reqString.count * 1
     const limit = reqString.limit * 1
     const searchQuery = reqString.q
-    let rawTerms = searchQuery.split(" ")
+    let rawTerms
+    if (searchQuery) {
+        rawTerms = searchQuery.split(" ")
+
+    }
+
     const page = reqString.pg * 1
     const skip = (page - 1) * limit
     if (state === "random") {
@@ -103,6 +108,20 @@ router.get("/", async (req, res) => {
         number_of_records: data.length,
         data: data
     })
+})
+
+router.get("/section/:subSlug", async function (req, res) {
+    try {
+        const data = await FixModel.find({ subcatSlug: req.params.subSlug })
+        return res.status(200).json({
+            data
+        })
+    } catch (err) {
+        throw err
+    }
+
+
+
 })
 
 router.get("/:username", async (req, res) => {

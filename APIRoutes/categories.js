@@ -1,5 +1,8 @@
 const router = require("express").Router()
 const CategoryModel = require("../models/categoryModel");
+const slugify = require("slugify");
+slugify.extend({ '#': 'sharp', '+': "plus", "-": "minus", "*": "times", "&": "and", "/": "or" })
+
 
 router.post("/", async (req, res) => {
     const newCategory = new CategoryModel(req.body)
@@ -13,6 +16,7 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
     const reqString = req.query
+
     if (reqString.content === "slim") {
         if (reqString.subcat === "true") {
             const data = await CategoryModel.find().select("name subcat")
@@ -61,7 +65,14 @@ router.post("/:id", async (req, res) => {
         _id: req.params.id
     })
     console.log(category)
-    const sub = { name: req.body.name }
+    const sub = {
+        name: req.body.name,
+        slug: slugify(req.body.name,
+            {
+                lower: true,
+                strict: true
+            })
+    }
     category.subcat.push(sub)
     const data = await category.save()
     res.status(200).send(data)

@@ -223,6 +223,7 @@ app.get("/section/:catSlug", async function (req, res) {
     // console.log(catName)
     const pages = Math.ceil(fixes.length / 4)
     console.log(fixes)
+    console.log(cat.subcat)
     res.render("fix-category", { fixes, pages, subcat: cat.subcat, category: cat.name })
 })
 

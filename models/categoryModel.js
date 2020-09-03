@@ -29,6 +29,10 @@ const SubCat = new mongoose.Schema({
     number_of_fixes: {
         type: Number,
         default: 0
+    },
+    slug: {
+        type: String,
+        required: true
     }
 })
 
