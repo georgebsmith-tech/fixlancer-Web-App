@@ -7,6 +7,14 @@ const socket = io();
     // console.log(mobileSearchInput)
     mobileSearcHandler.addEventListener("click", function () {
         const searchTerm = mobileSearchInput.value.trim()
+        if (searchTerm === "") {
+            console.log("Dont do that")
+            document.querySelector(".top-search-error").classList.remove("hide")
+            mobileSearchInput.style.border = "1px solid red"
+            return
+        }
+
+        mobileSearchInput.style.border = "1px solid #ddd"
 
         location.href = `/search-fix?term=${searchTerm}&pg=1`
     })

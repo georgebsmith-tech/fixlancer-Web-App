@@ -607,6 +607,18 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 15px;
 }
 
+.font11 {
+  font-size: 1.1rem;
+}
+
+.font10 {
+  font-size: 1.2rem;
+}
+
+.font12 {
+  font-size: 1rem;
+}
+
 .grid-responsive-max4 {
   display: grid;
   row-gap: 0px;
@@ -918,6 +930,16 @@ i.fa.fa-star {
   width: 100vw;
   position: relative;
   box-shadow: 0px 0.15rem 1.3rem 2px rgba(58, 59, 69, 0.15);
+}
+
+.top-search-error {
+  position: absolute;
+  top: 35px;
+  left: 0px;
+}
+.top-search-error i {
+  font-size: 1rem !important;
+  padding: 0px !important;
 }
 
 .header-buy-chopbar {
