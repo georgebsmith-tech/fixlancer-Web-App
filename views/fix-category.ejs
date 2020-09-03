@@ -9,6 +9,82 @@
     <%- include('./partials/header.ejs')%>
 
     <main>
+        <% if(fixes.length===0){ %>
+        <div class="center-text font13 flex-center bold no-results" style="flex-direction: row;margin-top: 40px;">
+            <div>
+                <img src="https://www.fixlancer.com/wp-content/themes/fixFIX/images/search_icn.png" alt=""
+                    style="width: 22px;margin-bottom: -8px;display:inline;">
+                Sorry we could not find any results, try a different search.
+            </div>
+        </div>
+        <%} %>
+
+        <div class="margin20-top grid-responsive-max4 search-fixes">
+            <% for(let aFix of fixes){ %>
+            <div class="fix-card">
+                <div class="grid-2-12-card">
+                    <a href="/fix/<%= aFix.subcatSlug %>/<%= aFix.titleSlug %>">
+                        <div class="fix-image-wrapper">
+                            <img src="<%= aFix.images_url[0] %>" alt="">
+                        </div>
+                    </a>
+                    <div class="fix-username-and-presence desktop padding-sides" style="padding-bottom:10px;">
+                        <i class="fa fa-circle"></i>
+                        <span style="font-weight: bold;"> <%= aFix.username%></span>
+
+                    </div>
+                    <div>
+                        <a href="/fix/<%= aFix.subcatSlug %>/<%= aFix.titleSlug %>"
+                            class="anchor-hover-blue-underline fix-title block">
+                            <%= aFix.title.toLowerCase().substr(0,40) %>...
+                        </a>
+                        <div class="duration-and-rating-trust">
+                            <i class="fas fa-clock"></i>
+                            <span><%= aFix.delivery_days %> day(s)</span>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="amount-and-user">
+                    <div class="duration-and-rating-trust desktop" style="padding-bottom:10px">
+                        <i class="fas fa-clock"></i>
+                        <span><%= aFix.delivery_days %> day(s)</span>
+
+                    </div>
+                    <div class="fix-username-and-presence mobile" style="padding-bottom:10px;">
+                        <i class="fa fa-circle"></i>
+                        <span style="font-weight: bold;"> <%= aFix.username%></span>
+
+                    </div>
+                    <div class="fix-amount-green">
+                        ₦<%= aFix.price%>
+                    </div>
+                </div>
+
+            </div>
+            <%}%>
+
+            </div>
+
+
+        </section>
+        <section>
+            <div class="search-pagination"> 
+                <% if(pages>1){%>
+
+
+            <div class="font16 page-nav-holder flex-center" style="flex-direction: row;">
+                <i class="fa fa-caret-left previous-result" style="cursor: pointer;visibility: hidden;" data-pg=""></i>
+                <span class="current-page" data-maxPage="<%= pages %>">Page 1</span>
+
+                <i class="fa fa-caret-right next-result" style="cursor: pointer;" data-pg="2"></i>
+            </div>
+
+            <%}%>
+            </div>
+        </section>
 
     </main>
     <%- include('./partials/footer.ejs')%>

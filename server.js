@@ -216,9 +216,14 @@ app.get("/chat-app", checkUserAuthenticated, function (req, res) {
 app.get("/home", function (req, res) {
     res.render("home")
 })
-app.get("/section/:catSlug", function (req, res) {
-    console.log(req.params.catSlug)
-    res.render("fix-category")
+app.get("/section/:catSlug", async function (req, res) {
+    const catSlug = req.params.catSlug
+    const catName = await CategoriesModel.findOne({ catSlug }).select("name")
+    const fixes = await FixModel.find({ category: catName.name })
+    console.log(catName)
+    const pages = Math.ceil(fixes.length / 4)
+    console.log(fixes)
+    res.render("fix-category", { fixes, pages })
 })
 
 app.get("/", checkUserNotAuthenticated, (req, res) => {

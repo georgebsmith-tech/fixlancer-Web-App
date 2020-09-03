@@ -597,7 +597,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .grid-responsive-max4 {
   display: grid;
-  gap: 20px;
+  row-gap: 0px;
+  column-gap: 10px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
@@ -2710,6 +2711,9 @@ a.control-btn {
     border-radius: 0;
   }
 
+  .grid-responsive-max4 {
+    gap: 20px;
+  }
   .grid-responsive-max4 .grid-2-12-card .fix-image-wrapper {
     height: 160px !important;
   }
