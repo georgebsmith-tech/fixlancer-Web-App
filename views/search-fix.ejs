@@ -21,16 +21,19 @@
                     </div>
 
                     <div class="options border-smooth">
-                        <div class="center-text">
+                        <div class="margin10-bottom">
                             <a href="/section/<%= category.catSlug%>">(View all)</a>
                         </div>
                         <% for(let subcat of category.subcat ){ %>
-                        <div data-value="<%= subcat.name %>" class="option center-text"><%= subcat.name %></div>
+                        <div data-value="<%= subcat.name %>" class="option"><%= subcat.name %></div>
                         <%}%>
+                        <div class="margin10-bottom">
+                            <a href="/section/<%= category.catSlug%>">Others</a>
                     </div>
-
                 </div>
-                <%}%>
+
+            </div>
+            <%}%>
 
                     </div>
         </section>

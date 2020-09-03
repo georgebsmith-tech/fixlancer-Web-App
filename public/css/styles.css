@@ -566,6 +566,10 @@
   font-weight: 400;
 }
 
+.margin10-bottom {
+  margin-bottom: 10px;
+}
+
 ul {
   list-style-type: none;
 }
@@ -2322,7 +2326,8 @@ a.control-btn {
   margin-bottom: 3px;
 }
 .fix-categories .option {
-  width: 100px;
+  white-space: nowrap;
+  padding-bottom: 10px;
 }
 .fix-categories .option:hover {
   cursor: pointer;
@@ -2335,6 +2340,7 @@ a.control-btn {
   padding: 10px 25px;
   width: fit-content;
   top: 32px;
+  left: 0px;
 }
 .fix-categories:hover .options {
   display: block;
@@ -2375,12 +2381,13 @@ a.control-btn {
 
 .cat-scroll-container {
   flex-wrap: nowrap;
-  width: 212vw;
   justify-content: space-between;
 }
 .cat-scroll-container > div {
   padding: 5px 20px;
   border: 1px solid #ddd;
+  white-space: nowrap;
+  margin-right: 10px;
 }
 
 @media only screen and (min-width: 991px) {

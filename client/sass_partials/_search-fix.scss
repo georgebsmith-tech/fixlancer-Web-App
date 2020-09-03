@@ -8,7 +8,8 @@
     border: 1px solid #ddd;
     margin-bottom: 3px;
     .option{
-        width: 100px;
+        white-space: nowrap;
+        padding-bottom:10px;
         &:hover{
             cursor: pointer;
         }
@@ -21,6 +22,7 @@
         padding: 10px 25px;
         width: fit-content;
         top: 32px;
+        left: 0px;
         
     }
     &:hover .options{
@@ -70,10 +72,11 @@
 
 .cat-scroll-container{
     flex-wrap: nowrap;
-    width: 212vw;
     justify-content: space-between;
     &>div{
         padding: 5px 20px;
         border: 1px solid #ddd;
+        white-space: nowrap;
+        margin-right: 10px;
     }
 }

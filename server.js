@@ -223,7 +223,7 @@ app.get("/section/:catSlug", async function (req, res) {
     // console.log(catName)
     const pages = Math.ceil(fixes.length / 4)
     console.log(fixes)
-    res.render("fix-category", { fixes, pages, subcat: cat.subcat })
+    res.render("fix-category", { fixes, pages, subcat: cat.subcat, category: cat.name })
 })
 
 app.get("/", checkUserNotAuthenticated, (req, res) => {
