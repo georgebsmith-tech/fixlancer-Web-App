@@ -12,7 +12,7 @@
     <main class="main">
         <div class="margin15-top">
             <div class="bg-white border-smooth padd10 font16">
-                Fixes in <span class="bold"><%= category %></span>
+                Fixes in <span class="bold showing-cat"><%= category %></span>
 
             </div>
         </div>
@@ -25,15 +25,20 @@
                 <%})%>
             </div>
         </div>
-        <% if(fixes.length===0){ %>
+
         <div class="center-text font13 flex-center bold no-results" style="flex-direction: row;margin-top: 40px;">
+            <% if(fixes.length===0){ %>
             <div>
-                <!-- <img src="https://www.fixlancer.com/wp-content/themes/fixFIX/images/search_icn.png" alt=""
-                    style="width: 22px;margin-bottom: -8px;display:inline;"> -->
+
+                Sorry,there's no fix on this category yet.
+            </div>
+            <%} %>
+            <div class="no-result hide">
                 Sorry,there's no fix on this category yet.
             </div>
         </div>
-        <%} %>
+
+
 
         <div class="margin20-top grid-responsive-max4 search-fixes">
             <% for(let aFix of fixes){ %>
@@ -86,7 +91,7 @@
 
 
         </section>
-        <section>
+        <!-- <section>
             <div class="search-pagination"> 
                 <% if(pages>1){%>
 
@@ -100,7 +105,7 @@
 
             <%}%>
             </div>
-        </section>
+        </section> -->
 
     </main>
     <%- include('./partials/footer.ejs')%>
