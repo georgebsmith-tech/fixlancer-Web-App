@@ -2345,9 +2345,10 @@ a.control-btn {
 }
 .search-by-cat-container i {
   position: absolute;
-  right: 15px;
-  top: 11px;
+  right: 0px;
+  top: 4px;
   cursor: pointer;
+  padding: 8px 15px;
 }
 
 .search-by-cat {
@@ -2370,6 +2371,16 @@ a.control-btn {
   background: #5a5c69;
   border: 1px solid #ddd;
   border-radius: 6px;
+}
+
+.cat-scroll-container {
+  flex-wrap: nowrap;
+  width: 212vw;
+  justify-content: space-between;
+}
+.cat-scroll-container > div {
+  padding: 5px 20px;
+  border: 1px solid #ddd;
 }
 
 @media only screen and (min-width: 991px) {
