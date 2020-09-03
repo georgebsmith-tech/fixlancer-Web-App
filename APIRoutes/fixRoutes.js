@@ -79,23 +79,17 @@ router.get("/", async (req, res) => {
     if (state === "search") {
         if (rawTerms.length === 1) {
             term = new RegExp(rawTerms[0], "i")
-            console.log(rawTerms)
-            console.log(term)
         } else {
             let form = `(${rawTerms[0]})`
             for (let item of rawTerms) {
                 form += `|(${item})`
-                console.log(form)
             }
             term = new RegExp(form, "i")
-            console.log(rawTerms)
-            console.log(term)
-            // return
-        }
-        let reg = new RegExp(term, "i")
-        console.log(reg)
 
-        const data = await FixModel.find().or([{ title: reg }, { description: reg }, { tags: reg }]).skip(skip).limit(limit)
+        }
+
+
+        const data = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).skip(skip).limit(limit)
         return res.status(200).send({
             term,
             data
@@ -111,7 +105,39 @@ router.get("/", async (req, res) => {
 })
 
 router.get("/section/:subSlug", async function (req, res) {
+    const queryStrings = req.query
+    const searchQuery = queryStrings.q
+    let term
+    let skip = 0
+    let limit = queryStrings.limit * 1
+
     try {
+
+        if (searchQuery) {
+            const rawTerms = searchQuery.split(" ")
+            if (rawTerms.length === 1) {
+                term = new RegExp(rawTerms[0], "i")
+            } else {
+
+
+                let form = `(${rawTerms[0]})`
+                for (let item of rawTerms) {
+                    form += `|(${item})`
+                }
+                term = new RegExp(form, "i")
+            }
+
+
+
+            const data = await FixModel.find({ subcatSlug: req.params.subSlug }).or([{ title: term }, { description: term }, { tags: term }]).skip(skip).limit(limit)
+            return res.status(200).send({
+                term: searchQuery,
+                data
+            })
+
+        }
+
+
         const data = await FixModel.find({ subcatSlug: req.params.subSlug })
         return res.status(200).json({
             data

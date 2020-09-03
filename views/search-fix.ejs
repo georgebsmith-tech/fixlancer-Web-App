@@ -25,10 +25,11 @@
                             <a href="/section/<%= category.catSlug%>">(View all)</a>
                         </div>
                         <% for(let subcat of category.subcat ){ %>
-                        <div data-value="<%= subcat.name %>" class="option"><%= subcat.name %></div>
+                        <div data-value="<%= subcat.name %>" data-slug="<%= subcat.slug %>" class="option">
+                            <%= subcat.name %></div>
                         <%}%>
                         <div class="margin10-bottom">
-                            <a href="/section/<%= category.catSlug%>">Others</a>
+                            <a href="">Others</a>
                     </div>
                 </div>
 
@@ -49,7 +50,9 @@
                     </div>
                 </div>
             </div>
-            <div class="font14">Showing search results for: <span class="bold showing-category"><%= rawTerm %></span>
+            <div class="font14">Showing search results for: <span
+                    class="bold showing-category"><%= rawTerm %></span><span class="about-subcat hide"> in <span
+                        class="bold"></span></span>
             </div>
             <div class="search-by-cat-container">
                 <input type="text" class="border-smooth search-by-cat" value="<%= rawTerm %>">

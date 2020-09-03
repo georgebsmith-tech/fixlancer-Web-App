@@ -2,6 +2,26 @@
 (function () {
     const searchBtn = document.querySelector(".search-btn-body")
     let searchLoaderHandler = document.querySelector(".search-loader")
+    const options = document.querySelectorAll(".option")
+    // console.log(options)
+    options.forEach(option => {
+        option.addEventListener("click", function () {
+            term = document.querySelector(".search-by-cat").value.trim()
+            const slug = this.dataset.slug
+
+            fetch(`/api/fixes/section/${slug}?q=${term}&limit=5`)
+                .then(resp => {
+                    return resp.json()
+                })
+                .then(data => {
+                    console.log(data)
+                    renderResult(data)
+                })
+
+
+        })
+
+    })
 
     const nextBtn = document.querySelector(".next-result")
     let term

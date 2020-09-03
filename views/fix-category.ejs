@@ -16,7 +16,7 @@
 
             </div>
         </div>
-        <div style=" overflow: auto;" class="margin10-top">
+        <div style=" overflow: auto;padding-bottom: 10px;" class="margin10-top">
             <div class="cat-scroll-container" style="display: flex;">
                 <% subcat.forEach(sub=>{ %>
                 <div class="font15 block circle subcatBtn" data-subcatslug="<%= sub.slug %>">
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div class="center-text font13 flex-center bold no-results" style="flex-direction: row;margin-top: 40px;">
+        <div class="center-text font13 flex-center bold no-results" style="flex-direction: row;margin-top: 30px;">
             <% if(fixes.length===0){ %>
             <div>
 
