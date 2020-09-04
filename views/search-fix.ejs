@@ -51,11 +51,31 @@
                     </div>
                 </div>
             </div>
-            <div class="font14">Showing <span class="start">1</span>-<span class="end"><%= fixes.length %></span> of
+            <% if(fixes.length===0){ %>
+            <div class="font14 alt-show">
+                Showing 0 of 0 results for " <span class="bold alt-show-term"><%= rawTerm %> </span>"
+            </div>
+            <div class="font14 search-meta-main hide">Showing <span class="start">1</span>-<span
+                    class="end"><%= fixes.length %></span> of
                 <span class="total-result"> <%= count%> </span>results
                 for "<span class="bold showing-category"><%= rawTerm %></span>"<span class="about-subcat hide"> in <span
                         class="bold "></span></span>
             </div>
+
+            <%}else{%>
+            <div class="font14 alt-show hide">
+                Showing 0 of 0 results for " <span class="bold alt-show-term"><%= rawTerm %> </span>"
+            </div>
+            <div class="font14 search-meta-main">Showing <span class="start">1</span>-<span
+                    class="end"><%= fixes.length %></span> of
+                <span class="total-result"> <%= count%> </span>results
+                for "<span class="bold showing-category"><%= rawTerm %></span>"<span class="about-subcat hide"> in <span
+                        class="bold "></span></span>
+            </div>
+
+            <%}%>
+
+            
             <!-- <div>
                 total result: <%=count%>
             </div> -->
@@ -64,6 +84,8 @@
                 <i class="fa fa-search font16 search-btn-body"></i>
             </div>
             <div class="flex-center margin10-top">
+
+                <% if(fixes.length!==0){ %>
                 <button class="block center-text border-smooth filterBtn bg-white">
                     <i class="fa fa-filter font15 text-orange" aria-hidden="true"></i>
                     <span class="font15">Filter search Result</span>
@@ -72,6 +94,8 @@
 
 
             </div>
+            <%} %>
+
             <% if(fixes.length===0){ %>
             <div class="center-text font13 flex-center bold no-results" style="flex-direction: row;margin-top: 40px;">
                 <div>

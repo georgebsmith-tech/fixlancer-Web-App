@@ -10,13 +10,16 @@
     const filterBtn = document.querySelector(".filterBtn")
     const fixBycatContainer = document.querySelector(".fix-categories-container")
 
+    if (filterBtn) {
+        filterBtn.addEventListener("click", function () {
+            fixBycatContainer.classList.remove("hide")
+            // fixBycatContainer.style.transition = "1s"
+            // fixBycatContainer.style.transform = "translateX(0)"
 
-    filterBtn.addEventListener("click", function () {
-        fixBycatContainer.classList.remove("hide")
-        // fixBycatContainer.style.transition = "1s"
-        // fixBycatContainer.style.transform = "translateX(0)"
+        })
 
-    })
+    }
+
 
 
     function showMeta(data) {
@@ -25,7 +28,8 @@
 
     }
     function hideMeta(data) {
-        metaOfsearch.classList.add("hide")
+        if (metaOfsearch)
+            metaOfsearch.classList.add("hide")
 
 
     }
@@ -87,14 +91,17 @@
 
     }
 
-    nextBtn.addEventListener("click", function () {
-        fetchAndRenderData(this)
-            .then(data => {
-                increaseCounts(data)
-            })
+    if (nextBtn) {
+        nextBtn.addEventListener("click", function () {
+            fetchAndRenderData(this)
+                .then(data => {
+                    increaseCounts(data)
+                })
 
 
-    })
+        })
+
+    }
 
 
 
@@ -109,7 +116,8 @@
             return
         }
         searchLoaderHandler.classList.remove("hide")
-        document.querySelector(".showing-category").textContent = term
+        if (document.querySelector(".showing-category"))
+            document.querySelector(".showing-category").textContent = term
         console.log(term)
         fetch(`/api/fixes?state=search&limit=4&q=${term}&pg=1`)
             .then(resp => {
@@ -117,23 +125,42 @@
             })
             .then(data => {
                 console.log(data)
-                initializeCounts(data)
+                if (data.data.length === 0) {
+                    document.querySelector(".alt-show-term").classList.remove("hide")
+                    if (filterBtn)
+                        filterBtn.classList.add("hide")
+
+                    document.querySelector(".alt-show-term").innerText = term
+                    console.log(term)
+                } else {
+                    if (filterBtn)
+                        filterBtn.classList.remove("hide")
+                    if (document.querySelector(".alt-show"))
+                        document.querySelector(".alt-show").classList.add("hide")
+                    document.querySelector(".search-meta-main").classList.remove("hide")
+                    initializeCounts(data)
+                }
+
 
 
                 renderResult(data, "1")
             })
     })
     let prevBtn = document.querySelector(".previous-result")
-    prevBtn.addEventListener("click",
-        function () {
-            console.log("this")
-            fetchAndRenderData(this)
-                .then(data => {
-                    decreaseCounts(data)
-                })
+    if (prevBtn) {
+        prevBtn.addEventListener("click",
+            function () {
+                console.log("this")
+                fetchAndRenderData(this)
+                    .then(data => {
+                        decreaseCounts(data)
+                    })
 
 
-        })
+            })
+
+    }
+
 
     function renderResult(data, pres) {
         document.querySelector(".search-fixes").innerHTML = ""
@@ -209,16 +236,23 @@
 
 
         } else {
-            prevBtn.style.visibility = "hidden"
+            if (prevBtn)
+                prevBtn.style.visibility = "hidden"
         }
-        nextBtn.setAttribute("data-pg", `${pres * 1 + 1}`)
-        document.querySelector(".current-page").textContent = `Page ${pres}`
+        if (nextBtn)
+            nextBtn.setAttribute("data-pg", `${pres * 1 + 1}`)
+        if (document.querySelector(".current-page")) {
+
+
+            document.querySelector(".current-page").textContent = `Page ${pres}`
+
+            if (pres * 1 === document.querySelector(".current-page").dataset.maxpage * 1) {
+                nextBtn.style.visibility = "hidden"
+            } else {
+                nextBtn.style.visibility = "visible"
+            }
+        }
         history.pushState({}, "new page", `/search-fix?term=${term}&pg=${pres}`)
-        if (pres * 1 === document.querySelector(".current-page").dataset.maxpage * 1) {
-            nextBtn.style.visibility = "hidden"
-        } else {
-            nextBtn.style.visibility = "visible"
-        }
     }
 
 
