@@ -14,12 +14,13 @@
             term = document.querySelector(".search-by-cat").value.trim()
             const slug = this.dataset.slug
 
-            fetch(`/api/fixes/section/${slug}?q=${term}&limit=5`)
+            fetch(`/api/fixes/section/${slug}?q=${term}&limit=4`)
                 .then(resp => {
                     return resp.json()
                 })
                 .then(data => {
                     console.log(data)
+                    initializeCounts(data)
                     renderResult(data)
                 })
 
@@ -27,6 +28,18 @@
         })
 
     })
+
+    function initializeCounts(data) {
+        countStart.innerText = 1
+        totalCount.innerText = `${data.count} `
+        countEnd.innerText = data.data.length
+
+    }
+
+    function changeCounts(data) {
+        countStart.innerText = (countStart.innerText) * 1 + 4
+        countEnd.innerText = (countEnd.innerText) * 1 + data.data.length
+    }
 
     const nextBtn = document.querySelector(".next-result")
     let term
@@ -39,10 +52,7 @@
         searchLoaderHandler.classList.remove("hide")
         const resp = await fetch(`/api/fixes?state=search&limit=4&pg=${this.dataset.pg}&q=${term}`)
         const data = await resp.json()
-        countStart.innerText = (countStart.innerText) * 1 + 4
-        countEnd.innerText = (countEnd.innerText) * 1 + data.data.length
-
-        // console.log(data)
+        changeCounts(data)
         renderResult(data, this.dataset.pg)
 
 
@@ -69,8 +79,7 @@
             })
             .then(data => {
                 console.log(data)
-                totalCount.innerText = `${data.count} `
-                countEnd.innerText = data.data.length
+                initializeCounts(data)
 
 
                 renderResult(data, "1")

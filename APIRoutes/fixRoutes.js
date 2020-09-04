@@ -126,12 +126,15 @@ router.get("/section/:subSlug", async function (req, res) {
                 term = new RegExp(form, "i")
             }
 
+            const count = await FixModel.find({ subcatSlug: req.params.subSlug }).or([{ title: term }, { description: term }, { tags: term }]).countDocuments()
+
 
 
             const data = await FixModel.find({ subcatSlug: req.params.subSlug }).or([{ title: term }, { description: term }, { tags: term }]).skip(skip).limit(limit)
             return res.status(200).send({
                 term: searchQuery,
-                data
+                data,
+                count
             })
 
         }
