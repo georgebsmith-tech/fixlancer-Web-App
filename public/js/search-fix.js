@@ -5,7 +5,7 @@
     const options = document.querySelectorAll(".option")
     const countStart = document.querySelector(".start")
     const countEnd = document.querySelector(".end")
-    const tottalCount = document.querySelector(".total-result").innerText * 1
+    const totalCount = document.querySelector(".total-result")
     countStart.innerText, countEnd.innerText
 
 
@@ -39,7 +39,10 @@
         searchLoaderHandler.classList.remove("hide")
         const resp = await fetch(`/api/fixes?state=search&limit=4&pg=${this.dataset.pg}&q=${term}`)
         const data = await resp.json()
-        console.log(data)
+        countStart.innerText = (countStart.innerText) * 1 + 4
+        countEnd.innerText = (countEnd.innerText) * 1 + data.data.length
+
+        // console.log(data)
         renderResult(data, this.dataset.pg)
 
 
@@ -65,6 +68,11 @@
                 return resp.json()
             })
             .then(data => {
+                console.log(data)
+                totalCount.innerText = `${data.count} `
+                countEnd.innerText = data.data.length
+
+
                 renderResult(data, "1")
             })
     })
@@ -81,8 +89,8 @@
         } else {
             document.querySelector(".no-results").classList.add("hide")
         }
-        countStart.innerText = (countStart.innerText) * 1 + 4
-        countEnd.innerText = (countEnd.innerText) * 1 + data.data.length
+
+
 
         data.data.forEach(aFix => {
 
@@ -134,6 +142,10 @@
             searchLoaderHandler.classList.add("hide")
             document.querySelector(".search-fixes").insertAdjacentHTML("afterbegin", fix)
         })
+        if (data.count <= 4) {
+            document.querySelector(".search-pagination").classList.add("hide")
+            return
+        }
         if (pres * 1 > 1) {
             prevBtn = document.querySelector(".previous-result")
             prevBtn.style.visibility = "visible"

@@ -17,9 +17,7 @@ router.post("/", multiple_uploads, async (req, res) => {
     const reqBody = req.body
     console.log(reqBody)
     console.log(req.files)
-    // return res.json({
-    //     message: "done"
-    // })
+
     reqBody.username = req.session.passport.user
 
     reqBody.images_url = []
@@ -87,12 +85,13 @@ router.get("/", async (req, res) => {
             term = new RegExp(form, "i")
 
         }
-
+        const count = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).countDocuments()
 
         const data = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).skip(skip).limit(limit)
         return res.status(200).send({
             term,
-            data
+            data,
+            count
         })
     }
 
