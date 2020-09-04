@@ -36,29 +36,44 @@
 
     }
 
-    function changeCounts(data) {
+    function increaseCounts(data) {
         countStart.innerText = (countStart.innerText) * 1 + 4
         countEnd.innerText = (countEnd.innerText) * 1 + data.data.length
+    }
+    function decreaseCounts(data) {
+
+        let theEnd = countEnd.innerText
+        let theStart = countStart.innerText
+        countStart.innerText = (theStart) * 1 - 4
+        countEnd.innerText = theEnd * 1 - (theEnd - theStart + 1)
     }
 
     const nextBtn = document.querySelector(".next-result")
     let term
 
-    async function fetchAndRenderData() {
+    async function fetchAndRenderData(obj) {
 
 
         term = document.querySelector(".search-by-cat").value.trim()
 
         searchLoaderHandler.classList.remove("hide")
-        const resp = await fetch(`/api/fixes?state=search&limit=4&pg=${this.dataset.pg}&q=${term}`)
+        const resp = await fetch(`/api/fixes?state=search&limit=4&pg=${obj.dataset.pg}&q=${term}`)
         const data = await resp.json()
-        changeCounts(data)
-        renderResult(data, this.dataset.pg)
+        renderResult(data, obj.dataset.pg)
+        return data
 
 
     }
 
-    nextBtn.addEventListener("click", fetchAndRenderData)
+    nextBtn.addEventListener("click", function () {
+        fetchAndRenderData(this)
+            .then(data => {
+                increaseCounts(data)
+            })
+
+
+    })
+
 
 
     searchBtn.addEventListener("click", function () {
@@ -85,7 +100,17 @@
                 renderResult(data, "1")
             })
     })
-    let prevBtn;
+    let prevBtn = document.querySelector(".previous-result")
+    prevBtn.addEventListener("click",
+        function () {
+            console.log("this")
+            fetchAndRenderData(this)
+                .then(data => {
+                    decreaseCounts(data)
+                })
+
+
+        })
 
     function renderResult(data, pres) {
         document.querySelector(".search-fixes").innerHTML = ""
@@ -156,10 +181,10 @@
             return
         }
         if (pres * 1 > 1) {
-            prevBtn = document.querySelector(".previous-result")
             prevBtn.style.visibility = "visible"
             prevBtn.setAttribute("data-pg", `${pres - 1}`)
-            prevBtn.addEventListener("click", fetchAndRenderData)
+
+
         } else {
             prevBtn.style.visibility = "hidden"
         }
@@ -172,4 +197,7 @@
             nextBtn.style.visibility = "visible"
         }
     }
+
+
+
 })()
