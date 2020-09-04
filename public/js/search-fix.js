@@ -3,7 +3,12 @@
     const searchBtn = document.querySelector(".search-btn-body")
     let searchLoaderHandler = document.querySelector(".search-loader")
     const options = document.querySelectorAll(".option")
-    // console.log(options)
+    const countStart = document.querySelector(".start")
+    const countEnd = document.querySelector(".end")
+    const tottalCount = document.querySelector(".total-result").innerText * 1
+    countStart.innerText, countEnd.innerText
+
+
     options.forEach(option => {
         option.addEventListener("click", function () {
             term = document.querySelector(".search-by-cat").value.trim()
@@ -76,6 +81,8 @@
         } else {
             document.querySelector(".no-results").classList.add("hide")
         }
+        countStart.innerText = (countStart.innerText) * 1 + 4
+        countEnd.innerText = (countEnd.innerText) * 1 + data.data.length
 
         data.data.forEach(aFix => {
 

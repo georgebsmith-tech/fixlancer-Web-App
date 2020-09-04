@@ -50,10 +50,14 @@
                     </div>
                 </div>
             </div>
-            <div class="font14">Showing search results for: <span
-                    class="bold showing-category"><%= rawTerm %></span><span class="about-subcat hide"> in <span
+            <div class="font14">Showing <span class="start">1</span>-<span class="end"><%= fixes.length %></span> of
+                <span class="total-result"> <%= count%> </span>results
+                for: <span class="bold showing-category"><%= rawTerm %></span><span class="about-subcat hide"> in <span
                         class="bold"></span></span>
             </div>
+            <!-- <div>
+                total result: <%=count%>
+            </div> -->
             <div class="search-by-cat-container">
                 <input type="text" class="border-smooth search-by-cat" value="<%= rawTerm %>">
                 <i class="fa fa-search font16 search-btn-body"></i>

@@ -363,7 +363,7 @@ app.get("/search-fix", async (req, res) => {
     console.log(categories)
     const fixes = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).skip(skip).limit(pageSize)
     // console.log(fixes)
-    res.render("search-fix", { fixes, pages, rawTerm: searchQuery, categories })
+    res.render("search-fix", { fixes, pages, rawTerm: searchQuery, categories, count })
 })
 
 app.get("/dashboard/create-a-fix", (req, res) => {
