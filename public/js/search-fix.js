@@ -126,7 +126,8 @@
             .then(data => {
                 console.log(data)
                 if (data.data.length === 0) {
-                    document.querySelector(".alt-show-term").classList.remove("hide")
+                    document.querySelector(".search-meta-main").classList.add("hide")
+                    document.querySelector(".alt-show").classList.remove("hide")
                     if (filterBtn)
                         filterBtn.classList.add("hide")
 
