@@ -2428,11 +2428,6 @@ a.control-btn {
   color: white;
 }
 
-.fix-categories-container {
-  transform: translateX(-100vw);
-  transition: 1s;
-}
-
 @media only screen and (min-width: 991px) {
   .grid-2-21 {
     display: grid;

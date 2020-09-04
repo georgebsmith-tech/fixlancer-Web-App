@@ -13,8 +13,8 @@
 
     filterBtn.addEventListener("click", function () {
         fixBycatContainer.classList.remove("hide")
-        fixBycatContainer.style.transition = "1s"
-        fixBycatContainer.style.transform = "translateX(0)"
+        // fixBycatContainer.style.transition = "1s"
+        // fixBycatContainer.style.transform = "translateX(0)"
 
     })
 
