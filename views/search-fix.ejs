@@ -12,7 +12,7 @@
     <%- include('./partials/header.ejs') %>
     <main class="main" style="min-height:69vh;">
         <section class="margin20-top">
-            <div class="flex">
+            <div class="flex fix-categories-container hide">
                 <% for(let category of categories){ %>
                 <div id="" class="fix-categories circle font13">
                     <div>
@@ -38,6 +38,7 @@
 
                     </div>
         </section>
+
         <section class="margin20-top" style="position: relative;">
             <div style="position: absolute; background: rgb(0,0,0,0.2);width: 100%;height: 100%;top: 0px;left: 0px;z-index: 3;"
                 class="flex-center search-loader hide">
@@ -52,8 +53,8 @@
             </div>
             <div class="font14">Showing <span class="start">1</span>-<span class="end"><%= fixes.length %></span> of
                 <span class="total-result"> <%= count%> </span>results
-                for: <span class="bold showing-category"><%= rawTerm %></span><span class="about-subcat hide"> in <span
-                        class="bold"></span></span>
+                for "<span class="bold showing-category"><%= rawTerm %></span>"<span class="about-subcat hide"> in <span
+                        class="bold "></span></span>
             </div>
             <!-- <div>
                 total result: <%=count%>
@@ -61,6 +62,15 @@
             <div class="search-by-cat-container">
                 <input type="text" class="border-smooth search-by-cat" value="<%= rawTerm %>">
                 <i class="fa fa-search font16 search-btn-body"></i>
+            </div>
+            <div class="flex-center margin10-top">
+                <button class="block center-text border-smooth filterBtn bg-white">
+                    <i class="fa fa-filter font15 text-orange" aria-hidden="true"></i>
+                    <span class="font15">Filter search Result</span>
+
+                </button>
+
+
             </div>
             <% if(fixes.length===0){ %>
             <div class="center-text font13 flex-center bold no-results" style="flex-direction: row;margin-top: 40px;">

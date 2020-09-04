@@ -81,3 +81,25 @@
         cursor: pointer;
     }
 }
+
+
+.filterBtn{
+    width: 90%; padding: 6px; cursor: pointer;
+    outline: none;
+    &:hover{
+       background: lightgray;
+    }
+    &:hover span{
+        color: white;
+    }
+    &:hover i{
+        color: white;
+    }
+
+
+}
+
+.fix-categories-container{
+    transform: translateX(-100vw);
+    transition: 1s;
+}

@@ -6,13 +6,35 @@
     const countStart = document.querySelector(".start")
     const countEnd = document.querySelector(".end")
     const totalCount = document.querySelector(".total-result")
-    countStart.innerText, countEnd.innerText
+    const metaOfsearch = document.querySelector(".about-subcat")
+    const filterBtn = document.querySelector(".filterBtn")
+    const fixBycatContainer = document.querySelector(".fix-categories-container")
 
 
+    filterBtn.addEventListener("click", function () {
+        fixBycatContainer.classList.remove("hide")
+        fixBycatContainer.style.transition = "1s"
+        fixBycatContainer.style.transform = "translateX(0)"
+
+    })
+
+
+    function showMeta(data) {
+        metaOfsearch.classList.remove("hide")
+        metaOfsearch.querySelector("span").innerText = data
+
+    }
+    function hideMeta(data) {
+        metaOfsearch.classList.add("hide")
+
+
+    }
     options.forEach(option => {
         option.addEventListener("click", function () {
             term = document.querySelector(".search-by-cat").value.trim()
             const slug = this.dataset.slug
+            showMeta(this.innerText)
+
 
             fetch(`/api/fixes/section/${slug}?q=${term}&limit=4`)
                 .then(resp => {
@@ -77,6 +99,7 @@
 
 
     searchBtn.addEventListener("click", function () {
+        hideMeta()
 
 
 

@@ -2412,6 +2412,27 @@ a.control-btn {
   cursor: pointer;
 }
 
+.filterBtn {
+  width: 90%;
+  padding: 6px;
+  cursor: pointer;
+  outline: none;
+}
+.filterBtn:hover {
+  background: lightgray;
+}
+.filterBtn:hover span {
+  color: white;
+}
+.filterBtn:hover i {
+  color: white;
+}
+
+.fix-categories-container {
+  transform: translateX(-100vw);
+  transition: 1s;
+}
+
 @media only screen and (min-width: 991px) {
   .grid-2-21 {
     display: grid;
