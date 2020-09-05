@@ -87,11 +87,14 @@ router.get("/", async (req, res) => {
         }
         const count = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).countDocuments()
 
+        let pages = Math.ceil(count / 4)
+
         const data = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).skip(skip).limit(limit)
         return res.status(200).send({
             term,
             data,
-            count
+            count,
+            pages
         })
     }
 

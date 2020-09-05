@@ -9,6 +9,8 @@
     const metaOfsearch = document.querySelector(".about-subcat")
     const filterBtn = document.querySelector(".filterBtn")
     const fixBycatContainer = document.querySelector(".fix-categories-container")
+    const currentPageEle =
+        document.querySelector(".current-page")
 
     if (filterBtn) {
         filterBtn.addEventListener("click", function () {
@@ -125,6 +127,7 @@
             })
             .then(data => {
                 console.log(data)
+                currentPageEle.dataset.maxpage = data.pages
                 if (data.data.length === 0) {
                     document.querySelector(".search-meta-main").classList.add("hide")
                     document.querySelector(".alt-show").classList.remove("hide")
@@ -165,7 +168,7 @@
 
     function renderResult(data, pres) {
         document.querySelector(".search-fixes").innerHTML = ""
-        if (data.data.length == 0) {
+        if (data.data.length === 0) {
 
             searchLoaderHandler.classList.add("hide")
             document.querySelector(".search-pagination").classList.add("hide")
@@ -230,11 +233,16 @@
         if (data.count <= 4) {
             document.querySelector(".search-pagination").classList.add("hide")
             return
+        } else {
+            document.querySelector(".search-pagination").classList.remove("hide")
         }
         if (pres * 1 > 1) {
             prevBtn.style.visibility = "visible"
             prevBtn.setAttribute("data-pg", `${pres - 1}`)
 
+        } else if (pres * 1 === 1) {
+            nextBtn.style.visibility = "visible"
+            prevBtn.style.visibility = "hidden"
 
         } else {
             if (prevBtn)

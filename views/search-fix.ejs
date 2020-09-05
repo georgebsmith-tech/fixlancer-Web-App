@@ -158,20 +158,37 @@
 
         </section>
         <section>
-            <div class="search-pagination"> 
-                <% if(pages>1){%>
+            <% if(pages>1){%>
+                <div class="search-pagination">
 
 
-                <div class="font16 page-nav-holder flex-center" style="flex-direction: row;">
-                    <i class="fa fa-caret-left previous-result" style="cursor: pointer;visibility: hidden;"
-                        data-pg=""></i>
-                    <span class="current-page" data-maxPage="<%= pages %>">Page 1</span>
 
-                    <i class="fa fa-caret-right next-result" style="cursor: pointer;" data-pg="2"></i>
+                    <div class="font16 page-nav-holder flex-center" style="flex-direction: row;">
+                        <i class="fa fa-caret-left previous-result" style="cursor: pointer;visibility: hidden;"
+                            data-pg=""></i>
+                        <span class="current-page" data-maxPage="<%= pages %>">Page 1</span>
+
+                        <i class="fa fa-caret-right next-result" style="cursor: pointer;" data-pg="2"></i>
+                    </div>
+
+
                 </div>
+                <%}else{%>
+                <div class="search-pagination hide">
 
+
+
+                    <div class="font16 page-nav-holder flex-center" style="flex-direction: row;">
+                        <i class="fa fa-caret-left previous-result" style="cursor: pointer;visibility: hidden;"
+                            data-pg=""></i>
+                        <span class="current-page" data-maxPage="<%= pages %>">Page 1</span>
+
+                        <i class="fa fa-caret-right next-result" style="cursor: pointer;" data-pg="2"></i>
+                    </div>
+
+
+                </div>
                 <%}%>
-            </div>
         </section>
         <div class="center-text font13 flex-center bold hide no-results" style="flex-direction: row;">
             <div>
