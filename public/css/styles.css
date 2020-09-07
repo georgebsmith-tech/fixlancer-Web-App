@@ -2929,6 +2929,10 @@ a.control-btn {
   .fix-username-and-presence.desktop {
     margin-top: 0px;
   }
+
+  .a-request {
+    width: 80vw !important;
+  }
 }
 @media only screen and (min-width: 1024px) {
   .grid-responsive-6, .grid-responsive-max6 {
