@@ -11,7 +11,7 @@
     <main class="main">
         <section>
             <h1>All Requests</h1>
-            <section class="requests">
+            <section class="requests border-smooth">
                 <%requests.forEach(request=>{ %>
 
                 <section>
@@ -23,7 +23,7 @@
                             <header>
                                 <a href="/dashboard/<%= request.slug%>" class="title"><%= request.title %></a>
                             </header>
-                            <p class="description"><%= request.description %>
+                            <p class="description"><%= request.description.substr(0,70) %>...
                             </p>
                             <div class="duration" style="font-size: 1.2rem;">
                                 <i class="fas fa-clock" style="font-size: 1.2rem;"></i> <%= request.delivery %> days
@@ -38,12 +38,13 @@
                                 <div>
                                     <a class="send-offer" href="/dashboard/<%= request.slug%>">Send Offer</a>
                                 </div>
-                                <%}else if(request.approved){ %>
+                                <%}else{%>
                                 <div>
                                     <i class="fa fa-check-circle" style="color: #33bd4b;font-size: 1.3rem;"></i>
                                     <span style="color: #33bd4b; font-size: 1.3rem;">Approved</span>
 
                                 </div>
+
                                 <%}%>
                             </div>
                             <div class="font13">

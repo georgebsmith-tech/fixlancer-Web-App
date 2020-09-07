@@ -461,7 +461,7 @@ app.get("/dashboard/my-requests", checkUserAuthenticated, (req, res) => {
 })
 
 app.get("/dashboard/job-requests", async (req, res) => {
-    const requests = await RequestModel.find()
+    const requests = await RequestModel.find({ approved: true })
     const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
 
 
