@@ -460,6 +460,15 @@ app.get("/dashboard/my-requests", checkUserAuthenticated, (req, res) => {
     res.render("my-requests", { notice })
 })
 
+app.get("/dashboard/job-requests", async (req, res) => {
+    const requests = await RequestModel.find()
+    const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
+
+
+
+    res.render("all-requests", { requests, loggedUser })
+})
+
 app.get("/dashboard/:slug", async (req, res) => {
     const slug = req.params.slug
     const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
@@ -469,7 +478,7 @@ app.get("/dashboard/:slug", async (req, res) => {
     const fixesDetails = fixes.map(fix => { return { title: fix.title, slug: fix.titleSlug } })
     console.log(fixesDetails)
 
-    res.render("request", { title: "title", request: requestData, loggedUser, fixes })
+    res.render("request", { title: "title", request: requestData, loggedUser, fixes: fixesDetails })
 })
 app.get("/dashboard/edit", checkUserAuthenticated, (req, res) => {
     res.render("edit")

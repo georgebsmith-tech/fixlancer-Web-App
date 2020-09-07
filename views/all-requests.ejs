@@ -2,123 +2,62 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <%- include('./partials/head.ejs') %>
 </head>
 
 <body>
+    <%- include('./partials/header.ejs') %>
 
     <main class="main">
         <section>
             <h1>All Requests</h1>
             <section class="requests">
+                <%requests.forEach(request=>{ %>
+
                 <section>
                     <div class="request">
                         <div>
-                            <div class="username-icon">O</div>
+                            <div class="username-icon"><%= request.username[0].toUpperCase() %></div>
                         </div>
                         <div>
                             <header>
-                                <a href="#" class="title">Digital Art Cover designer</a>
+                                <a href="/dashboard/<%= request.slug%>" class="title"><%= request.title %></a>
                             </header>
-                            <p class="description">I need someone to design an art Cover for my upcoming song. In 24
-                                hours
+                            <p class="description"><%= request.description %>
                             </p>
-                            <div class="duration">
-                                <i class="fas fa-clock"></i> 1 days
+                            <div class="duration" style="font-size: 1.2rem;">
+                                <i class="fas fa-clock" style="font-size: 1.2rem;"></i> <%= request.delivery %> days
                             </div>
                             <div class="request-meta">
                                 <div>
                                     <div class="amount">
-                                        ₦2,000
+                                        ₦<%= request.price %>
                                     </div>
                                 </div>
+                                <%if(loggedUser!==request.username){%>
                                 <div>
-                                    <a class="send-offer" href="#">Send Offer</a>
+                                    <a class="send-offer" href="/dashboard/<%= request.slug%>">Send Offer</a>
                                 </div>
+                                <%}else if(request.approved){ %>
+                                <div>
+                                    <i class="fa fa-check-circle" style="color: #33bd4b;font-size: 1.3rem;"></i>
+                                    <span style="color: #33bd4b; font-size: 1.3rem;">Approved</span>
+
+                                </div>
+                                <%}%>
                             </div>
-                            <div>
-                                <a href="#">orbit </a>-
-                                <span> 19-Mar-20</span>
+                            <div class="font13">
+                                <a href="#" class="text-link-with-hover"><%= request.username %> </a>-
+                                <span> <%= request.createdAt.toDateString() %></span>
                             </div>
 
                         </div>
                     </div>
                     <div class="divider"></div>
                 </section>
+                <%})%>
 
-                <section>
-                    <div class="request">
-                        <div>
-                            <div class="username-icon">O</div>
-                        </div>
-                        <div>
-                            <header>
-                                <a href="#" class="title">Digital Art Cover designer</a>
-                            </header>
-                            <p class="description">I need someone to design an art Cover for my upcoming song. In 24
-                                hours
-                            </p>
-                            <div class="duration">
-                                <i class="fas fa-clock"></i> 1 days
-                            </div>
-                            <div class="request-meta">
-                                <div>
-                                    <div class="amount">
-                                        ₦2,000
-                                    </div>
-                                </div>
-                                <div>
-                                    <a href="#">Send Offer</a>
-                                </div>
-                            </div>
-                            <div>
-                                <a href="#">orbit </a>-
-                                <span> 19-Mar-20</span>
-                            </div>
 
-                        </div>
-                    </div>
-                    <div class="divider"></div>
-                </section>
-                <section>
-                    <div class="request">
-                        <div>
-                            <div class="username-icon">O</div>
-                        </div>
-                        <div>
-                            <header>
-                                <a href="#" class="title">Digital Art Cover designer</a>
-                            </header>
-                            <p class="description">I need someone to design an art Cover for my upcoming song. In 24
-                                hours
-                            </p>
-                            <div class="duration">
-                                <i class="fas fa-clock"></i> 1 days
-                            </div>
-                            <div class="request-meta">
-                                <div>
-                                    <div class="amount">
-                                        ₦2,000
-                                    </div>
-                                </div>
-                                <div>
-                                    <a class="send-offer" href="#">Send Offer</a>
-                                </div>
-                            </div>
-                            <div>
-                                <a href="#">orbit </a>-
-                                <span> 19-Mar-20</span>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="divider"></div>
-                </section>
             </section>
     </main>
 

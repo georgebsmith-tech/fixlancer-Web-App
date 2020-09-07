@@ -9,7 +9,7 @@
 
 <body>
     <%- include('./partials/header.ejs') %>
-    <main class="main request-page a-request">
+    <main class="main a-request">
         <%if(request.status==="awarded"){ %>
 
         <div class="font16 request-status-alert margin10-top">
@@ -28,7 +28,7 @@
             <h1 class="request-title bg-green2">
                 <%= request.title %>
         </h1>
-        <div class="flex-between font16 the-request-meta border-bottom">
+        <div class="flex-between font16 the-request-meta border-bottom bg-white">
             <div>
                 <i class="fas fa-clock bold"></i>
                 <span class="bold"> <%= request.delivery %>days</span></div>
@@ -41,7 +41,7 @@
             </div>
 
         </div>
-        <div class="request-description font16">
+        <div class="request-description font16 bg-white">
             <%= request.description %>
 
         </div>
