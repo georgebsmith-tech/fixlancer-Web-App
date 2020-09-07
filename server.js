@@ -460,12 +460,16 @@ app.get("/dashboard/my-requests", checkUserAuthenticated, (req, res) => {
     res.render("my-requests", { notice })
 })
 
-app.get("/dashboard/my-requests/:slug", async (req, res) => {
+app.get("/dashboard/:slug", async (req, res) => {
     const slug = req.params.slug
+    const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
+    const fixes = await FixModel.find({ username: loggedUser })
     const requestData = await RequestModel.findOne({ slug })
-    console.log(requestData)
+    // console.log(fixes)
+    const fixesDetails = fixes.map(fix => { return { title: fix.title, slug: fix.titleSlug } })
+    console.log(fixesDetails)
 
-    res.render("request", { title: "title", request: requestData })
+    res.render("request", { title: "title", request: requestData, loggedUser, fixes })
 })
 app.get("/dashboard/edit", checkUserAuthenticated, (req, res) => {
     res.render("edit")

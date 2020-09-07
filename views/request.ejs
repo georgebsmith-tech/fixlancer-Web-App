@@ -10,10 +10,13 @@
 <body>
     <%- include('./partials/header.ejs') %>
     <main class="main request-page a-request">
-        <div class="font16 request-status-alert margin10-top hide">
+        <%if(request.status==="awarded"){ %>
+
+        <div class="font16 request-status-alert margin10-top">
             <i class="fa fa-check-circle text-green"></i> <span>Job has been awarded</span>
         </div>
-        <%if(request.status==="Open"){ %>
+        <%}%>
+        <%if(request.status==="Open" && loggedUser===request.username){ %>
 
 
         <div>
@@ -56,16 +59,16 @@
             </div>
         </div>
 
-        <div class="card-shadow margin25-top padd20-bottom border-smooth">
-            <h2 class="fon16 padd-head border-bottom">
+        <div class="card-shadow margin25-top padd20-bottom border-smooth bg-white">
+            <h2 class="fon16 padd-head border-bottom" style="background: #f8f9fc;">
                 <i class="fa fa-print bold"></i>
                 <span>Offers</span>
 
             </h2>
-            <%if(request.offers.length===0){%>
+            <%if(request.offers.length===0 && loggedUser===request.username){%>
             <div class="font16 padd10">No offer placed yet.</div>
 
-            <%}else{%>
+            <%}else if(request.offers.length!==0 && loggedUser===request.username){%>
 
 
 
@@ -150,8 +153,64 @@
                     </div>
                 </div>
             </div>
-            <%} %>
-        </div>
+            <%}else if( request.status==="awarded"){ %>
+
+            <div class="font16" style="padding:30px 10px 0px 10px;">
+                <div style="padding: 15px 10px;background: #FCFAE4;" class="border-smooth">
+                    <i class="fas fa-exclamation-triangle" style="color: #fe1b1b;"></i>
+                    You cannot place a new offer as job is already awarded
+                </div>
+            </div>
+
+            <%}else if(request.status==="Open") {%>
+            <div class="bg-white" style="padding:20px 10px 10px 10px;">
+                <div>
+                    <fieldset>
+                        <select name="" id="" class="bg-white">
+                            <%fixes.forEach(fix=>{ %>
+                            <option value=""><%= fix.title %></option>
+                            <%})%>
+
+                        </select>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <textarea name="" id="" cols="30" rows="6"
+                            placeholder="Enter your proposals with samples and why they should chose you..."></textarea>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <select name="" id="" class="bg-white">
+                            <option value="">Price</option>
+                        </select>
+                    </fieldset>
+                </div>
+                <div>
+                    <fieldset>
+                        <select name="" id="" class="bg-white">
+                            <option value="">Delivery Days</option>
+                        </select>
+                    </fieldset>
+                </div>
+                <div class="font16">
+
+                    <input type="checkbox">
+                    <span>
+                        I accept i've read the project and can complete
+                    </span>
+
+                </div>
+                <div class="margin30-top">
+                    <fieldset>
+                        <button>Place Offer</button>
+                    </fieldset>
+                </div>
+            </div>
+
+            <%}%>
+                </div>
 
 
     </main>

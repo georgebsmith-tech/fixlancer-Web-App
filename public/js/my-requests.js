@@ -28,7 +28,7 @@
                             </div>
                             <div>
                                 <header>
-                                    <a href="/dashboard/my-requests/${request.slug}" class="title">${request.title}</a>
+                                    <a href="/dashboard/${request.slug}" class="title">${request.title}</a>
                                 </header>
                                 <p class="description">${request.description}
                                 </p>
