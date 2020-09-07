@@ -91,19 +91,47 @@
                     <span class="font15">Filter search Result</span>
 
                 </button>
+                <%}else{%>
+                <button class="block center-text border-smooth filterBtn bg-white hide">
+                    <i class="fa fa-filter font15 text-orange" aria-hidden="true"></i>
+                    <span class="font15">Filter search Result</span>
+
+                </button>
+                <%} %>
 
 
             </div>
-            <%} %>
+
 
             <% if(fixes.length===0){ %>
-            <div class="center-text font13 flex-center bold no-results" style="flex-direction: row;margin-top: 40px;">
-                <div>
-                    <img src="https://www.fixlancer.com/wp-content/themes/fixFIX/images/search_icn.png" alt=""
-                        style="width: 22px;margin-bottom: -8px;display:inline;">
-                    Sorry we could not find any results, try a different search.
+            <div class="no-results">
+
+
+                <div class="center-text font13 flex-center bold" style="flex-direction: row;margin-top: 40px;">
+                    <div>
+                        <img src="https://www.fixlancer.com/wp-content/themes/fixFIX/images/search_icn.png" alt=""
+                            style="width: 22px;margin-bottom: -8px;display:inline;">
+                        Sorry we could not find any results, try a different search.
+                    </div>
+                </div>
+                <div class="font16 center-text margin10-top">
+                    <div>
+                        Or
+                    </div>
+                    <div class="margin10-top">
+                        <div>
+                            Get a free Quote.
+                        </div>
+                        <div class="margin5-top">
+                            <a href="/dashboard/post-job-request"
+                                class="button block font16 bg-green text-white border-green">Post
+                                Job Request</a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+
             <%} %>
 
             <div class="margin20-top grid-responsive-max4 search-fixes">
@@ -190,12 +218,34 @@
                 </div>
                 <%}%>
         </section>
-        <div class="center-text font13 flex-center bold hide no-results" style="flex-direction: row;">
-            <div>
-        <img src="https://www.fixlancer.com/wp-content/themes/fixFIX/images/search_icn.png" alt="" style="width: 22px;margin-bottom: -8px;display:inline;">
-            Sorry we could not find any results, try a different search.
+        <div class="no-results hide">
+
+
+            <div class="center-text font13 flex-center bold" style="flex-direction: row;margin-top: 40px;">
+                <div>
+                    <img src="https://www.fixlancer.com/wp-content/themes/fixFIX/images/search_icn.png" alt=""
+                        style="width: 22px;margin-bottom: -8px;display:inline;">
+                    Sorry we could not find any results, try a different search.
+                </div>
+            </div>
+            <div class="font16 center-text margin10-top">
+                <div>
+                    Or
+                </div>
+                <div class="margin10-top">
+                    <div>
+                        Get a free Quote.
+                    </div>
+                    <div class="margin5-top">
+                        <a href="/dashboard/post-job-request"
+                            class="button block font16 bg-green text-white border-green">Post
+                            Job Request</a>
+                    </div>
+                </div>
+
+            </div>
         </div>
-        </div>
+
 
 
 

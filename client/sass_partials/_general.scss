@@ -653,6 +653,16 @@ h1,h2,h3,h4,h5,h6{
 .text-orange{
   color: #f27415;
 }
+.text-white{
+  color: white!important;
+}
+.border-green{
+  border: 1px solid #1cc88a!important;
+}
+
+.margin5-top{
+  margin-top: 5px;
+}
 
 .bold{
   font-weight: bold;
@@ -695,8 +705,9 @@ main{
 .new-post-notice{
     background: #1cc88a;
     padding: 10px;
-    color: white;
+    color: #fff;
 }
+
 
 .center-text{
     text-align: center;
@@ -709,6 +720,14 @@ main{
 .text-success{
   color: #1cc88a;
 }
+
+.text-green{
+  color: #33bd4b;
+}
+.bg-green2{
+  background: #33bd4b;
+}
+
 
 .flex-center{
   display: flex;
@@ -795,7 +814,9 @@ fieldset{
 i.fa.fa-star{
     color: #ffae06;
 }
-
+.text-yellow{
+  color: #ffae06;
+}
 
 //footer
 
@@ -903,6 +924,49 @@ i.fa.fa-star{
 .text-red{
   color:red;
 }
+
+.font18{
+  font-size: 1.8rem;
+}
+.margin25-top{
+  margin-top: 25px;
+}
+.margin40-top{
+  margin-top: 40px;
+}
+.margin40-right{
+  margin-right: 40px;
+}
+
+.button-green{
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 12px;
+  background: #1cc88a;
+}
+.margin30-top{
+  margin-top: 30px;
+}
+.font25{
+  font-size: 2.5rem;
+}
+
+.padd20-bottom{
+  margin-bottom: 20px;
+}
+
+.padd-head{
+  padding: 15px 20px;
+}
+
+.text-link-with-hover{
+  color: #2F9CDD;
+  &:hover{
+    text-decoration: underline;
+    color:blue;
+  }
+}
 //header
 
 .toggle-nav{
@@ -939,6 +1003,10 @@ i.fa.fa-star{
     // overflow-x: hidden;
     position: relative;
     box-shadow: 0px 0.15rem 1.3rem 2px rgba(58, 59, 69, 0.15); 
+}
+.card-shadow{
+  -webkit-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
 }
 
 .top-search-error{

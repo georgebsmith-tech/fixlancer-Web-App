@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <%- include('./partials/head.ejs') %>
+
+</head>
+
+<body>
+    <%- include('./partials/header.ejs') %>
+    <main class="main ">
+        <div class="font16 request-status-alert margin10-top hide">
+            <i class="fa fa-check-circle text-green"></i> <span>Job has been awarded</span>
+        </div>
+
+        <div class="margin10-top border-smooth card-shadow">
+            <h1 class="request-title bg-green2">
+                <%= request.title %>
+            </h1>
+            <div class="flex-between font16 the-request-meta border-bottom">
+                <div>
+                    <i class="fas fa-clock bold"></i>
+                    <span class="bold"> <%= request.delivery %>days</span></div>
+                <div>
+                    <i class="fa fa-print bold"></i>
+                    <span class="bold"> <%= request.offers.length %> offers</span>
+                </div>
+                <div>
+                    <span class="text-green bold">₦<%= request.price %></span>
+                </div>
+
+            </div>
+            <div class="request-description font16">
+                <%= request.description.substr(0,40) %>...
+
+            </div>
+        </div>
+        <div class="margin20-top font14">
+            <div>
+                Category: <%= request.category %>
+            </div>
+            <div class="">
+                by: <a href="#" class="text-link-with-hover"> <%= request.username %></a> - <i class="fas fa-clock"
+                    style="font-size:1.4rem;"></i>
+                <span> <%= request.createdAt.toDateString() %></span>
+
+
+            </div>
+        </div>
+
+        <div class="card-shadow margin25-top padd20-bottom border-smooth">
+            <h2 class="fon16 padd-head border-bottom">
+                <i class="fa fa-print bold"></i>
+                <span>Offers</span>
+
+            </h2>
+            <%if(request.offers.length===0){%>
+            <div class="font16 padd10">No offer placed yet.</div>
+
+            <%}else{%>
+
+
+
+
+            <div class="font16 card-grid border-bottom">
+                <div>
+                    <div>
+                        <img src="https://fixlancerwebapp.s3.us-east-2.amazonaws.com/1595288055327kai-wenzel-iv0XSA7WagE-unsplash.jpg"
+                            alt="">
+                    </div>
+                </div>
+                <div>
+                    <div class="flex margin10-top">
+                        <span class="user-avatar">B</span>
+                        <a href="#" class="text-link-with-hover font18" style="margin-left: 4px;">Benni</a>
+                    </div>
+                    <div class="margin25-top" style="line-height:1.5;">
+                        I can do this for you with a responsive and minimal interface.
+                    </div>
+                    <div class="margin20-top font25 bold">
+                        ₦9,000
+                    </div>
+                    <div class="flex margin10-top">
+                        <div class="margin40-right">
+                            <i class="fa fa-star "></i>
+                            <span class="font13 text-yellow">3.4(4)</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-clock text-green" style="font-size: 1.3rem;"></i>
+                            <span class="font13">2days</span>
+                        </div>
+                    </div>
+                    <div class="flex-between margin20-top">
+                        <div>
+                            <i class="far fa-comments"></i>
+                            <a href="#" class="text-link-with-hover">Message</a>
+                        </div>
+                        <div>
+                            <a href="#" class="font15 button-green">Order</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="font16 card-grid border-bottom">
+                <div>
+                    <div>
+                        <img src="https://fixlancerwebapp.s3.us-east-2.amazonaws.com/1595288055327kai-wenzel-iv0XSA7WagE-unsplash.jpg"
+                            alt="">
+                    </div>
+                </div>
+                <div>
+                    <div class="flex margin10-top">
+                        <span class="user-avatar">B</span>
+                        <a href="#" class="text-link-with-hover font18" style="margin-left: 4px;">Benni</a>
+                    </div>
+                    <div class="margin25-top" style="line-height:1.5;">
+                        I can do this for you with a responsive and minimal interface.
+                    </div>
+                    <div class="margin20-top font25 bold">
+                        ₦9,000
+                    </div>
+                    <div class="flex margin10-top">
+                        <div class="margin40-right">
+                            <i class="fa fa-star "></i>
+                            <span class="font13 text-yellow">3.4(4)</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-clock text-green" style="font-size: 1.3rem;"></i>
+                            <span class="font13">2days</span>
+                        </div>
+                    </div>
+                    <div class="flex-between margin20-top">
+                        <div>
+                            <i class="far fa-comments"></i>
+                            <a href="#" class="text-link-with-hover">Message</a>
+                        </div>
+                        <div>
+                            <a href="#" class="font15 button-green">Order</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%} %>
+        </div>
+
+
+    </main>
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

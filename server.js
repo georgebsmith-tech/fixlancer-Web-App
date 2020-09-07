@@ -35,6 +35,7 @@ const ConversationModel = require("./models/conversationModel")
 const DepositModel = require("./models/depositModel")
 
 const RefundModel = require("./models/refundModel")
+const RequestModel = require("./models/requestsModel")
 
 
 app.use(flash())
@@ -457,6 +458,14 @@ app.get("/dashboard/my-requests", checkUserAuthenticated, (req, res) => {
     const notice = req.query.notice
     console.log(notice)
     res.render("my-requests", { notice })
+})
+
+app.get("/dashboard/my-requests/:slug", async (req, res) => {
+    const slug = req.params.slug
+    const requestData = await RequestModel.findOne({ slug })
+    console.log(requestData)
+
+    res.render("request", { title: "title", request: requestData })
 })
 app.get("/dashboard/edit", checkUserAuthenticated, (req, res) => {
     res.render("edit")

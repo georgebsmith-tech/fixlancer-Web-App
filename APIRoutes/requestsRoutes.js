@@ -13,6 +13,8 @@ router.post("/", async (req, res) => {
     })
 })
 
+
+
 router.get("/", async (req, res) => {
     console.log(req.query)
     const Auser = req.query.a_user
@@ -29,6 +31,10 @@ router.get("/", async (req, res) => {
         number_of_records: data.length,
         data: data
     })
+})
+
+router.get("/:slug", async function (req, res) {
+
 })
 
 

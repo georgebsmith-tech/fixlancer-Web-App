@@ -9,6 +9,7 @@
         .then(resp => { return resp.json() })
         .then(data => {
             console.log(data)
+            data.data = data.data.reverse()
             if (data.number_of_records === 0) {
                 requestsHolder.innerHTML = "No job Request Found"
                 requestsHolder.setAttribute("style", "padding:15px;background:white;")
@@ -27,7 +28,7 @@
                             </div>
                             <div>
                                 <header>
-                                    <a href="#" class="title">${request.title}</a>
+                                    <a href="/dashboard/my-requests/${request.slug}" class="title">${request.title}</a>
                                 </header>
                                 <p class="description">${request.description}
                                 </p>
