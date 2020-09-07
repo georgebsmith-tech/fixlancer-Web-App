@@ -13,28 +13,35 @@
         <div class="font16 request-status-alert margin10-top hide">
             <i class="fa fa-check-circle text-green"></i> <span>Job has been awarded</span>
         </div>
+        <%if(request.status==="Open"){ %>
+
+
+        <div>
+            <button class="close-request"> Mark as closed</button>
+        </div>
+        <%}%>
 
         <div class="margin10-top border-smooth card-shadow">
             <h1 class="request-title bg-green2">
                 <%= request.title %>
-            </h1>
-            <div class="flex-between font16 the-request-meta border-bottom">
-                <div>
-                    <i class="fas fa-clock bold"></i>
-                    <span class="bold"> <%= request.delivery %>days</span></div>
-                <div>
-                    <i class="fa fa-print bold"></i>
-                    <span class="bold"> <%= request.offers.length %> offers</span>
-                </div>
-                <div>
-                    <span class="text-green bold">₦<%= request.price %></span>
-                </div>
-
+        </h1>
+        <div class="flex-between font16 the-request-meta border-bottom">
+            <div>
+                <i class="fas fa-clock bold"></i>
+                <span class="bold"> <%= request.delivery %>days</span></div>
+            <div>
+                <i class="fa fa-print bold"></i>
+                <span class="bold"> <%= request.offers.length %> offers</span>
             </div>
-            <div class="request-description font16">
-                <%= request.description %>
-
+            <div>
+                <span class="text-green bold">₦<%= request.price %></span>
             </div>
+
+        </div>
+        <div class="request-description font16">
+            <%= request.description %>
+
+        </div>
         </div>
         <div class="margin20-top font14">
             <div>

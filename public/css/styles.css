@@ -2529,6 +2529,16 @@ a.control-btn {
   padding: 20px 10px 50px 10px;
 }
 
+.close-request {
+  margin-top: 10px;
+  border: 1px solid red;
+  padding: 6px 10px;
+  color: red;
+  background: white;
+  border-radius: 30px;
+  font-size: 1.15rem;
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: 1fr 2.5fr;
