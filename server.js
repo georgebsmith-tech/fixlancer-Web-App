@@ -15,8 +15,9 @@ const session = require("express-session")
 
 const initialize = require("./configuration/passportConfig")
 
-
+//Routes
 const usersRoute = require("./APIRoutes/users")
+const noticesRoute = require("./APIRoutes/noticesRoutes")
 const categoriesRoute = require("./APIRoutes/categories")
 const pushNoticeRoute = require("./APIRoutes/pushRoutes")
 const affiliatesRoute = require("./APIRoutes/affiliates")
@@ -438,7 +439,7 @@ app.get("/dashboard/finance", async (req, res) => {
 
 app.get("/dashboard/finance/withdraw", async (req, res) => {
     let revenue = 0;
-    const user = req.session.passport ? req.session.passport.user : undefined
+    const user = req.session.passport ? req.session.passport.user : "Smith"
 
     const revenueData = await RevenueModel.findOne({ username: user })
     if (revenueData)
@@ -450,8 +451,15 @@ app.get("/dashboard/finance/transactions", async (req, res) => {
 
     res.render("finance-w", { revenue })
 })
-app.get("/dashboard/finance/notices", checkUserAuthenticated, (req, res) => {
-    res.render("finance-notices")
+
+const NoticeModel = require("./models/noticeModel")
+app.get("/dashboard/finance/notices", async (req, res) => {
+    const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
+
+    const notices = await NoticeModel.find({ username: loggedUser })
+    console.log(notices)
+
+    res.render("finance-notices", { notices })
 })
 
 app.get("/dashboard/my-requests", checkUserAuthenticated, (req, res) => {
@@ -464,7 +472,7 @@ app.get("/dashboard/job-requests", async (req, res) => {
     const requests = await RequestModel.find({ approved: true })
     const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
 
-
+    // console.log(requests)
 
     res.render("all-requests", { requests, loggedUser })
 })
@@ -472,13 +480,10 @@ app.get("/dashboard/job-requests", async (req, res) => {
 app.get("/dashboard/:slug", async (req, res) => {
     const slug = req.params.slug
     const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
-    const fixes = await FixModel.find({ username: loggedUser })
+    const fixes = await FixModel.find({ username: loggedUser }).select("title titleSlug images_url")
     const requestData = await RequestModel.findOne({ slug })
-    // console.log(fixes)
-    const fixesDetails = fixes.map(fix => { return { title: fix.title, slug: fix.titleSlug } })
-    console.log(fixesDetails)
-
-    res.render("request", { title: "title", request: requestData, loggedUser, fixes: fixesDetails })
+    // console.log(requestData)
+    res.render("request", { title: "title", request: requestData, loggedUser, fixes })
 })
 app.get("/dashboard/edit", checkUserAuthenticated, (req, res) => {
     res.render("edit")
@@ -578,7 +583,9 @@ app.get("/:username", checkUserAuthenticated, (req, res) => {
 app.use("/uploads", express.static("uploads"))
 
 
-// app.use(apiDocumentationRoutes)
+app.use("/api/notices", noticesRoute)
+
+
 app.use("/api/requests", requestRoutes)
 app.use("/api/users", usersRoute)
 app.use("/api/categories", categoriesRoute)

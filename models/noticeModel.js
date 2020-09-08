@@ -15,15 +15,12 @@ mongoose.connect(dataBaseUrl, { useNewUrlParser: true, useUnifiedTopology: true,
     }
 
 })
-
-
 const Schema = new mongoose.Schema({
     username: {
         type: String,
         required: true
-
     },
-    date: {
+    createdAt: {
         type: Date,
         default: Date.now
     },
@@ -32,7 +29,7 @@ const Schema = new mongoose.Schema({
         require: true
     },
     content: {
-        type: String,
+        type: Object,
         required: true,
     },
     read: {

@@ -17,8 +17,25 @@
         <h1>Finance</h1>
         <section class="withdrawal-summary">
             <header> Notifications</header>
+            <%notices.forEach(notice=>{ %>
+            <%if(notice.type==="offer"){ %>
 
             <div class="notifications">
+                <a href="/dashboard/<%=notice.content.slug%>">
+                    A new offer price of <strong class="bold">₦<%=notice.content.price%></strong> by
+                    <strong class="bold"><%=notice.content.username%> </strong>
+                    has
+                    been placed on your
+                    job request: <strong class="bold">
+                        <%=notice.content.title%></strong>. Click here to
+                    view.<span><%=notice.createdAt.toDateString()%></span>
+                    <em></em>
+                </a>
+            </div>
+            <%}%>
+            <%})%>
+
+            <!-- <div class="notifications">
                 <a href="#">
                     A new offer price of <strong>#100000</strong> by Smith has been placed on your job request: <strong>
                         Web development for an Ecommerce site</strong>. Click here to view.<span>29 jul 20</span>
@@ -38,21 +55,15 @@
                         Web development for an Ecommerce site</strong>. Click here to view.<span>29 jul 20</span>
                     <em></em>
                 </a>
-            </div>
-            <div class="notifications">
-                <a href="#">
-                    A new offer price of <strong>#100000</strong> by Smith has been placed on your job request: <strong>
-                        Web development for an Ecommerce site</strong>. Click here to view.<span>29 jul 20</span>
-                    <em></em>
-                </a>
-            </div>
+            </div> -->
         </section>
         <section class="finance-controlers">
             <div>
-                <a href="/dashboard/finance/withdraw" class="button">Request Withdrwal</a>
+                <a href="/dashboard/finance/withdraw" class="button" style="font-size:1.6rem">Request Withdrwal</a>
             </div>
             <div>
-                <a href="/dashboard/finance/transactions" class="trans-hist button">Transaction History</a>
+                <a href="/dashboard/finance/transactions" class="trans-hist button" style="font-size:1.6rem">Transaction
+                    History</a>
             </div>
         </section>
 

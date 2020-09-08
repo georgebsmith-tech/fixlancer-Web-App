@@ -18,14 +18,45 @@ mongoose.connect(dataBaseUrl, { useNewUrlParser: true, useUnifiedTopology: true,
 
 })
 
-// const ExtraSchema = new mongoose.Schema({
-//     description: {
-//         type: String,
-//     },
-//     price: {
-//         type: Number,
-//     }
-// })
+const OfferSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true
+
+    },
+    title: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+
+    price: {
+        type: Number,
+        required: true
+    },
+
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    delivery: {
+        type: Number,
+        required: true
+    },
+    image_url: {
+        type: String,
+        default: null
+    },
+    slug: {
+        type: String,
+        required: true
+    }
+
+})
+
 
 
 const Schema = new mongoose.Schema({
@@ -60,7 +91,7 @@ const Schema = new mongoose.Schema({
         default: "Open" // other values are Awarded and Closed
     },
     offers: {
-        type: Array // this links to the different offers from bids
+        type: [OfferSchema] // this links to the different offers from bids
     },
     approved: {
         type: Boolean,
@@ -74,6 +105,12 @@ const Schema = new mongoose.Schema({
     , slug: {
         type: String,
         required: true
+    }
+    ,
+    job_id: {
+        type: Number,
+        required: true,
+        unique: true
     }
 
 

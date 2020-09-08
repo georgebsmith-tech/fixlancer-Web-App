@@ -4,6 +4,7 @@
 <head>
 
     <%- include('./partials/head.ejs') %>
+    <script defer src="../../js/request.js"></script>
 
 </head>
 
@@ -69,6 +70,10 @@
             <div class="font16 padd10">No offer placed yet.</div>
 
             <%}else if(request.offers.length!==0 && loggedUser===request.username){%>
+            <%request.offers.forEach(offer=>{%>
+
+
+
 
 
 
@@ -76,20 +81,20 @@
             <div class="font16 card-grid border-bottom">
                 <div>
                     <div>
-                        <img src="https://fixlancerwebapp.s3.us-east-2.amazonaws.com/1595288055327kai-wenzel-iv0XSA7WagE-unsplash.jpg"
-                            alt="">
+                        <img src="<%=offer.image_url%>" alt="">
                     </div>
                 </div>
                 <div>
                     <div class="flex margin10-top">
-                        <span class="user-avatar">B</span>
-                        <a href="#" class="text-link-with-hover font18" style="margin-left: 4px;">Benni</a>
+                        <span class="user-avatar"><%=offer.username[0].toUpperCase()%></span>
+                        <a href="#" class="text-link-with-hover font18"
+                            style="margin-left: 4px;"><%=offer.username%></a>
                     </div>
                     <div class="margin25-top" style="line-height:1.5;">
-                        I can do this for you with a responsive and minimal interface.
+                        I<%=offer.description %>
                     </div>
                     <div class="margin20-top font25 bold">
-                        ₦9,000
+                        ₦<%=offer.price%>
                     </div>
                     <div class="flex margin10-top">
                         <div class="margin40-right">
@@ -98,7 +103,7 @@
                         </div>
                         <div>
                             <i class="fas fa-clock text-green" style="font-size: 1.3rem;"></i>
-                            <span class="font13">2days</span>
+                            <span class="font13"><%=offer.delivery%> days</span>
                         </div>
                     </div>
                     <div class="flex-between margin20-top">
@@ -112,47 +117,7 @@
                     </div>
                 </div>
             </div>
-
-
-            <div class="font16 card-grid border-bottom">
-                <div>
-                    <div>
-                        <img src="https://fixlancerwebapp.s3.us-east-2.amazonaws.com/1595288055327kai-wenzel-iv0XSA7WagE-unsplash.jpg"
-                            alt="">
-                    </div>
-                </div>
-                <div>
-                    <div class="flex margin10-top">
-                        <span class="user-avatar">B</span>
-                        <a href="#" class="text-link-with-hover font18" style="margin-left: 4px;">Benni</a>
-                    </div>
-                    <div class="margin25-top" style="line-height:1.5;">
-                        I can do this for you with a responsive and minimal interface.
-                    </div>
-                    <div class="margin20-top font25 bold">
-                        ₦9,000
-                    </div>
-                    <div class="flex margin10-top">
-                        <div class="margin40-right">
-                            <i class="fa fa-star "></i>
-                            <span class="font13 text-yellow">3.4(4)</span>
-                        </div>
-                        <div>
-                            <i class="fas fa-clock text-green" style="font-size: 1.3rem;"></i>
-                            <span class="font13">2days</span>
-                        </div>
-                    </div>
-                    <div class="flex-between margin20-top">
-                        <div>
-                            <i class="far fa-comments"></i>
-                            <a href="#" class="text-link-with-hover">Message</a>
-                        </div>
-                        <div>
-                            <a href="#" class="font15 button-green">Order</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <%})%>
             <%}else if( request.status==="awarded"){ %>
 
             <div class="font16" style="padding:30px 10px 0px 10px;">
@@ -166,9 +131,10 @@
             <div class="bg-white" style="padding:20px 10px 10px 10px;">
                 <div>
                     <fieldset>
-                        <select name="" id="" class="bg-white">
+                        <select name="title" id="title" class="bg-white">
                             <%fixes.forEach(fix=>{ %>
-                            <option value=""><%= fix.title %></option>
+                            <option value="<%= fix.title %>" data-titleSlug="<%= fix.titleSlug %>"
+                                data-imageUrl="<%= fix.images_url[0] %>"><%= fix.title %></option>
                             <%})%>
 
                         </select>
@@ -176,27 +142,33 @@
                 </div>
                 <div>
                     <fieldset>
-                        <textarea name="" id="" cols="30" rows="6"
+                        <textarea name="description" id="description" cols="30" rows="6"
                             placeholder="Enter your proposals with samples and why they should chose you..."></textarea>
                     </fieldset>
                 </div>
                 <div>
                     <fieldset>
-                        <select name="" id="" class="bg-white">
+                        <select name="price" id="price" class="bg-white">
                             <option value="">Price</option>
+                            <%for(let price of [1000,2000,3000,5000,10000,20000]){ %>
+                            <option value="<%=price%>">₦<%=price%></option>
+                            <%} %>
                         </select>
                     </fieldset>
                 </div>
                 <div>
                     <fieldset>
-                        <select name="" id="" class="bg-white">
+                        <select name="delivery" id="delivery" class="bg-white">
                             <option value="">Delivery Days</option>
+                            <%for(let days of [1,2,3,5,10,20]){ %>
+                            <option value="<%=days%>"><%=days%> days</option>
+                            <%} %>
                         </select>
                     </fieldset>
                 </div>
                 <div class="font16">
 
-                    <input type="checkbox">
+                    <input type="checkbox" id="accept-terms">
                     <span>
                         I accept i've read the project and can complete
                     </span>
@@ -204,10 +176,11 @@
                 </div>
                 <div class="margin30-top">
                     <fieldset>
-                        <button>Place Offer</button>
+                        <button class="place-offer">Place Offer</button>
                     </fieldset>
                 </div>
             </div>
+            <input type="hidden" value="<%= request._id%>" id="request-id">
 
             <%}%>
                 </div>
