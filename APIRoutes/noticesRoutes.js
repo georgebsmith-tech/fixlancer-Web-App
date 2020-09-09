@@ -17,15 +17,10 @@ router.patch("/:username", (req, res) => {
                 notice.read = true
                 notice.save()
                     .then(data => {
-                        // console.log(data)
                     })
             })
-            // console.log("Changed to read")
             res.end()
-
         })
-
-
 
 })
 

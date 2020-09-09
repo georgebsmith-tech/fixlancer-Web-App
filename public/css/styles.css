@@ -616,7 +616,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .font12 {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .grid-responsive-max4 {
@@ -1238,12 +1238,6 @@ button.header-top-btn, a.header-top-btn {
 .withdrawal-summary .notifications a {
   display: block;
   padding: 10px 15px 10px 10px;
-}
-.withdrawal-summary .notifications span {
-  float: right;
-}
-.withdrawal-summary .notifications em {
-  clear: both;
 }
 .withdrawal-summary .notifications:hover {
   background-color: #eeeded;
