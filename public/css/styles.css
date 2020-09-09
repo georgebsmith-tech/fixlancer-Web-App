@@ -619,6 +619,11 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.2rem;
 }
 
+.bg-heading {
+  background: #f8f9fc;
+  border: 1px solid #e3e6f0;
+}
+
 .grid-responsive-max4 {
   display: grid;
   row-gap: 0px;

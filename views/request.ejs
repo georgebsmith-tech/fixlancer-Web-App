@@ -3,12 +3,64 @@
 
 <head>
 
+
     <%- include('./partials/head.ejs') %>
     <script defer src="../../js/request.js"></script>
 
 </head>
 
-<body>
+<body">
+    <div class="message-modal"
+        style="width: 100vw;height: 100vh; background: rgba(0,0,0,0.4); position: fixed;left: 0;top: 0;z-index: 5;overflow: hidden;">
+        <div class="flex-center" style="height: 100vh;padding: 15px;width: 100vw;box-sizing: border-box;">
+            <div style="max-width: 600px; background: white;" class="border-smooth">
+                <div class="bg-heading padd30 flex-between">
+                    <h2>
+                        <i class="far fa-comments"></i>
+                        <span class="bold">Contact Smith</span>
+
+                    </h2>
+                    <div class="font16">
+                        <a href="#" style="background: #415478; padding: 6px 12px;border-radius: 6px;">
+                            <i class="fa fa-angle-double-left text-white font15"></i>
+                            <span class="text-white font14">back</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="padd20">
+                    <div>
+                        <ul class="font13">
+                            <li style="margin-bottom: 8px;line-height: 1.4;">
+                                <i class="fa fa-exclamation-circle"></i>
+                                When you place order on this platform your funds are held on escrow and not sent to the
+                                seller
+
+                            </li>
+                            <li>
+                                <i class="fa fa-exclamation-circle"></i>
+                                Your job is also done to your satisfaction or 100% refund
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="margin10-top">
+                            <fieldset>
+                                <textarea name="" id="" cols="30" rows="5"
+                                    placeholder="Type your message..."></textarea>
+                            </fieldset>
+                        </div>
+                        <div class="flex-end">
+                            <button class="bg-green text-white border-green font15"
+                                style="padding: 8px 15px;outline: none; border-radius: 6px;">Send</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
     <%- include('./partials/header.ejs') %>
     <main class="main a-request">
         <%if(request.status==="awarded"){ %>
@@ -240,6 +292,6 @@
 
     </main>
     <%- include('./partials/footer.ejs') %>
-</body>
+            </body>
 
 </html>

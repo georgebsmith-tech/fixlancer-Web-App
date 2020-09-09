@@ -463,7 +463,7 @@ app.get("/dashboard/finance/notices", async (req, res) => {
     res.render("finance-notices", { notices })
 })
 
-app.get("/dashboard/my-requests", checkUserAuthenticated, (req, res) => {
+app.get("/dashboard/my-requests", (req, res) => {
     const notice = req.query.notice
     console.log(notice)
     res.render("my-requests", { notice })
