@@ -17,6 +17,12 @@
             <i class="fa fa-check-circle text-green"></i> <span>Job has been awarded</span>
         </div>
         <%}%>
+        <%if(request.status==="closed"){ %>
+
+        <div class="font16 request-status-alert margin10-top" style="border:1px solid #fe1b1b;">
+            <i class="fa fa-exclamation-triangle text-green" style="color: #fe1b1b;"></i> <span>Job is closed.</span>
+        </div>
+        <%}%>
         <%if(request.status==="Open" && loggedUser===request.username){ %>
 
 
@@ -63,7 +69,7 @@
         <div class="card-shadow margin25-top padd20-bottom border-smooth bg-white">
             <h2 class="fon16 padd-head border-bottom" style="background: #f8f9fc;">
                 <i class="fa fa-print bold"></i>
-                <span>Offers</span>
+                <span><%= loggedUser===request.username?"Offers":"Offer"%></span>
 
             </h2>
             <%if(request.offers.length===0 && loggedUser===request.username){%>
@@ -71,13 +77,6 @@
 
             <%}else if(request.offers.length!==0 && loggedUser===request.username){%>
             <%request.offers.forEach(offer=>{%>
-
-
-
-
-
-
-
             <div class="font16 card-grid border-bottom">
                 <div>
                     <div>
@@ -126,6 +125,55 @@
                     You cannot place a new offer as job is already awarded
                 </div>
             </div>
+            <%}else if( request.status==="closed"){ %>
+
+            <div class="font16" style="padding:30px 10px 0px 10px;">
+                <div style="padding: 15px 10px;background: #FCFAE4;" class="border-smooth">
+                    <i class="fas fa-exclamation-triangle" style="color: #fe1b1b;"></i>
+                    You cannot place a new offer as job is closed.
+                </div>
+            </div>
+
+            <%}else if(request.offers.find(offer=>offer.username===loggedUser)*1!==-1 ){%>
+            <%request.offers.filter(offer=>offer.username===loggedUser).forEach(myOffer=>{%>
+            <div class="font16 card-grid border-bottom">
+                <div>
+                    <div>
+                        <img src="<%=myOffer.image_url%>" alt="">
+                    </div>
+                </div>
+                <div>
+                    <div class="flex margin10-top">
+                        <span class="user-avatar"><%=myOffer.username[0].toUpperCase()%></span>
+                        <a href="#" class="text-link-with-hover font18"
+                            style="margin-left: 4px;"><%=myOffer.username%></a>
+                    </div>
+                    <div class="margin25-top" style="line-height:1.5;">
+                        I<%=myOffer.description %>
+                    </div>
+                    <div class="margin20-top font25 bold">
+                        ₦<%=myOffer.price%>
+                    </div>
+                    <div class="flex margin10-top">
+                        <div class="margin40-right">
+                            <i class="fa fa-star "></i>
+                            <span class="font13 text-yellow">3.4(4)</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-clock text-green" style="font-size: 1.3rem;"></i>
+                            <span class="font13"><%=myOffer.delivery%> days</span>
+                        </div>
+                    </div>
+                    <div class="margin20-top">
+                        <div>
+                            <a href="#" class="font15 button-green block">Edit Offer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <%})%>
 
             <%}else if(request.status==="Open") {%>
             <div class="bg-white" style="padding:20px 10px 10px 10px;">
