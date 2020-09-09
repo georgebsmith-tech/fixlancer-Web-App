@@ -1249,6 +1249,11 @@ button.header-top-btn, a.header-top-btn {
   background-color: #eeeded;
 }
 
+.unread-notice {
+  background: #e4eeef;
+  border-left: 4px solid #f4873e !important;
+}
+
 .finance-controlers {
   text-align: center;
   margin-bottom: 55px;

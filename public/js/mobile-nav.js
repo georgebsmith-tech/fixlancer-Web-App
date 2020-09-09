@@ -4,6 +4,10 @@ const socket = io();
     const mobileFinanceContainer = document.querySelector(".mobile-finance")
     const mobileSearchInput = document.querySelector(".search-mobile-header")
     const mobileSearcHandler = document.querySelector(".search-mobile-header+i")
+    const noticeBell = document.querySelector(".notice-bell")
+    noticeBell.addEventListener("click", function () {
+        console.log("Notice")
+    })
     // console.log(mobileSearchInput)
     mobileSearcHandler.addEventListener("click", function () {
         const searchTerm = mobileSearchInput.value.trim()

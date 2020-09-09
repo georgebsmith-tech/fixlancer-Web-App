@@ -457,7 +457,8 @@ app.get("/dashboard/finance/notices", async (req, res) => {
     const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
 
     const notices = await NoticeModel.find({ username: loggedUser })
-    console.log(notices)
+    notices.reverse()
+
 
     res.render("finance-notices", { notices })
 })

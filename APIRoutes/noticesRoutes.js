@@ -9,6 +9,27 @@ router.get("/", async (req, res) => {
 })
 
 
+router.patch("/:username", (req, res) => {
+    NoticesModel.find({ username: req.params.username, read: false })
+        .then(data => {
+            console.log(data)
+            data.forEach(notice => {
+                notice.read = true
+                notice.save()
+                    .then(data => {
+                        // console.log(data)
+                    })
+            })
+            // console.log("Changed to read")
+            res.end()
+
+        })
+
+
+
+})
+
+
 
 
 

@@ -69,7 +69,7 @@
                 </div>
                 <div>
                     <i class="fas fa-clock text-green" style="font-size: 1.3rem;"></i>
-                    <span class="font13">${myOffer.delivery} days</span>
+                    <span class="font13">${offer.delivery} days</span>
                 </div>
             </div>
             <div class="margin20-top">

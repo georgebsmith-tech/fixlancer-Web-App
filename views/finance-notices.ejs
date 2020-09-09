@@ -3,8 +3,7 @@
 
 <head>
     <%- include('./partials/head.ejs') %>
-
-    <title>Document</title>
+    <script defer src="../../js/notice.js"></script>
     <link rel="stylesheet" href="../../css/styles.css">
 
 
@@ -21,7 +20,7 @@
             <%if(notice.type==="offer"){ %>
 
             <div class="notifications">
-                <a href="/dashboard/<%=notice.content.slug%>">
+                <a href="/dashboard/<%=notice.content.slug%>" class="<%= notice.read?undefined:'unread-notice'%>">
                     A new offer price of <strong class="bold">₦<%=notice.content.price%></strong> by
                     <strong class="bold"><%=notice.content.username%> </strong>
                     has

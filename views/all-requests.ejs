@@ -34,7 +34,14 @@
                                         ₦<%= request.price %>
                                     </div>
                                 </div>
-                                <%if(loggedUser!==request.username){%>
+                                <%if(request.offers.find(offer=>offer.username===loggedUser)){%>
+                                <div>
+                                    <i class="fa fa-check-circle" style="color: #33bd4b;font-size: 1.3rem;"></i>
+                                    <span style="color: #33bd4b; font-size: 1.3rem;">Offer sent</span>
+
+                                </div>
+
+                                <%}else if(loggedUser!==request.username){%>
                                 <div>
                                     <a class="send-offer" href="/dashboard/<%= request.slug%>">Send Offer</a>
                                 </div>
