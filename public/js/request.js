@@ -6,6 +6,8 @@
     const deliveryInput = document.getElementById("delivery")
     const acceptTerms = document.getElementById("accept-terms")
     const offerBtn = document.querySelector(".place-offer")
+    const numberOfOffersHolder = document.querySelector(".number-of-offers")
+
     if (offerBtn) {
         offerBtn.addEventListener("click", function () {
 
@@ -29,8 +31,57 @@
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                numberOfOffersHolder.innerText = ` ${parseInt(numberOfOffersHolder.innerText) + 1} offers`
+
+                renderOffer(data)
             })
+    }
+
+    const holder = document.querySelector(".holder")
+
+    function renderOffer(data) {
+        let offer = data.offers.slice(-1)[0]
+        console.log(offer)
+        holder.innerHTML = ""
+
+        let item = `<div class="font16 card-grid border-bottom">
+        <div>
+            <div>
+                <img src="${offer.image_url}" alt="">
+            </div>
+        </div>
+        <div>
+            <div class="flex margin10-top">
+                <span class="user-avatar">${offer.username[0].toUpperCase()}</span>
+                <a href="#" class="text-link-with-hover font18"
+                    style="margin-left: 4px;">${offer.username}</a>
+            </div>
+            <div class="margin25-top" style="line-height:1.5;">
+                I${offer.description}
+            </div>
+            <div class="margin20-top font25 bold">
+                ₦${offer.price}
+            </div>
+            <div class="flex margin10-top">
+                <div class="margin40-right">
+                    <i class="fa fa-star "></i>
+                    <span class="font13 text-yellow">3.4(4)</span>
+                </div>
+                <div>
+                    <i class="fas fa-clock text-green" style="font-size: 1.3rem;"></i>
+                    <span class="font13">${myOffer.delivery} days</span>
+                </div>
+            </div>
+            <div class="margin20-top">
+                <div>
+                    <a href="#" class="font15 button-green block">Edit Offer</a>
+                </div>
+            </div>
+        </div>
+    </div>`
+        holder.insertAdjacentHTML("afterbegin", item)
+
+
     }
 
     function getBody() {
@@ -45,4 +96,12 @@
         }
 
     }
+
+
+
+
+
+
+
+
 })()

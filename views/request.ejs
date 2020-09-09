@@ -41,7 +41,7 @@
                 <span class="bold"> <%= request.delivery %>days</span></div>
             <div>
                 <i class="fa fa-print bold"></i>
-                <span class="bold"> <%= request.offers.length %> offers</span>
+                <span class="bold number-of-offers"> <%= request.offers.length %> offers</span>
             </div>
             <div>
                 <span class="text-green bold">₦<%= request.price %></span>
@@ -79,9 +79,9 @@
             <%request.offers.forEach(offer=>{%>
             <div class="font16 card-grid border-bottom">
                 <div>
-                    <div>
+                    <a href="#" class="block">
                         <img src="<%=offer.image_url%>" alt="">
-                    </div>
+                    </a>
                 </div>
                 <div>
                     <div class="flex margin10-top">
@@ -134,13 +134,13 @@
                 </div>
             </div>
 
-            <%}else if(request.offers.find(offer=>offer.username===loggedUser)*1!==-1 ){%>
+            <%}else if(request.offers.find(offer=>offer.username===loggedUser) ){%>
             <%request.offers.filter(offer=>offer.username===loggedUser).forEach(myOffer=>{%>
             <div class="font16 card-grid border-bottom">
                 <div>
-                    <div>
+                    <a href="#" class="block">
                         <img src="<%=myOffer.image_url%>" alt="">
-                    </div>
+                    </a>
                 </div>
                 <div>
                     <div class="flex margin10-top">
@@ -176,62 +176,65 @@
             <%})%>
 
             <%}else if(request.status==="Open") {%>
-            <div class="bg-white" style="padding:20px 10px 10px 10px;">
-                <div>
-                    <fieldset>
-                        <select name="title" id="title" class="bg-white">
-                            <%fixes.forEach(fix=>{ %>
-                            <option value="<%= fix.title %>" data-titleSlug="<%= fix.titleSlug %>"
-                                data-imageUrl="<%= fix.images_url[0] %>"><%= fix.title %></option>
-                            <%})%>
+            <div class="holder">
+                <div class="bg-white " style="padding:20px 10px 10px 10px;">
+                    <div>
+                        <fieldset>
+                            <select name="title" id="title" class="bg-white">
+                                <%fixes.forEach(fix=>{ %>
+                                <option value="<%= fix.title %>" data-titleSlug="<%= fix.titleSlug %>"
+                                    data-imageUrl="<%= fix.images_url[0] %>"><%= fix.title %></option>
+                                <%})%>
 
-                        </select>
-                    </fieldset>
-                </div>
-                <div>
-                    <fieldset>
-                        <textarea name="description" id="description" cols="30" rows="6"
-                            placeholder="Enter your proposals with samples and why they should chose you..."></textarea>
-                    </fieldset>
-                </div>
-                <div>
-                    <fieldset>
-                        <select name="price" id="price" class="bg-white">
-                            <option value="">Price</option>
-                            <%for(let price of [1000,2000,3000,5000,10000,20000]){ %>
-                            <option value="<%=price%>">₦<%=price%></option>
-                            <%} %>
-                        </select>
-                    </fieldset>
-                </div>
-                <div>
-                    <fieldset>
-                        <select name="delivery" id="delivery" class="bg-white">
-                            <option value="">Delivery Days</option>
-                            <%for(let days of [1,2,3,5,10,20]){ %>
-                            <option value="<%=days%>"><%=days%> days</option>
-                            <%} %>
-                        </select>
-                    </fieldset>
-                </div>
-                <div class="font16">
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div>
+                        <fieldset>
+                            <textarea name="description" id="description" cols="30" rows="6"
+                                placeholder="Enter your proposals with samples and why they should chose you..."></textarea>
+                        </fieldset>
+                    </div>
+                    <div>
+                        <fieldset>
+                            <select name="price" id="price" class="bg-white">
+                                <option value="">Price</option>
+                                <%for(let price of [1000,2000,3000,5000,10000,20000]){ %>
+                                <option value="<%=price%>">₦<%=price%></option>
+                                <%} %>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div>
+                        <fieldset>
+                            <select name="delivery" id="delivery" class="bg-white">
+                                <option value="">Delivery Days</option>
+                                <%for(let days of [1,2,3,5,10,20]){ %>
+                                <option value="<%=days%>"><%=days%> days</option>
+                                <%} %>
+                            </select>
+                        </fieldset>
+                    </div>
+                    <div class="font16">
 
-                    <input type="checkbox" id="accept-terms">
-                    <span>
-                        I accept i've read the project and can complete
-                    </span>
+                        <input type="checkbox" id="accept-terms">
+                        <span>
+                            I accept i've read the project and can complete
+                        </span>
 
+                    </div>
+                    <div class="margin30-top">
+                        <fieldset>
+                            <button class="place-offer">Place Offer</button>
+                        </fieldset>
+                    </div>
                 </div>
-                <div class="margin30-top">
-                    <fieldset>
-                        <button class="place-offer">Place Offer</button>
-                    </fieldset>
-                </div>
+                <input type="hidden" value="<%= request._id%>" id="request-id">
             </div>
-            <input type="hidden" value="<%= request._id%>" id="request-id">
 
             <%}%>
-                </div>
+    </div>
+                
 
 
     </main>
