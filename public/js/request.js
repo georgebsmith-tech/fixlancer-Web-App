@@ -7,6 +7,24 @@
     const acceptTerms = document.getElementById("accept-terms")
     const offerBtn = document.querySelector(".place-offer")
     const numberOfOffersHolder = document.querySelector(".number-of-offers")
+    const messageModal = document.querySelector(".message-modal")
+    const messageSellerBtns = document.querySelectorAll(".message-seller")
+    const closeMessageBtn = document.querySelector(".close-message")
+    closeMessageBtn.addEventListener("click", function () {
+        messageModal.classList.add("hide")
+    })
+
+
+    messageSellerBtns.forEach(btn => {
+        btn.addEventListener("click", function () {
+            messageModal.classList.remove("hide")
+
+        })
+    })
+
+
+
+
 
     if (offerBtn) {
         offerBtn.addEventListener("click", function () {

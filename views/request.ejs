@@ -10,8 +10,8 @@
 </head>
 
 <body">
-    <div class="message-modal"
-        style="width: 100vw;height: 100vh; background: rgba(0,0,0,0.4); position: fixed;left: 0;top: 0;z-index: 5;overflow: hidden;">
+    <div class="message-modal hide"
+        style="width: 100vw;height: 100vh; background: rgba(0,0,0,0.5); position: fixed;left: 0;top: 0;z-index: 5;overflow: hidden;">
         <div class="flex-center" style="height: 100vh;padding: 15px;width: 100vw;box-sizing: border-box;">
             <div style="max-width: 600px; background: white;" class="border-smooth">
                 <div class="bg-heading padd30 flex-between">
@@ -21,7 +21,8 @@
 
                     </h2>
                     <div class="font16">
-                        <a href="#" style="background: #415478; padding: 6px 12px;border-radius: 6px;">
+                        <a href="#" style="background: #415478; padding: 6px 12px;border-radius: 6px;"
+                            class="close-message">
                             <i class="fa fa-angle-double-left text-white font15"></i>
                             <span class="text-white font14">back</span>
                         </a>
@@ -159,8 +160,12 @@
                     </div>
                     <div class="flex-between margin20-top">
                         <div>
-                            <i class="far fa-comments"></i>
-                            <a href="#" class="text-link-with-hover">Message</a>
+                            <button class="bg-white message-seller"
+                                style="outline: none; padding: 6px 12px; border: 1px solid #f1f1f1; border-radius: 6px;">
+                                <i class="far fa-comments"></i>
+                                <span>Message</span>
+                            </button>
+
                         </div>
                         <div>
 
