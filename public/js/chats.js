@@ -15,7 +15,7 @@
         })
 
     })()
-    console.log("after")
+    // console.log("after")
 
     closeModalBtn.addEventListener("click", closeModal)
     function closeModal() {
@@ -47,12 +47,12 @@
             })
         if (resp.status === 201) {
             const data = await resp.json()
-            console.log(data)
+            // console.log(data)
             closeModal()
             document.querySelector(".chat-send-notice").classList.remove("hide")
         } else {
             const data = await resp.json()
-            console.log(data)
+            // console.log(data)
         }
 
 

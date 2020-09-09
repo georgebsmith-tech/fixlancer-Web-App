@@ -41,6 +41,15 @@ router.patch("/", async (req, res) => {
         })
 })
 
+router.patch("/:slug", (req, res) => {
+    RequestModel.findOneAndUpdate(req.body, { status: "closed" }, { new: true })
+        .then(data => {
+            console.log(data)
+            res.end()
+        })
+
+})
+
 
 
 router.get("/", async (req, res) => {

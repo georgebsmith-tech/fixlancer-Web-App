@@ -2541,6 +2541,7 @@ a.control-btn {
   background: white;
   border-radius: 30px;
   font-size: 1.15rem;
+  outline: none;
 }
 
 .card-grid {

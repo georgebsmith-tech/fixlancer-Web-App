@@ -10,6 +10,9 @@
 </head>
 
 <body">
+
+    <input type="hidden" value="<%=request.slug%>" id="hidden-request-slug">
+    <input type="hidden" value="<%=request.username%>" id="hidden-request-owner">
     <div class="message-modal hide"
         style="width: 100vw;height: 100vh; background: rgba(0,0,0,0.5); position: fixed;left: 0;top: 0;z-index: 5;overflow: hidden;">
         <div class="flex-center" style="height: 100vh;padding: 15px;width: 100vw;box-sizing: border-box;">
@@ -17,7 +20,7 @@
                 <div class="bg-heading padd30 flex-between">
                     <h2>
                         <i class="far fa-comments"></i>
-                        <span class="bold">Contact Smith</span>
+                        <span class="bold">Contact <span class="bold seller"></span></span>
 
                     </h2>
                     <div class="font16">
@@ -46,12 +49,12 @@
                     <div>
                         <div class="margin10-top">
                             <fieldset>
-                                <textarea name="" id="" cols="30" rows="5"
+                                <textarea name="" id="message" cols="30" rows="5"
                                     placeholder="Type your message..."></textarea>
                             </fieldset>
                         </div>
                         <div class="flex-end">
-                            <button class="bg-green text-white border-green font15"
+                            <button class="bg-green text-white border-green font15 send"
                                 style="padding: 8px 15px;outline: none; border-radius: 6px;">Send</button>
                         </div>
                     </div>
@@ -82,7 +85,16 @@
         <div>
             <button class="close-request"> Mark as closed</button>
         </div>
+        <div class="font16 request-status-alert margin10-top hide closed-alert" style="border:1px solid #fe1b1b;">
+            <i class="fa fa-exclamation-triangle text-green" style="color: #fe1b1b;"></i> <span>Job is closed.</span>
+        </div>
         <%}%>
+        <div class="flex-between chat-send-notice font14 bg-green hide">
+            <div class="text-white">
+                Your message to <span id="sent-seller" class="bold"></span> has been sent.You can check out other offers below.
+            </div>
+            <a href="/dashboard/inbox" class="font14 view-in-btn block link-hover" style="white-space: nowrap;">View in inbox</a>
+        </div>
 
         <div class="margin10-top border-smooth card-shadow">
             <h1 class="request-title bg-green2">
@@ -161,7 +173,8 @@
                     <div class="flex-between margin20-top">
                         <div>
                             <button class="bg-white message-seller"
-                                style="outline: none; padding: 6px 12px; border: 1px solid #f1f1f1; border-radius: 6px;">
+                                style="outline: none; padding: 6px 12px; border: 1px solid #f1f1f1; border-radius: 6px;"
+                                data-seller="<%=offer.username%>">
                                 <i class="far fa-comments"></i>
                                 <span>Message</span>
                             </button>
