@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const AffiliateModel = require("../models/affiliateModel");
+const AffiliateModel = require("../models/AffiliateModel");
 
 
 // console.log(AffiliateModel)

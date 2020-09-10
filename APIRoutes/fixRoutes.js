@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const FixModel = require("../models/fixesModel");
+const FixModel = require("../models/FixesModel");
 const upload = require("../controlers/awsConfig")
 
 // const multiple_uploads = upload.array("photo")

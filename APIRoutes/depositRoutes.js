@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const DepositModel = require("../models/depositModel");
+const DepositModel = require("../models/DepositModel");
 
 router.get("/", async (req, res) => {
     const data = await DepositModel.find()

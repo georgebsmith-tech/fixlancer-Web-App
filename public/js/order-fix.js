@@ -2,19 +2,54 @@
     let buyer = document.cookie.split(";").map(item => { return item.trim() }).find(cookie => { return cookie.includes("username=") }).split("=")[1]
     let seller = document.querySelector(".seller").innerText.trim()
     const jobId = document.getElementById("job-id").value
+    const deliveryDays = document.getElementById("delivery_days").value
 
 
     const confirmPaymentBTN = document.querySelector(".confirm-payment")
     if (confirmPaymentBTN)
         confirmPaymentBTN.addEventListener("click", function () {
-            sendNotice(buyer, "new order", seller)
-            sendNotice(seller, "new sale", buyer)
+            createOrder(seller, buyer)
+                .then((data) => {
+                    sendNotice(buyer, "new order", seller)
+                    sendNotice(seller, "new sale", buyer)
+
+                })
+
 
 
         })
 
+    async function createOrder() {
+        let date = new Date()
+        const data = {
+            seller,
+            buyer,
+            delivery_date: new Date(date.setDate(date.getDate() + deliveryDays * 1)),
+            job_id: jobId
+        }
+        const outData = await fetchData(data, "/api/sales")
+
+        console.log(outData)
+        return outData
 
 
+
+    }
+
+    async function fetchData(data, url) {
+        const resp = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        const outData = await resp.json()
+
+
+        return outData
+
+    }
     function sendNotice(to, type, from) {
         const data = {
             username: to,
@@ -24,15 +59,7 @@
                 from
             }
         }
-
-        fetch("/api/notices", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
-            .then(resp => resp.json())
+        fetchData(data, "/api/notices")
             .then(data => {
                 console.log(data)
             })

@@ -11,36 +11,30 @@ mongoose.connect(dataBaseUrl, { useNewUrlParser: true, useUnifiedTopology: true,
     if (err) {
         console.log("error" + err)
     } else {
-        console.log("Orders Connction successful")
+        console.log("Sales Connction successful")
     }
 
 })
 
 
 const Schema = new mongoose.Schema({
-    user_id: {
+
+    seller: {
         type: String,
         required: true
-
     },
     fix: {
-        type: String,
-        required: true
+        type: String
     },
-    delivery: {
+    delivery_date: {
         type: Date,
-        required: true
-    },
-
-    amount: {
-        type: Number,
         required: true
     },
     createdAt: {
         type: Date,
         default: Date.now
     },
-    seller: {
+    buyer: {
         type: String,
         require: true
     },
@@ -48,11 +42,20 @@ const Schema = new mongoose.Schema({
         type: String,
         required: true,
         default: "ongoing" // other values are Delivered, canceled and completed
+    },
+    order_id: {
+        type: Number,
+        required: true,
+        unique: true
+    },
+    job_id: {
+        type: Number,
+        unique: true
     }
 
 
 })
 
-const Order = mongoose.model("Order", Schema)
+const Sale = mongoose.model("Sale", Schema)
 
-module.exports = Order
+module.exports = Sale

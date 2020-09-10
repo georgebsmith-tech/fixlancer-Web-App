@@ -16,14 +16,14 @@ const jwt = require("jsonwebtoken");
 
 console.log(process.env.AWS_REGION)
 
-const UserModel = require("../models/usersModel")
-const BankModel = require("../models/bankModel")
-const SalesModel = require("../models/salesModel")
-const OrdersModel = require("../models/ordersModel")
-const NoticesModel = require("../models/noticeModel")
-const RevenueModel = require("../models/revenueModel")
-const DepositModel = require("../models/depositModel")
-const RefundModel = require("../models/refundModel")
+const UserModel = require("../models/UserModel")
+const BankModel = require("../models/BankModel")
+const SalesModel = require("../models/SaleModel")
+// const OrdersModel = require("../models/ordersModel")
+const NoticesModel = require("../models/NoticeModel")
+const RevenueModel = require("../models/RevenueModel")
+const DepositModel = require("../models/DepositModel")
+const RefundModel = require("../models/RefundModel")
 
 
 const singleUpload = upload.single("photo")
@@ -35,25 +35,25 @@ router.get("/", async function (req, res) {
 })
 
 router.get("/leaving", (req, res) => {
-    let user=req.query.user
-    if(req.query.online){
-        UserModel.findOneAndUpdate({username:user},{online:true},{new:true})
-        .then(data=>{
-        console.log(data)
+    let user = req.query.user
+    if (req.query.online) {
+        UserModel.findOneAndUpdate({ username: user }, { online: true }, { new: true })
+            .then(data => {
+                console.log(data)
 
-          })
-          console.log("back!!!!!!!!!!!")
-        
-    }else{
+            })
+        console.log("back!!!!!!!!!!!")
 
-   let date = new Date()
-    UserModel.findOneAndUpdate({username:user},{online:false,last_seen:date},{new:true})
-    .then(data=>{
-        console.log(data)
+    } else {
 
-    })
-    console.log("leaving!!!!!!!!!!!")
-     }
+        let date = new Date()
+        UserModel.findOneAndUpdate({ username: user }, { online: false, last_seen: date }, { new: true })
+            .then(data => {
+                console.log(data)
+
+            })
+        console.log("leaving!!!!!!!!!!!")
+    }
 })
 
 //Registration route
@@ -259,8 +259,8 @@ router.get("/u", async (req, res) => {
             username: req.params.username
         }).select("bio username rating")
         if (data) {
-            const ongoingSales = await SalesModel.find({ user_id: data._id, state: "ongoing" })
-            const ongoingOrders = await OrdersModel.find({ user_id: data._id, state: "ongoing" })
+            const ongoingSales = await SalesModel.find({ seller: data.username, state: "ongoing" })
+            const ongoingOrders = await SalesModel.find({ buyer: data.username, state: "ongoing" })
             const unreadNotices = await NoticesModel.find({ user_id: data._id, read: false })
             const userRevenue = await RevenueModel.findOne({ username: req.params.username })
             if (userRevenue)

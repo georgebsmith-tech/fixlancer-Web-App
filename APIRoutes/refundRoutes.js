@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const RefundModel = require("../models/refundModel");
+const RefundModel = require("../models/RefundModel");
 
 router.get("/", async (req, res) => {
     const data = await RefundModel.find()

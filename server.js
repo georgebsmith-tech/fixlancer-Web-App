@@ -29,14 +29,14 @@ const fixRoutes = require("./APIRoutes/fixRoutes")
 const requestRoutes = require("./APIRoutes/requestsRoutes")
 const salesRoutes = require("./APIRoutes/salesRoutes")
 const conversationRoutes = require("./APIRoutes/conversationRoutes")
-const RevenueModel = require("./models/revenueModel")
-const UserModel = require("./models/usersModel")
+const RevenueModel = require("./models/RevenueModel")
+const UserModel = require("./models/UserModel")
 
-const ConversationModel = require("./models/conversationModel")
-const DepositModel = require("./models/depositModel")
+const ConversationModel = require("./models/ConversationModel")
+const DepositModel = require("./models/DepositModel")
 
-const RefundModel = require("./models/refundModel")
-const RequestModel = require("./models/requestsModel")
+const RefundModel = require("./models/RefundModel")
+const RequestModel = require("./models/RequestsModel")
 
 
 app.use(flash())
@@ -332,7 +332,7 @@ app.get("/dashboard/inbox", async (req, res) => {
         }
     })
 })
-const CategoriesModel = require("./models/categoryModel")
+const CategoriesModel = require("./models/CategoryModel")
 
 app.get("/alert", (req, res) => {
     res.render("alert")
@@ -452,7 +452,7 @@ app.get("/dashboard/finance/transactions", async (req, res) => {
     res.render("finance-w", { revenue })
 })
 
-const NoticeModel = require("./models/noticeModel")
+const NoticeModel = require("./models/NoticeModel")
 app.get("/dashboard/finance/notices", async (req, res) => {
     const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
 
@@ -510,7 +510,7 @@ app.get("/log-out", checkUserAuthenticated, (req, res) => {
     res.redirect("/")
 })
 
-const FixModel = require("./models/fixesModel")
+const FixModel = require("./models/FixesModel")
 
 app.get("/fix/:subcat/:titleSlug", async (req, res) => {
     const fix = await FixModel.findOne({ titleSlug: req.params.titleSlug })

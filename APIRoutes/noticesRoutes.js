@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const NoticesModel = require("../models/noticeModel")
+const NoticesModel = require("../models/NoticeModel")
 
 
 router.get("/", async (req, res) => {
