@@ -954,8 +954,17 @@ i.fa.fa-star {
   color: white;
   text-align: center;
   border-radius: 5px;
-  padding: 5px 12px;
+  padding: 6px 12px;
   background: #f27415;
+}
+
+.button-white {
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 6px 12px;
+  background: white;
+  border: 1px solid #ddd;
 }
 
 .margin30-top {
@@ -1244,6 +1253,7 @@ button.header-top-btn, a.header-top-btn {
   margin-top: 20px;
 }
 .withdrawal-summary .notifications {
+  font-size: 1.4rem;
   padding: 0px;
   line-height: 1.4;
   border-bottom: 1px solid #ddd;
