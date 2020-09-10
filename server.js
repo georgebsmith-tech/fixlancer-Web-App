@@ -472,6 +472,7 @@ app.get("/dashboard/my-requests", (req, res) => {
 app.get("/dashboard/job-requests", async (req, res) => {
     const requests = await RequestModel.find({ approved: true })
     const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
+    requests.reverse()
 
     // console.log(requests)
 
