@@ -536,17 +536,19 @@ app.get("/order-fix/:titleSlug", async function (req, res) {
     const jobId = req.query.job_id
     const titleSlug = req.params.titleSlug
     let fix;
+    let offer
     if (jobId) {
 
-        RequestModel.findOne({ job_id: jobId })
-            .then(data => {
-                console.log(data)
-                const offer = data.offers.find(offer => offer.slug === titleSlug)
-                console.log(offer)
-            })
+        const data = await RequestModel.findOne({ job_id: jobId })
+
+        console.log(data)
+        offer = data.offers.find(offer => offer.slug === titleSlug)
+        console.log(offer)
         fix = offer
-        fix.images_url = [fix.image_url]
-        fix.delivery_days = fix.delivery
+        fix.images_url = [offer.image_url]
+        fix.delivery_days = offer.delivery
+
+
 
 
 
