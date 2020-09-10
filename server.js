@@ -538,6 +538,7 @@ app.get("/order-fix/:titleSlug", async function (req, res) {
     const titleSlug = req.params.titleSlug
     let fix;
     let offer
+    let custom = false;
     if (jobId) {
 
         const data = await RequestModel.findOne({ job_id: jobId })
@@ -548,6 +549,8 @@ app.get("/order-fix/:titleSlug", async function (req, res) {
         fix = offer
         fix.images_url = [offer.image_url]
         fix.delivery_days = offer.delivery
+        fix.mainSlug = data.slug
+        custom = true
 
 
 
@@ -590,7 +593,7 @@ app.get("/order-fix/:titleSlug", async function (req, res) {
 
 
     // console.log(fix)
-    res.render("order-fix", { fix, balance, total, fee })
+    res.render("order-fix", { fix, balance, total, fee, custom, jobId })
 
 })
 

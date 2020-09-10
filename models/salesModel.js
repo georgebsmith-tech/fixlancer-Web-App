@@ -19,7 +19,7 @@ mongoose.connect(dataBaseUrl, { useNewUrlParser: true, useUnifiedTopology: true,
 
 const Schema = new mongoose.Schema({
 
-    user_id: {
+    seller: {
         type: String,
         required: true
     },
@@ -48,6 +48,11 @@ const Schema = new mongoose.Schema({
         type: String,
         required: true,
         default: "ongoing" // other values are Delivered, canceled and completed
+    },
+    order_id: {
+        type: Number,
+        required: true,
+        unique: true
     }
 
 

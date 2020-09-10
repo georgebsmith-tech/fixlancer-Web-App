@@ -39,6 +39,44 @@
 
                     </a>
                 </div>
+                <%}else if(notice.type==="new order"){ %>
+                <div class="notifications">
+                    <a href="#" class="<%= notice.read?undefined:'unread-notice'%>">
+                        <div>
+                            <i class="fa fa-handshake-o" aria-hidden="true"></i> Thanks for your order! Click here to
+                            provide the necessary details to the seller (
+                            <strong class="bold"><%=notice.content.from %> </strong>) so that your order can start.
+                        </div>
+                        <div class="flex-end font12">
+                            <em>
+                                <%=notice.createdAt.toDateString()%>
+                            </em>
+
+                        </div>
+
+
+                    </a>
+                </div>
+                <%}else if(notice.type==="new sale"){ %>
+                <div class="notifications">
+                    <a href="#" class="<%= notice.read?undefined:'unread-notice'%>">
+                        <div>
+                            <i class="fa fa-trophy" aria-hidden="true"></i>
+                            Good News! You have a new order from
+                            <strong class="bold"><%=notice.content.from %>.</strong>
+                        </div>
+                        <div class="flex-end font12">
+                            <em>
+                                <%=notice.createdAt.toDateString()%>
+                            </em>
+
+                        </div>
+
+
+                    </a>
+                </div>
+
+
                 <%}%>
             <%})%>
 

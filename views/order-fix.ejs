@@ -3,9 +3,11 @@
 
 <head>
     <%- include('./partials/head.ejs') %>
+    <script defer src="../../js/order-fix.js"></script>
 </head>
 
 <body>
+    <input type="hidden" value="<%=jobId%>" id="job-id">
 
     <header class="explore-header" style="background-color: white;">
         <div class="logo-wrapper">
@@ -19,79 +21,86 @@
         <div class="order-fix-main">
             <div>
                 <div>
+                    <%if(custom){ %>
+                    <a href="/dashboard/<%= fix.mainSlug %>/" class="block back-btn center-text ">
+                        <i class="fa fa-angle-double-left text-link"></i>
+                        <span class="text-link">Back</span>
+                    </a>
+                    <%}else{%>
                     <a href="/fix/<%= fix.subcatSlug %>/<%= fix.titleSlug%>" class="block back-btn center-text ">
                         <i class="fa fa-angle-double-left text-link"></i>
                         <span class="text-link">Back</span>
                     </a>
+                    <%}%>
                 </div>
                 <div class="order-top-grid">
                     <div>
                         <img src="<%= fix.images_url[0] %>" alt="">
+                </div>
+                <div>
+                    <a class="block fix-title" href="/fix/<%= fix.subcatSlug %>/<%= fix.titleSlug%>">
+                        <%= fix.title %>
+                    </a>
+                    <div class="order-fix-meta">
+                        <div>
+                            by <a href="/<%= fix.username %>" class="text-link seller"><%= fix.username%></a>
+                        </div>
+                        <div>
+                            <i class="fas fa-clock"></i>
+                            <span><%= fix.delivery_days %> day(s)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="border-smooth padd10 font15">
+                <div class="flex-between" style="margin-bottom: 10px;padding: 5px 0px; border-bottom: 1px solid #ddd;">
+                    <div>
+                        Available Balance
+                    </div>
+                    <div>₦<%= balance.toFixed(2) %></div>
+                </div>
+                <div class="flex-between font15" style="margin-bottom: 25px;">
+                    <div>
+                        Fix Price
                     </div>
                     <div>
-                        <a class="block fix-title" href="/fix/<%= fix.subcatSlug %>/<%= fix.titleSlug%>">
-                            <%= fix.title %>
-                        </a>
-                        <div class="order-fix-meta">
-                            <div>
-                                by <a href="/<%= fix.username %>" class="text-link"><%= fix.username%></a>
-                            </div>
-                            <div>
-                                <i class="fas fa-clock"></i>
-                                <span><%= fix.delivery_days %> day(s)</span>
-                            </div>
-                        </div>
+                        ₦<%= fix.price.toFixed(2) %>
                     </div>
                 </div>
-                <section class="border-smooth padd10 font15">
-                    <div class="flex-between"
-                        style="margin-bottom: 10px;padding: 5px 0px; border-bottom: 1px solid #ddd;">
-                        <div>
-                            Available Balance
-                        </div>
-                        <div>₦<%= balance.toFixed(2) %></div>
+                <div style="margin-bottom: 25px;">
+                    <input type="text" placeholder="Enter promo code" class="promo-input">
+                    <button class="button promo-apply">Apply</button>
+                </div>
+                <div class="flex-between" style="margin-bottom:10px;">
+                    <div>Fee</div>
+                    <div>₦<%= fee.toFixed(2) %></div>
+                </div>
+                <div class="flex-between">
+                    <div>
+                        <strong class="bold">Total Price</strong>
                     </div>
-                    <div class="flex-between font15" style="margin-bottom: 25px;">
-                        <div>
-                            Fix Price
-                        </div>
-                        <div>
-                            ₦<%= fix.price.toFixed(2) %>
-                        </div>
+                    <div class="bold">
+                        ₦<%= total.toFixed(2) %>
                     </div>
-                    <div style="margin-bottom: 25px;">
-                        <input type="text" placeholder="Enter promo code" class="promo-input">
-                        <button class="button promo-apply">Apply</button>
-                    </div>
-                    <div class="flex-between" style="margin-bottom:10px;">
-                        <div>Fee</div>
-                        <div>₦<%= fee.toFixed(2) %></div>
-                    </div>
-                    <div class="flex-between">
-                        <div>
-                            <strong class="bold">Total Price</strong>
-                        </div>
-                        <div class="bold">
-                            ₦<%= total.toFixed(2) %>
-                        </div>
-
-                    </div>
-                </section>
-                <div>
-                    <% if(total>balance){ %>
-                    <button class="button" id="order-purchase-btn" style="margin-top: 15px;">Proceed to
-                        Purchase</button>
-                    <% }else{%>
-                    <button class="button" id="order-purchase-btn" style="margin-top: 15px;">Confirm and pay</button>
-                    <% } %>
 
                 </div>
+            </section>
+            <div>
                 <% if(total>balance){ %>
-                <div class="center-text font15">
-                    <i class="fas fa-info-circle font15"></i>
-                    You won't be charged yet
-                </div>
-                <%}%>
+                <button class="button" id="order-purchase-btn" style="margin-top: 15px;">Proceed to
+                    Purchase</button>
+                <% }else{%>
+                <button class="button confirm-payment" id="order-purchase-btn" style="margin-top: 15px;">Confirm and
+                    pay</button>
+                <% } %>
+
+            </div>
+            <% if(total>balance){ %>
+            <div class="center-text font15">
+                <i class="fas fa-info-circle font15"></i>
+                You won't be charged yet
+            </div>
+            <%}%>
                 <div class="center-text border-smooth font15 get-help">
                     <div>
                         Having difficulties making payment?

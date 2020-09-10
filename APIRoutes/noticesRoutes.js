@@ -24,6 +24,16 @@ router.patch("/:username", (req, res) => {
 
 })
 
+router.post("/", async (req, res) => {
+    const notice = new NoticesModel(req.body)
+    notice.save()
+        .then(data => {
+            return res.status(201).json(data)
+        })
+
+
+})
+
 
 
 
