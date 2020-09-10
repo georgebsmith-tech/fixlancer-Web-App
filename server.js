@@ -533,7 +533,25 @@ app.get("/fix/:subcat/:titleSlug", async (req, res) => {
 
 
 app.get("/order-fix/:titleSlug", async function (req, res) {
-    const fix = await FixModel.findOne({ titleSlug: req.params.titleSlug })
+    const jobId = req.query.job_id
+    const titleSlug = req.params.titleSlug
+    let fix;
+    if (jobId) {
+
+        RequestModel.findOne({ job_id: jobId })
+            .then(data => {
+                console.log(data)
+                const offer = data.offers.find(offer => offer.slug === titleSlug)
+                console.log(offer)
+            })
+        fix = offer
+        fix.images_url = [fix.image_url]
+        fix.delivery_days = fix.delivery
+
+
+
+    } else
+        fix = await FixModel.findOne({ titleSlug: titleSlug })
     let balance = 0;
     let refundAmount = 0;
     console.log(balance)
@@ -542,7 +560,7 @@ app.get("/order-fix/:titleSlug", async function (req, res) {
         const revenue = await RevenueModel.findOne({ username: req.session.passport.user })
         if (revenue) {
             balance += revenue.amount
-            console.log(balance)
+            // console.log(balance)
         }
 
 
@@ -556,7 +574,7 @@ app.get("/order-fix/:titleSlug", async function (req, res) {
         if (refund) {
             refundAmount = refund.amount
             balance += refundAmount
-            console.log(balance)
+            // console.log(balance)
         }
 
     }
@@ -572,6 +590,9 @@ app.get("/order-fix/:titleSlug", async function (req, res) {
     res.render("order-fix", { fix, balance, total, fee })
 
 })
+
+
+
 app.get("/:username", checkUserAuthenticated, (req, res) => {
     res.render("profile")
 })

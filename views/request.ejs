@@ -173,7 +173,7 @@
                     <div class="flex-between margin20-top">
                         <div>
                             <button class="bg-white message-seller"
-                                style="outline: none; padding: 6px 12px; border: 1px solid #f1f1f1; border-radius: 6px;"
+                                style="outline: none; padding: 6px 12px; border: 1px solid #ddd; border-radius: 6px;"
                                 data-seller="<%=offer.username%>">
                                 <i class="far fa-comments"></i>
                                 <span>Message</span>
@@ -182,7 +182,8 @@
                         </div>
                         <div>
 
-                            <a href="/order-fix/<%= offer.slug %>" class="font15 button-green">Order</a>
+                            <a href="/order-fix/<%= offer.slug %>?job_id=<%=request.job_id%>"
+                                class="font15 button-green">Order</a>
                         </div>
                     </div>
                 </div>
