@@ -126,11 +126,11 @@
                     This fix is posted in <a href=""><%= fix.subcategory %></a>, <a href=""><%= fix.category %></a>
                 </div>
                 <% if(user.username!==loggedInUser){ %>
-                <div class="grid-2-13">
-                    <div>
+                <div class="flex-center">
+                    <!-- <div>
                         <button class="control-btn contact-seller-btn">Contact Seller</button>
-                    </div>
-                    <div>
+                    </div> -->
+                    <div style="width: 80%;">
                         <button class="control-btn center-text orange-btn"
                             onclick="location.href='/order-fix/<%= fix.titleSlug %>'">Order
                             Now ₦<%= fix.price %></button>

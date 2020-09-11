@@ -3,6 +3,7 @@
     let seller = document.querySelector(".seller").innerText.trim()
     const jobId = document.getElementById("job-id").value
     const deliveryDays = document.getElementById("delivery_days").value
+    const totalPrice = document.querySelector(".total-price").innerText.substr(1) * 1
 
 
     const confirmPaymentBTN = document.querySelector(".confirm-payment")
@@ -12,12 +13,32 @@
                 .then((data) => {
                     sendNotice(buyer, "new order", seller)
                     sendNotice(seller, "new sale", buyer)
+                    createTransaction(buyer, data)
+                        .then(data => {
+                            // console.log(data)
+                        })
 
                 })
 
 
 
         })
+
+    async function createTransaction(username, inData) {
+        const data = {
+            username,
+            type: "order payment",
+            amount: totalPrice,
+            content: {
+                order_id: inData.data.order_id,
+                job_id: inData.data.job_id
+            }
+        }
+
+        const outData = await fetchData(data, "/api/transactions")
+        return outData
+
+    }
 
     async function createOrder() {
         let date = new Date()
@@ -29,7 +50,7 @@
         }
         const outData = await fetchData(data, "/api/sales")
 
-        console.log(outData)
+        // console.log(outData)
         return outData
 
 
@@ -61,7 +82,7 @@
         }
         fetchData(data, "/api/notices")
             .then(data => {
-                console.log(data)
+                // console.log(data)
             })
 
     }

@@ -16,11 +16,6 @@ router.post("/", async (req, res) => {
 
         })
 
-    // return res.status(201).json({
-    //     message: "Done"
-    // })
-
-
 })
 router.get("/", async (req, res) => {
     const data = await SalesModel.find()

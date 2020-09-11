@@ -11,50 +11,43 @@ mongoose.connect(dataBaseUrl, { useNewUrlParser: true, useUnifiedTopology: true,
     if (err) {
         console.log("error" + err)
     } else {
-        console.log("Sales Connction successful")
+        console.log("Transaction Connction successful")
     }
 
 })
-
-
 const Schema = new mongoose.Schema({
-
-    seller: {
+    username: {
         type: String,
-        required: true
-    },
-    fix: {
-        type: String
-    },
-    delivery_date: {
-        type: Date,
         required: true
     },
     createdAt: {
         type: Date,
         default: Date.now
     },
-    buyer: {
+    type: {
         type: String,
         require: true
     },
-    state: {
-        type: String,
+
+    content: {
+        type: Object,
         required: true,
-        default: "ongoing" // other values are Delivered, canceled and completed
     },
-    order_id: {
+    transaction_id: {
+        type: Number,
+        required: true,
+        unique: true
+    },
+    amount: {
         type: Number,
         required: true
 
-    },
-    job_id: {
-        type: Number
     }
+
 
 
 })
 
-const Sale = mongoose.model("Sale", Schema)
+const Transaction = mongoose.model("Transaction", Schema)
 
-module.exports = Sale
+module.exports = Transaction
