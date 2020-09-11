@@ -1219,6 +1219,10 @@ button.header-top-btn, a.header-top-btn {
   column-gap: 10px;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .finance-summary {
   background: white;
   padding: 18px 25px;

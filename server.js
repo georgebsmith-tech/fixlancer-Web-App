@@ -450,7 +450,7 @@ app.get("/dashboard/finance/withdraw", async (req, res) => {
 
 app.get("/dashboard/finance/transactions", async (req, res) => {
 
-    res.render("finance-w", { revenue })
+    res.render("finance-transactions")
 })
 
 const NoticeModel = require("./models/NoticeModel")
