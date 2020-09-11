@@ -603,6 +603,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 10px;
 }
 
+.fainted-red {
+  color: #f5270a;
+}
+
 .margin15-top {
   margin-top: 15px;
 }
@@ -622,6 +626,10 @@ h1, h2, h3, h4, h5, h6 {
 .bg-heading {
   background: #f8f9fc;
   border: 1px solid #e3e6f0;
+}
+
+.no-break {
+  white-space: nowrap;
 }
 
 .grid-responsive-max4 {
@@ -1330,6 +1338,18 @@ button.button {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   display: none;
+}
+
+.transactions {
+  padding: 5px;
+}
+.transactions li:nth-child(odd) {
+  background: #f7f7f7;
+}
+
+.a-transaction span {
+  line-height: 1.5;
+  margin-right: 10px;
 }
 
 .request, .order-and-sale {

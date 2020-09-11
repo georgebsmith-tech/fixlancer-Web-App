@@ -448,9 +448,14 @@ app.get("/dashboard/finance/withdraw", async (req, res) => {
     res.render("finance-withdraw", { revenue })
 })
 
-app.get("/dashboard/finance/transactions", async (req, res) => {
+const TransactionModel = require("./models/TransactionModel")
 
-    res.render("finance-transactions")
+app.get("/dashboard/finance/transactions", async (req, res) => {
+    const loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    const transactions = await TransactionModel.find({ username: loggedUser })
+    transactions.reverse()
+    console.log(transactions)
+    res.render("finance-transactions", { transactions })
 })
 
 const NoticeModel = require("./models/NoticeModel")
@@ -511,7 +516,8 @@ app.get("/log-out", checkUserAuthenticated, (req, res) => {
     res.redirect("/")
 })
 
-const FixModel = require("./models/FixesModel")
+const FixModel = require("./models/FixesModel");
+const Transaction = require("./models/TransactionModel");
 
 app.get("/fix/:subcat/:titleSlug", async (req, res) => {
     const fix = await FixModel.findOne({ titleSlug: req.params.titleSlug })

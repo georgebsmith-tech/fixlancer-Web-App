@@ -110,3 +110,22 @@ button.button{
     display: none;
 }
 
+
+//transactions
+
+.transactions{
+    padding: 5px;
+    li:nth-child(odd){
+        background:#f7f7f7 ;
+    }
+
+}
+
+.a-transaction{
+    span{
+        line-height: 1.5;
+        margin-right: 10px;
+    }
+   
+    
+}
