@@ -24,6 +24,8 @@ router.post("/", async (req, res) => {
     return res.status(200).json(data)
 
 })
+router.patch("/", async (req, res) => {
 
+})
 
 module.exports = router

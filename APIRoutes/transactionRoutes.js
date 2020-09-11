@@ -1,5 +1,7 @@
 const router = require("express").Router()
 const TransactionModel = require("../models/TransactionModel")
+const axios = require("axios")
+
 
 router.get("/", async (req, res) => {
     TransactionModel.find()
@@ -12,8 +14,17 @@ router.get("/", async (req, res) => {
 
 })
 
+async function updateFunds(body) {
+    axios.patch("/api/refunds")
+
+
+
+}
+
 router.post("/", async (req, res) => {
     const reqBody = req.body
+    updateFunds(reqBody)
+    return
     console.log(reqBody)
     TransactionModel.find().select("transaction_id").sort({ transaction_id: -1 }).limit(1)
         .then(async data => {
