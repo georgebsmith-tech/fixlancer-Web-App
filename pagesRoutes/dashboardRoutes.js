@@ -6,8 +6,11 @@ const UserModel = require("../models/UserModel")
 const FixModel = require("../models/FixModel")
 const RequestModel = require("../models/RequestsModel")
 const DepositModel = require("../models/DepositModel")
+const RevenueModel = require("../models/RevenueModel")
+const RefundModel = require("../models/RefundModel")
 const ConversationModel = require("../models/ConversationModel")
 const NoticeModel = require("../models/NoticeModel")
+const TransactionModel = require("../models/TransactionModel")
 
 const checkUserAuthenticated = require("../middleware/userIsAuthenticated")
 
