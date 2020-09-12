@@ -1,5 +1,4 @@
 const express = require("express")
-const mongoose = require("mongoose")
 const app = express()
 const server = require("http").Server(app);
 const io = require("socket.io")(server)
@@ -15,7 +14,7 @@ const session = require("express-session")
 
 const initialize = require("./configuration/passportConfig")
 
-//Routes
+//Routes imports
 const dashboardRoutes = require("./pagesRoutes/dashboardRoutes")
 const usersRoute = require("./APIRoutes/users")
 const noticesRoute = require("./APIRoutes/noticesRoutes")
@@ -36,6 +35,7 @@ const UserModel = require("./models/UserModel")
 
 const ConversationModel = require("./models/ConversationModel")
 const DepositModel = require("./models/DepositModel")
+const FixModel = require("./models/FixesModel");
 
 const RefundModel = require("./models/RefundModel")
 const RequestModel = require("./models/RequestsModel")
@@ -91,19 +91,6 @@ app.use((req, res, next) => {
     }
     next()
 })
-
-// ConversationModel.find({ from: "Smith" })
-//     .then(data => {
-//         console.log("Notthing!!!")
-//         console.log(data)
-//         data.forEach(async chat => {
-//             console.log(chat)
-//             let newData = await ConversationModel.findOneAndUpdate({ _id: chat._id }, { read: true }, { new: true })
-//             console.log(newData)
-//         })
-
-
-//     })
 
 
 
@@ -217,10 +204,6 @@ const checkUserNotAuthenticated = require("./middleware/userIsNotauthenticated")
 app.use("/dashboard", dashboardRoutes)
 
 
-
-app.get("/chat-app", checkUserAuthenticated, function (req, res) {
-    res.render("chat-app")
-})
 app.get("/home", function (req, res) {
     res.render("home")
 })
@@ -285,20 +268,9 @@ app.get("/search-fix", async (req, res) => {
 })
 
 
-const TransactionModel = require("./models/TransactionModel")
 
 
 
-const NoticeModel = require("./models/NoticeModel")
-app.get("/dashboard/finance/notices", async (req, res) => {
-    const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
-
-    const notices = await NoticeModel.find({ username: loggedUser })
-    notices.reverse()
-
-
-    res.render("finance-notices", { notices })
-})
 
 
 
@@ -324,8 +296,7 @@ app.get("/log-out", checkUserAuthenticated, (req, res) => {
     res.redirect("/")
 })
 
-const FixModel = require("./models/FixesModel");
-const Transaction = require("./models/TransactionModel");
+
 
 app.get("/fix/:subcat/:titleSlug", async (req, res) => {
     const fix = await FixModel.findOne({ titleSlug: req.params.titleSlug })
@@ -333,10 +304,6 @@ app.get("/fix/:subcat/:titleSlug", async (req, res) => {
     const recommendations = await FixModel.find({ category: fix.category }).limit(6)
     const resp = await axios.get(`https://fixlancer.herokuapp.com/api/users/${fix.username}`)
     const user = resp.data.data
-
-    // console.log(user)
-    // console.log(fix)
-    // console.log(userFixes)
     const sessionPassport = req.session.passport
     let loggedInUser;
     if (sessionPassport) {
@@ -366,10 +333,6 @@ app.get("/order-fix/:titleSlug", async function (req, res) {
         fix.delivery_days = offer.delivery
         fix.mainSlug = data.slug
         custom = true
-
-
-
-
 
     } else
         fix = await FixModel.findOne({ titleSlug: titleSlug })

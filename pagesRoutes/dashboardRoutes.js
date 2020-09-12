@@ -7,6 +7,7 @@ const FixModel = require("../models/FixesModel")
 const RequestModel = require("../models/RequestsModel")
 const DepositModel = require("../models/DepositModel")
 const ConversationModel = require("../models/ConversationModel")
+const NoticeModel = require("../models/NoticeModel")
 
 const checkUserAuthenticated = require("../middleware/userIsAuthenticated")
 
@@ -213,6 +214,17 @@ router.get("/finance/transactions", async (req, res) => {
     transactions.reverse()
     // console.log(transactions)
     res.render("finance-transactions", { transactions })
+})
+
+
+router.get("/finance/notices", async (req, res) => {
+    const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
+
+    const notices = await NoticeModel.find({ username: loggedUser })
+    notices.reverse()
+
+
+    res.render("finance-notices", { notices })
 })
 router.get("/finance/withdraw", async (req, res) => {
     let revenue = 0;
