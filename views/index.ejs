@@ -202,7 +202,7 @@
     //////////////////////
     //FEATURED FIX//
     function fetchData() {
-        fetch("https://fixlancer.herokuapp.com/api/fixes?state=random&count=4").then(response => {
+        fetch("/api/fixes?state=random&count=4").then(response => {
             if (!response.ok) {
                 throw Error('Error');
             }
@@ -240,7 +240,7 @@
     fetchData();
     //FEATURED FIX//
     function fetchCategory() {
-        fetch("https://fixlancer.herokuapp.com/api/categories").then(response => {
+        fetch("/api/categories").then(response => {
             if (!response.ok) {
                 throw Error('Error');
             }

@@ -81,7 +81,6 @@ app.use(express.static("public"))
 app.use(express.json())
 
 
-
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*")
     res.header("Access-Control-Allow-Headers", "*")
@@ -91,6 +90,7 @@ app.use((req, res, next) => {
     }
     next()
 })
+
 
 
 
@@ -193,10 +193,6 @@ io.on("connection", socket => {
 })
 
 
-
-
-
-
 const checkUserAuthenticated = require("./middleware/userIsAuthenticated")
 const checkUserNotAuthenticated = require("./middleware/userIsNotauthenticated")
 
@@ -266,16 +262,6 @@ app.get("/search-fix", async (req, res) => {
     // console.log(fixes)
     res.render("search-fix", { fixes, pages, rawTerm: searchQuery, categories, count })
 })
-
-
-
-
-
-
-
-
-
-
 
 app.get("/how-it-works", (req, res) => {
     res.render("how-it-works")

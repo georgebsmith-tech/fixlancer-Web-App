@@ -148,7 +148,7 @@
     //CATEGORY DROPDOWN//
     const img = document.querySelector('.main-img')
     function fetchData() {
-        fetch("https://fixlancer.herokuapp.com/api/categories").then(response => {
+        fetch("/api/categories").then(response => {
             if (!response.ok) {
                 throw Error('Error');
             }
@@ -227,7 +227,7 @@
             return response.json();
         }).then(obj => {
             const data = obj.data
-            document.cookie=`username=${data.username}`
+            document.cookie = `username=${data.username}`
             const sales = document.querySelector('.sales')
             const orders = document.querySelector('.orders')
             const balance = document.querySelector('.ok')
@@ -332,10 +332,10 @@
     });
 
 
-let socket=io()
-let theUser=document.cookie.split(";").map(item=>{return item.trim()}).find(cookie=>{return cookie.includes("username=")}).split("=")[1]
+    let socket = io()
+    let theUser = document.cookie.split(";").map(item => { return item.trim() }).find(cookie => { return cookie.includes("username=") }).split("=")[1]
 
-    socket.emit("user-online",theUser)
+    socket.emit("user-online", theUser)
 </script>
 
 </html>
