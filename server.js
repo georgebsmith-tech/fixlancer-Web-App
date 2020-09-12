@@ -35,7 +35,7 @@ const UserModel = require("./models/UserModel")
 
 const ConversationModel = require("./models/ConversationModel")
 const DepositModel = require("./models/DepositModel")
-const FixModel = require("./models/FixesModel");
+const FixModel = require("./models/FixModel");
 
 const RefundModel = require("./models/RefundModel")
 const RequestModel = require("./models/RequestsModel")
