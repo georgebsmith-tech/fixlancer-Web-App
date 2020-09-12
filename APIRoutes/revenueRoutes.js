@@ -25,7 +25,19 @@ router.post("/", async (req, res) => {
 
 })
 router.patch("/", async (req, res) => {
+    const reqBody = req.body
+    const amount = reqBody.amount
+    const revenue = await RevenueModel.findOne({ username: reqBody.username })
+    let leftAmount = -(revenue.amount - amount)
+    if (leftAmount >= 0) {
+        console.log("leftAmount in Revenue: " + leftAmount)
+        revenue.amount = leftAmount
+        revenue.updatedAt = new Date()
+        return res.json({
+            leftAmount
+        })
+    }
+
 
 })
-
 module.exports = router

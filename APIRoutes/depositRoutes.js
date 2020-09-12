@@ -25,6 +25,27 @@ router.post("/", async (req, res) => {
 
 })
 
+router.patch("/", async (req, res) => {
+    const reqBody = req.body
+    const amount = reqBody.amount
+    const deposit = await DepositModel.findOne({ username: reqBody.username })
+    let leftAmount = -deposit.amount + amount
+    if (leftAmount > 0) {
+        deposit.amount = 0
+        deposit.updatedAt = new Date()
+        return res.json({
+            leftAmount
+        })
+    }
+    deposit.amount = -leftAmount
+    deposit.updatedAt = new Date()
+    return res.json({
+        leftAmount: -leftAmount
+    })
+
+
+})
+
 
 
 module.exports = router

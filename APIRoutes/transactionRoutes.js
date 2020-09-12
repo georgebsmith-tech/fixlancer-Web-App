@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const TransactionModel = require("../models/TransactionModel")
-const axios = require("axios")
+const axios = require("axios").default;
 
 
 router.get("/", async (req, res) => {
@@ -14,8 +14,30 @@ router.get("/", async (req, res) => {
 
 })
 
+// let domain = "http://localhost:3000"
+let domain = "https://fixlancer.herokuapp.com"
 async function updateFunds(body) {
-    axios.patch("/api/refunds")
+    console.log(body)
+    const resp = await axios.patch(`${domain}/api/refunds`, body)
+    const data = resp.data
+    console.log(data)
+    if (data.leftAmount > 0) {
+        const resp = await axios.patch(`${domain}/api/revenues`, {
+            amount: data.leftAmount,
+            username: body.username
+        })
+        const data2 = resp.data
+        if (data2.leftAmount > 0) {
+            const resp = await axios.patch(`${domain}/api/deposits`, {
+                amount: data2.leftAmount,
+                username: body.username
+            })
+            console.log(resp.data)
+        }
+    }
+
+
+
 
 
 
@@ -23,6 +45,7 @@ async function updateFunds(body) {
 
 router.post("/", async (req, res) => {
     const reqBody = req.body
+    // console.log(reqBody)
     updateFunds(reqBody)
     return
     console.log(reqBody)

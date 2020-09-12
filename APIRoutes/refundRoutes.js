@@ -19,6 +19,7 @@ router.get("/:username", async (req, res) => {
 router.post("/", async (req, res) => {
     const reqBody = req.body
     console.log(reqBody)
+    // return
     const revenue = new RefundModel(reqBody)
     const data = await revenue.save()
     return res.status(200).json(data)
@@ -26,8 +27,24 @@ router.post("/", async (req, res) => {
 })
 
 router.patch("/", async (req, res) => {
-    console.log("Refund Patch")
-    res.end()
+    const reqBody = req.body
+    const amount = reqBody.amount
+    const refund = await RefundModel.findOne({ username: reqBody.username })
+    let leftAmount = -refund.amount + amount
+    if (leftAmount > 0) {
+        refund.amount = 0
+        refund.updatedAt = new Date()
+        return res.json({
+            leftAmount
+        })
+    }
+    refund.amount = -leftAmount
+    refund.updatedAt = new Date()
+    return res.json({
+        leftAmount: -leftAmount
+    })
+
+
 })
 
 

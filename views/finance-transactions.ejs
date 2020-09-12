@@ -28,10 +28,10 @@
                             <%if(transaction.type==="order payment"){%>
 
                             <li>
-                                <a href="#" class="font16 flex-between padd10 a-transaction">
+                                <div class="font16 flex-between padd10 a-transaction">
                                     <span>
 
-                                        Payment for Fix(View Order)
+                                        Payment for Fix (<a href="#" class="text-link-with-hover">View Order</a>)
                                     </span>
                                     <span>
                                         <%=transaction.createdAt.toDateString()%>
@@ -41,7 +41,7 @@
                                         -₦<%=transaction.amount%>
                                     </span>
 
-                                </a>
+                                </div>
 
                             </li>
                             <%}%>

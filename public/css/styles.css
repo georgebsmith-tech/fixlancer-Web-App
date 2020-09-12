@@ -1351,9 +1351,6 @@ button.button {
   line-height: 1.5;
   margin-right: 10px;
 }
-.a-transaction:hover {
-  background-color: #eeeded;
-}
 
 .request, .order-and-sale {
   background: white;

@@ -24,7 +24,11 @@ const Schema = new mongoose.Schema({
     amount: {
         type: Number
     },
-    date: {
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    updatedAt: {
         type: Date,
         default: Date.now
     },
