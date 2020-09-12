@@ -4,7 +4,7 @@ const axios = require("axios").default
 //models
 const UserModel = require("../models/UserModel")
 const FixModel = require("../models/FixModel")
-const RequestModel = require("../models/RequestsModel")
+// const RequestModel = require("../models/RequestsModel")
 const DepositModel = require("../models/DepositModel")
 const RevenueModel = require("../models/RevenueModel")
 const RefundModel = require("../models/RefundModel")
@@ -35,21 +35,21 @@ router.get("/my-requests", (req, res) => {
     res.render("my-requests", { notice })
 })
 
-router.get("/job-requests", async (req, res) => {
-    try {
-        const requests = await RequestModel.find({ approved: true })
-        const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
-        requests.reverse()
+// router.get("/job-requests", async (req, res) => {
+//     try {
+//         const requests = await RequestModel.find({ approved: true })
+//         const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
+//         requests.reverse()
 
-        // console.log(requests)
+//         // console.log(requests)
 
-        res.render("all-requests", { requests, loggedUser })
+//         res.render("all-requests", { requests, loggedUser })
 
-    } catch (err) {
-        throw err
-    }
+//     } catch (err) {
+//         throw err
+//     }
 
-})
+// })
 
 router.get("/create-a-fix", (req, res) => {
     res.render("create-fix")
