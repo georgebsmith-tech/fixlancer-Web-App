@@ -215,7 +215,7 @@ app.get("/section/:catSlug", async function (req, res) {
 })
 
 app.get("/", checkUserNotAuthenticated, (req, res) => {
-    res.render("index")
+    res.render("how-it-works")
 })
 app.get("/login", checkUserNotAuthenticated, (req, res) => {
     res.render("login")
