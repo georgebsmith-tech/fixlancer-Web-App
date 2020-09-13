@@ -31,19 +31,7 @@
             padding: 5px 40px;
         }
     }
-    .order-and-sale{
-        grid-template-columns: 3fr 7fr;
-        
-        .title{
-            font-size: 1.3rem;
-            padding-right: 10px;
-        }
-    }
-    .sales-order-more-wrapper{
-        display: grid;
-        grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
-    }
-
+    
     .main{
         padding: 20px 120px;
     }

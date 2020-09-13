@@ -25,20 +25,40 @@
                     <div>
                         <ul class="transactions">
                             <%transactions.forEach(transaction=>{%>
+
                             <%if(transaction.type==="order payment"){%>
 
+
                             <li>
-                                <div class="font16 flex-between padd10 a-transaction">
+                                <div class="font16 grid3-221 padd10 a-transaction">
                                     <span>
 
-                                        Payment for Fix (<a href="#" class="text-link-with-hover">View Order</a>)
+                                        Payment for Fix (<a href="#" class="text-link-with-hover">View Order</a>).
                                     </span>
                                     <span>
                                         <%=transaction.createdAt.toDateString()%>
-                                        <%=transaction.createdAt.getHours()%>:<%=transaction.createdAt.getMinutes()%>
+                                        <%=transaction.createdAt.getHours()>12?(transaction.createdAt.getHours()-12):transaction.createdAt.getHours()%>:<%=transaction.createdAt.getMinutes()%><%=period=transaction.createdAt.getHours()>=12?"pm":"am"%>
                                     </span>
                                     <span class="no-break fainted-red">
                                         -₦<%=transaction.amount%>
+                                    </span>
+
+                                </div>
+
+                            </li>
+                            <%}else if(transaction.type==="deposit"){ %>
+                            <li>
+                                <div class="font16 grid3-221 padd10 a-transaction">
+                                    <span>
+
+                                        Deposit Completed.
+                                    </span>
+                                    <span>
+                                        <%=transaction.createdAt.toDateString()%>
+                                        <%=transaction.createdAt.getHours()>12?(transaction.createdAt.getHours()-12):transaction.createdAt.getHours()%>:<%=transaction.createdAt.getMinutes()%><%=period=transaction.createdAt.getHours()>=12?"pm":"am"%>
+                                    </span>
+                                    <span class="no-break text-green">
+                                        +₦<%=transaction.amount%>
                                     </span>
 
                                 </div>

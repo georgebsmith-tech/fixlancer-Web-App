@@ -26,14 +26,11 @@
     }
 }
 
-.order-and-sale{
-    grid-template-columns: 2fr 7fr;
-    padding: 15px 20px 5px 20px;
-    .title{
-        font-size: 1rem;
-        padding-right: 10px;
-    }
+.d-order-and-sale{
+
 }
+
+
 
 img{
     width: 100%;
@@ -45,28 +42,4 @@ img{
 
 .fa-circle,.fa-clock{
     font-size: 0.7rem;
-}
-
-.sale-and-order-meta{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    .amount{
-        color:#5aba79;
-        font-size: 1.3rem;
-    }
-
-}
-.delivery-and-star{
-    display: flex;
-    align-items: center;
-    margin-top: 8px;
-    .date{
-        margin-right: 8px;
-    }
-    .fa-star{
-        margin-right:4px;
-    }
-   
 }

@@ -1,18 +1,20 @@
-const router = require("express").Router()
-const axios = require("axios").default
+const router = require("express").Router();
+const axios = require("axios").default;
 
 //models
-const UserModel = require("../models/UserModel")
-const FixModel = require("../models/FixModel")
-// const RequestModel = require("../models/RequestsModel")
-const DepositModel = require("../models/DepositModel")
-const RevenueModel = require("../models/RevenueModel")
-const RefundModel = require("../models/RefundModel")
-const ConversationModel = require("../models/ConversationModel")
-const NoticeModel = require("../models/NoticeModel")
-const TransactionModel = require("../models/TransactionModel")
+const UserModel = require("../models/UserModel");
+const FixModel = require("../models/FixModel");
+const RequestModel = require("../models/RequestsModel");
+const DepositModel = require("../models/DepositModel");
+const RevenueModel = require("../models/RevenueModel");
+const RefundModel = require("../models/RefundModel");
+const ConversationModel = require("../models/ConversationModel");
+const NoticeModel = require("../models/NoticeModel");
+const TransactionModel = require("../models/TransactionModel");
+const SaleModel = require("../models/SaleModel");
 
-const checkUserAuthenticated = require("../middleware/userIsAuthenticated")
+
+const checkUserAuthenticated = require("../middleware/userIsAuthenticated");
 
 
 
@@ -31,25 +33,25 @@ router.get("/", checkUserAuthenticated, (req, res) => {
 })
 router.get("/my-requests", (req, res) => {
     const notice = req.query.notice
-    console.log(notice)
+
     res.render("my-requests", { notice })
 })
 
-// router.get("/job-requests", async (req, res) => {
-//     try {
-//         const requests = await RequestModel.find({ approved: true })
-//         const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
-//         requests.reverse()
+router.get("/job-requests", async (req, res) => {
+    try {
+        const requests = await RequestModel.find({ approved: true })
+        const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
+        requests.reverse()
 
-//         // console.log(requests)
+        // console.log(requests)
 
-//         res.render("all-requests", { requests, loggedUser })
+        res.render("all-requests", { requests, loggedUser })
 
-//     } catch (err) {
-//         throw err
-//     }
+    } catch (err) {
+        throw err
+    }
 
-// })
+})
 
 router.get("/create-a-fix", (req, res) => {
     res.render("create-fix")
@@ -82,17 +84,17 @@ router.get("/inbox", async (req, res) => {
                 // console.log(ago)
             }
             else if ((timeElapse - 5) > 60 * 24) {
-                console.log(timeElapse - 5)
+
                 theTime = parseInt((timeElapse - 5) / (60 * 24));
                 ago = `${theTime}d`
                 // console.log(ago)
             } else if ((timeElapse - 5) > 60) {
-                console.log(timeElapse - 5)
+
                 theTime = parseInt((timeElapse - 6) / (60));
                 ago = `${theTime}h`
-                console.log(ago)
+
             } else {
-                console.log(timeElapse - 5)
+
                 ago = `${parseInt(timeElapse - 5)}m`
                 // console.log(ago)
             }
@@ -154,9 +156,37 @@ router.get("/profile", checkUserAuthenticated, (req, res) => {
     res.render("profile")
 })
 
-router.get("/my-orders", checkUserAuthenticated, (req, res) => {
-    res.render("my-orders-ongoing")
+router.get("/my-orders", async (req, res) => {
+    let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    let orders = await SaleModel.find({ buyer: loggedUser })
+    let customOrders = []
+    for (let order of orders) {
+        let request = await RequestModel.findOne({ job_id: order.job_id })
+        let sellerData = await UserModel.findOne({ username: order.seller }).select("userColor")
+        // console.log(sellerData)
+        let offer = request.offers.find(offer => offer.username === order.seller)
+        let theFix = {
+            title: offer.title,
+            image_url: offer.image_url,
+            price: offer.price,
+            seller: offer.username,
+            buyer: loggedUser,
+            delivery_date: order.delivery_date,
+            sellerColor: sellerData.userColor
+
+
+        }
+        customOrders.push(theFix)
+
+    }
+    console.log(customOrders)
+
+
+
+    res.render("my-orders-ongoing", { orders: customOrders })
 })
+
+
 router.get("/my-orders/completed", checkUserAuthenticated, (req, res) => {
     res.render("my-orders-completed")
 })

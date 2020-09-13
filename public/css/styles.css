@@ -611,8 +611,16 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 15px;
 }
 
+.padd10-top {
+  padding-top: 10px;
+}
+
 .font11 {
-  font-size: 1.1rem;
+  font-size: 1.1rem !important;
+}
+
+.line-height {
+  line-height: 1.5;
 }
 
 .font10 {
@@ -620,7 +628,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .font12 {
-  font-size: 1.2rem;
+  font-size: 1.2rem !important;
 }
 
 .bg-heading {
@@ -630,6 +638,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .no-break {
   white-space: nowrap;
+}
+
+.grid3-221 {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
 }
 
 .grid-responsive-max4 {
@@ -761,7 +774,7 @@ button:hover {
 }
 
 .font13 {
-  font-size: 1.3rem;
+  font-size: 1.3rem !important;
 }
 
 .link-hover:hover {
@@ -890,6 +903,7 @@ i.fa.fa-star {
 .flex {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .circle {
@@ -1048,6 +1062,20 @@ i.fa.fa-star {
 .top-search-error i {
   font-size: 1rem !important;
   padding: 0px !important;
+}
+
+.padd20-top {
+  padding-top: 20px;
+}
+
+.margin20-bottom {
+  margin-bottom: 20px;
+}
+
+.grid2-1-6 {
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  gap: 10px;
 }
 
 .header-buy-chopbar {
@@ -1231,6 +1259,16 @@ button.header-top-btn, a.header-top-btn {
   display: inline-block;
 }
 
+.padd10-sides {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.grid-table {
+  display: grid;
+  grid-template-columns: 3fr 3fr 2fr 2fr;
+}
+
 .finance-summary {
   background: white;
   padding: 18px 25px;
@@ -1239,6 +1277,9 @@ button.header-top-btn, a.header-top-btn {
   border: 1px solid #e3e6f0;
   box-shadow: 0px 1px 1px #e3e6f0;
   font-size: 1.6rem;
+}
+.finance-summary div {
+  margin-bottom: 7px;
 }
 
 .withdrawal-summary {
@@ -1626,15 +1667,6 @@ main.request-page {
   color: #2F9CDD;
 }
 
-.order-and-sale {
-  grid-template-columns: 2fr 7fr;
-  padding: 15px 20px 5px 20px;
-}
-.order-and-sale .title {
-  font-size: 1rem;
-  padding-right: 10px;
-}
-
 img {
   width: 100%;
   border-radius: 6px;
@@ -1644,29 +1676,6 @@ img {
 
 .fa-circle, .fa-clock {
   font-size: 0.7rem;
-}
-
-.sale-and-order-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.sale-and-order-meta .amount {
-  color: #5aba79;
-  font-size: 1.3rem;
-}
-
-.delivery-and-star {
-  display: flex;
-  align-items: center;
-  margin-top: 8px;
-}
-.delivery-and-star .date {
-  margin-right: 8px;
-}
-.delivery-and-star .fa-star {
-  margin-right: 4px;
 }
 
 .profile {
@@ -2619,19 +2628,6 @@ a.control-btn {
   }
   .sales-and-orders-headings a {
     padding: 5px 40px;
-  }
-
-  .order-and-sale {
-    grid-template-columns: 3fr 7fr;
-  }
-  .order-and-sale .title {
-    font-size: 1.3rem;
-    padding-right: 10px;
-  }
-
-  .sales-order-more-wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   }
 
   .main {

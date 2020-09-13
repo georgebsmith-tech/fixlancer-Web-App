@@ -21,80 +21,82 @@
                     <div><a href="/dashboard/my-orders/completed">Completed(<span>0</span>)</a></div>
                     <div><a href="/dashboard/my-orders/cancelled">Cancelled(<span>0</span>)</a></div>
                 </header>
-                <section>
-                    <div class="order-and-sale">
-                        <div>
-                            <div class="fix-image-wrapper">
-                                <img src="https://fixlancerwebapp.s3.us-east-2.amazonaws.com/1595286741236WhatsApp%20Image%202020-07-20%20at%208.32.49%20AM.jpeg"
-                                    alt="">
-                            </div>
-                        </div>
-                        <div>
-                            <header>
-                                <a href="#" class="title">I will design a brand color pallete for you</a>
-                            </header>
-                            <div>
-                                <a href="#"><i class="fas fa-circle"> </i> <span>orbit</span> </a>
-                            </div>
-                            <div class="sale-and-order-meta">
-                                <div class="delivery-and-star">
-                                    <div class="date">
-                                        <i class="fas fa-clock"></i> <span>16 jan 2020</span>
-                                    </div>
-
-                                    <div>
-                                        <i class="fa fa-star"></i><span>5</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="amount">
-                                        ₦2,000
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                <section class="bg-white desktop">
+                    <div class="grid-table padd10 border-bottom">
+                        <h3>SELLER</h3>
+                        <h3>FIX</h3>
+                        <h3>DELIVERY</h3>
+                        <h3>AMOUNT</h3>
                     </div>
-                    <div class="divider"></div>
-                </section>
+                    <%orders.forEach(order=>{ %>
 
-                <section>
-                    <div class="order-and-sale">
-                        <div>
-                            <div class="fix-image-wrapper">
-                                <img src="https://fixlancerwebapp.s3.us-east-2.amazonaws.com/1595286741236WhatsApp%20Image%202020-07-20%20at%208.32.49%20AM.jpeg"
-                                    alt="">
-                            </div>
+                    <div class="font14 grid-table padd20-top padd10-bottom border-bottom padd10-sides">
+                        <div class="flex"><span class="user-avatar"
+                                data-color="<%=order.sellerColor%>"><%=order.seller[0].toUpperCase()%></span><%=order.seller%>
                         </div>
-                        <div>
-                            <header>
-                                <a href="#" class="title">I can do your logo design work.</a>
-                            </header>
-                            <div>
-                                <a href="#"><i class="fas fa-circle"> </i> <span>orbit</span> </a>
-                            </div>
-                            <div class="sale-and-order-meta">
-                                <div class="delivery-and-star">
-                                    <div class="date">
-                                        <i class="fas fa-clock"></i> <span>16 jan 2020</span>
-                                    </div>
-
-                                    <div>
-                                        <i class="fa fa-star"></i><span>5</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="amount">
-                                        ₦2,000
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                        <div class="text-orange"><%=order.title%></div>
+                        <div><%=order.delivery_date.toDateString() %></div>
+                        <div> ₦<%=order.price %></div>
                     </div>
-                    <div class="divider"></div>
-                </section>
 
+                    <%})%>
+                </section>
+                <script>
+                    const userColors = document.querySelectorAll(".user-avatar")
+                    userColors.forEach(user => {
+                        user.style.backgroundColor = user.dataset.color
+                        user.style.marginRight = "8px"
+                    })
+                </script>
+                <div class="mobile">
+
+                    <%orders.forEach(order=>{ %>
+
+
+
+                    <section>
+                        <div class="d-order-and-sale bg-white padd20">
+                            <div class="grid2-1-6">
+
+                                <div class="fix-image-wrapper padd10">
+                                    <img src="<%=order.image_url%>" alt="">
+                                </div>
+
+                                <div class="padd10-top">
+                                    <header class="margin20-bottom">
+                                        <a href="#" class="font14 text-orange line-height"><%=order.title%></a>
+                                    </header>
+
+                                </div>
+                            </div>
+                            <div class="delivery-and-star flex-between">
+                                <div class="date">
+                                    <i class="fas fa-clock font12"></i> <span class="font12">Delivery
+                                        <%=order.delivery_date.toDateString() %></span>
+                                </div>
+
+                                <div>
+                                    <i class="fa fa-star font16"></i><span class="font16"> 5</span>
+                                </div>
+                            </div>
+
+                            <div class="sale-and-order-meta flex-between margin10-top">
+                                <div>
+                                    <a href="#"><i class="fas fa-circle font11"> </i> <span
+                                            class="font13"><%=order.seller%></span>
+                                    </a>
+                                </div>
+                                <div class="text-green font16">
+                                    ₦<%=order.price%>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="divider"></div>
+                    </section>
+                    <%})%>
+                </div>
 
             </section>
 

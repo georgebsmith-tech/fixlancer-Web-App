@@ -612,16 +612,22 @@ h1,h2,h3,h4,h5,h6{
 .margin15-top{
   margin-top: 15px;
 }
+.padd10-top{
+  padding-top:10px;
+}
 
 .font11{
-  font-size: 1.1rem;
+  font-size: 1.1rem!important;
+}
+.line-height{
+  line-height: 1.5;
 }
 
 .font10{
   font-size: 1.2rem;
 }
 .font12{
-  font-size: 1.2rem;
+  font-size: 1.2rem!important;
 }
 
 
@@ -632,6 +638,11 @@ h1,h2,h3,h4,h5,h6{
 
 .no-break{
   white-space: nowrap;
+}
+
+.grid3-221{
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
 }
 
 
@@ -760,7 +771,7 @@ button:hover{
 }
 
 .font13{
-  font-size: 1.3rem;
+  font-size: 1.3rem!important;
 }
 
 .link-hover:hover{
@@ -896,6 +907,7 @@ i.fa.fa-star{
 .flex{
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .circle{
@@ -1049,6 +1061,19 @@ i.fa.fa-star{
     font-size: 1rem !important;
     padding: 0px!important;
   }
+}
+
+.padd20-top{
+  padding-top: 20px;
+}
+.margin20-bottom{
+  margin-bottom: 20px;
+}
+
+.grid2-1-6{
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  gap: 10px;
 }
 
 .header-buy-chopbar{
@@ -1238,4 +1263,14 @@ button.header-top-btn,a.header-top-btn{
   display: inline-block;
 }
 
+.padd10-sides{
+  padding-left:10px;
+  padding-right: 10px;
+}
+
+
+.grid-table{
+  display: grid;
+  grid-template-columns: 3fr 3fr 2fr 2fr;
+}
 

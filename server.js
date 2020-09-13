@@ -112,20 +112,17 @@ function changeUserStatus(socket, user) {
 
 
 io.on("connection", socket => {
-    console.log("A user connected")
+
 
     socket.on("chat-active", function (data) {
-        console.log(`Active user: ${data.user}`)
-        console.log(`Before Active chats:`)
-        console.log(activeChats)
+
         if (data.active)
             activeChats[data.user] = data.receiver
         else {
             delete activeChats[data.user]
 
         }
-        console.log(`After Active chats:`)
-        console.log(activeChats)
+
     })
 
 
@@ -148,7 +145,7 @@ io.on("connection", socket => {
     })
 
     socket.on("disconnect", (msg) => {
-        console.log("User disconnected!!")
+
         let usernames = Object.keys(users)
         for (let x = 0; x < usernames.length; x++) {
             if (users[usernames[x]] === socket.id) {
@@ -156,7 +153,6 @@ io.on("connection", socket => {
                 break
             }
         }
-        console.log(users)
     })
     socket.on("typing", function (data) {
         io.to(users[data.receiver]).emit("typing-status", data.name)
@@ -215,7 +211,7 @@ app.get("/section/:catSlug", async function (req, res) {
 })
 
 app.get("/", checkUserNotAuthenticated, (req, res) => {
-    res.render("how-it-works")
+    res.render("index")
 })
 app.get("/login", checkUserNotAuthenticated, (req, res) => {
     res.render("login")
@@ -274,10 +270,10 @@ app.get("/log-out", checkUserAuthenticated, (req, res) => {
     let date = new Date()
     UserModel.findOneAndUpdate({ username: user }, { online: false, last_seen: date }, { new: true })
         .then(data => {
-            console.log(data)
+
 
         })
-    console.log("leaving!!!!!!!!!!!")
+
     req.logOut()
     res.redirect("/")
 })
@@ -311,9 +307,9 @@ app.get("/order-fix/:titleSlug", async function (req, res) {
 
         const data = await RequestModel.findOne({ job_id: jobId })
 
-        console.log(data)
+
         offer = data.offers.find(offer => offer.slug === titleSlug)
-        console.log(offer)
+
         fix = offer
         fix.images_url = [offer.image_url]
         fix.delivery_days = offer.delivery
@@ -324,7 +320,7 @@ app.get("/order-fix/:titleSlug", async function (req, res) {
         fix = await FixModel.findOne({ titleSlug: titleSlug })
     let balance = 0;
     let refundAmount = 0;
-    console.log(balance)
+
     if (req.session.passport) {
 
         const revenue = await RevenueModel.findOne({ username: req.session.passport.user })
@@ -337,7 +333,7 @@ app.get("/order-fix/:titleSlug", async function (req, res) {
         const deposit = await DepositModel.findOne({ username: req.session.passport.user })
         if (deposit) {
             balance += deposit.amount
-            console.log(balance)
+
         }
 
         const refund = await RefundModel.findOne({ username: req.session.passport.user })

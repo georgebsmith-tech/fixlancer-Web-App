@@ -23,8 +23,9 @@ const Schema = new mongoose.Schema({
         type: String,
         required: true
     },
-    fix: {
-        type: String
+    type: {
+        type: String,
+        enum: ["fix", "request"]
     },
     delivery_date: {
         type: Date,

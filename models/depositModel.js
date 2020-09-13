@@ -24,7 +24,11 @@ const Schema = new mongoose.Schema({
     amount: {
         type: Number
     },
-    date: {
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    updatedAt: {
         type: Date,
         default: Date.now
     },
@@ -33,6 +37,10 @@ const Schema = new mongoose.Schema({
         default: false
     }
 
+})
+Schema.pre("validate", function (next) {
+    this.updatedAt = new Date()
+    next()
 })
 const Deposit = mongoose.model("Deposit", Schema)
 
