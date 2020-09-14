@@ -1266,7 +1266,11 @@ button.header-top-btn, a.header-top-btn {
 
 .grid-table {
   display: grid;
-  grid-template-columns: 3fr 3fr 2fr 2fr;
+  grid-template-columns: 1.5fr 3.5fr 1.8fr 1.5fr;
+}
+
+.hover-underline:hover {
+  text-decoration: underline;
 }
 
 .finance-summary {
@@ -1655,6 +1659,7 @@ main.request-page {
   padding: 10px;
   border-left: 2px solid #ddd;
   font-size: 1.2rem;
+  text-transform: uppercase;
 }
 .sales-and-orders-headings a:hover {
   text-decoration: underline;

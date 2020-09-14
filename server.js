@@ -2,9 +2,83 @@ const express = require("express")
 const app = express()
 const server = require("http").Server(app);
 const io = require("socket.io")(server)
-const axios = require("axios").default
+const axios = require("axios").default;
+const ejs = require("ejs")
 
 require("dotenv").config()
+const SalesModel = require("./models/SaleModel")
+
+
+//EJS helper functions
+app.locals.renderSalesAndOrderDesktop = (order) => {
+
+    return `<div class="font14 grid-table padd20-top padd10-bottom border-bottom padd10-sides">
+    <div class="flex"><span class="user-avatar"
+            data-color="${order.sellerColor}">${order.seller[0].toUpperCase()}</span>${order.seller}
+    </div>
+    <div class="flex">
+        <a href="#" class="flex"
+            style="width: 40px;height: 30px;overflow: hidden;margin-right: 10px;"><img
+                src="${order.image_url}" alt="" ">
+        </a>
+
+        <a href=" #" class=" text-orange hover-underline">${order.title}</a>
+    </div>
+    <div class="flex">${order.delivery_date.toDateString()}</div>
+    <div class="flex"> ₦${order.price}</div>
+</div>
+    `
+}
+
+app.locals.renderSalesAndOrderMobile = (order) => {
+
+    return `<section>
+    <div class="d-order-and-sale bg-white padd20">
+        <div class="grid2-1-6">
+
+            <div class="fix-image-wrapper padd10">
+                <img src="${order.image_url}" alt="">
+            </div>
+
+            <div class="padd10-top">
+                <header class="margin20-bottom">
+                    <a href="#"
+                        class="font14 text-orange line-height hover-underline">${order.title}</a>
+                </header>
+
+            </div>
+        </div>
+        <div class="delivery-and-star flex-between">
+            <div class="date">
+                <i class="fas fa-clock font12"></i> <span class="font12">Delivery
+                    ${order.delivery_date.toDateString()}</span>
+            </div>
+
+            <div>
+                <i class="fa fa-star font16"></i><span class="font16"> 5</span>
+            </div>
+        </div>
+
+        <div class="sale-and-order-meta flex-between margin10-top">
+            <div>
+                <a href="#"><i class="fas fa-circle font11"> </i> <span
+                        class="font13">${order.seller}</span>
+                </a>
+            </div>
+            <div class="text-green font16">
+                ₦${order.price}
+            </div>
+        </div>
+
+
+    </div>
+    <div class="divider"></div>
+</section>
+    `
+}
+
+
+
 
 
 

@@ -158,7 +158,126 @@ router.get("/profile", checkUserAuthenticated, (req, res) => {
 
 router.get("/my-orders", async (req, res) => {
     let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
-    let orders = await SaleModel.find({ buyer: loggedUser })
+    let orders = await SaleModel.find({ buyer: loggedUser, state: "ongoing" })
+    console.log(orders)
+    let customOrders = []
+    for (let order of orders) {
+        let request = await RequestModel.findOne({ job_id: order.job_id })
+        console.log(request)
+        let sellerData = await UserModel.findOne({ username: order.seller }).select("userColor")
+        // console.log(sellerData)
+        let offer = request.offers.find(offer => offer.username === order.seller)
+        console.log(offer)
+        let theFix = {
+            title: offer.title,
+            image_url: offer.image_url,
+            price: offer.price,
+            seller: offer.username,
+            buyer: loggedUser,
+            delivery_date: order.delivery_date,
+            sellerColor: sellerData.userColor
+
+
+        }
+        customOrders.push(theFix)
+
+    }
+    console.log(customOrders)
+    let ordersAll = await SaleModel.find({ buyer: loggedUser })
+    let orderCounts = {
+        ongoing: ordersAll.filter(order => order.state === "ongoing").length,
+        delivered: ordersAll.filter(order => order.state === "delivered").length,
+        cancelled: ordersAll.filter(order => order.state === "cancelled").length,
+        completed: ordersAll.filter(order => order.state === "completed").length
+    }
+
+
+    res.render("my-orders-ongoing", { orders: customOrders, orderCounts })
+})
+
+
+router.get("/my-orders/completed", async (req, res) => {
+
+    let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    let orders = await SaleModel.find({ buyer: loggedUser, state: "completed" })
+    let customOrders = []
+    for (let order of orders) {
+        let request = await RequestModel.findOne({ job_id: order.job_id })
+        let sellerData = await UserModel.findOne({ username: order.seller }).select("userColor")
+        // console.log(sellerData)
+        let offer = request.offers.find(offer => offer.username === order.seller)
+        let theFix = {
+            title: offer.title,
+            image_url: offer.image_url,
+            price: offer.price,
+            seller: offer.username,
+            buyer: loggedUser,
+            delivery_date: order.delivery_date,
+            sellerColor: sellerData.userColor
+
+
+        }
+        customOrders.push(theFix)
+
+    }
+    let ordersAll = await SaleModel.find({ buyer: loggedUser })
+    let orderCounts = {
+        ongoing: ordersAll.filter(order => order.state === "ongoing").length,
+        delivered: ordersAll.filter(order => order.state === "delivered").length,
+        cancelled: ordersAll.filter(order => order.state === "cancelled").length,
+        completed: ordersAll.filter(order => order.state === "completed").length
+    }
+    console.log(customOrders)
+    res.render("my-orders-completed", { orders: customOrders, orderCounts })
+})
+router.get("/my-orders/cancelled", async (req, res) => {
+    let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    let orders = await SaleModel.find({ buyer: loggedUser, state: "cancelled" })
+    let customOrders = []
+    for (let order of orders) {
+        let request = await RequestModel.findOne({ job_id: order.job_id })
+        let sellerData = await UserModel.findOne({ username: order.seller }).select("userColor")
+        // console.log(sellerData)
+        let offer = request.offers.find(offer => offer.username === order.seller)
+        let theFix = {
+            title: offer.title,
+            image_url: offer.image_url,
+            price: offer.price,
+            seller: offer.username,
+            buyer: loggedUser,
+            delivery_date: order.delivery_date,
+            sellerColor: sellerData.userColor
+
+
+        }
+        customOrders.push(theFix)
+
+    }
+    let ordersAll = await SaleModel.find({ buyer: loggedUser })
+    let orderCounts = {
+        ongoing: ordersAll.filter(order => order.state === "ongoing").length,
+        delivered: ordersAll.filter(order => order.state === "delivered").length,
+        cancelled: ordersAll.filter(order => order.state === "cancelled").length,
+        completed: ordersAll.filter(order => order.state === "completed").length
+    }
+    console.log(customOrders)
+
+    res.render("my-orders-cancelled", { orders: customOrders, orderCounts })
+})
+
+function getOrderCounts(buyer) {
+
+}
+router.get("/my-orders/delivered", async (req, res) => {
+    let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    let orders = await SaleModel.find({ buyer: loggedUser, state: "delivered" })
+    let ordersAll = await SaleModel.find({ buyer: loggedUser })
+    let orderCounts = {
+        ongoing: ordersAll.filter(order => order.state === "ongoing").length,
+        delivered: ordersAll.filter(order => order.state === "delivered").length,
+        cancelled: ordersAll.filter(order => order.state === "cancelled").length,
+        completed: ordersAll.filter(order => order.state === "completed").length
+    }
     let customOrders = []
     for (let order of orders) {
         let request = await RequestModel.findOne({ job_id: order.job_id })
@@ -181,20 +300,7 @@ router.get("/my-orders", async (req, res) => {
     }
     console.log(customOrders)
 
-
-
-    res.render("my-orders-ongoing", { orders: customOrders })
-})
-
-
-router.get("/my-orders/completed", checkUserAuthenticated, (req, res) => {
-    res.render("my-orders-completed")
-})
-router.get("/my-orders/cancelled", checkUserAuthenticated, (req, res) => {
-    res.render("my-orders-cancelled")
-})
-router.get("/my-orders/delivered", checkUserAuthenticated, (req, res) => {
-    res.render("my-orders-delivered")
+    res.render("my-orders-delivered", { orders: customOrders, orderCounts })
 })
 
 router.get("/my-sales/delivered", checkUserAuthenticated, (req, res) => {
