@@ -1,5 +1,5 @@
 const UserModel = require("../../models/UserModel")
-const BankModel = require("../../models/BankModel")
+const BankModel = require("../../models/BanksModel")
 const bcrypt = require("bcrypt")
 
 module.exports = async function (req, res) {
