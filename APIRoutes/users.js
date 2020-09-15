@@ -17,7 +17,7 @@ const jwt = require("jsonwebtoken");
 console.log(process.env.AWS_REGION)
 
 const UserModel = require("../models/UserModel")
-const BankModel = require("../models/BankModel")
+const BankModel = require("../models/BanksModel")
 const SalesModel = require("../models/SaleModel")
 // const OrdersModel = require("../models/ordersModel")
 const NoticesModel = require("../models/NoticesModel")
