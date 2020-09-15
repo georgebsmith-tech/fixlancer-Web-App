@@ -77,11 +77,6 @@ app.locals.renderSalesAndOrderMobile = (order) => {
     `
 }
 
-
-
-
-
-
 const passport = require("passport")
 const flash = require("express-flash")
 const session = require("express-session")
@@ -463,7 +458,7 @@ app.use("/api/refunds", refundRoutes)
 app.use("/api/transactions", transactionRoutes)
 
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5000
 server.listen(PORT, function () {
     console.log("Now listening to port " + PORT)
 })

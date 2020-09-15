@@ -32,11 +32,15 @@
                         <h3>DELIVERY</h3>
                         <h3>AMOUNT</h3>
                     </div>
-                    <%orders.forEach(order=>{ %>
+                    <%if(orders.length===0){%>
+                    <div class="padd30 center-text font16 bg-white">
+                        <div class="padd30 bold">
+                            No Orders
+                        </div>
 
-                    <%-renderSalesAndOrderDesktop(order)%>
+                    </div>
+                    <%}%>
 
-                    <%})%>
                 </section>
                 <script>
                     const userColors = document.querySelectorAll(" .user-avatar"); userColors.forEach(user => {
@@ -44,6 +48,14 @@
                         user.style.marginRight = "8px"
                     });
                 </script>
+                <%if(orders.length===0){%>
+                    <div class="padd30 center-text mobile font16 bg-white">
+                        <div class="padd30 bold">
+                            No Orders
+                        </div>
+
+                    </div>
+                    <%}%>
                 <div class="mobile grid-responsive-max4">
 
                     <%orders.forEach(order=>{ %>
@@ -52,11 +64,11 @@
 
 
                     <%})%>
-                </div>
+                    </div>
+
+                </section>
 
             </section>
-
-        </section>
     </main>
     <%- include('./partials/footer.ejs') %>
 </body>
