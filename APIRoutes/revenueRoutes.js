@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const RevenueModel = require("../models/RevenueModel");
+const RevenueModel = require("../models/RevenuesModel");
 
 router.get("/", async (req, res) => {
     const data = await RevenueModel.find()
