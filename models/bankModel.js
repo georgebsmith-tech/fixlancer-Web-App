@@ -5,7 +5,7 @@ dotenv.config()
 
 
 const dataBaseUrl = process.env.MONGO_ATLAS_URI
-
+//
 mongoose.connect(dataBaseUrl, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, (err, data) => {
     if (err) {
         console.log("error" + err)
