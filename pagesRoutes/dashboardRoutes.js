@@ -4,7 +4,7 @@ const axios = require("axios").default;
 //models
 const UserModel = require("../models/UserModel");
 const FixModel = require("../models/FixModel");
-const RequestModel = require("../models/RequestsModel");
+const RequestModel = require("../models/RequestModel");
 const DepositModel = require("../models/DepositModel");
 const RevenueModel = require("../models/RevenueModel");
 const RefundModel = require("../models/RefundModel");
