@@ -9,7 +9,7 @@ const DepositModel = require("../models/DepositsModel");
 const RevenueModel = require("../models/RevenuesModel");
 const RefundModel = require("../models/RefundsModel");
 const ConversationModel = require("../models/ConversationsModel");
-const NoticeModel = require("../models/NoticeModel");
+const NoticeModel = require("../models/NoticesModel");
 const TransactionModel = require("../models/TransactionModel");
 const SaleModel = require("../models/SaleModel");
 
