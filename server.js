@@ -260,7 +260,7 @@ app.use(express.json())
 
 const checkUserAuthenticated = require("./middleware/userIsAuthenticated");
 const checkUserNotAuthenticated = require("./middleware/userIsNotauthenticated");
-
+//th
 // dashboard route
 app.use("/dashboard", dashboardRoutes)
 
