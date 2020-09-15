@@ -77,14 +77,14 @@ const io = require("socket.io")(server)
 //     `
 // }
 
-// const passport = require("passport")
-// const flash = require("express-flash")
-// const session = require("express-session")
+const passport = require("passport")
+const flash = require("express-flash")
+const session = require("express-session")
 
-// const initialize = require("./configuration/passportConfig")
+const initialize = require("./configuration/passportConfig")
 
-// //Routes imports
-// const dashboardRoutes = require("./pagesRoutes/dashboardRoutes")
+//Routes imports
+const dashboardRoutes = require("./pagesRoutes/dashboardRoutes")
 // const usersRoute = require("./APIRoutes/users")
 // const noticesRoute = require("./APIRoutes/noticesRoutes")
 // const categoriesRoute = require("./APIRoutes/categories")
@@ -258,10 +258,10 @@ app.use(express.json())
 // })
 
 
-// const checkUserAuthenticated = require("./middleware/userIsAuthenticated")
-// const checkUserNotAuthenticated = require("./middleware/userIsNotauthenticated")
+const checkUserAuthenticated = require("./middleware/userIsAuthenticated");
+const checkUserNotAuthenticated = require("./middleware/userIsNotauthenticated");
 
-// //dashboard route
+//dashboard route
 // app.use("/dashboard", dashboardRoutes)
 
 
@@ -282,9 +282,9 @@ app.use(express.json())
 app.get("/", (req, res) => {
     res.render("index")
 })
-// app.get("/login", checkUserNotAuthenticated, (req, res) => {
-//     res.render("login")
-// })
+app.get("/login", checkUserNotAuthenticated, (req, res) => {
+    res.render("login")
+})
 // app.get("/register", (req, res) => {
 //     res.render("register")
 // })
