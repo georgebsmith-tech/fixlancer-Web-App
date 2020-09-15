@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const CategoryModel = require("../models/CategoryModel");
+const CategoryModel = require("../models/CategoriesModel");
 const slugify = require("slugify");
 slugify.extend({ '#': 'sharp', '+': "plus", "-": "minus", "*": "times", "&": "and", "/": "or" })
 
