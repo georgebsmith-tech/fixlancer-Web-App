@@ -1,4 +1,4 @@
-const ConversationModel = require("../models/ConversationModel")
+const ConversationModel = require("../models/ConversationsModel")
 
 const router = require("express").Router()
 

@@ -3,79 +3,79 @@ const app = express()
 const server = require("http").Server(app);
 const io = require("socket.io")(server)
 // const axios = require("axios").default;
-// const ejs = require("ejs")
+const ejs = require("ejs")
 
-// require("dotenv").config()
-// const SalesModel = require("./models/SaleModel")
-
-
-// //EJS helper functions
-// app.locals.renderSalesAndOrderDesktop = (order) => {
-
-//     return `<div class="font14 grid-table padd20-top padd10-bottom border-bottom padd10-sides">
-//     <div class="flex"><span class="user-avatar"
-//             data-color="${order.sellerColor}">${order.seller[0].toUpperCase()}</span>${order.seller}
-//     </div>
-//     <div class="flex">
-//         <a href="#" class="flex"
-//             style="width: 40px;height: 30px;overflow: hidden;margin-right: 10px;"><img
-//                 src="${order.image_url}" alt="" ">
-//         </a>
-
-//         <a href=" #" class=" text-orange hover-underline">${order.title}</a>
-//     </div>
-//     <div class="flex">${order.delivery_date.toDateString()}</div>
-//     <div class="flex"> ₦${order.price}</div>
-// </div>
-//     `
-// }
-
-// app.locals.renderSalesAndOrderMobile = (order) => {
-
-//     return `<section>
-//     <div class="d-order-and-sale bg-white padd20">
-//         <div class="grid2-1-6">
-
-//             <div class="fix-image-wrapper padd10">
-//                 <img src="${order.image_url}" alt="">
-//             </div>
-
-//             <div class="padd10-top">
-//                 <header class="margin20-bottom">
-//                     <a href="#"
-//                         class="font14 text-orange line-height hover-underline">${order.title}</a>
-//                 </header>
-
-//             </div>
-//         </div>
-//         <div class="delivery-and-star flex-between">
-//             <div class="date">
-//                 <i class="fas fa-clock font12"></i> <span class="font12">Delivery
-//                     ${order.delivery_date.toDateString()}</span>
-//             </div>
-
-//             <div>
-//                 <i class="fa fa-star font16"></i><span class="font16"> 5</span>
-//             </div>
-//         </div>
-
-//         <div class="sale-and-order-meta flex-between margin10-top">
-//             <div>
-//                 <a href="#"><i class="fas fa-circle font11"> </i> <span
-//                         class="font13">${order.seller}</span>
-//                 </a>
-//             </div>
-//             <div class="text-green font16">
-//                 ₦${order.price}
-//             </div>
-//         </div>
+require("dotenv").config()
+const SalesModel = require("./models/SaleModel")
 
 
-//     </div>
-//     <div class="divider"></div>
-// </section>
-//     `
-// }
+//EJS helper functions
+app.locals.renderSalesAndOrderDesktop = (order) => {
+
+    return `<div class="font14 grid-table padd20-top padd10-bottom border-bottom padd10-sides">
+    <div class="flex"><span class="user-avatar"
+            data-color="${order.sellerColor}">${order.seller[0].toUpperCase()}</span>${order.seller}
+    </div>
+    <div class="flex">
+        <a href="#" class="flex"
+            style="width: 40px;height: 30px;overflow: hidden;margin-right: 10px;"><img
+                src="${order.image_url}" alt="" ">
+        </a>
+
+        <a href=" #" class=" text-orange hover-underline">${order.title}</a>
+    </div>
+    <div class="flex">${order.delivery_date.toDateString()}</div>
+    <div class="flex"> ₦${order.price}</div>
+</div>
+    `
+}
+
+app.locals.renderSalesAndOrderMobile = (order) => {
+
+    return `<section>
+    <div class="d-order-and-sale bg-white padd20">
+        <div class="grid2-1-6">
+
+            <div class="fix-image-wrapper padd10">
+                <img src="${order.image_url}" alt="">
+            </div>
+
+            <div class="padd10-top">
+                <header class="margin20-bottom">
+                    <a href="#"
+                        class="font14 text-orange line-height hover-underline">${order.title}</a>
+                </header>
+
+            </div>
+        </div>
+        <div class="delivery-and-star flex-between">
+            <div class="date">
+                <i class="fas fa-clock font12"></i> <span class="font12">Delivery
+                    ${order.delivery_date.toDateString()}</span>
+            </div>
+
+            <div>
+                <i class="fa fa-star font16"></i><span class="font16"> 5</span>
+            </div>
+        </div>
+
+        <div class="sale-and-order-meta flex-between margin10-top">
+            <div>
+                <a href="#"><i class="fas fa-circle font11"> </i> <span
+                        class="font13">${order.seller}</span>
+                </a>
+            </div>
+            <div class="text-green font16">
+                ₦${order.price}
+            </div>
+        </div>
+
+
+    </div>
+    <div class="divider"></div>
+</section>
+    `
+}
 
 const passport = require("passport")
 const flash = require("express-flash")
@@ -85,61 +85,61 @@ const initialize = require("./configuration/passportConfig")
 
 //Routes imports
 const dashboardRoutes = require("./pagesRoutes/dashboardRoutes")
-// const usersRoute = require("./APIRoutes/users")
-// const noticesRoute = require("./APIRoutes/noticesRoutes")
-// const categoriesRoute = require("./APIRoutes/categories")
-// const pushNoticeRoute = require("./APIRoutes/pushRoutes")
-// const transactionRoutes = require("./APIRoutes/transactionRoutes")
-// const affiliatesRoute = require("./APIRoutes/affiliates")
-// const revenuesRoutes = require("./APIRoutes/revenueRoutes")
-// const refundRoutes = require("./APIRoutes/refundRoutes")
-// const depositRoutes = require("./APIRoutes/depositRoutes")
-// const apiDocumentationRoutes = require("./APIRoutes/apiDocumentationRoutes")
-// const fixRoutes = require("./APIRoutes/fixRoutes")
-// const requestRoutes = require("./APIRoutes/requestsRoutes")
-// const salesRoutes = require("./APIRoutes/salesRoutes")
-// const conversationRoutes = require("./APIRoutes/conversationRoutes")
-// const RevenueModel = require("./models/RevenueModel")
-// const UserModel = require("./models/UserModel")
+const usersRoute = require("./APIRoutes/users")
+const noticesRoute = require("./APIRoutes/noticesRoutes")
+const categoriesRoute = require("./APIRoutes/categories")
+const pushNoticeRoute = require("./APIRoutes/pushRoutes")
+const transactionRoutes = require("./APIRoutes/transactionRoutes")
+const affiliatesRoute = require("./APIRoutes/affiliates")
+const revenuesRoutes = require("./APIRoutes/revenueRoutes")
+const refundRoutes = require("./APIRoutes/refundRoutes")
+const depositRoutes = require("./APIRoutes/depositRoutes")
+const apiDocumentationRoutes = require("./APIRoutes/apiDocumentationRoutes")
+const fixRoutes = require("./APIRoutes/fixRoutes")
+const requestRoutes = require("./APIRoutes/requestsRoutes")
+const salesRoutes = require("./APIRoutes/salesRoutes")
+const conversationRoutes = require("./APIRoutes/conversationRoutes")
+const RevenueModel = require("./models/RevenuesModel")
+const UserModel = require("./models/UserModel")
 
-// const ConversationModel = require("./models/ConversationModel")
-// const DepositModel = require("./models/DepositModel")
-// const FixModel = require("./models/FixModel");
+const ConversationModel = require("./models/ConversationsModel")
+const DepositModel = require("./models/DepositsModel")
+const FixModel = require("./models/FixModel");
 
-// const RefundModel = require("./models/RefundModel")
-// const RequestModel = require("./models/RequestsModel")
-
-
-// app.use(flash())
-// app.use(session({
-//     secret: process.env.SESSION_SECRET,
-//     resave: false,
-//     saveUninitialized: false
-
-// }))
+const RefundModel = require("./models/RefundsModel")
+const RequestModel = require("./models/RequestModel")
 
 
-// initialize(passport, async username => {
-//     try {
-//         const theUser = await UserModel.findOne({ username: username })
-//         return theUser
-//     } catch (err) {
-//         throw err
-//     }
+app.use(flash())
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
 
-// },
-//     async username => {
-//         try {
-//             const deUser = await UserModel.findOne({ username })
-//             // console.log(theUser)
-//             return deUser
-//         } catch (err) {
-//             throw err
+}))
 
-//         }
-//     })
-// app.use(passport.initialize())
-// app.use(passport.session())
+
+initialize(passport, async username => {
+    try {
+        const theUser = await UserModel.findOne({ username: username })
+        return theUser
+    } catch (err) {
+        throw err
+    }
+
+},
+    async username => {
+        try {
+            const deUser = await UserModel.findOne({ username })
+            // console.log(theUser)
+            return deUser
+        } catch (err) {
+            throw err
+
+        }
+    })
+app.use(passport.initialize())
+app.use(passport.session())
 
 
 
@@ -261,23 +261,23 @@ app.use(express.json())
 const checkUserAuthenticated = require("./middleware/userIsAuthenticated");
 const checkUserNotAuthenticated = require("./middleware/userIsNotauthenticated");
 
-//dashboard route
-// app.use("/dashboard", dashboardRoutes)
+// dashboard route
+app.use("/dashboard", dashboardRoutes)
 
 
-// app.get("/home", function (req, res) {
-//     res.render("home")
-// })
-// app.get("/section/:catSlug", async function (req, res) {
-//     const catSlug = req.params.catSlug
-//     const cat = await CategoriesModel.findOne({ catSlug }).select("name subcat")
-//     const fixes = await FixModel.find({ category: cat.name })
-//     // console.log(catName)
-//     const pages = Math.ceil(fixes.length / 4)
-//     // console.log(fixes)
-//     // console.log(cat.subcat)
-//     res.render("fix-category", { fixes, pages, subcat: cat.subcat, category: cat.name })
-// })
+app.get("/home", function (req, res) {
+    res.render("home")
+})
+app.get("/section/:catSlug", async function (req, res) {
+    const catSlug = req.params.catSlug
+    const cat = await CategoriesModel.findOne({ catSlug }).select("name subcat")
+    const fixes = await FixModel.find({ category: cat.name })
+    // console.log(catName)
+    const pages = Math.ceil(fixes.length / 4)
+    // console.log(fixes)
+    // console.log(cat.subcat)
+    res.render("fix-category", { fixes, pages, subcat: cat.subcat, category: cat.name })
+})
 
 app.get("/", (req, res) => {
     res.render("index")
@@ -442,20 +442,20 @@ app.get("/login", checkUserNotAuthenticated, (req, res) => {
 
 
 
-// //API routes
-// app.use("/api/notices", noticesRoute)
-// app.use("/api/requests", requestRoutes)
-// app.use("/api/users", usersRoute)
-// app.use("/api/categories", categoriesRoute)
-// app.use("/api/push-notice", pushNoticeRoute)
-// app.use("/api/affiliates", affiliatesRoute)
-// app.use("/api/fixes", fixRoutes)
-// app.use("/api/sales", salesRoutes)
-// app.use("/api/chats", conversationRoutes)
-// app.use("/api/revenues", revenuesRoutes)
-// app.use("/api/deposits", depositRoutes)
-// app.use("/api/refunds", refundRoutes)
-// app.use("/api/transactions", transactionRoutes)
+//API routes
+app.use("/api/notices", noticesRoute)
+app.use("/api/requests", requestRoutes)
+app.use("/api/users", usersRoute)
+app.use("/api/categories", categoriesRoute)
+app.use("/api/push-notice", pushNoticeRoute)
+app.use("/api/affiliates", affiliatesRoute)
+app.use("/api/fixes", fixRoutes)
+app.use("/api/sales", salesRoutes)
+app.use("/api/chats", conversationRoutes)
+app.use("/api/revenues", revenuesRoutes)
+app.use("/api/deposits", depositRoutes)
+app.use("/api/refunds", refundRoutes)
+app.use("/api/transactions", transactionRoutes)
 
 
 const PORT = process.env.PORT || 5000

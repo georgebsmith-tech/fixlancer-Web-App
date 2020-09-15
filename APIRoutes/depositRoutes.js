@@ -1,10 +1,10 @@
 const router = require("express").Router()
-const DepositModel = require("../models/DepositModel");
+const DepositModel = require("../models/DepositsModel");
 const TransactionModel = require("../models/TransactionModel");
 const axios = require("axios").default;
 
 // let domain = "https://fixlancer.herokuapp.com"
-let domain = "http://localhost:3000"
+let domain = "http://localhost:5000"
 router.get("/", async (req, res) => {
     const data = await DepositModel.find()
     return res.status(200).json({ data })

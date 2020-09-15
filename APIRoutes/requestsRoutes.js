@@ -1,6 +1,6 @@
 const router = require("express").Router()
-const RequestModel = require("../models/RequestsModel");
-const NoticeModel = require("../models/NoticeModel");
+const RequestModel = require("../models/RequestModel");
+const NoticeModel = require("../models/NoticesModel");
 
 router.post("/", async (req, res) => {
     let user = req.session.passport.user
