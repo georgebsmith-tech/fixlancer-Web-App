@@ -61,7 +61,7 @@ router.get("/post-job-request", checkUserAuthenticated, (req, res) => {
     res.render("post-request")
 })
 let domain = "https://fixlancer.herokuapp.com"
-// let domain = "http://localhost:3000"
+// let domain = "http://localhost:5000"
 router.get("/inbox", async (req, res) => {
     try {
 

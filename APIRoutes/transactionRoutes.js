@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 
 })
 
-// let domain = "http://localhost:3000"
+// let domain = "http://localhost:5000"
 let domain = "https://fixlancer.herokuapp.com"
 async function updateFunds(body) {
     console.log(body)

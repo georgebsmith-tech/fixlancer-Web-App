@@ -33,6 +33,11 @@
                         <h3>DELIVERY</h3>
                         <h3>AMOUNT</h3>
                     </div>
+                    <%orders.forEach(order=>{ %>
+
+                    <%-renderSalesAndOrderDesktop(order)%>
+
+                    <%})%>
                     <%if(orders.length===0){%>
                     <div class="padd30 center-text font16 bg-white">
                         <div class="padd30 bold">
