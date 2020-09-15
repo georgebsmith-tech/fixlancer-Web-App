@@ -150,15 +150,15 @@ app.use(express.static("public"))
 app.use(express.json())
 
 
-// app.use((req, res, next) => {
-//     res.header("Access-Control-Allow-Origin", "*")
-//     res.header("Access-Control-Allow-Headers", "*")
-//     if (req.method === "OPTIONS") {
-//         res.header("Access-Control-Allow-Methods", 'PUT, POST, DELETE, GET, PATCH')
-//         return res.status(200).json({})
-//     }
-//     next()
-// })
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "*")
+    if (req.method === "OPTIONS") {
+        res.header("Access-Control-Allow-Methods", 'PUT, POST, DELETE, GET, PATCH')
+        return res.status(200).json({})
+    }
+    next()
+})
 
 
 
@@ -285,159 +285,159 @@ app.get("/", (req, res) => {
 app.get("/login", checkUserNotAuthenticated, (req, res) => {
     res.render("login")
 })
-// app.get("/register", (req, res) => {
-//     res.render("register")
-// })
+app.get("/register", (req, res) => {
+    res.render("register")
+})
 
 
 
 
-// const CategoriesModel = require("./models/CategoryModel")
+const CategoriesModel = require("./models/CategoriesModel")
 
-// app.get("/alert", (req, res) => {
-//     res.render("alert")
-// })
-// app.get("/search-fix", async (req, res) => {
-//     let term;
-//     let pageSize = 4
-//     let searchQuery = req.query.term
-//     let rawTerms = searchQuery.split(" ")
-//     let page = req.query.pg * 1
-//     let skip = (page - 1) * pageSize
-//     if (rawTerms.length === 1) {
-//         term = new RegExp(rawTerms[0], "i")
-//     } else {
-//         let form = `(${rawTerms[0]})`
-//         for (let item of rawTerms) {
-//             form += `|(${item})`
-//         }
-//         term = new RegExp(form, "i")
+app.get("/alert", (req, res) => {
+    res.render("alert")
+})
+app.get("/search-fix", async (req, res) => {
+    let term;
+    let pageSize = 4
+    let searchQuery = req.query.term
+    let rawTerms = searchQuery.split(" ")
+    let page = req.query.pg * 1
+    let skip = (page - 1) * pageSize
+    if (rawTerms.length === 1) {
+        term = new RegExp(rawTerms[0], "i")
+    } else {
+        let form = `(${rawTerms[0]})`
+        for (let item of rawTerms) {
+            form += `|(${item})`
+        }
+        term = new RegExp(form, "i")
 
-//     }
+    }
 
-//     let count = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).countDocuments()
-//     let pages = Math.ceil(count / pageSize)
-//     // console.log(count)
-//     // console.log(pages)
-
-
-//     let categories = await CategoriesModel.find()
-//     // console.log(categories)
-//     const fixes = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).skip(skip).limit(pageSize)
-//     // console.log(fixes)
-//     res.render("search-fix", { fixes, pages, rawTerm: searchQuery, categories, count })
-// })
-
-// app.get("/how-it-works", (req, res) => {
-//     res.render("how-it-works")
-// })
-// app.get("/profile", checkUserAuthenticated, (req, res) => {
-//     res.redirect(`/${req.session.passport.user}`)
-// })
-// app.get("/log-out", checkUserAuthenticated, (req, res) => {
-//     let user = req.session.passport.user
-//     let date = new Date()
-//     UserModel.findOneAndUpdate({ username: user }, { online: false, last_seen: date }, { new: true })
-//         .then(data => {
+    let count = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).countDocuments()
+    let pages = Math.ceil(count / pageSize)
+    // console.log(count)
+    // console.log(pages)
 
 
-//         })
+    let categories = await CategoriesModel.find()
+    // console.log(categories)
+    const fixes = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).skip(skip).limit(pageSize)
+    // console.log(fixes)
+    res.render("search-fix", { fixes, pages, rawTerm: searchQuery, categories, count })
+})
 
-//     req.logOut()
-//     res.redirect("/")
-// })
-
-
-
-// app.get("/fix/:subcat/:titleSlug", async (req, res) => {
-//     const fix = await FixModel.findOne({ titleSlug: req.params.titleSlug })
-//     const userFixes = await FixModel.find({ username: fix.username })
-//     const recommendations = await FixModel.find({ category: fix.category }).limit(6)
-//     const resp = await axios.get(`https://fixlancer.herokuapp.com/api/users/${fix.username}`)
-//     const user = resp.data.data
-//     const sessionPassport = req.session.passport
-//     let loggedInUser;
-//     if (sessionPassport) {
-//         loggedInUser = sessionPassport.user
-//     }
-
-
-//     res.render("fix-detailed", { fix, user, userFixes, recommendations, loggedInUser })
-// })
+app.get("/how-it-works", (req, res) => {
+    res.render("how-it-works")
+})
+app.get("/profile", checkUserAuthenticated, (req, res) => {
+    res.redirect(`/${req.session.passport.user}`)
+})
+app.get("/log-out", checkUserAuthenticated, (req, res) => {
+    let user = req.session.passport.user
+    let date = new Date()
+    UserModel.findOneAndUpdate({ username: user }, { online: false, last_seen: date }, { new: true })
+        .then(data => {
 
 
-// app.get("/order-fix/:titleSlug", async function (req, res) {
-//     const jobId = req.query.job_id
-//     const titleSlug = req.params.titleSlug
-//     let fix;
-//     let offer
-//     let custom = false;
-//     if (jobId) {
+        })
 
-//         const data = await RequestModel.findOne({ job_id: jobId })
-
-
-//         offer = data.offers.find(offer => offer.slug === titleSlug)
-
-//         fix = offer
-//         fix.images_url = [offer.image_url]
-//         fix.delivery_days = offer.delivery
-//         fix.mainSlug = data.slug
-//         custom = true
-
-//     } else
-//         fix = await FixModel.findOne({ titleSlug: titleSlug })
-//     let balance = 0;
-//     let refundAmount = 0;
-
-//     if (req.session.passport) {
-
-//         const revenue = await RevenueModel.findOne({ username: req.session.passport.user })
-//         if (revenue) {
-//             balance += revenue.amount
-//             // console.log(balance)
-//         }
-
-
-//         const deposit = await DepositModel.findOne({ username: req.session.passport.user })
-//         if (deposit) {
-//             balance += deposit.amount
-
-//         }
-
-//         const refund = await RefundModel.findOne({ username: req.session.passport.user })
-//         if (refund) {
-//             refundAmount = refund.amount
-//             balance += refundAmount
-//             // console.log(balance)
-//         }
-
-//     }
-
-//     let total = fix.price - balance
-
-//     let fee = fix.price - refundAmount > 0 ? 0.05 * (fix.price - refundAmount) : 0
-//     total += fee
-//     if (total < 0) total = fix.price + fee
-
-
-//     // console.log(fix)
-//     res.render("order-fix", { fix, balance, total, fee, custom, jobId })
-
-// })
+    req.logOut()
+    res.redirect("/")
+})
 
 
 
-// app.get("/:username", checkUserAuthenticated, (req, res) => {
-//     res.render("profile")
-// })
+app.get("/fix/:subcat/:titleSlug", async (req, res) => {
+    const fix = await FixModel.findOne({ titleSlug: req.params.titleSlug })
+    const userFixes = await FixModel.find({ username: fix.username })
+    const recommendations = await FixModel.find({ category: fix.category }).limit(6)
+    const resp = await axios.get(`https://fixlancer.herokuapp.com/api/users/${fix.username}`)
+    const user = resp.data.data
+    const sessionPassport = req.session.passport
+    let loggedInUser;
+    if (sessionPassport) {
+        loggedInUser = sessionPassport.user
+    }
 
 
+    res.render("fix-detailed", { fix, user, userFixes, recommendations, loggedInUser })
+})
+
+
+app.get("/order-fix/:titleSlug", async function (req, res) {
+    const jobId = req.query.job_id
+    const titleSlug = req.params.titleSlug
+    let fix;
+    let offer
+    let custom = false;
+    if (jobId) {
+
+        const data = await RequestModel.findOne({ job_id: jobId })
+
+
+        offer = data.offers.find(offer => offer.slug === titleSlug)
+
+        fix = offer
+        fix.images_url = [offer.image_url]
+        fix.delivery_days = offer.delivery
+        fix.mainSlug = data.slug
+        custom = true
+
+    } else
+        fix = await FixModel.findOne({ titleSlug: titleSlug })
+    let balance = 0;
+    let refundAmount = 0;
+
+    if (req.session.passport) {
+
+        const revenue = await RevenueModel.findOne({ username: req.session.passport.user })
+        if (revenue) {
+            balance += revenue.amount
+            // console.log(balance)
+        }
+
+
+        const deposit = await DepositModel.findOne({ username: req.session.passport.user })
+        if (deposit) {
+            balance += deposit.amount
+
+        }
+
+        const refund = await RefundModel.findOne({ username: req.session.passport.user })
+        if (refund) {
+            refundAmount = refund.amount
+            balance += refundAmount
+            // console.log(balance)
+        }
+
+    }
+
+    let total = fix.price - balance
+
+    let fee = fix.price - refundAmount > 0 ? 0.05 * (fix.price - refundAmount) : 0
+    total += fee
+    if (total < 0) total = fix.price + fee
+
+
+    // console.log(fix)
+    res.render("order-fix", { fix, balance, total, fee, custom, jobId })
+
+})
+
+
+
+app.get("/:username", checkUserAuthenticated, (req, res) => {
+    res.render("profile")
+})
 
 
 
 
-// app.use("/uploads", express.static("uploads"))
+
+
+app.use("/uploads", express.static("uploads"))
 
 
 
