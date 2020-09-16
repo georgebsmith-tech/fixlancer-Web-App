@@ -175,7 +175,8 @@ router.get("/my-orders", async (req, res) => {
             seller: offer.username,
             buyer: loggedUser,
             delivery_date: order.delivery_date,
-            sellerColor: sellerData.userColor
+            sellerColor: sellerData.userColor,
+            loggedUser
 
 
         }
@@ -213,7 +214,8 @@ router.get("/my-orders/completed", async (req, res) => {
             seller: offer.username,
             buyer: loggedUser,
             delivery_date: order.delivery_date,
-            sellerColor: sellerData.userColor
+            sellerColor: sellerData.userColor,
+            loggedUser
 
 
         }
@@ -246,7 +248,8 @@ router.get("/my-orders/cancelled", async (req, res) => {
             seller: offer.username,
             buyer: loggedUser,
             delivery_date: order.delivery_date,
-            sellerColor: sellerData.userColor
+            sellerColor: sellerData.userColor,
+            loggedUser
 
 
         }
@@ -291,7 +294,8 @@ router.get("/my-orders/delivered", async (req, res) => {
             seller: offer.username,
             buyer: loggedUser,
             delivery_date: order.delivery_date,
-            sellerColor: sellerData.userColor
+            sellerColor: sellerData.userColor,
+            loggedUser
 
 
         }
@@ -303,15 +307,118 @@ router.get("/my-orders/delivered", async (req, res) => {
     res.render("my-orders-delivered", { orders: customOrders, orderCounts })
 })
 
-router.get("/my-sales/delivered", checkUserAuthenticated, (req, res) => {
-    res.render("my-sales-delivered")
+router.get("/my-sales/delivered", async (req, res) => {
+     let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    let sales = await SaleModel.find({ seller: loggedUser, state: "delivered" })
+    let salesAll = await SaleModel.find({ seller: loggedUser })
+    let salesCounts = {
+        ongoing: salesAll.filter(order => order.state === "ongoing").length,
+        delivered: salesAll.filter(order => order.state === "delivered").length,
+        cancelled: salesAll.filter(order => order.state === "cancelled").length,
+        completed: salesAll.filter(order => order.state === "completed").length
+    }
+    let customSales = []
+    for (let sale of sales) {
+        console.log(sale)
+        let request = await RequestModel.findOne({ job_id: sale.job_id })
+        let buyerData = await UserModel.findOne({ username: sale.buyer }).select("userColor")
+        console.log(request)
+        console.log(request.offers)
+        console.log(sale.buyer)
+        console.log("***************************************")
+        let offer = request.offers.find(offer => offer.username === loggedUser)
+        let theFix = {
+            title: offer.title,
+            image_url: offer.image_url,
+            price: offer.price,
+            seller: loggedUser,
+            buyer: sale.buyer,
+            delivery_date: sale.delivery_date,
+            sellerColor: buyerData.userColor,
+            loggedUser
+
+
+        }
+        customSales.push(theFix)
+
+    }
+    res.render("my-sales-delivered",{sales:customSales,salesCounts})
 })
 
-router.get("/my-sales/", checkUserAuthenticated, (req, res) => {
-    res.render("my-sales-ongoing")
+router.get("/my-sales", async (req, res) => {
+      let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    let sales = await SaleModel.find({ seller: loggedUser, state: "ongoing" })
+    let salesAll = await SaleModel.find({ seller: loggedUser })
+    let salesCounts = {
+        ongoing: salesAll.filter(order => order.state === "ongoing").length,
+        delivered: salesAll.filter(order => order.state === "delivered").length,
+        cancelled: salesAll.filter(order => order.state === "cancelled").length,
+        completed: salesAll.filter(order => order.state === "completed").length
+    }
+    let customSales = []
+    for (let sale of sales) {
+        console.log(sale)
+        let request = await RequestModel.findOne({ job_id: sale.job_id })
+        let buyerData = await UserModel.findOne({ username: sale.buyer }).select("userColor")
+        console.log(request)
+        console.log(request.offers)
+        console.log(sale.buyer)
+        console.log("***************************************")
+        let offer = request.offers.find(offer => offer.username === loggedUser)
+        let theFix = {
+            title: offer.title,
+            image_url: offer.image_url,
+            price: offer.price,
+            seller: loggedUser,
+            buyer: sale.buyer,
+            delivery_date: sale.delivery_date,
+            sellerColor: buyerData.userColor,
+            loggedUser
+
+
+        }
+        customSales.push(theFix)
+
+    }
+    // console.log(customSales)
+    res.render("my-sales-ongoing",{sales:customSales,salesCounts})
 })
-router.get("/my-sales/completed", checkUserAuthenticated, (req, res) => {
-    res.render("my-sales-completed")
+router.get("/my-sales/completed", async (req, res) => {
+     let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    let sales = await SaleModel.find({ seller: loggedUser, state: "completed" })
+    let salesAll = await SaleModel.find({ seller: loggedUser })
+    let salesCounts = {
+        ongoing: salesAll.filter(order => order.state === "ongoing").length,
+        delivered: salesAll.filter(order => order.state === "delivered").length,
+        cancelled: salesAll.filter(order => order.state === "cancelled").length,
+        completed: salesAll.filter(order => order.state === "completed").length
+    }
+    let customSales = []
+    for (let sale of sales) {
+        console.log(sale)
+        let request = await RequestModel.findOne({ job_id: sale.job_id })
+        let buyerData = await UserModel.findOne({ username: sale.buyer }).select("userColor")
+        console.log(request)
+        console.log(request.offers)
+        console.log(sale.buyer)
+        console.log("***************************************")
+        let offer = request.offers.find(offer => offer.username === loggedUser)
+        let theFix = {
+            title: offer.title,
+            image_url: offer.image_url,
+            price: offer.price,
+            seller: loggedUser,
+            buyer: sale.buyer,
+            delivery_date: sale.delivery_date,
+            sellerColor: buyerData.userColor,
+            loggedUser
+
+
+        }
+        customSales.push(theFix)
+
+    }
+    res.render("my-sales-completed",{sales:customSales,salesCounts})
 })
 
 
@@ -320,8 +427,42 @@ router.get("/my-sales/completed", checkUserAuthenticated, (req, res) => {
 router.get("/profile/edit", checkUserAuthenticated, (req, res) => {
     res.render("edit")
 })
-router.get("/my-sales/cancelled", checkUserAuthenticated, (req, res) => {
-    res.render("my-sales-cancelled")
+router.get("/my-sales/cancelled", async (req, res) => {
+     let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    let sales = await SaleModel.find({ seller: loggedUser, state: "cancelled" })
+    let salesAll = await SaleModel.find({ seller: loggedUser })
+    let salesCounts = {
+        ongoing: salesAll.filter(order => order.state === "ongoing").length,
+        delivered: salesAll.filter(order => order.state === "delivered").length,
+        cancelled: salesAll.filter(order => order.state === "cancelled").length,
+        completed: salesAll.filter(order => order.state === "completed").length
+    }
+    let customSales = []
+    for (let sale of sales) {
+        console.log(sale)
+        let request = await RequestModel.findOne({ job_id: sale.job_id })
+        let buyerData = await UserModel.findOne({ username: sale.buyer }).select("userColor")
+        console.log(request)
+        console.log(request.offers)
+        console.log(sale.buyer)
+        console.log("***************************************")
+        let offer = request.offers.find(offer => offer.username === loggedUser)
+        let theFix = {
+            title: offer.title,
+            image_url: offer.image_url,
+            price: offer.price,
+            seller: loggedUser,
+            buyer: sale.buyer,
+            delivery_date: sale.delivery_date,
+            sellerColor: buyerData.userColor,
+            loggedUser
+
+
+        }
+        customSales.push(theFix)
+
+    }
+    res.render("my-sales-cancelled",{sales:customSales,salesCounts})
 })
 router.get("/finance", async (req, res) => {
     let revenue = 0;

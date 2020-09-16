@@ -14,7 +14,7 @@ app.locals.renderSalesAndOrderDesktop = (order) => {
 
     return `<div class="font14 grid-table padd20-top padd10-bottom border-bottom padd10-sides">
     <div class="flex"><span class="user-avatar"
-            data-color="${order.sellerColor}">${order.seller[0].toUpperCase()}</span>${order.seller}
+            data-color="${order.sellerColor}">${order.seller[0].toUpperCase()}</span>${order.seller===order.loggedUser?order.buyer:order.seller}
     </div>
     <div class="flex">
         <a href="#" class="flex"
@@ -43,11 +43,11 @@ app.locals.renderSalesAndOrderMobile = (order) => {
             <div class="padd10-top">
                 <header class="margin10-bottom">
                     <a href="#"
-                        class="font14 text-orange line-height hover-underline">${order.title}</a>
+                        class="font14 text-orange line-height hover-underline">${order.title.length>32?order.title.substr(0,32)+'...':order.title}</a>
                 </header>
                  <div>
                     <a href="#"><i class="fas fa-circle font11"> </i> <span
-                            class="font13">${order.seller}</span>
+                            class="font13">${order.seller===order.loggedUser?order.buyer:order.seller}</span>
                     </a>
                  </div>
                  <div class="delivery-and-star flex-between margin10-top">

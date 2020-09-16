@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
     const reqBody = req.body
     reqBody.username = user
     const lastRequest = await RequestModel.find().sort({ job_id: -1 }).limit(1)
-    reqBody.job_id = lastRequest[0].job_id + 1
+    reqBody.job_id = lastRequest.length===0?0:lastRequest[0].job_id + 1
     const request = new RequestModel(reqBody)
     const data = await request.save()
     return res.status(200).send({
