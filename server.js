@@ -36,41 +36,39 @@ app.locals.renderSalesAndOrderMobile = (order) => {
     <div class="d-order-and-sale bg-white padd20">
         <div class="grid2-1-6">
 
-            <div class="fix-image-wrapper padd10">
+            <div class="fix-image-wrapper padd10" style="height:90px;">
                 <img src="${order.image_url}" alt="">
             </div>
 
             <div class="padd10-top">
-                <header class="margin20-bottom">
+                <header class="margin10-bottom">
                     <a href="#"
                         class="font14 text-orange line-height hover-underline">${order.title}</a>
                 </header>
+                 <div>
+                    <a href="#"><i class="fas fa-circle font11"> </i> <span
+                            class="font13">${order.seller}</span>
+                    </a>
+                 </div>
+                 <div class="delivery-and-star flex-between margin10-top">
+                    <div class="date">
+                        <i class="fa fa-calendar font12" aria-hidden="true"></i>
+                        
+                            ${order.delivery_date.toDateString()}</span>
+                        <span class=
+                        "hide">
+                            <i class="fa fa-star font16"></i><span class="font16"> 5
+                            </span>
+                        </span>
+                    </div>
+                <div class="text-green font16">
+                    ₦${order.price}
+                </div>
+        </div>
 
             </div>
         </div>
-        <div class="delivery-and-star flex-between">
-            <div class="date">
-                <i class="fas fa-clock font12"></i> <span class="font12">Delivery
-                    ${order.delivery_date.toDateString()}</span>
-            </div>
-
-            <div>
-                <i class="fa fa-star font16"></i><span class="font16"> 5</span>
-            </div>
-        </div>
-
-        <div class="sale-and-order-meta flex-between margin10-top">
-            <div>
-                <a href="#"><i class="fas fa-circle font11"> </i> <span
-                        class="font13">${order.seller}</span>
-                </a>
-            </div>
-            <div class="text-green font16">
-                ₦${order.price}
-            </div>
-        </div>
-
-
+        
     </div>
     <div class="divider"></div>
 </section>

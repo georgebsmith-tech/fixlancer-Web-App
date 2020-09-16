@@ -652,13 +652,6 @@ h1, h2, h3, h4, h5, h6 {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
-.grid-responsive-max3 {
-  display: grid;
-  row-gap: 0px;
-  column-gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-}
-
 .flex-between {
   display: flex;
   justify-content: space-between;
@@ -1278,10 +1271,6 @@ button.header-top-btn, a.header-top-btn {
 
 .hover-underline:hover {
   text-decoration: underline;
-}
-
-.margin15-top {
-  padding-top: 15px;
 }
 
 .finance-summary {
