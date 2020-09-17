@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const axios = require("axios").default;
-// let domain = "https://fixlancer.herokuapp.com"
-let domain = "http://localhost:5000"
+let domain = "https://fixlancer.herokuapp.com"
+// let domain = "http://localhost:5000"
 //models
 const UserModel = require("../models/UserModel");
 const FixModel = require("../models/FixModel");
