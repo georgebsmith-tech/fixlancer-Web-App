@@ -570,7 +570,7 @@
     
 }
 .margin10-bottom{
-  margin-bottom: 10px;
+  margin-bottom: 10px!important;
 }
 // main{
 //     overflow: hidden;
@@ -643,6 +643,32 @@ h1,h2,h3,h4,h5,h6{
 .grid3-221{
   display: grid;
   grid-template-columns: 2fr 2fr 1fr;
+}
+
+.font20{
+  font-size:2rem;
+}
+.padd15-left{
+  padding-left: 15px;
+}
+.padd15{
+  padding: 15px;
+}
+.font28{
+  font-size: 2.8rem;
+}
+
+.margin5{
+  margin: 5px;
+}
+.padd10-right{
+  padding-right: 10px;
+}
+.margin10-right{
+  margin-right: 10px;
+}
+.padd5-right{
+  padding-right: 5px;
 }
 
 
@@ -896,6 +922,7 @@ i.fa.fa-star{
 .padd30{
   padding: 30px;
 }
+
 
 .padd10-bottom{
   padding-bottom: 10px;

@@ -14,7 +14,7 @@ app.locals.renderSalesAndOrderDesktop = (order) => {
 
     return `<div class="font14 grid-table padd20-top padd10-bottom border-bottom padd10-sides">
     <div class="flex"><span class="user-avatar"
-            data-color="${order.sellerColor}">${order.seller[0].toUpperCase()}</span>${order.seller===order.loggedUser?order.buyer:order.seller}
+            data-color="${order.sellerColor}">${order.seller[0].toUpperCase()}</span>${order.seller === order.loggedUser ? order.buyer : order.seller}
     </div>
     <div class="flex">
         <a href="#" class="flex"
@@ -43,11 +43,11 @@ app.locals.renderSalesAndOrderMobile = (order) => {
             <div class="padd10-top">
                 <header class="margin10-bottom">
                     <a href="#"
-                        class="font14 text-orange line-height hover-underline">${order.title.length>32?order.title.substr(0,32)+'...':order.title}</a>
+                        class="font14 text-orange line-height hover-underline">${order.title.length > 32 ? order.title.substr(0, 32) + '...' : order.title}</a>
                 </header>
                  <div>
                     <a href="#"><i class="fas fa-circle font11"> </i> <span
-                            class="font13">${order.seller===order.loggedUser?order.buyer:order.seller}</span>
+                            class="font13">${order.seller === order.loggedUser ? order.buyer : order.seller}</span>
                     </a>
                  </div>
                  <div class="delivery-and-star flex-between margin10-top">
@@ -73,6 +73,80 @@ app.locals.renderSalesAndOrderMobile = (order) => {
     <div class="divider"></div>
 </section>
     `
+}
+function commafy(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+
+app.locals.recommendation = (fix) => {
+    let ratings = fix.ratings
+
+    // console.log(ratings)
+    let sum_of_ratings = 0;
+
+    let average_rating = 0
+    let number_of_ratings = ratings.length
+    if (number_of_ratings !== 0) {
+
+        ratings.forEach(rating => {
+            sum_of_ratings += rating * 1
+        })
+        average_rating = (sum_of_ratings / number_of_ratings).toFixed(1)
+    }
+    return `<div class="a-recommendation">
+    <div class="recommended-fix-top">
+    <div class="recommended-image-wrapper">
+        <a href="/fix/${fix.subcatSlug}/${fix.titleSlug}">
+        <img src="${fix.images_url[0]}"
+            alt="">
+        </a>
+    </div>
+    <div>
+        <div class="recoomended-username-desktop">
+            <i class="fa fa-circle"></i>
+            <small>${fix.username}</small>
+        </div>
+        <a href="/fix/${fix.subcatSlug}/${fix.titleSlug}" >
+        <p class="recommended-fix-title">${fix.title.substr(0, 45)}...
+        </p>
+        </a>
+        <small class="duration-and-rating-trust">
+            <span>
+                <i class="fas fa-clock"></i> <span>${fix.delivery_days} day(s)</span>
+            </span>
+            <span class="trust hide">
+                <i class="fa fa-check orange"></i>
+                <span class="orange">Trusted</span>
+            </span>
+            <span class="fix-rating ${average_rating === 0 ? "hide" : ""}">
+                <i class="fa fa-star"></i>
+                <span>${average_rating} (${number_of_ratings})</span>
+            </span>
+        </small>
+    </div>
+</div>
+<div class="amount-and-alter">
+    <div class="recommended-mobile">
+        <div>
+            <i class="fa fa-circle"></i>
+            <small>${fix.username}</small>
+        </div>
+        <div class="fix-amount-green">
+            ₦${commafy(fix.price)}
+        </div>
+    </div>
+    <div class="recommended-desktop">
+        <div>
+            <i class="fa fa-check orange"></i>
+            <small class="orange">Trusted</small>
+        </div>
+        <div class="fix-amount-green">
+        ₦${fix.price}
+        </div>
+    </div>
+</div>
+</div>`
 }
 
 const passport = require("passport")

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+</head>
+
+<body>
+    <%- include('./partials/header.ejs') %>
+    <main class="main">
+        <div class="margin10-top">
+            <img src="../../images/cat3.jpg">
+        </div>
+        <div class="margin40-top">
+            <h2 class="bold font20">
+                Categories
+            </h2>
+            <div style=" overflow: auto;padding-bottom: 10px;" class="margin20-top">
+                <div class="cat-scroll-container" style="display: flex;">
+                    <% categories.forEach(cat=>{ %>
+                    <div class="bg-white circle">
+                        <a href="/section/<%= cat.catSlug %>" class="font14 block  subcatBtn "
+                            data-subcatslug="<%= cat.catSlug %>">
+                            <%= cat.name %>
+                        </a>
+                    </div>
+                    <%})%>
+                </div>
+            </div>
+        </div>
+        <div class="margin20-top">
+            <div class="bg-white padd10 circle font15 flex-between">
+                <div>
+                    <i class="fa fa-comments" style="color: #dddfeb;"></i>
+                    <span> Unread Messages</span>
+
+                </div>
+                <div class="padd5-right">
+                    <%=summary.summary[0][1]%>
+                </div>
+
+
+            </div>
+            <%if(summary.summary[2][1]!==0){%>
+
+            <div class="bg-white padd10 circle font15 flex-between margin10-top">
+                <div>
+                    <i class="fa fa-shopping-cart" aria-hidden="true" style="color: #dddfeb;"></i>
+                    <span> Ongoing Sales</span>
+
+                </div>
+                <div class="padd5-right">
+                    <%=summary.summary[2][1]%>
+                </div>
+
+
+            </div>
+            <%}%>
+            <%if(summary.summary[3][1]!==0){%>
+            <div class="bg-white padd10 circle font15 flex-between margin10-top">
+                <div>
+                    <i class="fa fa-shopping-cart" aria-hidden="true" style="color: #dddfeb;"></i>
+                    <span> Ongoing Orders</span>
+
+                </div>
+                <div class="padd5-right">
+                    <%=summary.summary[3][1]%>
+                </div>
+
+
+            </div>
+            <%}%>
+
+        </div>
+        <section class="recommendations">
+            <h2 class="bold font20">Recommended For You</h2>
+            <section class="grid-responsive-6">
+                <%recommendations.forEach(fix=>{%>
+            <%-recommendation(fix)%>
+            <%})%>
+            <!-- to insert recommendations -->
+            </section>
+            </section>
+            <div>
+                <div class="bg-white border-smooth">
+                    <div class="flex-between">
+                        <div class="font16 padd15-left">
+                            Looking to hire?
+                        </div>
+                        <div>
+                            <a href="/dashboard/post-job-request" class="font16 block padd10 margin5 text-white"
+                                style="background: #f27415;border-radius: 5px;">Post a
+                                Request</a>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="bg-white border-smooth margin20-top">
+                    <div class="flex-between">
+                        <div class="font16 padd15-left">
+                            Looking for work?
+                        </div>
+                        <div>
+                            <a href="/dashboard/create-a-fix" class="font16 block padd10 margin5 text-white"
+                                style="background: #36b9cc;border-radius: 5px;">Start Selling</a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="margin20-top">
+                <h2 class="bold font20">
+                    My Fix
+                </h2>
+                <%if(fixes.length===0){%>
+                <div>
+                    You have No fix created yet.
+                    <a href="">Create one now</a>
+                </div>
+
+                <%}%>
+                <div style="overflow-x: auto;" class="margin20-top">
+                    <div class="scroll6-wrapper">
+                        <% for(let recommendation of fixes){ %>
+                <div class="scroll-6-item">
+                    <div class="scroll-6-image-wrapper">
+                        <img src="<%= recommendation.images_url[0] %>" alt="">
+                    </div>
+                    <div class="fix-user-status scroll-6-user-status">
+                        <i class="fa fa-circle online-color"></i>
+                        <span><%= recommendation.username %></span>
+                    </div>
+
+                    <a href="/fix/<%=recommendation.subcatSlug %>/<%= recommendation.titleSlug %>"
+                        class="scroll-6-user-fix-title block anchor-hover-blue-underline">
+                        <%= recommendation.title.substr(0,1).toUpperCase()+recommendation.title.substr(1,40).toLowerCase()%>...
+                    </a>
+                    <div class="fix-footer">
+                        <div>
+                            <i class="fas fa-clock"></i>
+                            <span>
+                                <%= recommendation.delivery_days%> day(s)
+                            </span>
+                        </div>
+                        <div class="fix-amount-green">
+                            ₦<%= recommendation.price%>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+
+            </div>
+            <div>
+            </div>
+        </div>
+        <!-- USer profile -->
+        <div class="border-smooth bg-white padd10 margin30-top  grid2-1-6 margin20-bottom">
+            <div>
+                <span class=" user-avatar font28 bold" style="width: 60px;height: 60px;"
+                    data-color="<%=summary.userColor%>"><%=summary.username[0].toUpperCase()%></span>
+
+            </div>
+            <div>
+                <div class="border-bottom padd20-bottom margin10-bottom">
+                    <div>
+                        <a href="" class="text-link-with-hover bold font14">
+                            <%=summary.username%>
+                        </a>
+
+                    </div>
+                    <div class="font12 margin5-top">
+                        <%=summary.rating%> Ratings
+                    </div>
+                </div>
+                <div>
+                    <div class="font12 margin20-bottom">
+                        <%=summary.bio===""?"No bio yet...":summary.bio%>
+
+                    </div>
+                    <div>
+                        <a href="/dashboard/profile/edit" class="block font12 text-orange padd10 border-smooth"
+                            style="width: fit-content; border:1px solid #f27415">
+                            Edit Profile
+                        </a>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        <script>
+            let userAvatar = document.querySelector(".user-avatar")
+            userAvatar.style.background = userAvatar.dataset.color
+
+        </script>
+
+    </main>
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

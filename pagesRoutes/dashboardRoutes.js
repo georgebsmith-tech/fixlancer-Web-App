@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const axios = require("axios").default;
-
+// let domain = "https://fixlancer.herokuapp.com"
+let domain = "http://localhost:5000"
 //models
 const UserModel = require("../models/UserModel");
 const FixModel = require("../models/FixModel");
@@ -12,6 +13,7 @@ const ConversationModel = require("../models/ConversationsModel");
 const NoticeModel = require("../models/NoticesModel");
 const TransactionModel = require("../models/TransactionModel");
 const SaleModel = require("../models/SaleModel");
+const CategoriesModel = require("../models/CategoriesModel");
 
 
 const checkUserAuthenticated = require("../middleware/userIsAuthenticated");
@@ -20,16 +22,32 @@ const checkUserAuthenticated = require("../middleware/userIsAuthenticated");
 
 
 
-router.get("/", checkUserAuthenticated, (req, res) => {
+router.get("/", async (req, res) => {
 
-    let user = req.session.passport.user
+    let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
 
-    UserModel.findOneAndUpdate({ username: user }, { online: true }, { new: true })
+    UserModel.findOneAndUpdate({ username: loggedUser }, { online: true }, { new: true })
         .then(data => {
             // console.log(data)
 
         })
-    res.render("dashboard")
+    const categories = await CategoriesModel.find({}).select("name catSlug")
+
+    const resp = await axios.get(`${domain}/api/fixes?state=random&count=6`)
+    const resp2 = await axios.get(`${domain}/api/users/${loggedUser}`)
+    console.log(resp2.data)
+    console.log(resp2.data.data.summary)
+    let summary = resp2.data.data
+    let fixes = await FixModel.find({ username: loggedUser })
+
+    const recommendations = resp.data
+    const context = {
+        categories,
+        recommendations,
+        summary,
+        fixes
+    }
+    res.render("dashboard-new", context)
 })
 router.get("/my-requests", (req, res) => {
     const notice = req.query.notice
@@ -60,8 +78,8 @@ router.get("/create-a-fix", (req, res) => {
 router.get("/post-job-request", checkUserAuthenticated, (req, res) => {
     res.render("post-request")
 })
-let domain = "https://fixlancer.herokuapp.com"
-// let domain = "http://localhost:5000"
+
+
 router.get("/inbox", async (req, res) => {
     try {
 
@@ -308,7 +326,7 @@ router.get("/my-orders/delivered", async (req, res) => {
 })
 
 router.get("/my-sales/delivered", async (req, res) => {
-     let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
     let sales = await SaleModel.find({ seller: loggedUser, state: "delivered" })
     let salesAll = await SaleModel.find({ seller: loggedUser })
     let salesCounts = {
@@ -342,11 +360,11 @@ router.get("/my-sales/delivered", async (req, res) => {
         customSales.push(theFix)
 
     }
-    res.render("my-sales-delivered",{sales:customSales,salesCounts})
+    res.render("my-sales-delivered", { sales: customSales, salesCounts })
 })
 
 router.get("/my-sales", async (req, res) => {
-      let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
     let sales = await SaleModel.find({ seller: loggedUser, state: "ongoing" })
     let salesAll = await SaleModel.find({ seller: loggedUser })
     let salesCounts = {
@@ -381,10 +399,10 @@ router.get("/my-sales", async (req, res) => {
 
     }
     // console.log(customSales)
-    res.render("my-sales-ongoing",{sales:customSales,salesCounts})
+    res.render("my-sales-ongoing", { sales: customSales, salesCounts })
 })
 router.get("/my-sales/completed", async (req, res) => {
-     let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
     let sales = await SaleModel.find({ seller: loggedUser, state: "completed" })
     let salesAll = await SaleModel.find({ seller: loggedUser })
     let salesCounts = {
@@ -418,7 +436,7 @@ router.get("/my-sales/completed", async (req, res) => {
         customSales.push(theFix)
 
     }
-    res.render("my-sales-completed",{sales:customSales,salesCounts})
+    res.render("my-sales-completed", { sales: customSales, salesCounts })
 })
 
 
@@ -428,7 +446,7 @@ router.get("/profile/edit", checkUserAuthenticated, (req, res) => {
     res.render("edit")
 })
 router.get("/my-sales/cancelled", async (req, res) => {
-     let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
     let sales = await SaleModel.find({ seller: loggedUser, state: "cancelled" })
     let salesAll = await SaleModel.find({ seller: loggedUser })
     let salesCounts = {
@@ -462,7 +480,7 @@ router.get("/my-sales/cancelled", async (req, res) => {
         customSales.push(theFix)
 
     }
-    res.render("my-sales-cancelled",{sales:customSales,salesCounts})
+    res.render("my-sales-cancelled", { sales: customSales, salesCounts })
 })
 router.get("/finance", async (req, res) => {
     let revenue = 0;

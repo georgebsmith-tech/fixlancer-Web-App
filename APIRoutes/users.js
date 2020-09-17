@@ -190,7 +190,7 @@ router.post("/:username/bank-details", async function (req, res) {
 const checkUserAuthenticated = require("../middleware/userIsAuthenticated")
 router.get("/u", async (req, res) => {
     const requestString = req.query
-    req.params.username = req.session.passport.user
+    req.params.username = req.session.passport ? req.session.passport.user : "Betty"
     console.log("it is " + req.params.username)
     console.log(requestString)
     let balance = 0;
@@ -305,8 +305,6 @@ router.get("/u", async (req, res) => {
 
 router.get("/:username", async (req, res) => {
     const requestString = req.query
-    // req.params.username = req.session.passport.user
-    // console.log("it is " + req.params.username)
     console.log(requestString)
     if (requestString.content === "full") {
 
@@ -314,8 +312,8 @@ router.get("/:username", async (req, res) => {
         let bankDetails = await BankModel.findOne({ username: data.username })
         const unreadNotices = await NoticesModel.find({ user_id: data._id, read: false })
         if (!bankDetails) bankDetails = {}
-        const ongoingSales = await SalesModel.find({ user_id: data._id, state: "ongoing" })
-        const ongoingOrders = await OrdersModel.find({ user_id: data._id, state: "ongoing" })
+        const ongoingSales = await SalesModel.find({ seller: req.params.username, state: "ongoing" })
+        const ongoingOrders = await SalesModel.find({ buyer: req.params.username, state: "ongoing" })
         if (data) {
             return res.status(200).json({
                 data: {
@@ -364,8 +362,8 @@ router.get("/:username", async (req, res) => {
             username: req.params.username
         }).select("bio username rating userColor")
         if (data) {
-            const ongoingSales = await SalesModel.find({ user_id: data._id, state: "ongoing" })
-            const ongoingOrders = await OrdersModel.find({ user_id: data._id, state: "ongoing" })
+            const ongoingSales = await SalesModel.find({ seller: req.params.username, state: "ongoing" })
+            const ongoingOrders = await SalesModel.find({ buyer: req.params.username, state: "ongoing" })
             const unreadNotices = await NoticesModel.find({ user_id: data._id, read: false })
 
 
