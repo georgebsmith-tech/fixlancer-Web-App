@@ -9,7 +9,10 @@
     <%- include('./partials/header.ejs') %>
     <main class="main">
         <div class="margin10-top">
-            <img src="../../images/cat3.jpg">
+            <a href="/section/writing">
+                <img src="../../images/cat3.jpg">
+            </a>
+
         </div>
         <div class="margin40-top">
             <h2 class="bold font20">
@@ -29,7 +32,7 @@
             </div>
         </div>
         <div class="margin20-top">
-            <div class="bg-white padd10 circle font15 flex-between">
+            <div class="bg-white padd10 circle font15 flex-between border">
                 <div>
                     <i class="fa fa-comments" style="color: #dddfeb;"></i>
                     <span> Unread Messages</span>
@@ -43,7 +46,7 @@
             </div>
             <%if(summary.summary[2][1]!==0){%>
 
-            <div class="bg-white padd10 circle font15 flex-between margin10-top">
+            <div class="bg-white padd10 circle font15 flex-between margin10-top border">
                 <div>
                     <i class="fa fa-shopping-cart" aria-hidden="true" style="color: #dddfeb;"></i>
                     <span> Ongoing Sales</span>
@@ -57,7 +60,7 @@
             </div>
             <%}%>
             <%if(summary.summary[3][1]!==0){%>
-            <div class="bg-white padd10 circle font15 flex-between margin10-top">
+            <div class="bg-white padd10 circle font15 flex-between margin10-top border">
                 <div>
                     <i class="fa fa-shopping-cart" aria-hidden="true" style="color: #dddfeb;"></i>
                     <span> Ongoing Orders</span>
@@ -73,10 +76,10 @@
 
         </div>
         <section class="recommendations">
-            <h2 class="bold font20">Recommended For You</h2>
+            <h2 class="bold font20">Featured</h2>
             <section class="grid-responsive-6">
-                <%recommendations.forEach(fix=>{%>
-            <%-recommendation(fix)%>
+                <%featuredFixes.forEach(fix=>{%>
+            <%-featured(fix)%>
             <%})%>
             <!-- to insert recommendations -->
             </section>
@@ -111,14 +114,12 @@
                 </div>
             </div>
             <div class="margin20-top">
+
+                <%if(fixes.length!==0){%>
                 <h2 class="bold font20">
                     My Fix
                 </h2>
-                <%if(fixes.length===0){%>
-                <div>
-                    You have No fix created yet.
-                    <a href="">Create one now</a>
-                </div>
+
 
                 <%}%>
                 <div style="overflow-x: auto;" class="margin20-top">
@@ -134,7 +135,7 @@
                     </div>
 
                     <a href="/fix/<%=recommendation.subcatSlug %>/<%= recommendation.titleSlug %>"
-                        class="scroll-6-user-fix-title block anchor-hover-blue-underline">
+                        class="scroll-6-user-fix-title block anchor-hover-blue-underline" style="height: 45px;">
                         <%= recommendation.title.substr(0,1).toUpperCase()+recommendation.title.substr(1,40).toLowerCase()%>...
                     </a>
                     <div class="fix-footer">

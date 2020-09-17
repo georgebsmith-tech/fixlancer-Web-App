@@ -2,10 +2,12 @@ const express = require("express")
 const app = express()
 const server = require("http").Server(app);
 const io = require("socket.io")(server)
-// const axios = require("axios").default;
+const axios = require("axios").default;
 const ejs = require("ejs")
 
 require("dotenv").config()
+let domain = "https://fixlancer.herokuapp.com"
+// let domain = "http://localhost:5000"
 const SalesModel = require("./models/SaleModel")
 
 
@@ -79,7 +81,7 @@ function commafy(x) {
 }
 
 
-app.locals.recommendation = (fix) => {
+app.locals.featured = (fix) => {
     let ratings = fix.ratings
 
     // console.log(ratings)
@@ -107,8 +109,8 @@ app.locals.recommendation = (fix) => {
             <i class="fa fa-circle"></i>
             <small>${fix.username}</small>
         </div>
-        <a href="/fix/${fix.subcatSlug}/${fix.titleSlug}" >
-        <p class="recommended-fix-title">${fix.title.substr(0, 45)}...
+        <a href="/fix/${fix.subcatSlug}/${fix.titleSlug}" class="block">
+        <p class="recommended-fix-title" style="height:55px;">${fix.title.substr(0, 45)}...
         </p>
         </a>
         <small class="duration-and-rating-trust">
@@ -337,9 +339,7 @@ const checkUserNotAuthenticated = require("./middleware/userIsNotauthenticated")
 app.use("/dashboard", dashboardRoutes)
 
 
-app.get("/home", function (req, res) {
-    res.render("home")
-})
+
 app.get("/section/:catSlug", async function (req, res) {
     const catSlug = req.params.catSlug
     const cat = await CategoriesModel.findOne({ catSlug }).select("name subcat")
@@ -351,8 +351,16 @@ app.get("/section/:catSlug", async function (req, res) {
     res.render("fix-category", { fixes, pages, subcat: cat.subcat, category: cat.name })
 })
 
-app.get("/", (req, res) => {
-    res.render("index")
+app.get("/", async (req, res) => {
+    const categories = await CategoriesModel.find({}).select("name catSlug")
+
+    const resp = await axios.get(`${domain}/api/fixes?state=random&count=18`)
+    const featuredFixes = resp.data
+    const context = {
+        categories,
+        featuredFixes
+    }
+    res.render("index-new", context)
 })
 app.get("/login", checkUserNotAuthenticated, (req, res) => {
     res.render("login")

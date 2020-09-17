@@ -566,6 +566,15 @@
   font-weight: 400;
 }
 
+.margin10-sides {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.border {
+  border: 1px solid #ddd;
+}
+
 .margin10-bottom {
   margin-bottom: 10px !important;
 }
@@ -821,6 +830,14 @@ button:hover {
   color: #36b9cc;
 }
 
+.link-hover-underline:hover {
+  text-decoration: underline;
+}
+
+.font29 {
+  font-size: 2.9rem;
+}
+
 .bg-green {
   background: #1cc88a;
 }
@@ -865,6 +882,23 @@ fieldset button {
   outline: none;
   cursor: pointer;
   border: 1px solid #415478;
+}
+
+.font40 {
+  font-size: 5rem;
+}
+
+.button-search-index {
+  border-radius: 4px;
+  padding: 10px;
+  background: #f27415;
+  color: white;
+  border: 1px solid #f27415;
+  cursor: pointer;
+}
+
+.full-width {
+  width: 100%;
 }
 
 .warning {
@@ -1093,6 +1127,10 @@ i.fa.fa-star {
   box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
 }
 
+.padd60-top {
+  padding-top: 60px;
+}
+
 .top-search-error {
   position: absolute;
   top: 35px;
@@ -1115,6 +1153,20 @@ i.fa.fa-star {
   display: grid;
   grid-template-columns: 1fr 6fr;
   gap: 10px;
+}
+
+.margin30-bottom {
+  margin-bottom: 30px;
+}
+
+.padd40-bottom {
+  padding-bottom: 40px;
+}
+
+.secured-index {
+  border: 1px solid #ddd;
+  margin-top: 40px;
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
 }
 
 .header-buy-chopbar {

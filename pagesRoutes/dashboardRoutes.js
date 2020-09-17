@@ -40,10 +40,10 @@ router.get("/", async (req, res) => {
     let summary = resp2.data.data
     let fixes = await FixModel.find({ username: loggedUser })
 
-    const recommendations = resp.data
+    const featuredFixes = resp.data
     const context = {
         categories,
-        recommendations,
+        featuredFixes,
         summary,
         fixes
     }
