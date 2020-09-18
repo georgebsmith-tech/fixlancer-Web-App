@@ -22,7 +22,7 @@
                 <div class="cat-scroll-container" style="display: flex;">
                     <% categories.forEach(cat=>{ %>
                     <div class="bg-white circle">
-                        <a href="/section/<%= cat.catSlug %>" class="font14 block  subcatBtn "
+                        <a href="/section/<%= cat.catSlug %>" class="font15 block  subcatBtn "
                             data-subcatslug="<%= cat.catSlug %>">
                             <%= cat.name %>
                         </a>
@@ -166,22 +166,22 @@
             <div>
                 <div class="border-bottom padd20-bottom margin10-bottom">
                     <div>
-                        <a href="" class="text-link-with-hover bold font14">
+                        <a href="" class="text-link-with-hover bold font15">
                             <%=summary.username%>
                         </a>
 
                     </div>
-                    <div class="font12 margin5-top">
-                        <%=summary.rating%> Ratings
+                    <div class="font14 margin5-top">
+                        <%=summary.rating===0?"No":summary.rating%> Ratings
                     </div>
                 </div>
                 <div>
-                    <div class="font12 margin20-bottom">
+                    <div class="font14 margin20-bottom">
                         <%=summary.bio===""?"No bio yet...":summary.bio%>
 
                     </div>
                     <div>
-                        <a href="/dashboard/profile/edit" class="block font12 text-orange padd10 border-smooth"
+                        <a href="/dashboard/profile/edit" class="block font14 text-orange padd10 border-smooth"
                             style="width: fit-content; border:1px solid #f27415">
                             Edit Profile
                         </a>

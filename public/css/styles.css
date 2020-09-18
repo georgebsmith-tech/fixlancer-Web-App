@@ -39,6 +39,7 @@
   margin-right: 15px;
 }
 .featured-card-large img {
+  border-radius: 0px !important;
   object-fit: cover;
   height: 100%;
 }
