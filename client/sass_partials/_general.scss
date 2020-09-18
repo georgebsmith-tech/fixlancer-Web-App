@@ -733,6 +733,10 @@ h1,h2,h3,h4,h5,h6{
   font-weight: bold;
 }
 
+.bolder{
+  font-weight: bolder!important;
+}
+
 .text-link{
   color: #36b9cc;
 }
@@ -957,6 +961,26 @@ i.fa.fa-star{
   padding: 30px;
 }
 
+.padd90-top{
+  padding-top: 90px;
+}
+
+.padd60-bottom{
+  padding-bottom: 60px;
+}
+
+.padd30-top{
+  padding-top: 30px;
+}
+
+.margin20-right{
+  margin-right: 20px;
+}
+
+.text-grey{
+  color: grey!important;
+}
+
 
 .padd10-bottom{
   padding-bottom: 10px;
@@ -990,6 +1014,12 @@ i.fa.fa-star{
   align-items: center;
 
 }
+
+.flex-row{
+  flex-direction: row!important;
+}
+
+
 
 .invisible{
   visibility: hidden;
@@ -1119,6 +1149,8 @@ i.fa.fa-star{
   -webkit-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
     box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
 }
+
+
 
 
 

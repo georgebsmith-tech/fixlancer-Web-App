@@ -1,3 +1,38 @@
+.honourable-mention {
+  display: block;
+  width: 130px;
+}
+.honourable-mention:first-child {
+  margin-right: 10px;
+}
+
+.honourable-mention-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.index-footer {
+  background: #04081d;
+}
+
+.index-footer-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.index-footer-nav a:hover {
+  color: white !important;
+}
+
+.index-copy {
+  margin-top: -20px;
+  padding-bottom: 20px;
+}
+
 @font-face {
   font-family: "Nunito";
   font-style: italic;
@@ -746,6 +781,10 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
+.bolder {
+  font-weight: bolder !important;
+}
+
 .text-link {
   color: #36b9cc;
 }
@@ -957,6 +996,26 @@ i.fa.fa-star {
   padding: 30px;
 }
 
+.padd90-top {
+  padding-top: 90px;
+}
+
+.padd60-bottom {
+  padding-bottom: 60px;
+}
+
+.padd30-top {
+  padding-top: 30px;
+}
+
+.margin20-right {
+  margin-right: 20px;
+}
+
+.text-grey {
+  color: grey !important;
+}
+
 .padd10-bottom {
   padding-bottom: 10px;
 }
@@ -991,6 +1050,10 @@ i.fa.fa-star {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.flex-row {
+  flex-direction: row !important;
 }
 
 .invisible {

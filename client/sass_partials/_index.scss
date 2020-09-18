@@ -1,0 +1,37 @@
+.honourable-mention{
+    display: block;
+    width: 130px;
+    &:first-child{
+        margin-right: 10px;
+    }
+}
+
+.honourable-mention-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(2,1fr);
+    width: 100%;
+    flex-wrap: wrap;
+
+}
+
+.index-footer{
+    background: #04081d;
+}
+
+.index-footer-nav{
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    a:hover{
+        color: white!important;
+        
+    }
+}
+
+.index-copy{
+    margin-top: -20px;
+    padding-bottom: 20px;
+}
