@@ -33,6 +33,22 @@
   padding-bottom: 20px;
 }
 
+.featured-card-large {
+  width: 240px;
+  border: 1px solid #ddd;
+  margin-right: 15px;
+}
+.featured-card-large img {
+  object-fit: cover;
+  height: 100%;
+}
+.featured-card-large .title-featured {
+  height: 50px;
+}
+.featured-card-large .title-featured a:hover {
+  color: #2F9CDD;
+}
+
 @font-face {
   font-family: "Nunito";
   font-style: italic;
@@ -1069,7 +1085,7 @@ i.fa.fa-star {
 }
 
 .font14 {
-  font-size: 1.4rem;
+  font-size: 1.4rem !important;
 }
 
 .bg-white {
@@ -1429,6 +1445,17 @@ button.header-top-btn, a.header-top-btn {
 
 .margin15-top {
   padding-top: 15px;
+}
+
+.scroll-flex {
+  display: flex;
+  width: fit-content;
+}
+
+.auto-scroll {
+  width: 100%;
+  overflow-x: auto;
+  padding: 5px 0px;
 }
 
 .finance-summary {

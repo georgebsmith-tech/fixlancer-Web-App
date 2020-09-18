@@ -98,11 +98,55 @@
                 </div>
             </div>
         </div>
+        <section class="margin30-top">
+            <div>
+                <h2 class="bold font20">
+                    Featured
+                </h2>
+            </div>
+            <div class="auto-scroll">
+
+
+                <div class="margin20-top scroll-flex">
+                    <%featuredFixes.forEach(featured=>{%>
+
+
+                    <div class="bg-white featured-card-large">
+                        <div style="height: 160px;">
+                            <img src="<%=featured.images_url[0]%>" alt="">
+                        </div>
+                        <div class="font14 padd10">
+                            <i class="fa fa-circle font13"></i>
+                            <span><%=featured.username%></span>
+
+                        </div>
+                        <div class="font16 padd10 title-featured">
+                            <a href="" class="">
+                                <%=featured.title.substr(0,50)%>...
+                            </a>
+
+
+                        </div>
+                        <div class="flex-between padd10 font15">
+                            <div>
+                                <i class="fa fa-star"></i>
+                                <span class="">2.4</span> <span>(4)</span>
+                            </div>
+                            <div class="text-green">
+                                ₦<%=featured.price%>
+                            </div>
+
+                        </div>
+                    </div>
+                    <%})%>
+                </div>
+            </div>
+        </section>
 
         <section class="recommendations">
             <h2 class="bold font20">Recommended for you</h2>
             <section class="grid-responsive-6">
-                <%featuredFixes.forEach(fix=>{%>
+                <%recommendedations.forEach(fix=>{%>
                 <%-featured(fix)%>
                 <%})%>
                 <!-- to insert recommendations -->
@@ -124,7 +168,7 @@
             </div>
         </div>
 
-        <div class="margin20-bottom">
+        <div class="margin20-bottom margin20-top">
             <div class="border-smooth card-shadow bg-white padd10 padd60-top">
                 <div class="padd40-bottom">
 

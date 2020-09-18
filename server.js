@@ -110,7 +110,7 @@ app.locals.featured = (fix) => {
             <small>${fix.username}</small>
         </div>
         <a href="/fix/${fix.subcatSlug}/${fix.titleSlug}" class="block">
-        <p class="recommended-fix-title" style="height:55px;">${fix.title.substr(0, 45)}...
+        <p class="recommended-fix-title" style="height:55px;">${fix.title.substr(0, 34)}...
         </p>
         </a>
         <small class="duration-and-rating-trust">
@@ -355,9 +355,12 @@ app.get("/", async (req, res) => {
     const categories = await CategoriesModel.find({}).select("name catSlug")
 
     const resp = await axios.get(`${domain}/api/fixes?state=random&count=18`)
-    const featuredFixes = resp.data
+    const resp2 = await axios.get(`${domain}/api/fixes?state=random&count=10`)
+    let featuredFixes = resp2.data
+    const recommendedations = resp.data
     const context = {
         categories,
+        recommendedations,
         featuredFixes
     }
     res.render("index-new", context)

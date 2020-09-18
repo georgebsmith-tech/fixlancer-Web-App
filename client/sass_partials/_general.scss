@@ -1036,7 +1036,7 @@ i.fa.fa-star{
 }
 
 .font14{
-  font-size: 1.4rem;
+  font-size: 1.4rem!important;
 }
 
 .bg-white{
@@ -1403,3 +1403,15 @@ button.header-top-btn,a.header-top-btn{
   padding-top:15px
 }
 
+
+.scroll-flex{
+  display: flex;
+  width: fit-content;
+}
+
+.auto-scroll{
+  width: 100%;
+  overflow-x: auto;
+  padding: 5px 0px;
+
+}

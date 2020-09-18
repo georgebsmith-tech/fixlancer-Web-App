@@ -35,3 +35,24 @@
     margin-top: -20px;
     padding-bottom: 20px;
 }
+
+.featured-card-large{
+    
+    width: 240px;
+    border: 1px solid #ddd;
+    margin-right: 15px;
+    img{
+        object-fit: cover;
+        height: 100%;
+    }
+
+    .title-featured{
+        height: 50px;
+        a:hover{
+            color: #2F9CDD;
+        }
+    }
+    
+}
+
+
