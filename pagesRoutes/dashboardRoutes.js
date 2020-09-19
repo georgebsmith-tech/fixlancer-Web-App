@@ -437,14 +437,18 @@ router.get("/my-sales/completed", async (req, res) => {
         customSales.push(theFix)
 
     }
-    res.render("my-sales-completed", { sales: customSales, salesCounts })
+    res.render("my-sales-completed", checkAuthenticated, { sales: customSales, salesCounts })
 })
 
 
 
 
-router.get("/profile/edit", checkUserAuthenticated, (req, res) => {
-    res.render("edit")
+router.get("/profile/edit", async (req, res) => {
+    const loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    const data = await UserModel.findOne({ username: loggedUser })
+    console.log(data)
+
+    res.render("edit", { data })
 })
 router.get("/my-sales/cancelled", async (req, res) => {
     let loggedUser = req.session.passport ? req.session.passport.user : "Betty"

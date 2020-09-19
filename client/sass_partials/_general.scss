@@ -574,6 +574,10 @@
   margin-left: 10px;
 }
 
+.margin5-bottom{
+  margin-bottom: 5px!important;
+}
+
 .border{
   border: 1px solid #ddd;
 }
@@ -638,8 +642,20 @@ h1,h2,h3,h4,h5,h6{
   font-size: 1.2rem!important;
 }
 
+
+.font17{
+  font-size: 1.7rem;
+}
 .no-outline{
   outline: none!important;
+}
+
+.padd20-left{
+  padding-left: 20px;
+}
+
+.input{
+  margin-bottom: 15px;
 }
 
 
@@ -651,6 +667,12 @@ h1,h2,h3,h4,h5,h6{
 .font22{
   font-size: 2.2rem!important;
 }
+
+.margin-minus10-top{
+  margin-top: -10px!important;
+}
+
+
 
 .border4-smooth{
   border-radius: 4px;
@@ -1131,6 +1153,8 @@ i.fa.fa-star{
     color:blue;
   }
 }
+
+
 
 .border-left-danger{
   border-left: 3px solid #e74a3b!important;

@@ -727,14 +727,6 @@ h1, h2, h3, h4, h5, h6 {
   outline: none !important;
 }
 
-.padd20-left {
-  padding-left: 20px;
-}
-
-.input {
-  margin-bottom: 15px;
-}
-
 .bg-heading {
   background: #f8f9fc;
   border: 1px solid #e3e6f0;
@@ -3257,10 +3249,6 @@ a.control-btn {
     column-gap: 25px;
   }
 
-  .margin30-top-desktop {
-    margin-top: 30px;
-  }
-
   .grid-desktop-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -3362,4 +3350,4 @@ a.control-btn {
   }
 }
 
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=styles.scss.map */
