@@ -17,12 +17,13 @@ const CategoriesModel = require("../models/CategoriesModel");
 
 
 const checkUserAuthenticated = require("../middleware/userIsAuthenticated");
+const checkAuthenticated = require("../middleware/userIsAuthenticated");
 
 
 
 
 
-router.get("/", async (req, res) => {
+router.get("/", checkAuthenticated, async (req, res) => {
 
     let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
 
