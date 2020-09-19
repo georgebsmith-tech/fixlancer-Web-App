@@ -1,0 +1,30 @@
+
+.login-wrapper{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    &>div{
+        width: 100vw;
+        max-width: 400px;
+
+    }
+   
+
+}
+
+.logo-wrapper-login{
+    display: flex;
+    padding: 30px;
+    justify-content: center;
+    img{
+        width: 140px;
+    }
+
+    button{
+        cursor: pointer;
+    }
+    
+   
+}

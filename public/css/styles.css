@@ -50,6 +50,29 @@
   color: #2F9CDD;
 }
 
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.login-wrapper > div {
+  width: 100vw;
+  max-width: 400px;
+}
+
+.logo-wrapper-login {
+  display: flex;
+  padding: 30px;
+  justify-content: center;
+}
+.logo-wrapper-login img {
+  width: 140px;
+}
+.logo-wrapper-login button {
+  cursor: pointer;
+}
+
 @font-face {
   font-family: "Nunito";
   font-style: italic;
@@ -692,9 +715,22 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.2rem !important;
 }
 
+.no-outline {
+  outline: none !important;
+}
+
 .bg-heading {
   background: #f8f9fc;
   border: 1px solid #e3e6f0;
+}
+
+.font22 {
+  font-size: 2.2rem !important;
+}
+
+.border4-smooth {
+  border-radius: 4px;
+  border: 1px solid #ddd;
 }
 
 .no-break {
