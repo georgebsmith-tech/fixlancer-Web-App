@@ -886,7 +886,11 @@ fieldset{
 
 
 .font40{
-  font-size: 5rem;
+  font-size: 4rem;
+}
+
+.full-height{
+  height: 100%!important;
 }
 
 
@@ -897,6 +901,10 @@ fieldset{
   color: white;
   border: 1px solid #f27415;
   cursor: pointer;
+}
+
+.text-light-grey{
+  color: #dddfeb!important;
 }
 
 .full-width{
@@ -1102,11 +1110,15 @@ i.fa.fa-star{
 }
 
 .text-link-with-hover{
-  color: #2F9CDD;
+  color: #2F9CDD !important;
   &:hover{
     text-decoration: underline;
     color:blue;
   }
+}
+
+.border-left-danger{
+  border-left: 3px solid #e74a3b!important;
 }
 //header
 
@@ -1378,6 +1390,10 @@ button.header-top-btn,a.header-top-btn{
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
   column-gap: 10px;
+}
+
+.text-danger {
+  color: #e74a3b !important;
 }
 
 .inline-block{

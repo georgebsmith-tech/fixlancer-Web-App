@@ -306,6 +306,7 @@ router.get("/u", async (req, res) => {
 router.get("/:username", async (req, res) => {
     const requestString = req.query
     console.log(requestString)
+    let balance = 0;
     if (requestString.content === "full") {
 
         const data = await UserModel.findOne({ username: req.params.username })
@@ -362,9 +363,22 @@ router.get("/:username", async (req, res) => {
             username: req.params.username
         }).select("bio username rating userColor")
         if (data) {
-            const ongoingSales = await SalesModel.find({ seller: req.params.username, state: "ongoing" })
-            const ongoingOrders = await SalesModel.find({ buyer: req.params.username, state: "ongoing" })
+            const ongoingSales = await SalesModel.find({ seller: data.username, state: "ongoing" })
+            const ongoingOrders = await SalesModel.find({ buyer: data.username, state: "ongoing" })
             const unreadNotices = await NoticesModel.find({ user_id: data._id, read: false })
+            const userRevenue = await RevenueModel.findOne({ username: req.params.username })
+            if (userRevenue)
+                balance += userRevenue.amount
+            console.log(balance)
+
+            const userDeposit = await DepositModel.findOne({ username: req.params.username })
+            if (userDeposit)
+                balance += userDeposit.amount
+            console.log(balance)
+            const userRefund = await RefundModel.findOne({ username: req.params.username })
+            if (userRefund)
+                balance += userRefund.amount
+            console.log(balance)
 
 
             console.log(ongoingSales)
@@ -375,16 +389,16 @@ router.get("/:username", async (req, res) => {
                     username: data.username,
                     ungoing_sales: 0,
                     summary: [["unread messages", 0],
-                    ["balance", 0],
+                    ["balance", balance],
                     ["active sales", ongoingSales.length],
                     ["active orders", ongoingOrders.length]
 
                     ],
-                    userColor: data.userColor,
 
                     bio: data.bio,
                     rating: data.rating,
-                    unread_notices: unreadNotices.length
+                    unread_notices: unreadNotices.length,
+                    userColor: data.userColor
                 }
 
             })

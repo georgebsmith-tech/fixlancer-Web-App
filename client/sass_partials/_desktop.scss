@@ -397,6 +397,29 @@
     .a-request{
         padding-right:33vw ;
     }
+
+
+    //index desktop
+    .cat-pictures{
+        display: flex;
+    }
+
+    .user-summary{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px 35px;
+    }
+    .grid-desktop2-21{
+        display: grid;
+        grid-template-columns:2fr 1fr;
+        column-gap: 25px;
+    }
+
+    .grid-desktop-2{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        column-gap: 25px;
+    }
     
    
 

@@ -8,10 +8,17 @@
 <body>
     <%- include('./partials/header.ejs') %>
     <main class="main">
-        <div class="margin10-top">
-            <a href="/section/writing">
+        <div class="margin10-top cat-pictures">
+            <a href="/section/writing" class="margin20-right">
                 <img src="../../images/cat3.jpg">
             </a>
+            <a href="/section/writing" class="desktop margin20-right">
+                <img src="../../images/cat1.jpg">
+            </a>
+            <a href="/section/writing" class="desktop ">
+                <img src="../../images/cat2.jpg">
+            </a>
+
 
         </div>
         <div class="margin40-top">
@@ -31,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="margin20-top">
+        <div class="margin20-top mobile">
             <div class="bg-white padd10 circle font15 flex-between border">
                 <div>
                     <i class="fa fa-comments" style="color: #dddfeb;"></i>
@@ -62,7 +69,7 @@
             <%if(summary.summary[3][1]!==0){%>
             <div class="bg-white padd10 circle font15 flex-between margin10-top border">
                 <div>
-                    <i class="fa fa-shopping-cart" aria-hidden="true" style="color: #dddfeb;"></i>
+                    <i class="fas fa-sort-amount-up" aria-hidden="true" style="color: #dddfeb;"></i>
                     <span> Ongoing Orders</span>
 
                 </div>
@@ -75,89 +82,212 @@
             <%}%>
 
         </div>
+        <section class="desktop margin5-top">
+            <div class="grid-desktop2-21">
+                <div class="user-summary">
+                    <div class="bg-white border-smooth border-left-danger" style="padding: 0px 20px;">
+                        <a href="#" class="flex-between full-height hover-underline">
+                            <div class="font14">
+                                <div class="margin10-bottom">
+                                    Unread Messages
+
+                                </div>
+                                <div class="text-danger font20 bolder">
+                                    <%=summary.summary[0][1]%>
+
+        </div>
+        </div>
+        <div>
+            <i class="fa fa-comments font40 text-light-grey"></i>
+
+        </div>
+        </a>
+        </div>
+        <div class="bg-white border-smooth " style="padding: 0px 20px;">
+            <a href="/dashboard/finance" class="flex-between full-height text-link-with-hover">
+                <div class="font14">
+                    <div class="margin10-bottom">
+                        Balance
+
+                    </div>
+                    <div class="font20 bolder">
+                        ₦<%=summary.summary[1][1]%>
+
+
+                    </div>
+                </div>
+                <div>
+                    <i class="fas fa-money  font40 text-light-grey"></i>
+
+                </div>
+            </a>
+        </div>
+
+        <div class="bg-white border-smooth " style="padding: 0px 20px;">
+            <a href="/dashboard/my-sales" class="flex-between full-height text-link-with-hover">
+                <div class="font14">
+                    <div class="margin10-bottom">
+                        Active Sales
+
+                    </div>
+                    <div class="font20 bolder">
+                        <%=summary.summary[2][1]%>
+
+
+                    </div>
+                </div>
+                <div>
+                    <i class="fa fa-shopping-cart  font40 text-light-grey"></i>
+
+                </div>
+            </a>
+        </div>
+        <div class="bg-white border-smooth " style="padding: 0px 20px;">
+            <a href="/dashboard/my-orders" class="flex-between full-height text-link-with-hover">
+                <div class="font14">
+                    <div class="margin10-bottom">
+                        Active Orders
+
+                    </div>
+                    <div class=" font20 bolder">
+                        <%=summary.summary[3][1]%>
+
+
+                    </div>
+                </div>
+                <div>
+                    <i class="fas fa-sort-amount-up  font40 text-light-grey"></i>
+
+                </div>
+            </a>
+        </div>
+
+
+        </div>
+        <div class="border-smooth bg-white padd10   grid2-1-6 margin20-bottom">
+            <div>
+                <span class=" user-avatar font28 bold" style="width: 60px;height: 60px;"
+                    data-color="<%=summary.userColor%>"><%=summary.username[0].toUpperCase()%></span>
+
+            </div>
+            <div>
+                <div class="border-bottom padd20-bottom margin10-bottom">
+                    <div>
+                        <a href="" class="text-link-with-hover bold font15">
+                            <%=summary.username%>
+                        </a>
+
+                    </div>
+                    <div class="font14 margin5-top">
+                        <%=summary.rating===0?"No":summary.rating%> Ratings
+                    </div>
+                </div>
+                <div>
+                    <div class="font14 margin20-bottom">
+                        <%=summary.bio===""?"No bio yet...":summary.bio%>
+
+                    </div>
+                    <div>
+                        <a href="/dashboard/profile/edit" class="block font14 text-orange padd10 border-smooth"
+                            style="width: fit-content; border:1px solid #f27415">
+                            Edit Profile
+                        </a>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        </div>
+
+        </section>
         <section class="recommendations">
             <h2 class="bold font20">Featured</h2>
             <section class="grid-responsive-6">
                 <%featuredFixes.forEach(fix=>{%>
-            <%-featured(fix)%>
-            <%})%>
-            <!-- to insert recommendations -->
+                <%-featured(fix)%>
+                <%})%>
+                <!-- to insert recommendations -->
             </section>
-            </section>
-            <div>
-                <div class="bg-white border-smooth">
-                    <div class="flex-between">
-                        <div class="font16 padd15-left">
-                            Looking to hire?
-                        </div>
-                        <div>
-                            <a href="/dashboard/post-job-request" class="font16 block padd10 margin5 text-white"
-                                style="background: #f27415;border-radius: 5px;">Post a
-                                Request</a>
-                        </div>
+        </section>
+        <div class="grid-desktop-2">
 
+            <div class="bg-white border-smooth margin20-top">
+                <div class="flex-between">
+                    <div class="font16 padd15-left">
+                        Looking to hire?
+                    </div>
+                    <div>
+                        <a href="/dashboard/post-job-request" class="font16 block padd10 margin5 text-white"
+                            style="background: #f27415;border-radius: 5px;">Post a
+                            Request</a>
                     </div>
 
                 </div>
-                <div class="bg-white border-smooth margin20-top">
-                    <div class="flex-between">
-                        <div class="font16 padd15-left">
-                            Looking for work?
-                        </div>
-                        <div>
-                            <a href="/dashboard/create-a-fix" class="font16 block padd10 margin5 text-white"
-                                style="background: #36b9cc;border-radius: 5px;">Start Selling</a>
-                        </div>
 
-                    </div>
-
-                </div>
             </div>
-            <div class="margin20-top">
+            <div class="bg-white border-smooth margin20-top">
+                <div class="flex-between">
+                    <div class="font16 padd15-left">
+                        Looking for work?
+                    </div>
+                    <div>
+                        <a href="/dashboard/create-a-fix" class="font16 block padd10 margin5 text-white"
+                            style="background: #36b9cc;border-radius: 5px;">Start Selling</a>
+                    </div>
 
-                <%if(fixes.length!==0){%>
-                <h2 class="bold font20">
-                    My Fix
-                </h2>
+                </div>
+
+            </div>
+        </div>
+        <div class="margin20-top">
+
+            <%if(fixes.length!==0){%>
+            <h2 class="bold font20">
+                My Fix
+            </h2>
 
 
-                <%}%>
+            <%}%>
                 <div style="overflow-x: auto;" class="margin20-top">
                     <div class="scroll6-wrapper">
                         <% for(let recommendation of fixes){ %>
-                <div class="scroll-6-item">
-                    <div class="scroll-6-image-wrapper">
-                        <img src="<%= recommendation.images_url[0] %>" alt="">
-                    </div>
-                    <div class="fix-user-status scroll-6-user-status">
-                        <i class="fa fa-circle online-color"></i>
-                        <span><%= recommendation.username %></span>
-                    </div>
+            <div class="scroll-6-item">
+                <div class="scroll-6-image-wrapper">
+                    <img src="<%= recommendation.images_url[0] %>" alt="">
+                </div>
+                <div class="fix-user-status scroll-6-user-status">
+                    <i class="fa fa-circle online-color"></i>
+                    <span><%= recommendation.username %></span>
+                </div>
 
-                    <a href="/fix/<%=recommendation.subcatSlug %>/<%= recommendation.titleSlug %>"
-                        class="scroll-6-user-fix-title block anchor-hover-blue-underline" style="height: 45px;">
-                        <%= recommendation.title.substr(0,1).toUpperCase()+recommendation.title.substr(1,40).toLowerCase()%>...
-                    </a>
-                    <div class="fix-footer">
-                        <div>
-                            <i class="fas fa-clock"></i>
-                            <span>
-                                <%= recommendation.delivery_days%> day(s)
-                            </span>
-                        </div>
-                        <div class="fix-amount-green">
-                            ₦<%= recommendation.price%>
-                        </div>
+                <a href="/fix/<%=recommendation.subcatSlug %>/<%= recommendation.titleSlug %>"
+                    class="scroll-6-user-fix-title block anchor-hover-blue-underline" style="height: 45px;">
+                    <%= recommendation.title.substr(0,1).toUpperCase()+recommendation.title.substr(1,40).toLowerCase()%>...
+                </a>
+                <div class="fix-footer">
+                    <div>
+                        <i class="fas fa-clock"></i>
+                        <span>
+                            <%= recommendation.delivery_days%> day(s)
+                        </span>
+                    </div>
+                    <div class="fix-amount-green">
+                        ₦<%= recommendation.price%>
                     </div>
                 </div>
-                <% } %>
+            </div>
+            <% } %>
 
-            </div>
-            <div>
-            </div>
+        </div>
+        <div>
+        </div>
         </div>
         <!-- USer profile -->
-        <div class="border-smooth bg-white padd10 margin30-top  grid2-1-6 margin20-bottom">
+        <div class="border-smooth bg-white padd10 margin30-top  grid2-1-6 margin20-bottom mobile">
             <div>
                 <span class=" user-avatar font28 bold" style="width: 60px;height: 60px;"
                     data-color="<%=summary.userColor%>"><%=summary.username[0].toUpperCase()%></span>
@@ -194,8 +324,11 @@
 
         </div>
         <script>
-            let userAvatar = document.querySelector(".user-avatar")
-            userAvatar.style.background = userAvatar.dataset.color
+            let userAvatar = document.querySelectorAll(".user-avatar")
+            userAvatar.forEach(item => {
+                item.style.background = item.dataset.color
+
+            });
 
         </script>
 

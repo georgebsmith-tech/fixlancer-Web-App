@@ -941,7 +941,11 @@ fieldset button {
 }
 
 .font40 {
-  font-size: 5rem;
+  font-size: 4rem;
+}
+
+.full-height {
+  height: 100% !important;
 }
 
 .button-search-index {
@@ -951,6 +955,10 @@ fieldset button {
   color: white;
   border: 1px solid #f27415;
   cursor: pointer;
+}
+
+.text-light-grey {
+  color: #dddfeb !important;
 }
 
 .full-width {
@@ -1160,11 +1168,15 @@ i.fa.fa-star {
 }
 
 .text-link-with-hover {
-  color: #2F9CDD;
+  color: #2F9CDD !important;
 }
 .text-link-with-hover:hover {
   text-decoration: underline;
   color: blue;
+}
+
+.border-left-danger {
+  border-left: 3px solid #e74a3b !important;
 }
 
 .toggle-nav {
@@ -1424,6 +1436,10 @@ button.header-top-btn, a.header-top-btn {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   column-gap: 10px;
+}
+
+.text-danger {
+  color: #e74a3b !important;
 }
 
 .inline-block {
@@ -3167,6 +3183,28 @@ a.control-btn {
 
   .a-request {
     padding-right: 33vw;
+  }
+
+  .cat-pictures {
+    display: flex;
+  }
+
+  .user-summary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 35px;
+  }
+
+  .grid-desktop2-21 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 25px;
+  }
+
+  .grid-desktop-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 25px;
   }
 }
 @media only screen and (min-width: 1024px) {
