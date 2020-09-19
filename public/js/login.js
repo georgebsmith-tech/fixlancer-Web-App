@@ -3,7 +3,6 @@
     const username = document.getElementById('username');
     const password = document.getElementById('password');
     loginBtn.addEventListener('click', (e) => {
-        console.log("happened")
         validateLogin();
         console.log(username.value);
     })
