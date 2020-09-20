@@ -13,6 +13,7 @@
     const bankNameInput = document.getElementById("bank-name")
     const photHolder = document.getElementById("photo")
     const oldPhoneHolder = document.getElementById("old-phone")
+    const userPhotoWrapper = document.querySelector(".user-photo-wrapper")
 
     const profileUpdated = document.querySelector(".profile-updated")
 
@@ -23,9 +24,6 @@
             const formDate = getFormDate()
             sendData(formDate)
         }
-
-
-
     })
 
 
@@ -39,10 +37,20 @@
                 return resp.json()
             })
             .then(data => {
+                const userPhotoHolder = document.querySelector(".user-photo")
+                if (userPhotoHolder) {
+                    userPhotoHolder.setAttribute("src", data.data.imageURL)
+                } else {
+                    const img = document.createElement("img")
+                    img.classList.add("user-photo")
+                    img.setAttribute("src", data.data.imageURL)
+                    userPhotoWrapper.appendChild(img)
+
+                }
                 profileUpdated.classList.remove("hide")
+                location.href = "#top"
                 console.log(data)
             })
-
     }
 
     function getFormDate() {

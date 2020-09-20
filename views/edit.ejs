@@ -4,12 +4,17 @@
 <head>
     <%-include('./partials/head.ejs')%>
     <script defer src="../../js/edit.js"></script>
+    <style>
+        html{
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 
 <body>
     <%-include('./partials/header.ejs')%>
 
-    <main class="main">
+    <main class="main" id="top">
         <div>
             <h1>Edit Personal Info</h1>
         </div>
@@ -82,15 +87,17 @@
                             style="cursor:pointer !important;font-size:14px;float:left;width:100%;margin-bottom:10px; border-style: none; "
                             type="file" name="photo" id="photo">
                     </div>
+                    <div class="user-photo-wrapper">
                     <%if(data.imageURL!==""){%>
-                        <div>
-                            <div>
+                        
+                            
                               <img src="<%=data.imageURL%>" alt="" class="user-photo">  
-                            </div>
+                            
 
-                        </div>
+                    
 
                     <%}%>
+                </div>
 
                     <input type="hidden" id="old-phone" value="<%=data.phone%>">
                     
@@ -147,6 +154,8 @@
                     </div>
                 </div>
             </div> -->
+
+        
             <div class="card padd20 bg-heading margin10-top border-smooth font16 margin30-top-desktop" style="height: fit-content;" >
                 <input type="checkbox" name="notif" value="1"> Unsubscribe from 'New Job Request' notifications<br><br>
             </div>
