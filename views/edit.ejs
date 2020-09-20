@@ -16,6 +16,9 @@
         
 
         <div class="details ">
+            <div class="font14 padd10 profile-updated hide" style="margin-bottom: -30px; margin-top: 20px; background: #1cc88a;border-radius: 5px;">
+                <span class="text-white">Your profile has been updated. </span> <a href="/dashboard/profile" class="text-link-with-hover">View your profile.</a>
+            </div>
             <div class="grid-desktop-2">
 
             
@@ -27,14 +30,20 @@
 
                     <fieldset class="margin10-bottom">
                         <label for=" username" class="font12 margin5-bottom block">USERNAME</label>
-                        <input type="text" name="username" size="40" id="username" placeholder="Username" value="<%=data.fullName===''?data.username:'Username'%>">
+                       
+                            <input type="text" name="username" size="40" id="username" placeholder="Username" value="<%=data.username%>" >
 
                         <small class="font10 margin-minus10-top block font11 ">* You can change your username 3 times
                             maximum.</small>
                     </fieldset>
                     <fieldset>
                         <label for=" username" class="font12 margin5-bottom block">FULL NAME</label>
-                        <input type="text" placeholder="Full Name" size="40" id="fullname" value="<%=data.fullName===''?data.fullName:'Full Name'%>">
+                        <%if(data.fullName===""){%>
+                            <input type="text" placeholder="Full Name" size="40" id="full-name">
+                            <%}else{%>
+                                <input type="text" placeholder="Full Name" size="40" id="full-name" value="<%=data.fullName%>">
+                                <%}%>
+                       
                     </fieldset>
                     <fieldset>
                         <label for="username" class="font12 margin5-bottom block">CITY</label>
@@ -42,12 +51,18 @@
                     </fieldset>
                     <fieldset class="margin10-bottom">
                         <label for="username" class="font12 margin5-bottom block">PHONE</label>
-                        <input type="text" name="" id="number" size="40" placeholder="Phone" value="<%=data.phone===''?'Phone':data.phone%>">
+                        <input type="text" name="" id="phone" size="40" placeholder="Phone" value="<%=data.phone===''?'Phone':data.phone%>">
                         <small class="font10 margin-minus10-top block font11 text-red">* For sms notifications</small>
                     </fieldset>
                     <fieldset>
                         <label for="username" class="font12 margin5-bottom block">BIO</label>
-                        <textarea name="area" id="area" cols="30" rows="5" placeholder="Bio" value="<%=data.bio===''?'Bio':data.bio%>"></textarea>
+                        <%if(data.fullName===""){%>
+                        <textarea name="area" id="bio" cols="30" rows="5" placeholder="Bio"></textarea>
+                        <%}else{%>
+
+                            <textarea name="area" id="bio" cols="30" rows="5" placeholder="Bio"><%=data.bio.trim()%>
+                            </textarea>
+                            <%}%>
                         <small class="font11 margin-minus10-top block text-red">* Posting of contact informations may
                             result in
                             permanent blocking
@@ -64,31 +79,43 @@
                     <label for="avatar" class="font12 block margin5-bottom">PROFILE PICTURE</label><br>
                     <div >
                         <input
-                            style="cursor:pointer !important;font-size:14px;float:left;width:100%;margin-bottom:30px; border-style: none; "
-                            type="file" name="avatar">
+                            style="cursor:pointer !important;font-size:14px;float:left;width:100%;margin-bottom:10px; border-style: none; "
+                            type="file" name="photo" id="photo">
                     </div>
-                    <fieldset class="margin20-top">
-                    <input type="password" name="password" id="" placeholder="Password">
+                    <%if(data.imageURL!==""){%>
+                        <div>
+                            <div>
+                              <img src="<%=data.imageURL%>" alt="" class="user-photo">  
+                            </div>
+
+                        </div>
+
+                    <%}%>
+
+                    <input type="hidden" id="old-phone" value="<%=data.phone%>">
+                    
+                    <fieldset class="margin10-top">
+                    <input type="password" name="password" id="password" placeholder="Password">
                   </fieldset>
                   <fieldset>
-                    <input type="password" name="re_password" placeholder="Repeat Password" id="">
+                    <input type="password" name="re_password" placeholder="Repeat Password" id="confirm-password">
                 </fieldset>
                     <h3 class="font15 margin10-bottom margin30-top" >
                         <i class="fa fa-university"></i> Bank Transfer Details</h3>
                         <fieldset>
-                    <input type="text" name="account name" id="" placeholder="Account Name">
+                    <input type="text" name="account name" id="acct-name" placeholder="Account Name">
                 </fieldset>
                    <fieldset>
-                    <input type="number" name="account_num" id="" placeholder="Account No.">
+                    <input type="number" name="account_num" id="acct-number" placeholder="Account No.">
                 </fieldset>
                 <fieldset>
-                    <input type="text" placeholder="Name of Bank">
+                    <input type="text" placeholder="Name of Bank"  id="bank-name">
                 </fieldset>
                 </form>
             </div>
         </div>
         <div class="grid-desktop-2">
-            <div class="alert margin30-top bg-white font16 border-smooth">
+            <!-- <div class="alert margin30-top bg-white font16 border-smooth">
                 <div class="card-header padd10">
                     <h2 class="font17 bold bg-heading padd20">
                         Receive alerts when a new Job Request is posted in these categories</h2>
@@ -119,14 +146,14 @@
                         <label for="writing">Writing</label>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="card padd20 bg-heading margin10-top border-smooth font16 margin30-top-desktop" style="height: fit-content;" >
                 <input type="checkbox" name="notif" value="1"> Unsubscribe from 'New Job Request' notifications<br><br>
             </div>
             </div>
         </div>
         <fieldset class="margin30-top">
-        <input type="submit" width="100%" style="background-color: #1cc88a; color: white;" name="save-info"
+        <input type="submit" width="100%" style="background-color: #1cc88a; color: white;" name="" id="save-btn"
             value="Save">
         </fieldset>
     </main>

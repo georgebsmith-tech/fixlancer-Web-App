@@ -170,6 +170,7 @@
                     data-color="<%=summary.userColor%>"><%=summary.username[0].toUpperCase()%></span>
 
             </div>
+            <input type="hidden" value="<%=summary.username%>" id="hidden-username">
             <div>
                 <div class="border-bottom padd20-bottom margin10-bottom">
                     <div>
@@ -334,6 +335,10 @@
 
     </main>
     <%- include('./partials/footer.ejs') %>
+
+    <script>
+        document.cookie=`username=${document.getElementById("hidden-username").value}`
+    </script>
 </body>
 
 </html>

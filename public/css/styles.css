@@ -1531,6 +1531,13 @@ button.header-top-btn, a.header-top-btn {
   padding: 5px 0px;
 }
 
+.user-photo {
+  border-radius: 50px !important;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
 .finance-summary {
   background: white;
   padding: 18px 25px;

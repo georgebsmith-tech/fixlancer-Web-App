@@ -23,7 +23,8 @@ function getColor() {
 const color = getColor()
 const Schema = new mongoose.Schema({
     imageURL: {
-        type: String
+        type: String,
+        default: ""
     },
     username: {
         type: String,
