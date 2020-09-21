@@ -3,6 +3,7 @@
     const username = document.getElementById('username');
     const password = document.getElementById('password');
     loginBtn.addEventListener('click', (e) => {
+        document.querySelector(".login-error").classList.add("hide")
         validateLogin();
         console.log(username.value);
     })
@@ -18,14 +19,23 @@
                 'Content-Type': "application/json"
             }
         }).then(response => {
-            if (response.status === 200) window.location.href = "/dashboard"
+            console.log(response)
+            if (response.status === 200)
+                window.location.href = "/dashboard"
             return response.json();
 
-        }).then(text => {
-            console.log(text)
+
+
+
+
+        }).then(data => {
+            console.log(data)
+
 
         }).catch(error => {
-            console.log(error);
+            console.log("Error")
+            // document.querySelector(".login-error").classList.remove("hide")
+            console.log(err)
         })
     }
 

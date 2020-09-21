@@ -32,8 +32,6 @@
 
 // }
 
-
-console.log("Got to the userLogin Control")
 const passport = require("passport")
 module.exports = passport.authenticate("local", {
     successRedirect: "/dashboard",

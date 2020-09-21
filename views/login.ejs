@@ -6,7 +6,7 @@
     <script defer src="../../js/login.js"></script>
 </head>
 
-<body style="overflow-y: hidden;">
+<body>
     <header>
         <div class="logo-wrapper-login">
             <img src="../../images/logo.png" alt="">
@@ -23,6 +23,9 @@
 
         <div class="login-wrapper margin10-top">
             <div class="card-shadow border-smooth padd20">
+                <div class="font16 center-text text-danger hide login-error">
+                  <i class="fa fa-exclamation-circle text-danger"></i>  Invalid Username or Password
+                </div>
                 <div class="font16">
                     <div class="padd30-top">
                         <input type="
@@ -36,7 +39,7 @@
                     <div class="padd20-top ">
                         <button id="login-btn" class="padd10 full-width font16 border4-smooth no-outline text-white"
                             style="background: #47739e;">
-                            Login
+                            Reset
                         </button>
                     </div>
                     <div class="center-text margin30-top font13">
@@ -47,7 +50,7 @@
                             <span>Stay logged in</span>
                         </div>
                         <div class="margin20-bottom">
-                            Forgot <a href="" class="text-link-with-hover">Password?</a>
+                            Forgot <a href="/reset-password" class="text-link-with-hover">Password?</a>
                         </div>
                         <div class="margin20-bottom">
                             Don't have an account? <a href="/register" class="text-link-with-hover">Register Now</a>

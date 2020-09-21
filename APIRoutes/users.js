@@ -34,6 +34,11 @@ router.get("/", async function (req, res) {
 
 })
 
+
+const sendResetPasswordLink = require("../controlers/users/sendPasswordLink")
+
+router.get("/reset", sendResetPasswordLink)
+
 router.get("/leaving", (req, res) => {
     let user = req.query.user
     if (req.query.online) {

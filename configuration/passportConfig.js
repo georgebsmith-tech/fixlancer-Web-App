@@ -9,7 +9,7 @@ function initialize(passport, getUserByName, getUserById) {
         const user = await getUserByName(username)
         console.log("The user" + user)
         if (!user) {
-            return done(null, false, { message: "invalid username or passport" })
+            return done(null, false, { message: "invalid username or paaword" })
         }
         try {
 
@@ -17,7 +17,7 @@ function initialize(passport, getUserByName, getUserById) {
                 return done(null, user)
 
             } else {
-                return done(null, false, { message: "invalid username or passport" })
+                return done(null, false, { message: "invalid username or password" })
             }
 
         } catch (err) {

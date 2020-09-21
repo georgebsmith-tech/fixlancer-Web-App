@@ -5,6 +5,10 @@ const io = require("socket.io")(server)
 const axios = require("axios").default;
 const ejs = require("ejs")
 
+
+
+
+
 require("dotenv").config()
 let domain = "https://fixlancer.herokuapp.com"
 // let domain = "http://localhost:5000"
@@ -338,6 +342,14 @@ const checkUserNotAuthenticated = require("./middleware/userIsNotauthenticated")
 // dashboard route
 app.use("/dashboard", dashboardRoutes)
 
+
+app.get("/reset-password", (req, res) => {
+    res.render("reset-password")
+})
+
+app.get("/reset-success", (req, res) => {
+    res.render("reset-success")
+})
 
 
 app.get("/section/:catSlug", async function (req, res) {
