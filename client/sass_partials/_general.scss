@@ -1471,10 +1471,22 @@ button.header-top-btn,a.header-top-btn{
 
 }
 
-.user-photo{
+
+.user-photo,.user-photo-profile{
   border-radius: 50px!important;
+  object-fit: cover;
+}
+
+.user-photo{
+  
   width: 50px;
   height: 50px;
-  object-fit: cover;
+ 
 
+}
+
+.user-photo-profile{
+  width: 100px;
+  height: 100px;
+ 
 }

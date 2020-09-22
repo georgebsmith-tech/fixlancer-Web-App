@@ -23,35 +23,9 @@ const checkAuthenticated = require("../middleware/userIsAuthenticated");
 
 
 
+const renderDashboard = require("../controlers/dashboard/renderDashboard")
 
-
-router.get("/", checkAuthenticated, async (req, res) => {
-
-    let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
-
-    UserModel.findOneAndUpdate({ username: loggedUser }, { online: true }, { new: true })
-        .then(data => {
-            // console.log(data)
-
-        })
-    const categories = await CategoriesModel.find({}).select("name catSlug")
-
-    const resp = await axios.get(`${domain}/api/fixes?state=random&count=6`)
-    const resp2 = await axios.get(`${domain}/api/users/${loggedUser}`)
-    console.log(resp2.data)
-    console.log(resp2.data.data.summary)
-    let summary = resp2.data.data
-    let fixes = await FixModel.find({ username: loggedUser })
-
-    const featuredFixes = resp.data
-    const context = {
-        categories,
-        featuredFixes,
-        summary,
-        fixes
-    }
-    res.render("dashboard-new", context)
-})
+router.get("/", checkAuthenticated, renderDashboard)
 router.get("/my-requests", (req, res) => {
     const notice = req.query.notice
 
@@ -173,8 +147,17 @@ router.get("/inbox", async (req, res) => {
 router.get("/affiliate", checkUserAuthenticated, (req, res) => {
     res.render("affiliate")
 })
-router.get("/profile", checkUserAuthenticated, (req, res) => {
-    res.render("profile")
+router.get("/:username", async (req, res) => {
+    const user = req.params.username
+    const loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+
+    const userData = await UserModel.findOne({ username: user })
+    const context = {
+        userData,
+        loggedUser
+
+    }
+    res.render("profile", context)
 })
 
 router.get("/my-orders", async (req, res) => {
@@ -457,7 +440,7 @@ router.get("/profile/edit", async (req, res) => {
             bankName: ""
         }
 
-    res.render("edit", { data, bank })
+    res.render("edit", { data, bank, loggedUser })
 })
 router.get("/my-sales/cancelled", async (req, res) => {
     let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
