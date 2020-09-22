@@ -100,23 +100,43 @@
                 </div>
 
                     <input type="hidden" id="old-phone" value="<%=data.phone%>">
-                    
+                    <div class="font16 margin20-top">
+                        <i class="fa fa-key" aria-hidden="true"></i>
+                        <span>
+                            Change Password
+                        </span>
+                    </div>
                     <fieldset class="margin10-top">
-                    <input type="password" name="password" id="password" placeholder="Password">
+                    <input type="password" name="password" id="password" placeholder="New Password">
                   </fieldset>
                   <fieldset>
-                    <input type="password" name="re_password" placeholder="Repeat Password" id="confirm-password">
+                    <input type="password" name="re_password" placeholder="Repeat New Password" id="confirm-password">
                 </fieldset>
                     <h3 class="font15 margin10-bottom margin30-top" >
                         <i class="fa fa-university"></i> Bank Transfer Details</h3>
                         <fieldset>
-                    <input type="text" name="account name" id="acct-name" placeholder="Account Name">
+                        <%if(bank.accName===""){%>
+                            <input type="text" name="account name" id="acct-name" placeholder="Account Name">
+                            <%}else{%>
+                                <input type="text" name="account name" id="acct-name" value="<%=bank.accName%>">
+                            <%}%>    
+                    
                 </fieldset>
                    <fieldset>
+                    <%if(bank.accNumber===""){%>
                     <input type="number" name="account_num" id="acct-number" placeholder="Account No.">
+                    <%}else{%>
+                        <input type="number" name="account_num" id="acct-number" value="<%=bank.accNumber%>">
+                        <%}%>  
                 </fieldset>
                 <fieldset>
+                    <%if(bank.bankName===""){%>
                     <input type="text" placeholder="Name of Bank"  id="bank-name">
+
+                    <%}else{%>
+                        <input type="text"   id="bank-name" value="<%=bank.bankName%>">
+
+                        <%}%>  
                 </fieldset>
                 </form>
             </div>

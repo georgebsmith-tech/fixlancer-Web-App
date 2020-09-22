@@ -3,6 +3,7 @@
 
 <head>
     <%- include('./partials/head.ejs') %>
+
 </head>
 
 <body>
@@ -78,12 +79,16 @@
                 </div>
                 <div class="padd30 center-text serch-top-desktop">
                     <div>
-                        <input type="text" class="block padd10 bg-white"
+                        <input type="text" class="block padd10 bg-white search-input"
                             style="width: 100%;outline: none;border-radius: 4px;border: 1px solid #ddd;"
                             placeholder="Try 'logo'">
                     </div>
+                    <div class="text-red font14 hide error">
+                        <i class="fa fa-exclamation-circle text-red"></i>
+                        The search filed can not be empty
+                    </div>
                     <div>
-                        <button class="block button-search-index full-width margin5-top">
+                        <button class="block button-search-index full-width margin5-top search-button">
                             <i class="fa fa-search text-white font15"></i>
                             Search
                         </button>
@@ -363,6 +368,25 @@
 
 
     </footer>
+
+    <script>
+
+        const searchInput = document.querySelector(".search-input")
+
+        const searchBTN = document.querySelector(".search-button")
+
+        searchBTN.addEventListener("click", function (e) {
+            const term = searchInput.value.trim()
+            if (term === "") {
+                document.querySelector(".error").classList.remove("hide")
+                return
+            }
+            document.querySelector(".error").classList.add("hide")
+
+            location.href = `/search-fix?term=${term}&pg=1`;
+        })
+
+    </script>
 </body>
 
 </html>

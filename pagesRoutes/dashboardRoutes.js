@@ -15,6 +15,8 @@ const TransactionModel = require("../models/TransactionModel");
 const SaleModel = require("../models/SaleModel");
 const CategoriesModel = require("../models/CategoriesModel");
 
+const BankModel = require("../models/BanksModel")
+
 
 const checkUserAuthenticated = require("../middleware/userIsAuthenticated");
 const checkAuthenticated = require("../middleware/userIsAuthenticated");
@@ -446,9 +448,16 @@ router.get("/my-sales/completed", async (req, res) => {
 router.get("/profile/edit", async (req, res) => {
     const loggedUser = req.session.passport ? req.session.passport.user : "Betty"
     const data = await UserModel.findOne({ username: loggedUser })
-    console.log(data)
 
-    res.render("edit", { data })
+    let bank = await BankModel.findOne({ username: loggedUser })
+    if (!bank)
+        bank = {
+            accName: "",
+            accNumber: "",
+            bankName: ""
+        }
+
+    res.render("edit", { data, bank })
 })
 router.get("/my-sales/cancelled", async (req, res) => {
     let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
@@ -552,9 +561,7 @@ router.get("/:slug", async (req, res) => {
     // console.log(requestData)
     res.render("request", { title: "title", request: requestData, loggedUser, fixes })
 })
-router.get("/edit", checkUserAuthenticated, (req, res) => {
-    res.render("edit")
-})
+
 
 
 

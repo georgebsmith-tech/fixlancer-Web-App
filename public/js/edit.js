@@ -71,9 +71,9 @@
         const photo = photHolder.files[0]
         formData.append("photo", photo)
         const acctName = acctNameInput.value.trim()
-        formData.append("acctName", acctName)
+        formData.append("accName", acctName)
         const acctNumber = acctnumberInput.value.trim()
-        formData.append("acctNumber", acctNumber)
+        formData.append("accNumber", acctNumber)
         const bankName = bankNameInput.value.trim()
         formData.append("bankName", bankName)
         const password = passwordInput.value

@@ -39,15 +39,19 @@
             </div>
         </div>
         <div class="margin20-top mobile">
-            <div class="bg-white padd10 circle font15 flex-between border">
-                <div>
-                    <i class="fa fa-comments" style="color: #dddfeb;"></i>
-                    <span> Unread Messages</span>
+            <div class="bg-white padd10 circle font15  border">
+                <a href="/dashboard/inbox" class="flex-between text-link-with-hover">
+                    <div>
 
-                </div>
-                <div class="padd5-right">
-                    <%=summary.summary[0][1]%>
-                </div>
+                        <i class="fa fa-comments" style="color: #dddfeb;"></i>
+                        <span> Unread Messages</span>
+
+                    </div>
+                    <div class="padd5-right">
+                        <%=summary.summary[0][1]%>
+                    </div>
+                </a>
+
 
 
             </div>
@@ -337,7 +341,7 @@
     <%- include('./partials/footer.ejs') %>
 
     <script>
-        document.cookie=`username=${document.getElementById("hidden-username").value}`
+        document.cookie = `username=${document.getElementById("hidden-username").value}`
     </script>
 </body>
 

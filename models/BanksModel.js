@@ -20,22 +20,28 @@ const Schema = new mongoose.Schema({
     username: {
         type: String,
         unique: true,
-        required: true
+
     },
     accName: {
         type: String,
-        required: true,
+        default: ""
+
     },
     accNumber: {
         type: String,
-        required: true,
-        unique: true
+        default: ""
+
     },
 
     bankName: {
         type: String,
-        required: true,
+        default: ""
+
     },
+    createdAt: {
+        type: String,
+        default: Date.now
+    }
 
 
 })

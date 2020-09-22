@@ -22,42 +22,44 @@
 
     </header>
     <div class="main-register">
-        <div class="login-wrapper">
+    <div class="login-wrapper">
+        
+    <div>
 
        
-        <div class="register-card padd20 card-shadow margin20-top">
+        <div class="register-card padd20 padd20-top card-shadow margin20-top border-smooth">
             <form action="" id="myForm" method="" autocomplete="off" class="">
-                <p class="err1 hide">Username must be minimum of 4 characters and maximum 20 characters</p>
-                <p class="err2 hide">Username must not contain @</p>
-                <p class="err3 hide">Username must not include space</p>
-                <p class="err4 hide">Username must start with an alphabet</p>
-                <p class="err hide">Username already exist</p>
+                <p class="err1 hide font12 text-red">Username must be minimum of 4 characters and maximum 20 characters</p>
+                <p class="err2 hide font12 text-red">Username must not contain @</p>
+                <p class="err3 hide font12 text-red">Username must not include space</p>
+                <p class="err4 hide font12 text-red">Username must start with an alphabet</p>
+                <p class="err hide font12 text-red">Username already exist</p>
                 <fieldset>
                 <input type="text" name="username" id="username" placeholder="Username" required>
-                <div class="err5 hide">Invalid email address</div>
-                <p class="errs hide">Email already exist</p>
+                <div class="err5 hide font12 text-red">Invalid email address</div>
+                <p class="errs hide font12 text-red">Email already exist</p>
             </fieldset>
             <fieldset>
                 <input type="email" name="email" id="email" placeholder="Email" required autocomplete="new-password">
             </fieldset>
             <fieldset>
-                <select name="cars" id="countries">
+                <select name="cars" id="countries" class="bg-white">
                 </select>
-                <p class="err6 hide">City must contain only alphabets</p>
+                <p class="err6 hide font12 text-red">City must contain only alphabets</p>
             </fieldset>
             <fieldset>
                 <input type="tel" name="city" id="city" placeholder="City" required>
-                <p class="err7 hide">Input a valid Phone Number</p>
-                <p class="errp hide">Phone Number already exist</p>
+                <p class="err7 hide font12 text-red">Input a valid Phone Number</p>
+                <p class="errp hide font12 text-red">Phone Number already exist</p>
             </fieldset>
             <fieldset>
                 <input type="tel" name="phone" id="phone" placeholder="Mobile number" required
                     autocomplete="new-password">
-                <p class="err8 hide">Password must be minimum of 5 characters and maximum of 20 characters</p>
+                <p class="err8 hide font12 text-red">Password must be minimum of 5 characters and maximum of 20 characters</p>
             </fieldset>
             <fieldset>
                 <input type="password" name="password" id="password" placeholder="Password" required>
-                <p class="err9 hide">Password does not match</p>
+                <p class="err9 hide font12 text-red">Password does not match</p>
             </fieldset>
                 <fieldset>
                 <input type="password" name="confirm_password" id="con_password" placeholder="Retype Password" required>
@@ -69,10 +71,10 @@
                     <p>I'm not a robot </p>
                     <img src="images/captcha.png" alt="captcha"style="width:45px;">
                 </div>
-                <p class="err10 hide">Confirm you are not a robot</p>
+                <p class="err10 hide font12 text-red">Confirm you are not a robot</p>
             <fieldset>
-                <input type="submit" value="Create Account" id="submit" class="text-white"  style="background: #47739e;">
-                <p class="err11 hide">Form not submitted. Ensure you fill the forms correctly</p>
+                <input type="submit" value="Create Account" id="submit" class="text-white"  style="background: #47739e;cursor: pointer;">
+                <p class="err11 hide font12 text-red">Form not submitted. Ensure you fill the forms correctly</p>
             </fieldset>
             </form>
             <div class="agree font14" style="padding-top: 0px;">
@@ -87,6 +89,9 @@
 
         </div>
     </div>
+    </div>
+</div>
+        
 
     
 </body>
