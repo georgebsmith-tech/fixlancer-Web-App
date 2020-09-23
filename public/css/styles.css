@@ -2530,7 +2530,7 @@ a.control-btn {
   margin-top: 3px;
 }
 
-.flex-between-desktop {
+.flex-between-desktop2 {
   display: none;
 }
 
@@ -3393,7 +3393,7 @@ a.control-btn {
     margin-right: 20px;
   }
 
-  .flex-between-desktop {
+  .flex-between-desktop2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
