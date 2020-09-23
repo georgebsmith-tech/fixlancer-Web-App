@@ -1,0 +1,92 @@
+<header class="guest-header">
+
+
+
+    <section class=" padd20 flex-between-desktop font16 ">
+        <div class="flex">
+            <div class="margin20-right">
+                <a href="/">
+                    <img src="../../images/logo.png" alt="" style="width: 140px;">
+                </a>
+            </div>
+            <div style="position: relative;">
+                <input type="text" placeholder="Find services e.g logo" class="padd10 border-smooth no-outline"
+                    style="width: 420px;">
+                <i class="fa fa-search font15 padd10" style="position: absolute;right: 5px; cursor: pointer;"></i>
+            </div>
+        </div>
+        <div class="flex">
+            <div class="margin20-right">
+                <a href="/login" class="link-hover">
+                    Login
+                </a>
+
+            </div>
+            <div class="margin20-right">
+                <a href="/register" class="link-hover">
+                    Create Account
+                </a>
+            </div>
+            <div>
+                <a href="#" class="link-hover">
+                    Invite Friends
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="hide mobile top-nav">
+        <ul class="font16 padd10">
+            <li>
+                <a href="" class="flex border-bottom padd10 link-hover" style="padding-top: 0px;">
+                    <img src="../../images/chopbarh.png" alt="" style="width: 30px; margin-right: 5px;" class="flex">
+                    <span>Buy ChopBarh Vouchers</span>
+
+                </a>
+            </li>
+            <li>
+                <a href="/login" class="block border-bottom padd10 link-hover">Login</a>
+            </li>
+            <li>
+                <a href="/register" class="block border-bottom padd10 link-hover">Create Account</a>
+            </li>
+            <li>
+                <a href="/reset-password" class="block border-bottom padd10 link-hover">Reset Password</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="flex-between padd10 mobile" style="width: 88vw;">
+        <a href="/" class="block" style="width: 45px;">
+            <img src="../../images/logo1.png" alt="">
+
+        </a>
+        <div>
+            <div>
+                <input type="text" class="border-smooth no-outline" placeholder="Search" style="padding: 6px 10px;">
+                <i class="fa fa-search font15 padd10" style="margin-left: -33px; cursor: pointer;"></i>
+            </div>
+        </div>
+    </div>
+    <div class="mobile">
+        <div class="toggle-nav-guest">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+
+</header>
+<script>
+
+
+    const toggleNav = document.querySelector(".toggle-nav-guest");
+
+    const topNAv = document.querySelector(".top-nav")
+
+    toggleNav.addEventListener("click", function () {
+        topNAv.classList.toggle("hide")
+    });
+</script>

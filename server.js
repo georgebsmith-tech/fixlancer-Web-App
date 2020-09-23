@@ -354,13 +354,16 @@ app.get("/reset-success", (req, res) => {
 
 app.get("/section/:catSlug", async function (req, res) {
     const catSlug = req.params.catSlug
+    const loggedUser = req.session.passport ? req.session.passport.user : undefined
     const cat = await CategoriesModel.findOne({ catSlug }).select("name subcat")
     const fixes = await FixModel.find({ category: cat.name })
     // console.log(catName)
     const pages = Math.ceil(fixes.length / 4)
     // console.log(fixes)
     // console.log(cat.subcat)
-    res.render("fix-category", { fixes, pages, subcat: cat.subcat, category: cat.name })
+
+    const context = { fixes, pages, subcat: cat.subcat, category: cat.name, loggedUser }
+    res.render("fix-category", context)
 })
 
 app.get("/", async (req, res) => {
@@ -393,6 +396,8 @@ app.get("/alert", (req, res) => {
     res.render("alert")
 })
 app.get("/search-fix", async (req, res) => {
+    const loggedUser = req.session.passport ? req.session.passport.user : undefined
+
     let term;
     let pageSize = 4
     let searchQuery = req.query.term
@@ -420,7 +425,7 @@ app.get("/search-fix", async (req, res) => {
     // console.log(categories)
     const fixes = await FixModel.find().or([{ title: term }, { description: term }, { tags: term }]).skip(skip).limit(pageSize)
     // console.log(fixes)
-    res.render("search-fix", { fixes, pages, rawTerm: searchQuery, categories, count })
+    res.render("search-fix", { fixes, pages, rawTerm: searchQuery, categories, count, loggedUser })
 })
 
 app.get("/how-it-works", (req, res) => {

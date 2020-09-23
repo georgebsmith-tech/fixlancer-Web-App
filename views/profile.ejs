@@ -2,14 +2,19 @@
 <html lang="en">
 
 <head>
+
     <%- include('./partials/head.ejs') %>
+
     <script defer src="../js/user-profile.js"></script>
 
 </head>
 
 <body>
+    <%if(loggedUser){%>
     <%- include('./partials/header.ejs') %>
-
+    <%}else{%>
+    <%- include('./partials/header-guest.ejs') %>
+    <%}%>
     <main>
         <div class="grid-2-12">
             <section class="profile">
@@ -23,72 +28,71 @@
                 <div class="center-text profile-details">
                     <div class="flex-center-wrapper">
                         <%if(userData.imageURL){%>
-                        <img src="<%=userData.imageURL%>" alt=""
-                            class="user-photo-profile margin20-bottom margin10-top">
+    <img src="<%=userData.imageURL%>" alt="" class="user-photo-profile margin20-bottom margin10-top">
 
-                        <%}else{%>
-                        <div class="profile-icon"><%=userData.username[0].toUpperCase()%></div>
+    <%}else{%>
+    <div class="profile-icon"><%=userData.username[0].toUpperCase()%></div>
 
-                        <%}%>
+    <%}%>
                         
                     </div>
                     <div class="profile-item profile-username"><%=userData.username%></div>
-                    <div class="profile-item profile-rating">Rating: <%=userData.rating%></div>
-                    <div class="profile-item profile-created-at">Member Since: <%=userData.createdAt.toDateString()%>
-                    </div>
+    <div class="profile-item profile-rating">Rating: <%=userData.rating%></div>
+    <div class="profile-item profile-created-at">Member Since: <%=userData.createdAt.toDateString()%>
+    </div>
+    <%if(loggedUser===userData.username){%>
+    <div class="profile-item profile-phone">Mobile no: <%=userData.phone%></div>
+    <%}%>
                     <%if(loggedUser===userData.username){%>
-                    <div class="profile-item profile-phone">Mobile no: <%=userData.phone%></div>
-                    <%}%>
-                    <%if(loggedUser===userData.username){%>
-                    <%if(userData.fullName){%>
-                    <div class="font16">Full name: <%=userData.fullName%></div>
-                    <%} %>
-                    <%} %>
-                    <%if(loggedUser===userData.username){%>
-                    <div class="font16 margin20-top">Email: <%=userData.email%></div>
-                    <%}%>
+    <%if(userData.fullName){%>
+    <div class="font16">Full name: <%=userData.fullName%></div>
+    <%} %>
+    <%} %>
+    <%if(loggedUser===userData.username){%>
+    <div class="font16 margin20-top">Email: <%=userData.email%></div>
+    <%}%>
                     <!-- <div class="font16 margin20-top">No. of Msg.: 0</div> -->
                     <%if(loggedUser===userData.username){%>
-                    <div>
-                        <div>
-                            <a href="/dashboard/profile/edit" class="button edit-profile">
-                                <i class="fa fa-pencil"></i> Edit Profile</a>
-                        </div>
+    <div>
+        <div>
+            <a href="/dashboard/profile/edit" class="button edit-profile">
+                <i class="fa fa-pencil"></i> Edit Profile</a>
+        </div>
 
-                    </div>
-                    <%}else{%>
-                    <div>
-                        <div class="margin20-top flex-center">
-                            <a href="/dashboard/profile/edit" class="contact-seller-btn font16"
-                                style=" display: block;border: 1px solid #f27415;border-radius:5px;width: fit-content;color: #f27415;padding: 10px 15px;">
-                                Contact Seller
-                            </a>
-                        </div>
+    </div>
+    <%}else{%>
+    <div>
+        <div class="margin20-top flex-center">
+            <a href="/dashboard/profile/edit" class="contact-seller-btn font16"
+                style=" display: block;border: 1px solid #f27415;border-radius:5px;width: fit-content;color: #f27415;padding: 10px 15px;">
+                Contact Seller
+            </a>
+        </div>
 
-                    </div>
-                    <%}%>
+    </div>
+    <%}%>
                     <input type="hidden" class="hidden-username" value="<%=userData.username%>">
 
 
-            </section>
-            <section class="profile-about">
-                <div class="about-item">
-                    <h2 class="about-title">About</h2>
-                    <div class="profile-bio">
-                        <%=userData.bio!==""?userData.bio:"No bio yet."%>
-                    </div>
-                </div>
-                <div class="about-item">
-
-                    <h2 class="profile-fixes-heading"> </h2>
-                    <div class="scroll-container">
-                        <div class="fix-container">
-                            No fix created yet...
-                        </div>
-                    </div>
-                </div>
-            </section>
+    </section>
+    <section class="profile-about">
+        <div class="about-item">
+            <h2 class="about-title">About</h2>
+            <div class="profile-bio">
+                <%=userData.bio!==""?userData.bio:"No bio yet."%>
+            </div>
         </div>
+        <div class="about-item">
+
+            <h2 class="profile-fixes-heading"> </h2>
+            <div class="scroll-container">
+                <div class="fix-container">
+                    No fix created yet...
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
 
     </main>
     <%- include('./partials/footer.ejs') %>

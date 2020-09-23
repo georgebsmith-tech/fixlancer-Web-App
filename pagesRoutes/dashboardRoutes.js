@@ -149,7 +149,7 @@ router.get("/affiliate", checkUserAuthenticated, (req, res) => {
 })
 router.get("/:username", async (req, res) => {
     const user = req.params.username
-    const loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    const loggedUser = req.session.passport ? req.session.passport.user : undefined;
 
     const userData = await UserModel.findOne({ username: user })
     const context = {

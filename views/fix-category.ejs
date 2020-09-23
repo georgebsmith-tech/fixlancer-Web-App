@@ -7,85 +7,89 @@
 </head>
 
 <body>
-    <%- include('./partials/header.ejs')%>
+    <%if(loggedUser){%>
+    <%- include('./partials/header.ejs') %>
+    <%}else{%>
+    <%- include('./partials/header-guest.ejs') %>
+    <%}%>
 
     <main class="main">
         <div class="margin15-top">
             <div class="bg-white border-smooth padd10 font16">
                 Fixes in <span class="bold showing-cat"><%= category %></span>
 
+    </div>
+    </div>
+    <div style=" overflow: auto;padding-bottom: 10px;" class="margin10-top">
+        <div class="cat-scroll-container" style="display: flex;">
+            <% subcat.forEach(sub=>{ %>
+            <div class="font15 block circle subcatBtn" data-subcatslug="<%= sub.slug %>">
+                <%= sub.name %>
             </div>
+            <%})%>
         </div>
-        <div style=" overflow: auto;padding-bottom: 10px;" class="margin10-top">
-            <div class="cat-scroll-container" style="display: flex;">
-                <% subcat.forEach(sub=>{ %>
-                <div class="font15 block circle subcatBtn" data-subcatslug="<%= sub.slug %>">
-                    <%= sub.name %>
+    </div>
+
+    <div class="center-text font13 flex-center bold no-results" style="flex-direction: row;margin-top: 30px;">
+        <% if(fixes.length===0){ %>
+        <div>
+
+            Sorry,there's no fix on this category yet.
+        </div>
+        <%} %>
+        <div class="no-result hide">
+            Sorry,there's no fix on this category yet.
+        </div>
+    </div>
+
+
+
+    <div class="margin20-top grid-responsive-max4 search-fixes">
+        <% for(let aFix of fixes){ %>
+        <div class="fix-card">
+            <div class="grid-2-12-card">
+                <a href="/fix/<%= aFix.subcatSlug %>/<%= aFix.titleSlug %>">
+                    <div class="fix-image-wrapper">
+                        <img src="<%= aFix.images_url[0] %>" alt="">
+                    </div>
+                </a>
+                <div class="fix-username-and-presence desktop padding-sides" style="padding-bottom:10px;">
+                    <i class="fa fa-circle"></i>
+                    <span style="font-weight: bold;"> <%= aFix.username%></span>
+
                 </div>
-                <%})%>
-            </div>
-        </div>
-
-        <div class="center-text font13 flex-center bold no-results" style="flex-direction: row;margin-top: 30px;">
-            <% if(fixes.length===0){ %>
-            <div>
-
-                Sorry,there's no fix on this category yet.
-            </div>
-            <%} %>
-            <div class="no-result hide">
-                Sorry,there's no fix on this category yet.
-            </div>
-        </div>
-
-
-
-        <div class="margin20-top grid-responsive-max4 search-fixes">
-            <% for(let aFix of fixes){ %>
-            <div class="fix-card">
-                <div class="grid-2-12-card">
-                    <a href="/fix/<%= aFix.subcatSlug %>/<%= aFix.titleSlug %>">
-                        <div class="fix-image-wrapper">
-                            <img src="<%= aFix.images_url[0] %>" alt="">
-                        </div>
+                <div>
+                    <a href="/fix/<%= aFix.subcatSlug %>/<%= aFix.titleSlug %>"
+                        class="anchor-hover-blue-underline fix-title block">
+                        <%= aFix.title.toLowerCase().substr(0,40) %>...
                     </a>
-                    <div class="fix-username-and-presence desktop padding-sides" style="padding-bottom:10px;">
-                        <i class="fa fa-circle"></i>
-                        <span style="font-weight: bold;"> <%= aFix.username%></span>
-
-                    </div>
-                    <div>
-                        <a href="/fix/<%= aFix.subcatSlug %>/<%= aFix.titleSlug %>"
-                            class="anchor-hover-blue-underline fix-title block">
-                            <%= aFix.title.toLowerCase().substr(0,40) %>...
-                        </a>
-                        <div class="duration-and-rating-trust">
-                            <i class="fas fa-clock"></i>
-                            <span><%= aFix.delivery_days %> day(s)</span>
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="amount-and-user">
-                    <div class="duration-and-rating-trust desktop" style="padding-bottom:10px">
+                    <div class="duration-and-rating-trust">
                         <i class="fas fa-clock"></i>
                         <span><%= aFix.delivery_days %> day(s)</span>
 
                     </div>
-                    <div class="fix-username-and-presence mobile" style="padding-bottom:10px;">
-                        <i class="fa fa-circle"></i>
-                        <span style="font-weight: bold;"> <%= aFix.username%></span>
 
-                    </div>
-                    <div class="fix-amount-green">
-                        ₦<%= aFix.price%>
-                    </div>
                 </div>
-
             </div>
-            <%}%>
+
+            <div class="amount-and-user">
+                <div class="duration-and-rating-trust desktop" style="padding-bottom:10px">
+                    <i class="fas fa-clock"></i>
+                    <span><%= aFix.delivery_days %> day(s)</span>
+
+                </div>
+                <div class="fix-username-and-presence mobile" style="padding-bottom:10px;">
+                    <i class="fa fa-circle"></i>
+                    <span style="font-weight: bold;"> <%= aFix.username%></span>
+
+                </div>
+                <div class="fix-amount-green">
+                    ₦<%= aFix.price%>
+                </div>
+            </div>
+
+        </div>
+        <%}%>
 
             </div>
 
@@ -96,14 +100,14 @@
                 <% if(pages>1){%>
 
 
-            <div class="font16 page-nav-holder flex-center" style="flex-direction: row;">
-                <i class="fa fa-caret-left previous-result" style="cursor: pointer;visibility: hidden;" data-pg=""></i>
-                <span class="current-page" data-maxPage="<%= pages %>">Page 1</span>
+        <div class="font16 page-nav-holder flex-center" style="flex-direction: row;">
+            <i class="fa fa-caret-left previous-result" style="cursor: pointer;visibility: hidden;" data-pg=""></i>
+            <span class="current-page" data-maxPage="<%= pages %>">Page 1</span>
 
-                <i class="fa fa-caret-right next-result" style="cursor: pointer;" data-pg="2"></i>
-            </div>
+            <i class="fa fa-caret-right next-result" style="cursor: pointer;" data-pg="2"></i>
+        </div>
 
-            <%}%>
+        <%}%>
             </div>
         </section> -->
 

@@ -2506,6 +2506,34 @@ a.control-btn {
   border-radius: 6px;
 }
 
+.guest-header {
+  position: relative;
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+}
+
+.toggle-nav-guest {
+  position: absolute;
+  right: 14px;
+  top: 11px;
+  padding: 6px;
+  border-radius: 6px;
+  background: white;
+}
+.toggle-nav-guest:hover {
+  cursor: pointer;
+}
+.toggle-nav-guest div {
+  width: 18px;
+  height: 3px;
+  border-radius: 50px;
+  background: #a7a6a6;
+  margin-top: 3px;
+}
+
+.flex-between-desktop {
+  display: none;
+}
+
 .scroll-6-item {
   width: 190px;
   border-radius: 0px;
@@ -3363,6 +3391,12 @@ a.control-btn {
 
   .honourable-mention:nth-child(2) {
     margin-right: 20px;
+  }
+
+  .flex-between-desktop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 @media only screen and (min-width: 1024px) {
