@@ -28,9 +28,19 @@ const renderDashboard = require("../controlers/dashboard/renderDashboard")
 router.get("/", checkAuthenticated, renderDashboard)
 router.get("/my-requests", (req, res) => {
     const notice = req.query.notice
+    const loggedUser = req.session.passport ? req.session.passport.user : "Betty"
 
-    res.render("my-requests", { notice })
+    res.render("my-requests", { notice, loggedUser })
 })
+
+
+router.get("/order-chat", async (req, res) => {
+    const loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+
+
+    res.render("order-chat", { loggedUser })
+})
+
 
 router.get("/job-requests", async (req, res) => {
     try {
@@ -49,7 +59,8 @@ router.get("/job-requests", async (req, res) => {
 })
 
 router.get("/create-a-fix", (req, res) => {
-    res.render("create-fix")
+    const loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    res.render("create-fix", { loggedUser })
 })
 
 router.get("/post-job-request", checkUserAuthenticated, (req, res) => {
@@ -147,18 +158,7 @@ router.get("/inbox", async (req, res) => {
 router.get("/affiliate", checkUserAuthenticated, (req, res) => {
     res.render("affiliate")
 })
-router.get("/:username", async (req, res) => {
-    const user = req.params.username
-    const loggedUser = req.session.passport ? req.session.passport.user : undefined;
 
-    const userData = await UserModel.findOne({ username: user })
-    const context = {
-        userData,
-        loggedUser
-
-    }
-    res.render("profile", context)
-})
 
 router.get("/my-orders", async (req, res) => {
     let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
@@ -197,7 +197,7 @@ router.get("/my-orders", async (req, res) => {
     }
 
 
-    res.render("my-orders-ongoing", { orders: customOrders, orderCounts })
+    res.render("my-orders-ongoing", { orders: customOrders, orderCounts, loggedUser })
 })
 
 
@@ -234,7 +234,7 @@ router.get("/my-orders/completed", async (req, res) => {
         completed: ordersAll.filter(order => order.state === "completed").length
     }
     console.log(customOrders)
-    res.render("my-orders-completed", { orders: customOrders, orderCounts })
+    res.render("my-orders-completed", { orders: customOrders, orderCounts, loggedUser })
 })
 router.get("/my-orders/cancelled", async (req, res) => {
     let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
@@ -269,7 +269,7 @@ router.get("/my-orders/cancelled", async (req, res) => {
     }
     console.log(customOrders)
 
-    res.render("my-orders-cancelled", { orders: customOrders, orderCounts })
+    res.render("my-orders-cancelled", { orders: customOrders, orderCounts, loggedUser })
 })
 
 function getOrderCounts(buyer) {
@@ -308,7 +308,7 @@ router.get("/my-orders/delivered", async (req, res) => {
     }
     console.log(customOrders)
 
-    res.render("my-orders-delivered", { orders: customOrders, orderCounts })
+    res.render("my-orders-delivered", { orders: customOrders, orderCounts, loggedUser })
 })
 
 router.get("/my-sales/delivered", async (req, res) => {
@@ -346,7 +346,7 @@ router.get("/my-sales/delivered", async (req, res) => {
         customSales.push(theFix)
 
     }
-    res.render("my-sales-delivered", { sales: customSales, salesCounts })
+    res.render("my-sales-delivered", { sales: customSales, salesCounts, loggedUser })
 })
 
 router.get("/my-sales", async (req, res) => {
@@ -385,7 +385,7 @@ router.get("/my-sales", async (req, res) => {
 
     }
     // console.log(customSales)
-    res.render("my-sales-ongoing", { sales: customSales, salesCounts })
+    res.render("my-sales-ongoing", { sales: customSales, salesCounts, loggedUser })
 })
 router.get("/my-sales/completed", async (req, res) => {
     let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
@@ -422,7 +422,7 @@ router.get("/my-sales/completed", async (req, res) => {
         customSales.push(theFix)
 
     }
-    res.render("my-sales-completed", checkAuthenticated, { sales: customSales, salesCounts })
+    res.render("my-sales-completed", { sales: customSales, salesCounts, loggedUser })
 })
 
 
@@ -477,29 +477,29 @@ router.get("/my-sales/cancelled", async (req, res) => {
         customSales.push(theFix)
 
     }
-    res.render("my-sales-cancelled", { sales: customSales, salesCounts })
+    res.render("my-sales-cancelled", { sales: customSales, salesCounts, loggedUser })
 })
 router.get("/finance", async (req, res) => {
     let revenue = 0;
     let deposit = 0;
     let refund = 0;
-    const user = req.session.passport ? req.session.passport.user : undefined
+    const loggedUser = req.session.passport ? req.session.passport.user : "Betty"
 
-    const revenueData = await RevenueModel.findOne({ username: user })
+    const revenueData = await RevenueModel.findOne({ username: loggedUser })
     if (revenueData)
         revenue = revenueData.amount
 
-    const depositData = await DepositModel.findOne({ username: user })
+    const depositData = await DepositModel.findOne({ username: loggedUser })
     if (depositData)
         deposit = depositData.amount
-    const refundData = await RefundModel.findOne({ username: user })
+    const refundData = await RefundModel.findOne({ username: loggedUser })
     if (refundData)
         refund = refundData.amount
 
 
 
     res.render("finance", {
-        revenue, deposit, refund
+        revenue, deposit, refund, loggedUser
     })
 })
 
@@ -519,21 +519,16 @@ router.get("/finance/notices", async (req, res) => {
     notices.reverse()
 
 
-    res.render("finance-notices", { notices })
+    res.render("finance-notices", { notices, loggedUser })
 })
 router.get("/finance/withdraw", async (req, res) => {
     let revenue = 0;
-    const user = req.session.passport ? req.session.passport.user : "Smith"
+    const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
 
-    const revenueData = await RevenueModel.findOne({ username: user })
+    const revenueData = await RevenueModel.findOne({ username: loggedUser })
     if (revenueData)
         revenue = revenueData.amount
-    res.render("finance-withdraw", { revenue })
-})
-router.get("/order-chat", async (req, res) => {
-
-
-    res.render("order-chat")
+    res.render("finance-withdraw", { revenue, loggedUser })
 })
 
 router.get("/:slug", async (req, res) => {
@@ -544,11 +539,4 @@ router.get("/:slug", async (req, res) => {
     // console.log(requestData)
     res.render("request", { title: "title", request: requestData, loggedUser, fixes })
 })
-
-
-
-
-
-
-
 module.exports = router

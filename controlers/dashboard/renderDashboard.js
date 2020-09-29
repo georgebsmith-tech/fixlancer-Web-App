@@ -32,7 +32,8 @@ module.exports = async (req, res) => {
         categories,
         featuredFixes,
         summary,
-        fixes, loggedUser
+        fixes,
+        loggedUser
     }
     res.render("dashboard-new", context)
 }

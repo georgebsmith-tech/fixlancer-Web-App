@@ -342,6 +342,18 @@ const checkUserNotAuthenticated = require("./middleware/userIsNotauthenticated")
 // dashboard route
 app.use("/dashboard", dashboardRoutes)
 
+app.get("/u/:username", async (req, res) => {
+    const user = req.params.username
+    const loggedUser = req.session.passport ? req.session.passport.user : undefined;
+
+    const userData = await UserModel.findOne({ username: user })
+    const context = {
+        userData,
+        loggedUser
+    }
+    res.render("profile", context)
+})
+
 
 app.get("/reset-password", (req, res) => {
     res.render("reset-password")
@@ -525,6 +537,8 @@ app.get("/order-fix/:titleSlug", async function (req, res) {
     res.render("order-fix", { fix, balance, total, fee, custom, jobId })
 
 })
+
+
 
 
 

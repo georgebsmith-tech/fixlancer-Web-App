@@ -15,6 +15,11 @@
                     sendNotice(seller, "new sale", buyer)
                     createTransaction(buyer, data)
                         .then(data => {
+                            document.querySelector(".modal-wrapper").classList.remove("hide")
+                            setTimeout(() => {
+                                location.href = "/dashboard/finances/notices"
+
+                            }, 3000)
                             // console.log(data)
                         })
 

@@ -1,6 +1,8 @@
 const UserModel = require("../../models/UserModel")
 const BankModel = require("../../models/BanksModel")
 
+const bcrypt = require("bcrypt")
+
 module.exports = async (req, res) => {
     const username = req.params.username
     const reqBody = req.body
