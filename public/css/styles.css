@@ -1187,6 +1187,8 @@ i.fa.fa-star {
   border-radius: 5px;
   padding: 5px 12px;
   background: #1cc88a;
+  border: 1px solid #1cc88a;
+  outline: none;
 }
 
 .button-orange {
@@ -1373,6 +1375,11 @@ button.header-top-btn, a.header-top-btn {
 }
 .mobile-finance button {
   margin-left: 15px;
+}
+
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .flex-center {
