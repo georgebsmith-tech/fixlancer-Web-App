@@ -9,23 +9,22 @@
     const confirmPaymentBTN = document.querySelector(".confirm-payment")
     if (confirmPaymentBTN)
         confirmPaymentBTN.addEventListener("click", function () {
+            document.querySelector(".modal-wrapper").classList.remove("hide")
             createOrder(seller, buyer)
                 .then((data) => {
                     sendNotice(buyer, "new order", seller)
                     sendNotice(seller, "new sale", buyer)
                     createTransaction(buyer, data)
                         .then(data => {
-                            document.querySelector(".modal-wrapper").classList.remove("hide")
+
                             setTimeout(() => {
-                                location.href = "/dashboard/finances/notices"
+                                location.href = "/dashboard/order-requirements"
 
                             }, 3000)
                             // console.log(data)
                         })
 
                 })
-
-
 
         })
 

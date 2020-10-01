@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+    <script defer src="../../js/order-fix.js"></script>
+</head>
+
+<body>
+    <%- include('./partials/header.ejs') %>
+    <main>
+        <h1 class="margin20-bottom">
+            Requirements
+        </h1>
+        <div class="bg-white padd10 card-shadow">
+            <header>
+                <h2 class="heading padd20 bold">
+                    Provide the neccessary requiremnts for the order. Be detailed as possible and/or attch a file.
+
+                </h2>
+            </header>
+            <div>
+                <fieldset>
+                    <textarea name="" id="" cols="30" rows="5"></textarea>
+                </fieldset>
+            </div>
+            <div style="margin-top: -20px;">
+                <div>
+                    <i class="fa fa-paperclip font20 attach-requirement padd10" aria-hidden="true" title="attach a file"
+                        style="cursor: pointer;"></i>
+                </div>
+                <div class="file-name font14">
+
+                </div>
+                <input type="file" style="visibility:hidden;" class="hidden-attachment">
+            </div>
+            <div>
+                <div>
+                    <fieldset>
+                        <button>Send</button>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </main>
+    <%- include('./partials/footer.ejs') %>
+
+    <script>
+        const attachHolder = document.querySelector(".attach-requirement")
+        const hiddenAttachment = document.querySelector(".hidden-attachment")
+        const fileNameHolder = document.querySelector(".file-name")
+
+        attachHolder.addEventListener("click", function (e) {
+            hiddenAttachment.click()
+
+        });
+        hiddenAttachment.addEventListener("input", function (e) {
+            console.log(this.files[0])
+            fileNameHolder.textContent = this.files[0].name
+        });
+    </script>
+</body>
+
+</html>

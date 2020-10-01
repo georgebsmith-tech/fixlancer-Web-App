@@ -241,8 +241,8 @@ app.use((req, res, next) => {
 
 
 
-// let users = {}
-// let activeChats = {}
+let users = {}
+let activeChats = {}
 // function changeMessageToRead(data, io) {
 //     ConversationModel.find({ read: false, from: data.receiver, to: data.name })
 //         .then(data => {
@@ -353,6 +353,7 @@ app.get("/u/:username", async (req, res) => {
     }
     res.render("profile", context)
 })
+
 
 
 app.get("/reset-password", (req, res) => {

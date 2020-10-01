@@ -311,6 +311,9 @@ router.get("/my-orders/delivered", async (req, res) => {
     res.render("my-orders-delivered", { orders: customOrders, orderCounts, loggedUser })
 })
 
+const renderRequirementForm = require("../controlers/dashboard/renderRequirementsForm")
+router.get("/order-requirements", renderRequirementForm)
+
 router.get("/my-sales/delivered", async (req, res) => {
     let loggedUser = req.session.passport ? req.session.passport.user : "Betty"
     let sales = await SaleModel.find({ seller: loggedUser, state: "delivered" })
@@ -424,7 +427,6 @@ router.get("/my-sales/completed", async (req, res) => {
     }
     res.render("my-sales-completed", { sales: customSales, salesCounts, loggedUser })
 })
-
 
 
 
