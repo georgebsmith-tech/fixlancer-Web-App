@@ -30,7 +30,7 @@
                         <textarea name="" id="" cols="30" rows="6" class="border-smooth chat-message"
                             placeholder="Explain the services you want done..."></textarea>
                         <input type="hidden" id="receiver" value="<%= fix.username%>">
-                        <input type="hidden" id="sender" value="<%= loggedInUser%>">
+                        <input type="hidden" id="sender" value="<%= loggedUser%>">
                     </div>
                     <div style="display: flex; justify-content: flex-end;">
                         <button class="button font15 send-chat-btn">Send</button>
@@ -40,7 +40,11 @@
         </div>
 
     </div>
+    <%if(loggedUser){%>
     <%- include('./partials/header.ejs') %>
+    <%}else{%>
+    <%- include('./partials/header-guest.ejs') %>
+    <%}%>
     <main class="main">
         <div class="flex-between chat-send-notice font15 bg-green hide">
             <div class="text-white">
@@ -52,91 +56,91 @@
             <section class="about-fix-section">
                 <h1>
                     <%= fix.title %>
-                </h1>
+    </h1>
 
-                <div class="fix-meta">
-                    <div>
-                        <i class="fas fa-clock"></i>
-                        <span><%= fix.delivery_days%> day(s)</span> <span> delivery</span>
-                    </div>
-                    <div>
+    <div class="fix-meta">
+        <div>
+            <i class="fas fa-clock"></i>
+            <span><%= fix.delivery_days%> day(s)</span> <span> delivery</span>
+        </div>
+        <div>
 
-                        <% if(fix.ratings.length>0){ %>
-                        <% let theSum=0 %>
-                        <% for(let rating of fix.ratings){ %>
-                        <% theSum +=rating*1 %>
+            <% if(fix.ratings.length>0){ %>
+            <% let theSum=0 %>
+            <% for(let rating of fix.ratings){ %>
+            <% theSum +=rating*1 %>
 
-                        <% } %>
-                        <i class="fa fa-star"></i>
-                        <span><%= (theSum/(fix.ratings.length)).toFixed(1) %>(<%= fix.ratings.length %> reviews) </span>
-                        <% }else{ %>
-                        <i class="fa fa-star" style="color: inherit;"></i>
-                        <span>0</span>
-                        <% } %>
+            <% } %>
+            <i class="fa fa-star"></i>
+            <span><%= (theSum/(fix.ratings.length)).toFixed(1) %>(<%= fix.ratings.length %> reviews) </span>
+            <% }else{ %>
+            <i class="fa fa-star" style="color: inherit;"></i>
+            <span>0</span>
+            <% } %>
 
-                    </div>
-                    <div>
-                        <i class="fa fa-eye"></i>
-                        <span><%= fix.views %></span>
-                        <span> Views</span>
-                    </div>
-                </div>
-                <div class="corousel-container">
-                    <div class="image-carousel-wrapper">
-                        <% fix.images_url.forEach((image,id)=>{ %>
-                        <div data-id="<%= id*1+1 %>">
-                            <img src="<%= image %>" alt="image for the fix: <%= fix.title %>">
-                        </div>
+        </div>
+        <div>
+            <i class="fa fa-eye"></i>
+            <span><%= fix.views %></span>
+            <span> Views</span>
+        </div>
+    </div>
+    <div class="corousel-container">
+        <div class="image-carousel-wrapper">
+            <% fix.images_url.forEach((image,id)=>{ %>
+            <div data-id="<%= id*1+1 %>">
+                <img src="<%= image %>" alt="image for the fix: <%= fix.title %>">
+            </div>
 
-                        <% }) %>
+            <% }) %>
 
 
-                    </div>
-                    <div class="carousel-nav">
-                        <% if(fix.images_url.length!==1){ %>
-                        <i class="fa fa-angle-left"></i>
-                        <i class="fa fa-angle-right"></i>
-                        <% }%>
-                    </div>
-                </div>
-                <% if(fix.images_url.length!==1){ %>
+        </div>
+        <div class="carousel-nav">
+            <% if(fix.images_url.length!==1){ %>
+            <i class="fa fa-angle-left"></i>
+            <i class="fa fa-angle-right"></i>
+            <% }%>
+        </div>
+    </div>
+    <% if(fix.images_url.length!==1){ %>
 
-                <div class="carousel-tombnail">
-                    <% fix.images_url.forEach((image,id)=>{ %>
-                    <div data-id="<%= id*1+1 %>">
-                        <img src="<%= image %>" alt="image for the fix: <%= fix.title %>">
-                        <div></div>
-                    </div>
-                    <% }) %>
+    <div class="carousel-tombnail">
+        <% fix.images_url.forEach((image,id)=>{ %>
+        <div data-id="<%= id*1+1 %>">
+            <img src="<%= image %>" alt="image for the fix: <%= fix.title %>">
+            <div></div>
+        </div>
+        <% }) %>
 
-                </div>
-                <% } %>
-                <div>
-                    <h2>About this Fix</h2>
-                    <p>
-                        <%= fix.description %>
-                    </p>
-                </div>
-                <div class="tags">
-                    <% fix.tags.forEach(tag=>{ %>
-                    <a href="" class="tag anchor-hover-blue-underline"><%= tag%></a>
-                    <% })%>
-                </div>
-                <div class="category-and-subcategory">
-                    This fix is posted in <a href=""><%= fix.subcategory %></a>, <a href=""><%= fix.category %></a>
-                </div>
-                <% if(user.username!==loggedInUser){ %>
-                <div class="flex-center">
-                    <!-- <div>
+    </div>
+    <% } %>
+    <div>
+        <h2>About this Fix</h2>
+        <p>
+            <%= fix.description %>
+        </p>
+    </div>
+    <div class="tags">
+        <% fix.tags.forEach(tag=>{ %>
+        <a href="" class="tag anchor-hover-blue-underline"><%= tag%></a>
+        <% })%>
+    </div>
+    <div class="category-and-subcategory">
+        This fix is posted in <a href=""><%= fix.subcategory %></a>, <a href=""><%= fix.category %></a>
+    </div>
+    <% if(user.username!==loggedUser){ %>
+    <div class="flex-center">
+        <!-- <div>
                         <button class="control-btn contact-seller-btn">Contact Seller</button>
                     </div> -->
-                    <div style="width: 80%;">
-                        <button class="control-btn center-text orange-btn"
-                            onclick="location.href='/order-fix/<%= fix.titleSlug %>'">Order
-                            Now ₦<%= fix.price %></button>
-                    </div>
-                </div>
-                <%}%>
+        <div style="width: 80%;">
+            <button class="control-btn center-text orange-btn"
+                onclick="location.href='/order-fix/<%= fix.titleSlug %>'">Order
+                Now ₦<%= fix.price %></button>
+        </div>
+    </div>
+    <%}%>
                 <div>
                     <h2 class="border-bottom">
                         Ratings
@@ -147,188 +151,187 @@
                 </div>
             </section>
             <section>
-                <% if(user.username===loggedInUser){ %>
-                <a href="" class="control-btn center-text">Edit fix ₦<%= fix.price %></a>
-                <% } %>
-                <section id="about-seller-section">
+                <% if(user.username===loggedUser){ %>
+    <a href="" class="control-btn center-text">Edit fix ₦<%= fix.price %></a>
+    <% } %>
+    <section id="about-seller-section">
 
-                    <h2>About the Seller</h2>
-                    <div>
-                        <div class="online-status" style="padding: 10px 15px 15px 10px;">
-                            <div>
-                                <i class="fa fa-circle user-offline"></i>
+        <h2>About the Seller</h2>
+        <div>
+            <div class="online-status" style="padding: 10px 15px 15px 10px;">
+                <div>
+                    <i class="fa fa-circle user-offline"></i>
 
-                                <span class="user-offline">Offline</span>
-                            </div>
-                        </div>
-                        <div class="center-text flex-center">
-                            <div>
-                                <div class="seller-username-icon" style="background-color: <%= user.userColor %>;">
-                                    <%= fix.username[0].toUpperCase() %>
-                                </div>
+                    <span class="user-offline">Offline</span>
+                </div>
+            </div>
+            <div class="center-text flex-center">
+                <div>
+                    <div class="seller-username-icon" style="background-color: <%= user.userColor %>;">
+                        <%= fix.username[0].toUpperCase() %>
+                    </div>
 
-                            </div>
-                            <!-- <style>
+                </div>
+                <!-- <style>
                                 .seller-username-icon {
                                     background-color: <%=user.userColor%>;
                                 }
                             </style> -->
-                            <div>
-                                <img src="" alt="">
-                            </div>
-                            <div class="fix-seller-username">
-                                <a href=""><%= fix.username %></a>
-                            </div>
-                        </div>
-                        <div class="center-text seller-bio">
-                            <%= user.bio %>
+                <div>
+                    <img src="" alt="">
+                </div>
+                <div class="fix-seller-username">
+                    <a href=""><%= fix.username %></a>
+                </div>
+            </div>
+            <div class="center-text seller-bio">
+                <%= user.bio %>
 
-                        </div>
+            </div>
 
-                        <div class="center-text rating-wrapper">
-                            <% if(fix.ratings.length>0){ %>
-                            <% let theSum=0 %>
-                            <% for(let rating of fix.ratings){ %>
-                            <% theSum +=rating*1 %>
+            <div class="center-text rating-wrapper">
+                <% if(fix.ratings.length>0){ %>
+                <% let theSum=0 %>
+                <% for(let rating of fix.ratings){ %>
+                <% theSum +=rating*1 %>
 
-                            <% } %>
-                            <span>Rating:</span>
-                            <i class="fa fa-star star-bad"></i>
-                            <span><%= (theSum/(fix.ratings.length)).toFixed(1) %>(<%= fix.ratings.length %>)</span>
-                            <% }else{ %>
-                            <span>Rating:</span>
-                            <i class="fa fa-star star-bad"></i>
-                            <span>0</span>
-                            <% } %>
+                <% } %>
+                <span>Rating:</span>
+                <i class="fa fa-star star-bad"></i>
+                <span><%= (theSum/(fix.ratings.length)).toFixed(1) %>(<%= fix.ratings.length %>)</span>
+                <% }else{ %>
+                <span>Rating:</span>
+                <i class="fa fa-star star-bad"></i>
+                <span>0</span>
+                <% } %>
 
-                        </div>
-                        <div class="center-text user-ongoing-orders">
-                            <i class="fas fa-clock text-success"></i> <span>Ongoing Orders:</span>
-                            <span><%= user.summary[3][1]%></span>
-                        </div>
-                        <% if(user.username!==loggedInUser){ %>
-                        <div class="contact-seller-wrapper">
-                            <button class="contact-seller-btn">Contact Seller</button>
-                        </div>
-                        <% } %>
-                        <div class="secured" style="border-top: 1px solid #ddd;">
-                            <div>
-                                <i class="fas fa-shield-alt text-success"></i>
-                            </div>
-                            <div class="center-text">
-                                <div><strong>100% Secured</strong></div>
-                                <div>
-                                    Job is done or Money back
-                                </div>
-                            </div>
-                            <div></div>
-                        </div>
-                        <div
-                            style="padding: 10px; font-size: 1.6rem;color: #374355;line-height: 1.5; border-top: 1px solid #ddd;">
-                            Your funds are held on Escrow and not sent to the seller. When an order is placed, a page is
-                            created
-                            where you can communicate with the seller
-                        </div>
+            </div>
+            <div class="center-text user-ongoing-orders">
+                <i class="fas fa-clock text-success"></i> <span>Ongoing Orders:</span>
+                <span><%= user.summary[3][1]%></span>
+            </div>
+            <% if(user.username!==loggedUser){ %>
+            <div class="contact-seller-wrapper">
+                <button class="contact-seller-btn">Contact Seller</button>
+            </div>
+            <% } %>
+            <div class="secured" style="border-top: 1px solid #ddd;">
+                <div>
+                    <i class="fas fa-shield-alt text-success"></i>
+                </div>
+                <div class="center-text">
+                    <div><strong>100% Secured</strong></div>
+                    <div>
+                        Job is done or Money back
                     </div>
-                </section>
-            </section>
+                </div>
+                <div></div>
+            </div>
+            <div style="padding: 10px; font-size: 1.6rem;color: #374355;line-height: 1.5; border-top: 1px solid #ddd;">
+                Your funds are held on Escrow and not sent to the seller. When an order is placed, a page is
+                created
+                where you can communicate with the seller
+            </div>
         </div>
-        <section>
-            <div>
-                <% if(userFixes.length>1){ %>
-                <h2 style="font-size: 2rem;font-weight: bolder;margin: 25px 0px;">More fixes by <%= fix.username %>
-                </h2>
-                <% }%>
+    </section>
+    </section>
+    </div>
+    <section>
+        <div>
+            <% if(userFixes.length>1){ %>
+            <h2 style="font-size: 2rem;font-weight: bolder;margin: 25px 0px;">More fixes by <%= fix.username %>
+            </h2>
+            <% }%>
 
-                <div class="grid-responsive-max6">
-                    <% for(let aFix of userFixes){ %>
-                    <% if(aFix.titleSlug===fix.titleSlug) continue %>
-                    <div class="fix-card">
-                        <div class="grid-2-12-card">
-                            <a href="/fix/<%= aFix.subcatSlug %>/<%= aFix.titleSlug %>">
-                                <div class="fix-image-wrapper">
-                                    <img src="<%= aFix.images_url[0] %>" alt="">
-                                </div>
-                            </a>
-                            <div class="fix-username-and-presence desktop padding-sides" style="padding-bottom:10px;">
-                                <i class="fa fa-circle"></i>
-                                <span style="font-weight: bold;"> <%= aFix.username%></span>
-
+            <div class="grid-responsive-max6">
+                <% for(let aFix of userFixes){ %>
+                <% if(aFix.titleSlug===fix.titleSlug) continue %>
+                <div class="fix-card">
+                    <div class="grid-2-12-card">
+                        <a href="/fix/<%= aFix.subcatSlug %>/<%= aFix.titleSlug %>">
+                            <div class="fix-image-wrapper">
+                                <img src="<%= aFix.images_url[0] %>" alt="">
                             </div>
-                            <div>
-                                <a href="/fix/<%= aFix.subcatSlug %>/<%= aFix.titleSlug %>"
-                                    class="anchor-hover-blue-underline fix-title block">
-                                    <%= aFix.title.toLowerCase().substr(0,40) %>...
-                                </a>
-                                <div class="duration-and-rating-trust">
-                                    <i class="fas fa-clock"></i>
-                                    <span><%= aFix.delivery_days %> day(s)</span>
+                        </a>
+                        <div class="fix-username-and-presence desktop padding-sides" style="padding-bottom:10px;">
+                            <i class="fa fa-circle"></i>
+                            <span style="font-weight: bold;"> <%= aFix.username%></span>
 
-                                </div>
-
-                            </div>
                         </div>
-
-                        <div class="amount-and-user">
-                            <div class="duration-and-rating-trust desktop" style="padding-bottom:10px">
+                        <div>
+                            <a href="/fix/<%= aFix.subcatSlug %>/<%= aFix.titleSlug %>"
+                                class="anchor-hover-blue-underline fix-title block">
+                                <%= aFix.title.toLowerCase().substr(0,40) %>...
+                            </a>
+                            <div class="duration-and-rating-trust">
                                 <i class="fas fa-clock"></i>
                                 <span><%= aFix.delivery_days %> day(s)</span>
 
                             </div>
-                            <div class="fix-username-and-presence mobile" style="padding-bottom:10px;">
-                                <i class="fa fa-circle"></i>
-                                <span style="font-weight: bold;"> <%= aFix.username%></span>
 
+                        </div>
+                    </div>
+
+                    <div class="amount-and-user">
+                        <div class="duration-and-rating-trust desktop" style="padding-bottom:10px">
+                            <i class="fas fa-clock"></i>
+                            <span><%= aFix.delivery_days %> day(s)</span>
+
+                        </div>
+                        <div class="fix-username-and-presence mobile" style="padding-bottom:10px;">
+                            <i class="fa fa-circle"></i>
+                            <span style="font-weight: bold;"> <%= aFix.username%></span>
+
+                        </div>
+                        <div class="fix-amount-green">
+                            ₦<%= aFix.price%>
+                        </div>
+                    </div>
+
+                </div>
+
+                <% } %>
+            </div>
+        </div>
+
+    </section>
+    <section>
+        <div>
+            <h2 style="font-size: 2rem;font-weight: bolder;margin: 25px 0px;">Recommended for you</h2>
+            <div style="overflow-x: auto;">
+                <div class="scroll6-wrapper">
+                    <% for(let recommendation of recommendations){ %>
+                    <div class="scroll-6-item">
+                        <div class="scroll-6-image-wrapper">
+                            <img src="<%= recommendation.images_url[0] %>" alt="">
+                        </div>
+                        <div class="fix-user-status scroll-6-user-status">
+                            <i class="fa fa-circle"></i>
+                            <span><%= recommendation.username %></span>
+                        </div>
+
+                        <a href="/fix/<%=recommendation.subcatSlug %>/<%= recommendation.titleSlug %>"
+                            class="scroll-6-user-fix-title block anchor-hover-blue-underline">
+                            <%= recommendation.title.substr(0,40).toLowerCase()%>
+                        </a>
+                        <div class="fix-footer">
+                            <div>
+                                <i class="fas fa-clock"></i>
+                                <span>
+                                    <%= recommendation.delivery_days%> day(s)
+                                </span>
                             </div>
                             <div class="fix-amount-green">
-                                ₦<%= aFix.price%>
+                                ₦<%= recommendation.price%>
                             </div>
                         </div>
-
                     </div>
-
                     <% } %>
+
                 </div>
-            </div>
-
-        </section>
-        <section>
-            <div>
-                <h2 style="font-size: 2rem;font-weight: bolder;margin: 25px 0px;">Recommended for you</h2>
-                <div style="overflow-x: auto;">
-                    <div class="scroll6-wrapper">
-                        <% for(let recommendation of recommendations){ %>
-                        <div class="scroll-6-item">
-                            <div class="scroll-6-image-wrapper">
-                                <img src="<%= recommendation.images_url[0] %>" alt="">
-                            </div>
-                            <div class="fix-user-status scroll-6-user-status">
-                                <i class="fa fa-circle"></i>
-                                <span><%= recommendation.username %></span>
-                            </div>
-
-                            <a href="/fix/<%=recommendation.subcatSlug %>/<%= recommendation.titleSlug %>"
-                                class="scroll-6-user-fix-title block anchor-hover-blue-underline">
-                                <%= recommendation.title.substr(0,40).toLowerCase()%>
-                            </a>
-                            <div class="fix-footer">
-                                <div>
-                                    <i class="fas fa-clock"></i>
-                                    <span>
-                                        <%= recommendation.delivery_days%> day(s)
-                                    </span>
-                                </div>
-                                <div class="fix-amount-green">
-                                    ₦<%= recommendation.price%>
-                                </div>
-                            </div>
-                        </div>
-                        <% } %>
-
-                    </div>
-                    <div>
-                    </div>
-        </section>
+                <div>
+                </div>
+    </section>
 
 
     </main>

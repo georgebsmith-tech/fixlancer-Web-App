@@ -2,8 +2,11 @@
     const loginBtn = document.getElementById('login-btn');
     const username = document.getElementById('username');
     const password = document.getElementById('password');
-    loginBtn.addEventListener('click', (e) => {
+    const spinnerHolder= document.querySelector(".lds-ring")
+    loginBtn.addEventListener('click', function(e){
         document.querySelector(".login-error").classList.add("hide")
+        spinnerHolder.classList.remove("hide")
+        this.parentElement.classList.remove("margin20-top")
         validateLogin();
         console.log(username.value);
     })

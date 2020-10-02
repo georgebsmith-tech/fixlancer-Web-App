@@ -469,13 +469,13 @@ app.get("/fix/:subcat/:titleSlug", async (req, res) => {
     const resp = await axios.get(`https://fixlancer.herokuapp.com/api/users/${fix.username}`)
     const user = resp.data.data
     const sessionPassport = req.session.passport
-    let loggedInUser;
+    let loggedUser;
     if (sessionPassport) {
-        loggedInUser = sessionPassport.user
+        loggedUser = sessionPassport.user
     }
 
 
-    res.render("fix-detailed", { fix, user, userFixes, recommendations, loggedInUser })
+    res.render("fix-detailed", { fix, user, userFixes, recommendations, loggedUser })
 })
 
 
@@ -486,17 +486,20 @@ app.get("/order-fix/:titleSlug", async function (req, res) {
     let offer
     let custom = false;
     if (jobId) {
+        const mod_fix = await FixModel.findOne({ titleSlug: titleSlug }).select("requirements")
 
         const data = await RequestModel.findOne({ job_id: jobId })
 
 
         offer = data.offers.find(offer => offer.slug === titleSlug)
 
-        fix = offer
+        fix = { ...offer }
         fix.images_url = [offer.image_url]
         fix.delivery_days = offer.delivery
         fix.mainSlug = data.slug
+        fix.requirements = mod_fix.requirements
         custom = true
+        console.log(fix)
 
     } else
         fix = await FixModel.findOne({ titleSlug: titleSlug })

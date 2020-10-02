@@ -112,6 +112,7 @@ const Schema = new mongoose.Schema({
 })
 Schema.pre("validate", function (next) {
     this.userColor = getColor();
+    this.username = this.username.toLowerCase()
     next()
 })
 
