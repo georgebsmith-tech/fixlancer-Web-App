@@ -25,6 +25,11 @@ const checkAuthenticated = require("../middleware/userIsAuthenticated");
 
 const renderDashboard = require("../controlers/dashboard/renderDashboard")
 
+const renderRequirementForm = require("../controlers/dashboard/renderRequirementsForm")
+router.get("/order-requirements", renderRequirementForm)
+
+
+
 router.get("/", checkAuthenticated, renderDashboard)
 router.get("/my-requests", (req, res) => {
     const notice = req.query.notice
@@ -311,8 +316,7 @@ router.get("/my-orders/delivered", async (req, res) => {
     res.render("my-orders-delivered", { orders: customOrders, orderCounts, loggedUser })
 })
 
-const renderRequirementForm = require("../controlers/dashboard/renderRequirementsForm")
-router.get("/order-requirements", renderRequirementForm)
+
 
 router.get("/my-sales/delivered", async (req, res) => {
     let loggedUser = req.session.passport ? req.session.passport.user : "Betty"

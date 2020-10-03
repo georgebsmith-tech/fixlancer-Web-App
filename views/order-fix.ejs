@@ -92,7 +92,8 @@
                 <button class="button" id="order-purchase-btn" style="margin-top: 15px;">Proceed to
                     Purchase</button>
                 <% }else{%>
-                <button class="button confirm-payment" id="order-purchase-btn" style="margin-top: 15px;">Confirm and
+                <button class="button confirm-payment" id="order-purchase-btn" style="margin-top: 15px;"
+                    data-titleSlug="<%=fix.titleSlug%>">Confirm and
                     pay</button>
                 <% } %>
 
@@ -124,28 +125,22 @@
 
 
     </main>
+    
+    
 
 <div class="modal-wrapper hide">
 
 
     <div class="order-modal padd10 ">
-        <div class="bg-white padd10 border-smooth">
+        <div class="bg-white padd10 border-smooth full-width">
             <div class="font16">
-                <div class="flex-center">
-                    <img src="../../images/logo.png" alt="" style="width: 150px;">
-                </div>
                 <h2 class="margin20-bottom margin20-top bold center-text">
-                    Payment Confirmation
+                   Just a Sec...
                 </h2>
-                <div class="font20">
-                    <div>
-                        Tour payment has been confirmed.
+                <div class="font16">
+                    <div class="center-text margin30-bottom">
+                        We're working out details of your Order.
                     </div>
-                    <p class="margin30-bottom margin10-top">
-                        You will soon be redirected...
-                    </p>
-                   
-
                 </div>
                
 

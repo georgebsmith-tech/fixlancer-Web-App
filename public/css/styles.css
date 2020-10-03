@@ -1509,6 +1509,10 @@ button.header-top-btn, a.header-top-btn {
   display: inline-block;
 }
 
+.margin60-top {
+  margin-top: 60px;
+}
+
 .padd10-sides {
   padding-left: 10px;
   padding-right: 10px;

@@ -9,15 +9,26 @@
 <body>
     <%- include('./partials/header.ejs') %>
     <main>
+        <div class="text-white bg-green font20 padd10 border-smooth margin20-top">
+            Thanks for your Order.
+        </div>
         <h1 class="margin20-bottom">
             Requirements
         </h1>
         <div class="bg-white padd10 card-shadow">
             <header>
-                <h2 class="heading padd20">
+                <h2 class="heading padd10 bold">
                     Provide the neccessary requiremnts for the order. Be detailed as possible and/or attch a file.
-
                 </h2>
+                <div>
+                    <div class="padd10 font15">The seller request for the following to be provided before start working
+                        on your order:</div>
+                    <p class="bold padd10 font15">
+                        <%=data.requirements%>
+
+                    </p>
+
+                </div>
             </header>
             <div>
                 <fieldset>
@@ -36,14 +47,19 @@
                 <input type="file" style="visibility:hidden;height: 0px;" class="hidden-attachment">
             </div>
             <div>
-                <div class="flex-end padd10">
+                <div class="font14 padd10">
+                    By clicking <span class="bold">Start Order</span> i aggree the information i provided is complete.
+                    Any further changes may be subject to extra cost.
+                </div>
+                <div class="padd10">
 
-                    <button class="button-green">Send</button>
+                    <button class="button-green full-width" disabled>Start Order</button>
 
                 </div>
             </div>
         </div>
     </main>
+    <%=data.requirements%>
 </body>
 
 </html>
