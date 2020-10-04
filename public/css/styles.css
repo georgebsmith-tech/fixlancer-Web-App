@@ -740,12 +740,22 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid #e3e6f0;
 }
 
+.grid4 {
+  display: grid;
+  grid-template-columns: 0.5fr repeat(2, 1fr) 0.6fr;
+  gap: 15px;
+}
+
 .font22 {
   font-size: 2.2rem !important;
 }
 
 .margin-minus10-top {
   margin-top: -10px !important;
+}
+
+.border-top {
+  border-top: 1px solid #ddd;
 }
 
 .border4-smooth {
@@ -1518,6 +1528,14 @@ button.header-top-btn, a.header-top-btn {
   padding-right: 10px;
 }
 
+.bg-dark-red {
+  background: #e74a3b;
+}
+
+.border-dark-red {
+  border: 1px solid #e74a3b;
+}
+
 .grid-table {
   display: grid;
   grid-template-columns: 1.5fr 3.5fr 1.8fr 1.5fr;
@@ -1540,6 +1558,15 @@ button.header-top-btn, a.header-top-btn {
   width: 100%;
   overflow-x: auto;
   padding: 5px 0px;
+}
+
+.padd5-top-bottom {
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+
+.border-radius5 {
+  border-radius: 5px;
 }
 
 .user-photo, .user-photo-profile {

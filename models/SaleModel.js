@@ -51,6 +51,10 @@ const Schema = new mongoose.Schema({
     },
     job_id: {
         type: Number
+    },
+    hasStarted: {
+        type: Boolean,
+        default: false
     }
 
 

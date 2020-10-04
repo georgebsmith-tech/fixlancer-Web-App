@@ -38,13 +38,8 @@ router.get("/my-requests", (req, res) => {
     res.render("my-requests", { notice, loggedUser })
 })
 
-
-router.get("/order-chat", async (req, res) => {
-    const loggedUser = req.session.passport ? req.session.passport.user : "Betty"
-
-
-    res.render("order-chat", { loggedUser })
-})
+const rederOrderChat = require("../controlers/dashboard/renderOrderChat")
+router.get("/order-chat", rederOrderChat)
 
 
 router.get("/job-requests", async (req, res) => {
@@ -69,7 +64,8 @@ router.get("/create-a-fix", (req, res) => {
 })
 
 router.get("/post-job-request", checkUserAuthenticated, (req, res) => {
-    res.render("post-request")
+    const loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    res.render("post-request", { loggedUser })
 })
 
 
@@ -172,6 +168,7 @@ router.get("/my-orders", async (req, res) => {
     let customOrders = []
     for (let order of orders) {
         let request = await RequestModel.findOne({ job_id: order.job_id })
+        if (!request) continue
         console.log(request)
         let sellerData = await UserModel.findOne({ username: order.seller }).select("userColor")
         // console.log(sellerData)
@@ -185,7 +182,9 @@ router.get("/my-orders", async (req, res) => {
             buyer: loggedUser,
             delivery_date: order.delivery_date,
             sellerColor: sellerData.userColor,
-            loggedUser
+            loggedUser,
+            order_id: order.order_id,
+            slug: offer.slug
 
 
         }
@@ -309,7 +308,6 @@ router.get("/my-orders/delivered", async (req, res) => {
 
         }
         customOrders.push(theFix)
-
     }
     console.log(customOrders)
 
@@ -372,6 +370,7 @@ router.get("/my-sales", async (req, res) => {
         let request = await RequestModel.findOne({ job_id: sale.job_id })
         let buyerData = await UserModel.findOne({ username: sale.buyer }).select("userColor")
         console.log(request)
+        if (!request) continue
         console.log(request.offers)
         console.log(sale.buyer)
         console.log("***************************************")
@@ -384,7 +383,9 @@ router.get("/my-sales", async (req, res) => {
             buyer: sale.buyer,
             delivery_date: sale.delivery_date,
             sellerColor: buyerData.userColor,
-            loggedUser
+            loggedUser,
+            order_id: sale.order_id,
+            slug: offer.slug
 
 
         }

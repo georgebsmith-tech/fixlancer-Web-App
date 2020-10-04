@@ -34,7 +34,7 @@
                     </div>
                     <%orders.forEach(order=>{ %>
 
-                    <%-renderSalesAndOrderDesktop(order)%>
+                    <%-renderSalesAndOrderDesktop(order,kind="order")%>
 
                     <%})%>
                     <%if(orders.length===0){%>
@@ -64,7 +64,7 @@
 
                     <%orders.forEach(order=>{ %>
 
-                    <%-renderSalesAndOrderMobile(order) %>
+                    <%-renderSalesAndOrderMobile(order,kind="order") %>
 
 
                     <%})%>

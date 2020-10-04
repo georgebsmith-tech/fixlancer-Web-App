@@ -16,19 +16,27 @@ const SalesModel = require("./models/SaleModel")
 
 
 //EJS helper functions
-app.locals.renderSalesAndOrderDesktop = (order) => {
+app.locals.renderSalesAndOrderDesktop = (order, kind = "sale") => {
+    let href;
+    if (kind === "sale") {
+        href = `/dashboard/order-chat?oid=${order.order_id}`
+    } else if (order.hasStarted) {
+        href = `/dashboard/order-chat?oid=${order.order_id}`
+    } else {
+        href = `/dashboard/order-requirements?fixid=${order.slug}`
+    }
 
     return `<div class="font14 grid-table padd20-top padd10-bottom border-bottom padd10-sides">
     <div class="flex"><span class="user-avatar"
             data-color="${order.sellerColor}">${order.seller[0].toUpperCase()}</span>${order.seller === order.loggedUser ? order.buyer : order.seller}
     </div>
     <div class="flex">
-        <a href="#" class="flex"
+        <a href="${href}" class="flex"
             style="width: 40px;height: 30px;overflow: hidden;margin-right: 10px;"><img
                 src="${order.image_url}" alt="" ">
         </a>
 
-        <a href=" #" class=" text-orange hover-underline">${order.title}</a>
+        <a href="${href}" class=" text-orange hover-underline">${order.title}</a>
     </div>
     <div class="flex">${order.delivery_date.toDateString()}</div>
     <div class="flex"> ₦${order.price}</div>
@@ -36,19 +44,28 @@ app.locals.renderSalesAndOrderDesktop = (order) => {
     `
 }
 
-app.locals.renderSalesAndOrderMobile = (order) => {
-
+app.locals.renderSalesAndOrderMobile = (order, kind = "sale") => {
+    let href;
+    if (kind === "sale") {
+        href = `/dashboard/order-chat?oid=${order.order_id}`
+    } else if (order.hasStarted) {
+        href = `/dashboard/order-chat?oid=${order.order_id}`
+    } else {
+        href = `/dashboard/order-requirements?fixid=${order.slug}`
+    }
     return `<section>
     <div class="d-order-and-sale bg-white padd20">
         <div class="grid2-1-6">
 
             <div class="fix-image-wrapper padd10" style="height:90px;">
+            <a href="${href}">
                 <img src="${order.image_url}" alt="">
+            </a>
             </div>
 
             <div class="padd10-top">
                 <header class="margin10-bottom">
-                    <a href="#"
+                    <a href="${href}"
                         class="font14 text-orange line-height hover-underline">${order.title.length > 32 ? order.title.substr(0, 32) + '...' : order.title}</a>
                 </header>
                  <div>

@@ -12,11 +12,17 @@
 
     <main class="main">
         <div>
-            <button class="request-cancellation">
+            <button
+                class="request-cancellation margin20-top bg-dark-red text-white center-text border-dark-red font12 padd10-sides padd5-top-bottom border-radius5 margin10-bottom no-outline">
                 Request Cancellation
             </button>
         </div>
-        <div>
+        <div class="font16 bg-white padd10 margin10-bottom border-smooth">
+            <div>
+                Waiting for buyer's requirements.
+            </div>
+        </div>
+        <div class="hide">
             <div>
                 <i class="fa fa-congratilations"></i>
                 <span>Your order is now in progress</span>
@@ -29,14 +35,47 @@
             </div>
 
         </div>
-        <div>
-            <header>
-                <h2 class="heading">
+
+        <div class="font16 bg-white padd10 margin10-bottom border-smooth bold text-orange">
+            Order placed-<%=order.createdAt.toDateString()%>
+        </div>
+        <div class="border-smooth">
+            <header class="bg-heading padd20">
+                <h2 class=" bold font16">
+                    <i class="fa fa-gift"></i>
                     Order Details
                 </h2>
             </header>
+            <div class="font13 bg-white padd20">
+                <div>
+
+                </div>
+                <div class="padd10 grid4 border-bottom border-top">
+                    <h4>ID</h4>
+                    <h4>Total</h4>
+                    <h4>To Deliver</h4>
+                    <h4><%=order.seller===loggedUser?"Buyer":"Seller"%></h4>
+                </div>
+                <div class="padd10 grid4">
+                    <div>
+                        #<%=order.order_id%>
+                    </div>
+                    <div>
+                        <%=order.price%>
+                    </div>
+                    <div>
+                        <%=order.delivery_date.toDateString()%>
+                    </div>
+                    <div>
+                        <%=order.buyer===loggedUser?order.seller:order.buyer%>
+                    </div>
+
+                </div>
+
+
+            </div>
         </div>
-        <div>
+        <div class="hide">
             <button>
                 Dispute Order
             </button>
