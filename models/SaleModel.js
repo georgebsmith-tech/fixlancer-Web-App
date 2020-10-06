@@ -46,7 +46,8 @@ const Schema = new mongoose.Schema({
     },
     order_id: {
         type: Number,
-        required: true
+        required: true,
+        unique: true
 
     },
     job_id: {
@@ -55,6 +56,11 @@ const Schema = new mongoose.Schema({
     hasStarted: {
         type: Boolean,
         default: false
+    }
+    ,
+    startedAt: {
+        type: Date,
+        default: Date.now
     }
 
 

@@ -184,7 +184,8 @@ router.get("/my-orders", async (req, res) => {
             sellerColor: sellerData.userColor,
             loggedUser,
             order_id: order.order_id,
-            slug: offer.slug
+            slug: offer.slug,
+            hasStarted: order.hasStarted
 
 
         }

@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
         // console.log(ago)
     }
 
-    const recipient = orderChats[0].from === loggedUser ? orderChats[0].to : orderChats[0].from
+    const recipient = order_mod.seller === loggedUser ? order_mod.buyer : order_mod.seller
 
     res.render("order-chat", { chats: orderChats, order: order_mod, loggedUser, recipient, online: true, timeElapse, ago })
 

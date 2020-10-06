@@ -8,51 +8,59 @@
 
 <body>
     <%- include('./partials/header.ejs') %>
+    <input type="hidden" class="order-id" value="<%=order_id%>">
     <main>
         <div class="text-white bg-green font20 padd10 border-smooth margin20-top">
             Thanks for your Order.
         </div>
-        <h1 class="margin20-bottom">
-            Requirements
-        </h1>
-        <div class="bg-white padd10 card-shadow">
-            <header>
+
+        <div class="bg-white card-shadow border-smooth margin10-top">
+            <h1 class="bg-heading padd20 bold font16" style="margin-top: 0px;">
+                Requirements
+            </h1>
+            <div class="padd10">
+
+
+                <header>
+                    <div>
+                        <div class="font15">The seller request for the following to be provided before start
+                            working
+                            on your order:</div>
+                        <p class="bold font15 padd10">
+                            <%=data.requirements%>
+
+                        </p>
+
+                    </div>
+                </header>
                 <div>
-                    <div class="padd10 font15">The seller request for the following to be provided before start working
-                        on your order:</div>
-                    <p class="bold padd10 font15">
-                        <%=data.requirements%>
-
-                    </p>
-
+                    <fieldset>
+                        <textarea name="" id="requirements" cols="30" rows="5"
+                            placeholder=" Provide the neccessary requiremnts for the order. Be detailed as possible and/or attch a file...."></textarea>
+                    </fieldset>
                 </div>
-            </header>
-            <div>
-                <fieldset>
-                    <textarea name="" id="" cols="30" rows="5"
-                        placeholder=" Provide the neccessary requiremnts for the order. Be detailed as possible and/or attch a file...."></textarea>
-                </fieldset>
-            </div>
-            <div>
-                <div style="margin-bottom: -30px;margin-top: -20px;" class="flex-start">
-                    <i class="fa fa-paperclip font20 attach-requirement padd20 block" aria-hidden="true"
-                        title="attach a file" style="cursor: pointer;"></i>
+                <div>
+                    <div style="margin-bottom: -30px;margin-top: -20px;" class="flex-start">
+                        <i class="fa fa-paperclip font20 attach-requirement padd20 block" aria-hidden="true"
+                            title="attach a file" style="cursor: pointer;"></i>
 
+                    </div>
+                    <div class="file-name font14 margin20-top">
+
+                    </div>
+                    <input type="file" style="visibility:hidden;height: 0px;" class="hidden-attachment">
                 </div>
-                <div class="file-name font14 margin20-top">
+                <div>
+                    <div class="font14 padd10">
+                        By clicking <span class="bold">Start Order</span> i aggree the information i provided is
+                        complete.
+                        Any further changes may be subject to extra cost.
+                    </div>
+                    <div class="padd10">
 
-                </div>
-                <input type="file" style="visibility:hidden;height: 0px;" class="hidden-attachment">
-            </div>
-            <div>
-                <div class="font14 padd10">
-                    By clicking <span class="bold">Start Order</span> i aggree the information i provided is complete.
-                    Any further changes may be subject to extra cost.
-                </div>
-                <div class="padd10">
+                        <button class="button-green full-width start-order">Start Order</button>
 
-                    <button class="button-green full-width" disabled>Start Order</button>
-
+                    </div>
                 </div>
             </div>
         </div>

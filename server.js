@@ -23,7 +23,7 @@ app.locals.renderSalesAndOrderDesktop = (order, kind = "sale") => {
     } else if (order.hasStarted) {
         href = `/dashboard/order-chat?oid=${order.order_id}`
     } else {
-        href = `/dashboard/order-requirements?fixid=${order.slug}`
+        href = `/dashboard/order-requirements?fixid=${order.slug}&oid=${order.order_id}`
     }
 
     return `<div class="font14 grid-table padd20-top padd10-bottom border-bottom padd10-sides">
@@ -51,7 +51,7 @@ app.locals.renderSalesAndOrderMobile = (order, kind = "sale") => {
     } else if (order.hasStarted) {
         href = `/dashboard/order-chat?oid=${order.order_id}`
     } else {
-        href = `/dashboard/order-requirements?fixid=${order.slug}`
+        href = `/dashboard/order-requirements?fixid=${order.slug}&oid=${order.order_id}`
     }
     return `<section>
     <div class="d-order-and-sale bg-white padd20">
@@ -179,6 +179,7 @@ const session = require("express-session")
 const initialize = require("./configuration/passportConfig")
 
 //Routes imports
+const requirementsRoutes = require("./APIRoutes/requirementsRoutes")
 const dashboardRoutes = require("./pagesRoutes/dashboardRoutes")
 const usersRoute = require("./APIRoutes/users")
 const orderChatsRoutes = require("./APIRoutes/orderChatRoutes")
@@ -590,6 +591,7 @@ app.use("/api/deposits", depositRoutes)
 app.use("/api/refunds", refundRoutes)
 app.use("/api/transactions", transactionRoutes)
 app.use("/api/orderChats", orderChatsRoutes)
+app.use("/api/requirements", requirementsRoutes)
 
 
 

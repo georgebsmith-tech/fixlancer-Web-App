@@ -669,6 +669,11 @@ h1,h2,h3,h4,h5,h6{
 
 }
 
+.padd10-top-bottom{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .grid4{
   display: grid;
   grid-template-columns: 0.5fr repeat(2,1fr) 0.6fr;
