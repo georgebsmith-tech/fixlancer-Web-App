@@ -57,31 +57,33 @@
             </div>
             <%if(summary.summary[2][1]!==0){%>
 
-            <div class="bg-white padd10 circle font15 flex-between margin10-top border">
-            
-                <div>
-                    <i class="fa fa-shopping-cart" aria-hidden="true" style="color: #dddfeb;"></i>
-                    <span> Ongoing Sales</span>
+            <div class="bg-white padd10 circle font15  margin10-top border">
+                <a href="/dashboard/my-sales" class="flex-between">
+                    <div>
+                        <i class="fa fa-shopping-cart" aria-hidden="true" style="color: #dddfeb;"></i>
+                        <span> Ongoing Sales</span>
 
-                </div>
-                <div class="padd5-right">
-                    <%=summary.summary[2][1]%>
-                </div>
+                    </div>
+                    <div class="padd5-right">
+                        <%=summary.summary[2][1]%>
+                    </div>
 
 
             </div>
+            </a>
+
             <%}%>
             <%if(summary.summary[3][1]!==0){%>
             <div class="bg-white padd10 circle font15  margin10-top border">
-        <a href="/dashboard/my-orders" class="flex-between">
-                <div>
-                    <i class="fas fa-sort-amount-up" aria-hidden="true" style="color: #dddfeb;"></i>
-                    <span> Ongoing Orders</span>
+                <a href="/dashboard/my-orders" class="flex-between">
+                    <div>
+                        <i class="fas fa-sort-amount-up" aria-hidden="true" style="color: #dddfeb;"></i>
+                        <span> Ongoing Orders</span>
 
-                </div>
-                <div class="padd5-right">
-                    <%=summary.summary[3][1]%>
-                </div>
+                    </div>
+                    <div class="padd5-right">
+                        <%=summary.summary[3][1]%>
+                    </div>
                 </a>
 
 

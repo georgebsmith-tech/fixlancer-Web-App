@@ -17,11 +17,21 @@
 # }
 
 
-post http://localhost:3000/api/deposits
+get http://localhost:5000/api/orderChats
 Content-Type: application/json
 
 {
     "username":"Betty3",
     "amount":4000
 }
+
+# post http://localhost:5000/api/orderChats
+# Content-Type: application/json
+
+# {
+#     "from":"Betty",
+#     "to":"Smith",
+#     "message":"Nothing to say",
+#     "order_id":2
+# }
 

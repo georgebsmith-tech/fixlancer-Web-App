@@ -181,6 +181,7 @@ const initialize = require("./configuration/passportConfig")
 //Routes imports
 const dashboardRoutes = require("./pagesRoutes/dashboardRoutes")
 const usersRoute = require("./APIRoutes/users")
+const orderChatsRoutes = require("./APIRoutes/orderChatRoutes")
 const noticesRoute = require("./APIRoutes/noticesRoutes")
 const categoriesRoute = require("./APIRoutes/categories")
 const pushNoticeRoute = require("./APIRoutes/pushRoutes")
@@ -189,7 +190,6 @@ const affiliatesRoute = require("./APIRoutes/affiliates")
 const revenuesRoutes = require("./APIRoutes/revenueRoutes")
 const refundRoutes = require("./APIRoutes/refundRoutes")
 const depositRoutes = require("./APIRoutes/depositRoutes")
-const apiDocumentationRoutes = require("./APIRoutes/apiDocumentationRoutes")
 const fixRoutes = require("./APIRoutes/fixRoutes")
 const requestRoutes = require("./APIRoutes/requestsRoutes")
 const salesRoutes = require("./APIRoutes/salesRoutes")
@@ -203,6 +203,7 @@ const FixModel = require("./models/FixModel");
 
 const RefundModel = require("./models/RefundsModel")
 const RequestModel = require("./models/RequestModel")
+const OrderChatModel = require("./models/OrderChatModel")
 
 
 app.use(flash())
@@ -259,98 +260,154 @@ app.use((req, res, next) => {
 
 
 let users = {}
+let userChatUsers = {}
 let activeChats = {}
-// function changeMessageToRead(data, io) {
-//     ConversationModel.find({ read: false, from: data.receiver, to: data.name })
-//         .then(data => {
-//             data.forEach(async chat => {
-//                 let readData = await ConversationModel.findOneAndUpdate({ _id: chat._id }, { read: true }, { new: true })
-//             })
+function changeMessageToRead(data, io) {
+    ConversationModel.find({ read: false, from: data.receiver, to: data.name })
+        .then(data => {
+            data.forEach(async chat => {
+                let readData = await ConversationModel.findOneAndUpdate({ _id: chat._id }, { read: true }, { new: true })
+            })
 
-//         })
-//     io.to(users[data.receiver]).emit("message-read", { read: true })
-// }
-// function changeUserStatus(socket, user) {
-//     socket.broadcast.emit("user-online", user)
-// }
-
-
-// io.on("connection", socket => {
+        })
+    io.to(users[data.receiver]).emit("message-read", { read: true })
+}
+function changeUserStatus(socket, user) {
+    socket.broadcast.emit("user-online", user)
+}
 
 
-//     socket.on("chat-active", function (data) {
-
-//         if (data.active)
-//             activeChats[data.user] = data.receiver
-//         else {
-//             delete activeChats[data.user]
-
-//         }
-
-//     })
+io.on("connection", socket => {
 
 
-//     socket.on("new-user", (data) => {
-//         // console.log("New user: " + data.name)
-//         users[data.name] = socket.id
-//         changeMessageToRead(data, io)
-//         changeUserStatus(socket, data.name)
-//         // console.log(users)
-//         socket.broadcast.emit("new-user", data.name)
-//         io.to(users[data.name]).emit("online-users", Object.keys(users))
+    socket.on("chat-active", function (data) {
 
-//     })
+        if (data.active)
+            activeChats[data.user] = data.receiver
+        else {
+            delete activeChats[data.user]
 
-//     socket.on("user-offline", function (user) {
-//         socket.broadcast.emit("user-offline", user)
-//     })
-//     socket.on("user-online", function (user) {
-//         changeUserStatus(socket, user)
-//     })
+        }
 
-//     socket.on("disconnect", (msg) => {
-
-//         let usernames = Object.keys(users)
-//         for (let x = 0; x < usernames.length; x++) {
-//             if (users[usernames[x]] === socket.id) {
-//                 delete users[usernames[x]]
-//                 break
-//             }
-//         }
-//     })
-//     socket.on("typing", function (data) {
-//         io.to(users[data.receiver]).emit("typing-status", data.name)
-//     })
-//     socket.on("stopped-typing", function (user) {
-//         socket.broadcast.emit("stopped-typing", user)
-//     })
-
-//     socket.on("chat", async function (data) {
-//         let read;
-//         let socketId = users[data.receiver]
-//         io.to(socketId).emit("chat", { sender: data.sender, message: data.message })
-//         if (activeChats[data.receiver] === data.sender) {
-//             io.to(users[data.sender]).emit("message-sent", { status: "seen" })
-//             read = true
-//         } else {
-//             io.to(users[data.sender]).emit("message-sent", { status: "sent" })
-//             read = false
-//         }
-//         const record = {
-//             from: data.sender,
-//             to: data.receiver,
-//             message: data.message,
-//             read
-//         }
-//         // console.log(record)
-
-//         const converse = new ConversationModel(record)
-//         const newConverse = await converse.save()
-//         // console.log(newConverse)
+    })
 
 
-//     })
-// })
+    socket.on("new-user", (data) => {
+        // console.log("New user: " + data.name)
+        users[data.name] = socket.id
+        changeMessageToRead(data, io)
+        changeUserStatus(socket, data.name)
+        // console.log(users)
+        socket.broadcast.emit("new-user", data.name)
+        io.to(users[data.name]).emit("online-users", Object.keys(users))
+
+    })
+
+    socket.on("order-new-user", (data) => {
+        // console.log("New user: " + data.name)
+        console.log(data)
+        userChatUsers[data.sender] = socket.id
+        // changeMessageToRead(data, io)
+        // changeUserStatus(socket, data.name)
+        // // console.log(users)
+        // socket.broadcast.emit("new-user", data.name)
+        // io.to(users[data.name]).emit("online-users", Object.keys(users))
+
+    })
+
+    socket.on("user-offline", function (user) {
+        socket.broadcast.emit("user-offline", user)
+    })
+    socket.on("user-online", function (user) {
+        changeUserStatus(socket, user)
+    })
+
+    socket.on("disconnect", (msg) => {
+
+        let usernames = Object.keys(users)
+        for (let x = 0; x < usernames.length; x++) {
+            if (users[usernames[x]] === socket.id) {
+                delete users[usernames[x]]
+                break
+            }
+        }
+    })
+
+    //order chat
+    socket.on("order-typing", function (data) {
+
+        console.log(userChatUsers)
+        io.to(userChatUsers[data.receiver]).emit("order-typing-status", data.sender)
+    })
+    //inbox
+    socket.on("typing", function (data) {
+        io.to(users[data.receiver]).emit("typing-status", data.name)
+    })
+    socket.on("stopped-typing", function (user) {
+        socket.broadcast.emit("stopped-typing", user)
+    })
+
+    //order
+    socket.on("order-stopped-typing", function (user) {
+        socket.broadcast.emit("order-stopped-typing", user)
+    })
+
+    socket.on("chat", async function (data) {
+        let read;
+        let socketId = users[data.receiver]
+        io.to(socketId).emit("chat", { sender: data.sender, message: data.message })
+        if (activeChats[data.receiver] === data.sender) {
+            io.to(users[data.sender]).emit("message-sent", { status: "seen" })
+            read = true
+        } else {
+            io.to(users[data.sender]).emit("message-sent", { status: "sent" })
+            read = false
+        }
+        const record = {
+            from: data.sender,
+            to: data.receiver,
+            message: data.message,
+            read
+        }
+        // console.log(record)
+
+        const converse = new ConversationModel(record)
+        const newConverse = await converse.save()
+        // console.log(newConverse)
+
+
+    })
+
+    //order
+    socket.on("order-chat", async function (data) {
+        let read;
+        let socketId = users[data.receiver]
+        io.to(socketId).emit("order-chat", { sender: data.sender, message: data.message })
+
+        if (activeChats[data.receiver] === data.sender) {
+            io.to(users[data.sender]).emit("order-message-sent", { status: "seen" })
+            read = true
+        } else {
+            io.to(users[data.sender]).emit("order-message-sent", { status: "sent" })
+            read = false
+        }
+        const record = {
+            order_id: data.orderID,
+            from: data.sender,
+            to: data.receiver,
+            message: data.message,
+            read
+        }
+        console.log(record)
+
+
+        const ordercahat = new OrderChatModel(record)
+        const newOrderChat = await ordercahat.save()
+        console.log(newOrderChat)
+
+
+    })
+})
 
 
 const checkUserAuthenticated = require("./middleware/userIsAuthenticated");
@@ -532,6 +589,9 @@ app.use("/api/revenues", revenuesRoutes)
 app.use("/api/deposits", depositRoutes)
 app.use("/api/refunds", refundRoutes)
 app.use("/api/transactions", transactionRoutes)
+app.use("/api/orderChats", orderChatsRoutes)
+
+
 
 
 const PORT = process.env.PORT || 5000

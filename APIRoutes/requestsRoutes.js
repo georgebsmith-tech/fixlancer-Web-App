@@ -58,7 +58,7 @@ router.get("/", async (req, res) => {
     console.log(req.query)
     const Auser = req.query.a_user
     if (Auser) {
-        let user = req.session.passport.user
+        let user = req.session.passport ? req.session.passport.user : "Betty"
         const data = await RequestModel.find({ username: user })
         return res.status(200).json({
             number_of_records: data.length,

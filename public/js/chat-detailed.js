@@ -87,7 +87,7 @@
     });
     document.querySelector(".send-chat-button").addEventListener("click", (e) => {
 
-        console.log("clicked")
+
         let message = messageInput.value
         if (message === "") {
             messageInput.style.border = "1px solid red"
@@ -96,7 +96,7 @@
         }
         messageInput.style.border = "1px solid #ddd"
         document.querySelector(".chat-input-error").classList.add("hide")
-        console.log(message)
+
         // return
         let state;
         if (document.querySelector(".online-status-text").textContent === "Active now") state = "seen"

@@ -19,8 +19,6 @@
                     createTransaction(buyer, data)
                         .then(data => {
                             location.href = `/dashboard/order-requirements?fixid=${this.dataset.titleslug}`
-
-
                             // console.log(data)
                         })
 
