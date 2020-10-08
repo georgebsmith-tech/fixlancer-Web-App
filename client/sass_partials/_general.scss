@@ -667,6 +667,17 @@ h1,h2,h3,h4,h5,h6{
 .bg-dark-blue{
   background:#5e849f!important;
 }
+.display-flex{
+  display: flex;
+}
+.flex-column{
+  flex-direction: column;
+}
+
+.margin30-sides{
+  margin-left: 30px!important;
+  margin-right: 30px!important;
+}
 
 .border-dark-blue{
   border: 1px solid #5e849f!important;

@@ -10,9 +10,57 @@
 
     const requirementsDetailed = document.querySelector(".requirements-detailed")
     const requirementsToggle = document.querySelector(".requirements-toggle")
+    const secondsHolder = document.getElementById("seconds")
+    const minutesHolder = document.getElementById("minutes")
+    const hoursHolder = document.getElementById("hours")
+    const daysHolder = document.getElementById("days")
+
+
+
+    function timeHelperFunction(token, tokenHolder, tokenModifier) {
+        if (token - 1 === 0) {
+            tokenHolder.textContent = "60"
+            if (tokenModifier)
+                tokenModifier()
+
+        }
+        else if (`${token - 1}`.length === 1) {
+            tokenHolder.textContent = `0${token - 1}`
+
+        } else {
+            tokenHolder.textContent = token - 1
+        }
+
+    }
+
+    function modifyDays() {
+        let days = daysHolder.textContent * 1
+        timeHelperFunction(days, daysHolder)
+
+
+    }
+
+    function modifyHours() {
+        let hours = hoursHolder.textContent * 1
+        timeHelperFunction(hours, hoursHolder, modifyDays)
+
+
+    }
+    function modifyMinutes() {
+        let minutes = minutesHolder.textContent * 1
+        timeHelperFunction(minutes, minutesHolder, modifyHours)
+    }
+    let orderTimer = setInterval(() => {
+        let seconds = secondsHolder.textContent * 1
+        timeHelperFunction(seconds, secondsHolder, modifyMinutes)
+
+    }, 1000)
+
+    seconds
     let flag = true
     if (requirementsToggle) {
         requirementsToggle.addEventListener("click", function () {
+
             if (flag) {
                 this.querySelector(".fa").classList.remove("fa-angle-down")
                 this.querySelector(".fa").classList.add("fa-angle-up")

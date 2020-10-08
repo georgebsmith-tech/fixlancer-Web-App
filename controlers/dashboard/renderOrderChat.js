@@ -6,19 +6,19 @@ module.exports = async (req, res) => {
     const order_id = req.query.oid
     const loggedUser = req.session.passport ? req.session.passport.user : "Betty"
     const order = await SaleModel.findOne({ order_id })
-    console.log(order)
+
     const request = await RequestModel.findOne({ job_id: order.job_id })
     const offer = request.offers.find((offers) => (offers.username === order.buyer || offers.username === order.seller))
     const order_mod = { ...order.toObject() }
     order_mod.price = offer.price
     let requirements = await RequirementsModel.findOne({ order_id })
-    console.log(requirements)
+
 
 
     let date = new Date()
 
     const orderChats = await OrderChat.find({ order_id })
-    console.log(orderChats)
+
 
     let timeElapse = parseInt((date) / (1000 * 60))
     if ((timeElapse - 5) > 60 * 24 * 7) {
@@ -42,6 +42,25 @@ module.exports = async (req, res) => {
         // console.log(ago)
     }
 
+    let delivery_date = parseInt((order_mod.delivery_date - date) / 1000)
+    let days = parseInt(delivery_date / (60 * 60 * 24))
+    delivery_date = delivery_date % (60 * 60 * 24)
+
+    let hours = parseInt((delivery_date) / (60 * 60))
+    delivery_date = delivery_date % (60 * 60)
+
+    let minutes = parseInt(delivery_date / 60)
+    let seconds = delivery_date % (60)
+
+
+    let timer = {
+        days,
+        hours,
+        minutes,
+        seconds
+    }
+
+
     const recipient = order_mod.seller === loggedUser ? order_mod.buyer : order_mod.seller
     const context = {
         chats: orderChats,
@@ -51,7 +70,8 @@ module.exports = async (req, res) => {
         online: true,
         timeElapse,
         ago,
-        requirements
+        requirements,
+        timer
     }
 
     res.render("order-chat", context)
