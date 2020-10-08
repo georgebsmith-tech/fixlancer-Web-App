@@ -16,6 +16,14 @@ const SalesModel = require("./models/SaleModel")
 
 
 //EJS helper functions
+
+app.locals.getDateAndTime = (date) => {
+    let months = ["Jan", "Feb", "Mar", "Apr", "MAy", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    let hr = date.getHours() >= 13 ? date.getHours() - 12 : date.getHours()
+    let period = date.getHours() >= 12 ? "pm" : "am"
+    let newDate = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()} ${hr}:${date.getMinutes()}${period}`
+    return newDate
+}
 app.locals.renderSalesAndOrderDesktop = (order, kind = "sale") => {
     let href;
     if (kind === "sale") {

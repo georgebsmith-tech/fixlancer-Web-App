@@ -740,6 +740,14 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid #e3e6f0;
 }
 
+.bg-dark-blue {
+  background: #5e849f !important;
+}
+
+.border-dark-blue {
+  border: 1px solid #5e849f !important;
+}
+
 .border-grren {
   border: 1px solid #1cc88a !important;
 }
@@ -916,6 +924,10 @@ main {
   background: #1cc88a;
   padding: 10px;
   color: #fff;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .center-text {

@@ -1,6 +1,7 @@
 const SaleModel = require("../../models/SaleModel")
 const RequestModel = require("../../models/RequestModel")
 const OrderChat = require("../../models/OrderChatModel")
+const RequirementsModel = require("../../models/RequirementModel")
 module.exports = async (req, res) => {
     const order_id = req.query.oid
     const loggedUser = req.session.passport ? req.session.passport.user : "Betty"
@@ -10,6 +11,8 @@ module.exports = async (req, res) => {
     const offer = request.offers.find((offers) => (offers.username === order.buyer || offers.username === order.seller))
     const order_mod = { ...order.toObject() }
     order_mod.price = offer.price
+    let requirements = await RequirementsModel.findOne({ order_id })
+    console.log(requirements)
 
 
     let date = new Date()
@@ -40,7 +43,17 @@ module.exports = async (req, res) => {
     }
 
     const recipient = order_mod.seller === loggedUser ? order_mod.buyer : order_mod.seller
+    const context = {
+        chats: orderChats,
+        order: order_mod,
+        loggedUser,
+        recipient,
+        online: true,
+        timeElapse,
+        ago,
+        requirements
+    }
 
-    res.render("order-chat", { chats: orderChats, order: order_mod, loggedUser, recipient, online: true, timeElapse, ago })
+    res.render("order-chat", context)
 
 }

@@ -8,6 +8,33 @@
     const msgMainContainer = document.querySelector(".message-container")
     msgMainContainer.scrollTop = document.querySelector(".message-container").scrollHeight
 
+    const requirementsDetailed = document.querySelector(".requirements-detailed")
+    const requirementsToggle = document.querySelector(".requirements-toggle")
+    let flag = true
+    if (requirementsToggle) {
+        requirementsToggle.addEventListener("click", function () {
+            if (flag) {
+                this.querySelector(".fa").classList.remove("fa-angle-down")
+                this.querySelector(".fa").classList.add("fa-angle-up")
+                flag = !flag
+
+            } else {
+                this.querySelector(".fa").classList.add("fa-angle-down")
+                this.querySelector(".fa").classList.remove("fa-angle-up")
+                flag = !flag
+
+            }
+
+            // requirementsDetailed.classList.toggle("hide")
+            requirementsDetailed.classList.toggle("font14")
+            requirementsDetailed.classList.toggle("padd10")
+        })
+    }
+
+
+
+
+
 
     sendMessageBTN.addEventListener("click", function () {
         const message = messageHolder.value.trim()
