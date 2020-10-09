@@ -13,6 +13,7 @@
     <input type="hidden" class="sender" value="<%=loggedUser%>">
     <input type="hidden" class="receiver" value="<%=recipient%>">
     <input type="hidden" class="order-id" value="<%=order.order_id%>">
+    <input type="hidden" class="timer" value="<%=timer.timeIt%>">
 
 
 
@@ -199,6 +200,13 @@
                     <i class="fas fa-hourglass-start text-orange font18"></i>
                     Your Order is now in progress
                 </div>
+                <%if(!timer.timeIt){%>
+
+
+                <div style="margin: 5px 50px;border-bottom:4px solid #e74a3b;padding-bottom: 5px; ">
+                    Late
+                </div>
+                <%}else{%>
                 <div class="grid4 center-text margin30-sides border-smooth padd10">
                     <div class="display-flex flex-column">
                         <span class="bold font20 text-orange" id="days">
@@ -226,44 +234,45 @@
                     </div>
 
                 </div>
-            </div>
-
-            <%}%>
-                            <div class="font13 bg-white padd20">
-                                <div>
-
-                                </div>
-                                <div class="padd10 grid4 border-bottom border-top">
-                                    <h4>ID</h4>
-                                    <h4>Total</h4>
-                                    <h4>To Deliver</h4>
-                                    <h4><%=order.seller===loggedUser?"Buyer":"Seller"%></h4>
-        </div>
-        <div class="padd10 grid4">
-            <div>
-                #<%=order.order_id%>
-            </div>
-            <div>
-                <%=order.price%>
-            </div>
-            <div>
-                <%=order.delivery_date.toDateString()%>
-            </div>
-            <div>
-                <%=order.buyer===loggedUser?order.seller:order.buyer%>
-            </div>
-
+                <%}%>
         </div>
 
+        <%}%>
+                <div class="font13 bg-white padd20">
+                    <div>
 
-        </div>
-        </div>
-        <div class="margin20-top">
-            <button
-                class="blocck text-white center-text padd10 bg-dark-blue bold no-outline border-dark-blue full-width">
-                Dispute Order
-            </button>
-        </div>
+                    </div>
+                    <div class="padd10 grid4 border-bottom border-top">
+                        <h4>ID</h4>
+                        <h4>Total</h4>
+                        <h4>To Deliver</h4>
+                        <h4><%=order.seller===loggedUser?"Buyer":"Seller"%></h4>
+                    </div>
+                    <div class="padd10 grid4">
+                        <div>
+                            #<%=order.order_id%>
+                        </div>
+                        <div>
+                            <%=order.price%>
+                        </div>
+                        <div>
+                            <%=order.delivery_date.toDateString()%>
+                        </div>
+                        <div>
+                            <%=order.buyer===loggedUser?order.seller:order.buyer%>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="margin20-top">
+                <button
+                    class="blocck text-white center-text padd10 bg-dark-blue bold no-outline border-dark-blue full-width">
+                    Dispute Order
+                </button>
+            </div>
 
     </main>
     <%- include('./partials/footer.ejs') %>

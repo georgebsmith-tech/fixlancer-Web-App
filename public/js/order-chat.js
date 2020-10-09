@@ -17,9 +17,9 @@
 
 
 
-    function timeHelperFunction(token, tokenHolder, tokenModifier) {
+    function timeHelperFunction(token, tokenHolder, tokenModifier, maxToken) {
         if (token - 1 === 0) {
-            tokenHolder.textContent = "60"
+            tokenHolder.textContent = maxToken
             if (tokenModifier)
                 tokenModifier()
 
@@ -42,21 +42,26 @@
 
     function modifyHours() {
         let hours = hoursHolder.textContent * 1
-        timeHelperFunction(hours, hoursHolder, modifyDays)
+        timeHelperFunction(hours, hoursHolder, modifyDays, 24)
 
 
     }
     function modifyMinutes() {
         let minutes = minutesHolder.textContent * 1
-        timeHelperFunction(minutes, minutesHolder, modifyHours)
+        timeHelperFunction(minutes, minutesHolder, modifyHours, 60)
     }
     let orderTimer = setInterval(() => {
+        if (document.querySelector(".timer").value === "false") {
+            clearInterval(orderTimer)
+            return
+
+        }
+
         let seconds = secondsHolder.textContent * 1
-        timeHelperFunction(seconds, secondsHolder, modifyMinutes)
+        timeHelperFunction(seconds, secondsHolder, modifyMinutes, 60)
 
     }, 1000)
 
-    seconds
     let flag = true
     if (requirementsToggle) {
         requirementsToggle.addEventListener("click", function () {

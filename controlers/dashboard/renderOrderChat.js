@@ -41,8 +41,14 @@ module.exports = async (req, res) => {
         ago = `${parseInt(timeElapse - 5)}m`
         // console.log(ago)
     }
+    let timeIt = true
 
     let delivery_date = parseInt((order_mod.delivery_date - date) / 1000)
+    if (delivery_date <= 0) {
+        timeIt = false
+
+
+    }
     let days = parseInt(delivery_date / (60 * 60 * 24))
     delivery_date = delivery_date % (60 * 60 * 24)
 
@@ -57,7 +63,8 @@ module.exports = async (req, res) => {
         days,
         hours,
         minutes,
-        seconds
+        seconds,
+        timeIt
     }
 
 
