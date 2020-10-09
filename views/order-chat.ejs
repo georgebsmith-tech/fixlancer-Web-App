@@ -256,7 +256,7 @@
                             <%=order.price%>
                         </div>
                         <div>
-                            <%=order.delivery_date.toDateString()%>
+                            <%=getDate(order.delivery_date)%>
                         </div>
                         <div>
                             <%=order.buyer===loggedUser?order.seller:order.buyer%>

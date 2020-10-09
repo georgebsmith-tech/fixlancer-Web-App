@@ -17,12 +17,22 @@ const SalesModel = require("./models/SaleModel")
 
 //EJS helper functions
 
-app.locals.getDateAndTime = (date) => {
+const getDate = (date) => {
+    if (!date)
+        return "N/A"
     let months = ["Jan", "Feb", "Mar", "Apr", "MAy", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    let newDate = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
+    return newDate
+}
+app.locals.getDate = (date) => {
+    return getDate(date)
+
+}
+
+app.locals.getDateAndTime = (date) => {
     let hr = date.getHours() >= 13 ? date.getHours() - 12 : date.getHours()
     let period = date.getHours() >= 12 ? "pm" : "am"
-    let newDate = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()} ${hr}:${date.getMinutes()}${period}`
-    return newDate
+    return getDate(date) + ` ${hr}:${date.getMinutes()}${period}`
 }
 app.locals.renderSalesAndOrderDesktop = (order, kind = "sale") => {
     let href;
@@ -41,12 +51,12 @@ app.locals.renderSalesAndOrderDesktop = (order, kind = "sale") => {
     <div class="flex">
         <a href="${href}" class="flex"
             style="width: 40px;height: 30px;overflow: hidden;margin-right: 10px;"><img
-                src="${order.image_url}" alt="" ">
+                src="${order.image_url}"  alt="image of the fix: ${order.title.substr(0, 50) + '...'}">
         </a>
 
         <a href="${href}" class=" text-orange hover-underline">${order.title}</a>
     </div>
-    <div class="flex">${order.delivery_date.toDateString()}</div>
+    <div class="flex">${getDate(order.startedAt)}</div>
     <div class="flex"> ₦${order.price}</div>
 </div>
     `
@@ -67,7 +77,7 @@ app.locals.renderSalesAndOrderMobile = (order, kind = "sale") => {
 
             <div class="fix-image-wrapper padd10" style="height:90px;">
             <a href="${href}">
-                <img src="${order.image_url}" alt="">
+                <img src="${order.image_url}" alt="image of the fix: ${order.title.substr(0, 50) + '...'}">
             </a>
             </div>
 
@@ -85,7 +95,7 @@ app.locals.renderSalesAndOrderMobile = (order, kind = "sale") => {
                     <div class="date">
                         <i class="fa fa-calendar font12" aria-hidden="true"></i>
                         
-                            ${order.delivery_date.toDateString()}</span>
+                            ${getDate(order.startedAt)}</span>
                         <span class=
                         "hide">
                             <i class="fa fa-star font16"></i><span class="font16"> 5

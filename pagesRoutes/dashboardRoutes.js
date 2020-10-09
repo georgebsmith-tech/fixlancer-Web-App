@@ -185,7 +185,8 @@ router.get("/my-orders", async (req, res) => {
             loggedUser,
             order_id: order.order_id,
             slug: offer.slug,
-            hasStarted: order.hasStarted
+            hasStarted: order.hasStarted,
+            startedAt: order.startedAt
 
 
         }

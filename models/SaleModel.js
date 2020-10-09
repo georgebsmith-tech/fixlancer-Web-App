@@ -60,7 +60,7 @@ const Schema = new mongoose.Schema({
     ,
     startedAt: {
         type: Date,
-        default: Date.now
+        default: null
     }
 
 
