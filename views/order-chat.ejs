@@ -9,6 +9,28 @@
 
 <body>
 
+    <div class="cancellation-modal hide">
+        <div class="bg-white border-smooth" style="height: fit-content;max-width: 500px;">
+            <header class="bg-heading bold padd20 center-text margin20-bottom" style="position: relative;">
+                <h2 class="font16">Confirm Cancellation</h2>
+                <i class="fa fa-close modal-close close-request-modal font15"></i>
+
+            </header>
+            <div class="center-text padd20">
+                <div>
+                    <button
+                        class="border-smooth padd10 padd5-top-bottom font15 bg-dark-red text-white pointer no-outline hover-red">Yes
+                        Cancel</button>
+                </div>
+                <div class="font14 margin20-top">
+                    When you request a mutual cancellation, your order is not cancelled immediately. The buyer is given
+                    2 days to accept or decline your offer to cancel
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <!-- hidden inputs -->
     <input type="hidden" class="sender" value="<%=loggedUser%>">
     <input type="hidden" class="receiver" value="<%=recipient%>">

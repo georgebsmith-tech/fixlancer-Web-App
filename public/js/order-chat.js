@@ -14,6 +14,23 @@
     const minutesHolder = document.getElementById("minutes")
     const hoursHolder = document.getElementById("hours")
     const daysHolder = document.getElementById("days")
+    const cancellationModal = document.querySelector(".cancellation-modal")
+    const requestCancellationBTN = document.querySelector(".request-cancellation")
+    const closeRequestBTN = document.querySelector(".close-request-modal")
+
+    if (closeRequestBTN) {
+        closeRequestBTN.addEventListener("click", function () {
+            cancellationModal.classList.add("hide")
+        })
+    }
+
+
+
+    if (requestCancellationBTN) {
+        requestCancellationBTN.addEventListener("click", function () {
+            cancellationModal.classList.remove("hide")
+        })
+    }
 
 
 
