@@ -8,8 +8,52 @@
 </head>
 
 <body>
+    <div class="delivery-modal the-modal hide">
+        <div class="bg-white border-smooth full-width" style="height: fit-content;max-width: 500px;">
+            <header class="flex-between bg-heading padd10">
+                <div class="font16 bold">
+                    <i class="fa fa-gift"></i>
+                    <span>Deliver Work</span>
 
-    <div class="cancellation-modal hide">
+                </div>
+                <div>
+                    <i class="fa fa-close modal-close close-delivery-modal font15"></i>
+                </div>
+            </header>
+            <div class="padd20">
+                <div class="font14 margin20-top margin20-bottom">
+                    <i class="fa fa-exclamation-circle"></i>
+                    <span> Sharing contact details is strictly not allowed here</span>
+                </div>
+                <div>
+                    <fieldset>
+                        <textarea name="" id="" cols="30" rows="5"></textarea>
+                    </fieldset>
+                </div>
+                <div class="flex-start flex-wrap ">
+                    <input type="file" style="width: 200px;"
+                        class="padd10 padd5-top-bottom border-smooth margin5-top margin5-right font12">
+                    <input type="file" style="width: 200px;"
+                        class="padd10 padd5-top-bottom border-smooth margin5-top margin5-right font12">
+                    <input type="file" style="width: 200px;"
+                        class="padd10 padd5-top-bottom border-smooth margin5-top margin5-right font12">
+                    <input type="file" style="width: 200px;"
+                        class="padd10 padd5-top-bottom border-smooth margin5-top margin5-right font12">
+                    <input type="file" style="width: 200px;"
+                        class="padd10 padd5-top-bottom border-smooth margin5-top margin5-right font12">
+                </div>
+                <div>
+                    <button
+                        class="margin30-top bg-green text-white center-text border-grren font16 padd10-sides padd5-top-bottom border-radius5 margin10-bottom no-outline">
+                        Deliver Work
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="cancellation-modal the-modal hide">
         <div class="bg-white border-smooth" style="height: fit-content;max-width: 500px;">
             <header class="bg-heading bold padd20 center-text margin20-bottom" style="position: relative;">
                 <h2 class="font16">Confirm Cancellation</h2>
@@ -52,7 +96,7 @@
             <%if(order.seller===loggedUser){%>
             <div>
                 <button
-                    class="request-cancellation margin10-top bg-green text-white center-text border-grren font12 padd10-sides padd5-top-bottom border-radius5 margin10-bottom no-outline">
+                    class="request-delivery margin10-top bg-green text-white center-text border-grren font12 padd10-sides padd5-top-bottom border-radius5 margin10-bottom no-outline">
                     Deliver Work
                 </button>
             </div>

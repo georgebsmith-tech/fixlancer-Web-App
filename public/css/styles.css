@@ -1185,18 +1185,25 @@ i.fa.fa-star {
   background-color: red;
 }
 
-.modal-close {
+.close-request-modal {
   position: absolute;
   right: 10px;
   top: 10px;
+}
+
+.modal-close, .close-request-modal {
   padding: 10px;
   border-radius: 5px;
 }
-.modal-close:hover {
+.modal-close:hover, .close-request-modal:hover {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.cancellation-modal {
+.flex-wrap {
+  flex-wrap: wrap !important;
+}
+
+.the-modal {
   display: flex;
   justify-content: center;
   position: fixed;

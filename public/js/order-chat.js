@@ -17,9 +17,31 @@
     const cancellationModal = document.querySelector(".cancellation-modal")
     const requestCancellationBTN = document.querySelector(".request-cancellation")
     const closeRequestBTN = document.querySelector(".close-request-modal")
+    const deliveryModal = document.querySelector(".delivery-modal")
+    const deliveryModalBTN = document.querySelector(".request-delivery")
+    const closeDeliveryBTN = document.querySelector(".close-delivery-modal")
+
+
+    if (closeDeliveryBTN) {
+        closeDeliveryBTN.addEventListener("click", function () {
+
+            deliveryModal.classList.add("hide")
+        })
+    }
+
+
+
+    if (deliveryModalBTN) {
+        deliveryModalBTN.addEventListener("click", function () {
+            deliveryModal.classList.remove("hide")
+        })
+    }
+
+
 
     if (closeRequestBTN) {
         closeRequestBTN.addEventListener("click", function () {
+            console.log("request")
             cancellationModal.classList.add("hide")
         })
     }
