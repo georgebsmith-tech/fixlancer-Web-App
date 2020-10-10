@@ -20,6 +20,16 @@
     const deliveryModal = document.querySelector(".delivery-modal")
     const deliveryModalBTN = document.querySelector(".request-delivery")
     const closeDeliveryBTN = document.querySelector(".close-delivery-modal")
+    const disputeOrderBTN = document.querySelector(".dispute-order")
+    const disputeSlideOutContainer = document.querySelector(".dispute-hide")
+
+
+    disputeOrderBTN.addEventListener("click", function () {
+        console.log("Dispute")
+        disputeSlideOutContainer.classList.toggle("dispute-slide-in")
+        disputeSlideOutContainer.classList.toggle("dispute-slide-out")
+    })
+
 
 
     if (closeDeliveryBTN) {

@@ -1,0 +1,15 @@
+.dispute-hide{
+    
+    transition: 1s;
+}
+
+.dispute-slide-in{
+    opacity: 0;
+    height:0;
+}
+
+.dispute-slide-out{
+    
+    height:300px;
+    opacity: 1;
+}
