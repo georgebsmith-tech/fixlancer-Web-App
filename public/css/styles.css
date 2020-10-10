@@ -1217,6 +1217,10 @@ i.fa.fa-star {
   padding-top: 120px;
 }
 
+.delivery-modal.the-modal {
+  padding-top: 60px;
+}
+
 .invisible {
   visibility: hidden;
 }
