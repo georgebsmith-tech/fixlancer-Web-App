@@ -1,15 +1,23 @@
 .dispute-hide{
     
-    transition: 1s;
+    transition: 0.6s;
 }
 
 .dispute-slide-in{
+    font-size: 0!important;
     opacity: 0;
     height:0;
+    fieldset{
+        height: 0;
+    }
 }
 
 .dispute-slide-out{
     
     height:300px;
     opacity: 1;
+    font-size: 16px!important;
+    fieldset{
+        height: fit-content;
+    }
 }
