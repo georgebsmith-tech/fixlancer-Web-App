@@ -22,6 +22,23 @@
     const closeDeliveryBTN = document.querySelector(".close-delivery-modal")
     const disputeOrderBTN = document.querySelector(".dispute-order")
     const disputeSlideOutContainer = document.querySelector(".dispute-hide")
+    const offerExtrasModal = document.querySelector(".offer-extras-modal")
+
+    const closeOfferExtrasModal = document.querySelector(".close-offer-extra-modal")
+
+    if (closeOfferExtrasModal)
+        closeOfferExtrasModal.addEventListener("click", function () {
+            offerExtrasModal.classList.add("hide")
+
+        })
+
+
+    const offerExtrasModalBTN = document.querySelector(".offer-extra")
+    if (offerExtrasModalBTN)
+        offerExtrasModalBTN.addEventListener("click", function () {
+            offerExtrasModal.classList.remove("hide")
+
+        })
 
 
     disputeOrderBTN.addEventListener("click", function () {

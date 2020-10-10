@@ -1552,6 +1552,24 @@ button.header-top-btn, a.header-top-btn {
   display: block;
 }
 
+.border-light-blue {
+  border: 1px solid #36b9cc !important;
+}
+
+.border5-radius {
+  border-radius: 6px !important;
+}
+
+.text-light-blue {
+  color: #36b9cc !important;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 10px;
+}
+
 .anchor-hover-blue-underline:hover {
   color: #36b9cc;
   text-decoration: underline;

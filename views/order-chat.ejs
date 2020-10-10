@@ -53,6 +53,59 @@
 
     </div>
 
+    <div class="offer-extras-modal the-modal hide">
+        <div class="bg-white border-smooth full-width" style="height: fit-content;max-width: 500px;">
+            <header class="flex-between bg-heading padd10">
+                <div class="font16 ">
+                    <i class="fa fa-gift"></i>
+                    <span class="bold">Offer Extras</span>
+
+                </div>
+                <div>
+                    <i class="fa fa-close modal-close close-offer-extra-modal font15"></i>
+                </div>
+            </header>
+            <div class="padd20">
+                <div class="font12 margin10-top margin20-bottom line-height">
+                    This is a way to offer extra services without creating a new order
+                </div>
+                <div>
+                    <fieldset>
+                        <input type="text" placeholder="What are you offering?">
+                    </fieldset>
+                </div>
+                <div>
+                    <div class="grid2">
+                        <fieldset>
+                            <select name="" id="" class="bg-white">
+                                <option value="" class="bg-white">Extra Days</option>
+                            </select>
+                        </fieldset>
+
+                        <fieldset>
+                            <input type="text" placeholder="Extra Price">
+                        </fieldset>
+
+                    </div>
+                </div>
+
+                <div>
+                    <button class=" font14 button-green full-width">
+                        Send
+                    </button>
+                </div>
+                <div class="text-red font12 margin20-top margin20-bottom">
+                    * Enter price without any comma or naira sign
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
     <div class="cancellation-modal the-modal hide">
         <div class="bg-white border-smooth" style="height: fit-content;max-width: 500px;">
             <header class="bg-heading bold padd20 center-text margin20-bottom" style="position: relative;">
@@ -245,121 +298,132 @@
                         class="font12 text-red hide chat-input-error"> <i class="fa fa-exclamation text-red"></i>
                         Message input field can no be empty</small>
                 </div>
-                <div style="margin-top: 5px;" class="flex-between">
-                    <div>
-                        <i class="fa fa-paperclip font16"></i>
-                        <span class="font12">Multiple files allowed</span>
+                <div>
+                    <div style="margin-top: 5px;" class="flex-between">
+                        <div>
+                            <i class="fa fa-paperclip font16"></i>
+                            <span class="font12">Multiple files allowed</span>
+                        </div>
+                        <button class="button send-chat-button">Send</button>
                     </div>
-                    <button class="button send-chat-button">Send</button>
+                    <%if(order.seller===loggedUser){%>
+                    <div>
+
+                        <button
+                            class="font13 center-text offer-extra border-light-blue border5-radius text-light-blue bg-white padd5-top-bottom padd10-sides full-width no-outline">Offer
+                            Extra</button>
+
+                    </div>
+                    <%}%>
                 </div>
             </div>
             <%}%>
-                        <div class="border-smooth">
-                            <header class="bg-heading padd20">
-                                <h2 class=" bold font16">
-                                    <i class="fa fa-gift"></i>
-                                    Order Details
-                                </h2>
-                            </header>
-                            <%if(order.hasStarted){%>
-            <div class="bg-white ">
-                <div class="font16 padd10 bold center-text">
-                    <i class="fas fa-hourglass-start text-orange font18"></i>
-                    Your Order is now in progress
-                </div>
-                <%if(!timer.timeIt){%>
+                    <div class="border-smooth">
+                        <header class="bg-heading padd20">
+                            <h2 class=" bold font16">
+                                <i class="fa fa-gift"></i>
+                                Order Details
+                            </h2>
+                        </header>
+                        <%if(order.hasStarted){%>
+                        <div class="bg-white ">
+                            <div class="font16 padd10 bold center-text">
+                                <i class="fas fa-hourglass-start text-orange font18"></i>
+                                Your Order is now in progress
+                            </div>
+                            <%if(!timer.timeIt){%>
 
 
-                <div style="margin: 5px 50px;border-bottom:4px solid #e74a3b;padding-bottom: 5px; ">
-                    Late
-                </div>
-                <%}else{%>
-                <div class="grid4 center-text margin30-sides border-smooth padd10">
-                    <div class="display-flex flex-column">
-                        <span class="bold font20 text-orange" id="days">
-                            <%=timer.days%>
-                        </span>
-                        <span>DAYS</span>
-                    </div>
-                    <div class="display-flex flex-column">
-                        <span class="bold font20 text-orange" id="hours">
-                            <%=timer.hours%>
-                        </span>
-                        <span>HOURS</span>
-                    </div>
-                    <div class="display-flex flex-column">
-                        <span class="bold font20 text-orange" id="minutes">
-                            <%=timer.minutes%>
-                        </span>
-                        <span>MINUTES</span>
-                    </div>
-                    <div class="display-flex flex-column">
-                        <span class="bold font20 text-orange" id="seconds">
-                            <%=timer.seconds%>
-                        </span>
-                        <span>SECONDS</span>
-                    </div>
+                            <div style="margin: 5px 50px;border-bottom:4px solid #e74a3b;padding-bottom: 5px; ">
+                                Late
+                            </div>
+                            <%}else{%>
+                            <div class="grid4 center-text margin30-sides border-smooth padd10">
+                                <div class="display-flex flex-column">
+                                    <span class="bold font20 text-orange" id="days">
+                                        <%=timer.days%>
+                                    </span>
+                                    <span>DAYS</span>
+                                </div>
+                                <div class="display-flex flex-column">
+                                    <span class="bold font20 text-orange" id="hours">
+                                        <%=timer.hours%>
+                                    </span>
+                                    <span>HOURS</span>
+                                </div>
+                                <div class="display-flex flex-column">
+                                    <span class="bold font20 text-orange" id="minutes">
+                                        <%=timer.minutes%>
+                                    </span>
+                                    <span>MINUTES</span>
+                                </div>
+                                <div class="display-flex flex-column">
+                                    <span class="bold font20 text-orange" id="seconds">
+                                        <%=timer.seconds%>
+                                    </span>
+                                    <span>SECONDS</span>
+                                </div>
 
-                </div>
-                <%}%>
+                            </div>
+                            <%}%>
         </div>
 
         <%}%>
-                <div class="font13 bg-white padd20">
-                    <div>
+                            <div class="font13 bg-white padd20">
+                                <div>
 
-                    </div>
-                    <div class="padd10 grid4 border-bottom border-top">
-                        <h4>ID</h4>
-                        <h4>Total</h4>
-                        <h4>To Deliver</h4>
-                        <h4><%=order.seller===loggedUser?"Buyer":"Seller"%></h4>
-                    </div>
-                    <div class="padd10 grid4">
-                        <div>
-                            #<%=order.order_id%>
+                                </div>
+                                <div class="padd10 grid4 border-bottom border-top">
+                                    <h4>ID</h4>
+                                    <h4>Total</h4>
+                                    <h4>To Deliver</h4>
+                                    <h4><%=order.seller===loggedUser?"Buyer":"Seller"%></h4>
+                                </div>
+                                <div class="padd10 grid4">
+                                    <div>
+                                        #<%=order.order_id%>
+                                    </div>
+                                    <div>
+                                        <%=order.price%>
+                                    </div>
+                                    <div>
+                                        <%=getDate(order.delivery_date)%>
+                                    </div>
+                                    <div>
+                                        <%=order.buyer===loggedUser?order.seller:order.buyer%>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
                         </div>
                         <div>
-                            <%=order.price%>
+                            <div class="margin20-top">
+                                <button
+                                    class="blocck text-white center-text padd10 bg-dark-blue bold no-outline border-dark-blue full-width dispute-order">
+                                    Dispute Order
+                                </button>
+                            </div>
+                            <div class="padd20 padd10-top dispute-hide dispute-slide-in">
+                                <div>
+                                    <p>Having issues with this order?</p>
+                                    <p class="padd10-top">Open a dispute below, an admin will come in to assist</p>
+                                </div>
+                                <div class="margin40-top">
+                                    <fieldset>
+                                        <textarea name="" id="" cols="30" rows="4"
+                                            placeholder="Be detailed as possible..." class="font16"></textarea>
+                                    </fieldset>
+                                </div>
+                                <div>
+                                    <button
+                                        class="blocck text-white center-text bg-dark-blue bold no-outline border-dark-blue full-width border-smooth padd10 font16 padd5-top-bottom">
+                                        Dispute
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <%=getDate(order.delivery_date)%>
-                        </div>
-                        <div>
-                            <%=order.buyer===loggedUser?order.seller:order.buyer%>
-                        </div>
-
-                    </div>
-
-
-                </div>
-            </div>
-            <div>
-                <div class="margin20-top">
-                    <button
-                        class="blocck text-white center-text padd10 bg-dark-blue bold no-outline border-dark-blue full-width dispute-order">
-                        Dispute Order
-                    </button>
-                </div>
-                <div class="padd20 padd10-top dispute-hide dispute-slide-in">
-                    <div>
-                        <p>Having issues with this order?</p>
-                        <p class="padd10-top">Open a dispute below, an admin will come in to assist</p>
-                    </div>
-                    <div class="margin40-top">
-                        <fieldset>
-                            <textarea name="" id="" cols="30" rows="4" placeholder="Be detailed as possible..."
-                                class="font16"></textarea>
-                        </fieldset>
-                    </div>
-                    <div>
-                        <button
-                            class="blocck text-white center-text bg-dark-blue bold no-outline border-dark-blue full-width border-smooth padd10 font16 padd5-top-bottom">
-                            Dispute
-                        </button>
-                    </div>
-                </div>
-            </div>
 
     </main>
     <%- include('./partials/footer.ejs') %>
