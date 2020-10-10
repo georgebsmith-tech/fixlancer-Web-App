@@ -67,7 +67,8 @@
                         Cancel</button>
                 </div>
                 <div class="font14 margin20-top">
-                    When you request a mutual cancellation, your order is not cancelled immediately. The buyer is given
+                    When you request a mutual cancellation, your order is not cancelled immediately. The
+                    <%=order.seller===loggedUser?"buyer":"seller"%> is given
                     2 days to accept or decline your offer to cancel
                 </div>
             </div>
