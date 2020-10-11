@@ -221,7 +221,7 @@
 
                         <span style="width: 20px;height: 20px;margin-right: 5px;"
                             class="font13 flex-center circle text-white user-icon bold"><%= recipient[0] %></span>
-                        <span class="bold font13 margin5-right"><%= recipient %></span>
+                        <a  href="/u/<%=recipient%>" class="bold font13 margin5-right text-link-with-hover"><%= recipient %></a>
                         <% if(online || 5>timeElapse){ %>
                         <i class="fa fa-circle user-online margin5-right online-status-icon"
                             style="font-size: 1.3rem;"></i>
@@ -299,7 +299,7 @@
                         Message input field can no be empty</small>
                 </div>
                 <div>
-                    <div style="margin-top: 5px;" class="flex-between">
+                    <div class="flex-between margin10-top">
                         <div>
                             <i class="fa fa-paperclip font16 margin10-right"></i>
                             <%if(order.seller===loggedUser){%>
@@ -313,7 +313,7 @@
                             <%}%>
                            
                         </div>
-                        <button class="button send-chat-button">Send</button>
+                        <button class="font13 send-message padd10-sides padd5-top-bottom border5-radius text-white bg-green no-outline border-green">Send</button>
                     </div>
                    
                 </div>
@@ -326,6 +326,14 @@
                                         Order Details
                                     </h2>
                                 </header>
+                                <div class="grid2-1-3 margin50-sides margin5-bottom margin5-top">
+                                    <div>
+                                        <img src="<%=order.imageURL%>" alt="image">
+                                    </div>
+                                    <div class="bold font20 ">
+<%=order.title%>
+                                    </div>
+                                </div>
                                 <%if(order.hasStarted){%>
                                 <div class="bg-white ">
                                     <div class="font16 padd10 bold center-text hide">
@@ -417,7 +425,7 @@
                                                 </div>
 
                                             </div>
-                                            <%if(order.seller===loggedUser){%>
+                                            <%if(order.buyer===loggedUser){%>
 
                                             <p class="font11 margin10-top">
                                                 Enter the amount in percentage you want to release to the seller
