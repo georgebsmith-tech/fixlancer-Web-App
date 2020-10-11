@@ -301,188 +301,192 @@
                 <div>
                     <div style="margin-top: 5px;" class="flex-between">
                         <div>
-                            <i class="fa fa-paperclip font16"></i>
-                            <span class="font12">Multiple files allowed</span>
+                            <i class="fa fa-paperclip font16 margin10-right"></i>
+                            <%if(order.seller===loggedUser){%>
+
+
+                            <button
+                                class="font13 center-text offer-extra border-light-blue border5-radius text-light-blue bg-white padd5-top-bottom padd10-sides no-outline">Offer
+                                Extra</button>
+
+
+                            <%}%>
+                           
                         </div>
                         <button class="button send-chat-button">Send</button>
                     </div>
-                    <%if(order.seller===loggedUser){%>
-                    <div>
-
-                        <button
-                            class="font13 center-text offer-extra border-light-blue border5-radius text-light-blue bg-white padd5-top-bottom padd10-sides full-width no-outline">Offer
-                            Extra</button>
-
-                    </div>
-                    <%}%>
+                   
                 </div>
             </div>
             <%}%>
-                    <div class="border-smooth">
-                        <header class="bg-heading padd20">
-                            <h2 class=" bold font16">
-                                <i class="fa fa-gift"></i>
-                                Order Details
-                            </h2>
-                        </header>
-                        <%if(order.hasStarted){%>
-                        <div class="bg-white ">
-                            <div class="font16 padd10 bold center-text">
-                                <i class="fas fa-hourglass-start text-orange font18"></i>
-                                Your Order is now in progress
-                            </div>
-                            <%if(!timer.timeIt){%>
+                            <div class="border-smooth bg-white">
+                                <header class="bg-heading padd20 margin20-bottom">
+                                    <h2 class=" bold font16">
+                                        <i class="fa fa-gift"></i>
+                                        Order Details
+                                    </h2>
+                                </header>
+                                <%if(order.hasStarted){%>
+                                <div class="bg-white ">
+                                    <div class="font16 padd10 bold center-text hide">
+                                        <i class="fas fa-hourglass-start text-orange font18"></i>
+                                        Your Order is now in progress
+                                    </div>
+                                    <%if(!timer.timeIt){%>
 
 
-                            <div style="margin: 5px 50px;border-bottom:4px solid #e74a3b;padding-bottom: 5px; ">
-                                Late
-                            </div>
-                            <%}else{%>
-                            <div class="grid4 center-text margin30-sides border-smooth padd10">
-                                <div class="display-flex flex-column">
-                                    <span class="bold font20 text-orange" id="days">
-                                        <%=timer.days%>
-                                    </span>
-                                    <span>DAYS</span>
-                                </div>
-                                <div class="display-flex flex-column">
-                                    <span class="bold font20 text-orange" id="hours">
-                                        <%=timer.hours%>
-                                    </span>
-                                    <span>HOURS</span>
-                                </div>
-                                <div class="display-flex flex-column">
-                                    <span class="bold font20 text-orange" id="minutes">
-                                        <%=timer.minutes%>
-                                    </span>
-                                    <span>MINUTES</span>
-                                </div>
-                                <div class="display-flex flex-column">
-                                    <span class="bold font20 text-orange" id="seconds">
-                                        <%=timer.seconds%>
-                                    </span>
-                                    <span>SECONDS</span>
-                                </div>
+                                    <div style="margin: 5px 50px;border-bottom:4px solid #e74a3b;padding-bottom: 5px; ">
+                                        Late
+                                    </div>
+                                    <%}else{%>
+                                    <div class="grid4 center-text margin30-sides border-smooth padd10">
+                                        <div class="display-flex flex-column">
+                                            <span class="bold font20 text-orange" id="days">
+                                                <%=timer.days%>
+                                            </span>
+                                            <span>DAYS</span>
+                                        </div>
+                                        <div class="display-flex flex-column">
+                                            <span class="bold font20 text-orange" id="hours">
+                                                <%=timer.hours%>
+                                            </span>
+                                            <span>HOURS</span>
+                                        </div>
+                                        <div class="display-flex flex-column">
+                                            <span class="bold font20 text-orange" id="minutes">
+                                                <%=timer.minutes%>
+                                            </span>
+                                            <span>MINUTES</span>
+                                        </div>
+                                        <div class="display-flex flex-column">
+                                            <span class="bold font20 text-orange" id="seconds">
+                                                <%=timer.seconds%>
+                                            </span>
+                                            <span>SECONDS</span>
+                                        </div>
 
-                            </div>
-                            <%}%>
+                                    </div>
+                                    <%}%>
         </div>
 
         <%}%>
-                            <div class="bg-white">
+                                    <div class="bg-white">
 
 
-                                <div class="font13 bg-white padd20">
-                                    <div>
+                                        <div class="font13 bg-white padd20">
+                                            <div>
 
-                                    </div>
-                                    <div class="padd10 grid4 border-bottom border-top">
-                                        <h4>ID</h4>
-                                        <h4>Total</h4>
-                                        <h4>To Deliver</h4>
-                                        <h4><%=order.seller===loggedUser?"Buyer":"Seller"%></h4>
-                                    </div>
-                                    <div class="padd10 grid4">
-                                        <div>
-                                            #<%=order.order_id%>
-                                        </div>
-                                        <div>
+                                            </div>
+                                            <div class="padd10 grid4 border-bottom border-top">
+                                                <h4>ID</h4>
+                                                <h4>Total</h4>
+                                                <h4>To Deliver</h4>
+                                                <h4><%=order.seller===loggedUser?"Buyer":"Seller"%></h4>
+                                            </div>
+                                            <div class="padd10 grid4">
+                                                <div>
+                                                    #<%=order.order_id%>
+                                                </div>
+                                                <div>
 
-                                            ₦<%=order.price%>
-                                        </div>
-                                        <div>
-                                            <%=getDate(order.delivery_date)%>
-                                        </div>
-                                        <div>
-                                            <%=order.buyer===loggedUser?order.seller:order.buyer%>
-                                        </div>
+                                                    ₦<%=order.price%>
+                                                </div>
+                                                <div>
+                                                    <%=getDate(order.delivery_date)%>
+                                                </div>
+                                                <div>
+                                                    <%=order.buyer===loggedUser?order.seller:order.buyer%>
+                                                </div>
 
-                                    </div>
+                                            </div>
 
-
-                                </div>
-                                <%if(order.price>=10000){%>
-
-                                <div class="border-top padd20">
-                                    <h2 class="bold font16">
-                                        Milestone
-                                    </h2>
-                                    <div>
-                                        <div class=" font15 margin10-top">
-                                            <i class="fa fa-check text-green"></i>
-                                            <span>Milestone released:
-                                                ₦3000</span>
 
                                         </div>
+                                        <%if(order.price>=10000){%>
 
-                                    </div>
-                                    <%if(order.seller===loggedUser){%>
+                                        <div class="border-top padd20">
+                                            <h2 class="bold font16">
+                                                Milestone
+                                            </h2>
+                                            <div>
+                                                <div class=" font15 margin10-top">
+                                                    <i class="fa fa-check text-green"></i>
+                                                    <span>Milestone released:
+                                                        ₦3000</span>
 
-                                    <p class="font11 margin10-top">
-                                        Enter the amount in percentage you want to release to the seller
-                                    </p>
+                                                </div>
 
-                                    <input type="text" placeholder="Enter percent e.g 10"
-                                        class="padd10 font15 border-smooth block margin10-top no-outline full-width">
+                                            </div>
+                                            <%if(order.seller===loggedUser){%>
 
-                                    <div class="font12 margin10-top">
-                                        <p>
-                                            <small>
-                                                * Milestones released cannot be refunded
-                                            </small>
+                                            <p class="font11 margin10-top">
+                                                Enter the amount in percentage you want to release to the seller
+                                            </p>
 
-                                        </p>
-                                        <p class="margin5-top">
-                                            <small>
-                                                * It must not be higher than 10%
-                                            </small>
-                                        </p>
+                                            <input type="text" placeholder="Enter percent e.g 10"
+                                                class="padd10 font15 border-smooth block margin10-top no-outline full-width">
 
-                                    </div>
-                                    <div class="margin20-top">
-                                        <button class="text-white button-green padd10 full-width">Release</button>
-                                    </div>
-                                    <%}else{%>
-                                    <div>
+                                            <div class="font12 margin10-top">
+                                                <p>
+                                                    <small>
+                                                        * Milestones released cannot be refunded
+                                                    </small>
+
+                                                </p>
+                                                <p class="margin5-top">
+                                                    <small>
+                                                        * It must not be higher than 10%
+                                                    </small>
+                                                </p>
+
+                                            </div>
+                                            <div class="margin20-top">
+                                                <button
+                                                    class="text-white button-green padd10 full-width">Release</button>
+                                            </div>
+                                            <%}else{%>
+                                            <div>
 
 
-                                        <div class="margin10-top font14 hide">
-                                            No milestone released yet.
-                                        </div>
-                                    </div>
+                                                <div class="margin10-top font14 hide">
+                                                    No milestone released yet.
+                                                </div>
+                                            </div>
 
-                                    <%}%>
+                                            <%}%>
 
                                 </div>
                                 <%} %>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="margin20-top">
-                                    <button
-                                        class="blocck text-white center-text padd10 bg-dark-blue bold no-outline border-dark-blue full-width dispute-order">
-                                        Dispute Order
-                                    </button>
-                                </div>
-                                <div class="padd20 padd10-top dispute-hide dispute-slide-in">
-                                    <div>
-                                        <p>Having issues with this order?</p>
-                                        <p class="padd10-top">Open a dispute below, an admin will come in to assist</p>
-                                    </div>
-                                    <div class="margin40-top">
-                                        <fieldset>
-                                            <textarea name="" id="" cols="30" rows="4"
-                                                placeholder="Be detailed as possible..." class="font16"></textarea>
-                                        </fieldset>
+                                        </div>
                                     </div>
                                     <div>
-                                        <button
-                                            class="blocck text-white center-text bg-dark-blue bold no-outline border-dark-blue full-width border-smooth padd10 font16 padd5-top-bottom">
-                                            Dispute
-                                        </button>
+                                        <div class="margin20-top">
+                                            <button
+                                                class="blocck text-white center-text padd10 bg-dark-blue bold no-outline border-dark-blue full-width dispute-order">
+                                                Dispute Order
+                                            </button>
+                                        </div>
+                                        <div class="padd20 padd10-top dispute-hide dispute-slide-in">
+                                            <div>
+                                                <p>Having issues with this order?</p>
+                                                <p class="padd10-top">Open a dispute below, an admin will come in to
+                                                    assist</p>
+                                            </div>
+                                            <div class="margin40-top">
+                                                <fieldset>
+                                                    <textarea name="" id="" cols="30" rows="4"
+                                                        placeholder="Be detailed as possible..."
+                                                        class="font16"></textarea>
+                                                </fieldset>
+                                            </div>
+                                            <div>
+                                                <button
+                                                    class="blocck text-white center-text bg-dark-blue bold no-outline border-dark-blue full-width border-smooth padd10 font16 padd5-top-bottom">
+                                                    Dispute
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
 
     </main>
     <%- include('./partials/footer.ejs') %>
