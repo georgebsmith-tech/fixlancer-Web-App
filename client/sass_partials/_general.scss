@@ -798,6 +798,10 @@ h1,h2,h3,h4,h5,h6{
   border: 1px solid #1cc88a!important;
 }
 
+.text-green{
+  color:#1cc88a!important;
+}
+
 .margin5-top{
   margin-top: 5px;
 }
@@ -1504,6 +1508,8 @@ button.header-top-btn,a.header-top-btn{
   grid-template-columns: repeat(2,1fr);
   column-gap:10px;
 }
+
+
 
 .anchor-hover-blue-underline:hover{
   color: #36b9cc;
