@@ -63,7 +63,7 @@ const Schema = new mongoose.Schema({
     state: {
         type: String,
         required: true,
-        default: "ongoing" // other values are Delivered, canceled and completed
+        default: "ongoing" // other values are Delivered, cancelled and completed
     },
     order_id: {
         type: Number,

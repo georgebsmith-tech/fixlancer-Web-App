@@ -368,14 +368,13 @@ router.get("/my-sales", async (req, res) => {
     }
     let customSales = []
     for (let sale of sales) {
-        console.log(sale)
         let request = await RequestModel.findOne({ job_id: sale.job_id })
         let buyerData = await UserModel.findOne({ username: sale.buyer }).select("userColor")
-        console.log(request)
+        // console.log(request)
         if (!request) continue
-        console.log(request.offers)
-        console.log(sale.buyer)
-        console.log("***************************************")
+        // console.log(request.offers)
+        // console.log(sale.buyer)
+        // console.log("***************************************")
         let offer = request.offers.find(offer => offer.username === loggedUser)
         let theFix = {
             title: offer.title,
@@ -387,7 +386,9 @@ router.get("/my-sales", async (req, res) => {
             sellerColor: buyerData.userColor,
             loggedUser,
             order_id: sale.order_id,
-            slug: offer.slug
+            slug: offer.slug,
+            hasStarted: sale.hasStarted,
+            startedAt: sale.startedAt
 
 
         }
