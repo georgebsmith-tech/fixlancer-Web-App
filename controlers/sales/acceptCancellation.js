@@ -23,6 +23,7 @@ module.exports = async (req, res) => {
             }
         )
 
+
         console.log(salesData)
         // console.log(body)
         res.status(200).json(
