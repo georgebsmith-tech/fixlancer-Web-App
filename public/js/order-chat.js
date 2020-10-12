@@ -29,13 +29,22 @@
     const acceptCancellationBTN = document.getElementById("accept-cancellation")
     if (acceptCancellationBTN)
         acceptCancellationBTN.addEventListener("click", function () {
-            acceptCancellation()
+            acceptCancellation(this)
         })
-    async function acceptCancellation() {
+    async function acceptCancellation(object) {
+        // console.log("object")
+        // console.log(object)
+        // console.log(object.dataset)
+        // return
+
+
         const response = await fetch("/api/sales/cancellation", {
             method: "put",
             body: JSON.stringify({
-                order_id: orderID
+                order_id: orderID,
+                username: sender,
+                to: receiver,
+                chatID: object.dataset.chatid
             }),
             headers: {
                 "Content-Type": "application/json"

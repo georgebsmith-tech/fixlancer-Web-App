@@ -14,7 +14,12 @@ module.exports = async (req, res) => {
         from: username,
         to,
         type: "cancellation request",
-        message: "cancellation requested"
+        message: "cancellation requested",
+        content: {
+            accepted: false,
+            createdAt: new Date()
+
+        }
     }
     const orderChat = new OrderChatModel(chat)
     const savedChat = await orderChat.save()

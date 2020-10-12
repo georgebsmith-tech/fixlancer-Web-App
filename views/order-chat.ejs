@@ -141,13 +141,17 @@
     <%- include('./partials/header.ejs') %>
 
     <main class="main">
+
         <div class="flex-start">
+            <%if(order.cancellation.cancellation!=="pending" && order.state==="ongoing"){%>
+           
             <div class="margin10-right">
                 <button
                     class="request-cancellation margin10-top bg-dark-red text-white center-text border-dark-red font12 padd10-sides padd5-top-bottom border-radius5 margin10-bottom no-outline">
                     Request Cancellation
                 </button>
             </div>
+            <%}%>
             <%if(order.seller===loggedUser){%>
             <div>
                 <button
@@ -262,18 +266,37 @@
                                 </div>
                                
                             </div>
-                            <%if(chat.to===loggedUser){%>
+                            <%if(chat.to===loggedUser && !chat.content.accepted){%>
                                 <div class="grid2">
                                     <div class="margin10-bottom">
-                                        <button class="text-white bg-green no-outline border-green padd10 full-width border5-radius">Reject</button>
+                                        <button class="text-white bg-green no-outline border-green padd10 full-width border5-radius" data-chatid="<%=chat._id%>">Reject</button>
                                     </div>
                                     <div class="margin10-bottom">
-                                        <button class="bg-green no-outline padd10 full-width border5-radius" id="accept-cancellation" style="background-color: #f4f4f5;border:1px solid #f4f4f5">Accept</button>
+                                        <button class="bg-green no-outline padd10 full-width border5-radius" id="accept-cancellation" style="background-color: #f4f4f5;border:1px solid #f4f4f5" data-chatid="<%=chat._id%>">Accept</button>
                                     </div>
     
                                 </div>
                                 <%}%>
                             </div>
+                            <%}else if(chat.type==="accepted cancellation"){%>
+                                <div>
+                                    <div class="border-smooth margin10-top margin10-bottom padd10 " style="background-color: #eee;" >
+                                        <div style=" display: grid;grid-template-columns: 40px auto;align-items:center">
+                                        <div class="margin10-right circle border3-dark-red flex-center" style="width: 30px;height:30px;">
+                                            <i class="fa fa-close font18 text-dark-red"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="bold font13 margin10-bottom">Cancellation Accepted</h4>
+                                          
+                                            <span class="font11">Mutual cancllation of the order was accepted.</span>
+                                            
+                                        </div>
+                                    </div>
+                                        <div class="flex-end margin5-top">
+                                            <small><%=getDateAndTime(chat.createdAt)%></small>
+                                        </div>
+                                       
+                                    </div>
                     <%}else if(chat.from===loggedUser){%>
 
 
