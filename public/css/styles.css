@@ -1642,6 +1642,14 @@ button.header-top-btn, a.header-top-btn {
   border: 1px solid #e74a3b;
 }
 
+.text-dark-red {
+  color: #e74a3b;
+}
+
+.border3-dark-red {
+  border: 2px solid #e74a3b;
+}
+
 .grid-table {
   display: grid;
   grid-template-columns: 1.5fr 3.5fr 1.8fr 1.5fr;

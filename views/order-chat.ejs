@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    
     <div class="delivery-modal the-modal hide">
         <div class="bg-white border-smooth full-width" style="height: fit-content;max-width: 500px;">
             <header class="flex-between bg-heading padd10">
@@ -116,7 +117,7 @@
             <div class="center-text padd20">
                 <div>
                     <button
-                        class="border-smooth padd10 padd5-top-bottom font15 bg-dark-red text-white pointer no-outline hover-red">Yes
+                        class="border-smooth padd10 padd5-top-bottom font15 bg-dark-red text-white pointer no-outline hover-red" id="request-cancellation">Yes
                         Cancel</button>
                 </div>
                 <div class="font14 margin20-top">
@@ -177,19 +178,6 @@
 
             <%}%>
 
-        <div class="hide">
-            <div>
-                <i class="fa fa-congratilations"></i>
-                <span>Your order is now in progress</span>
-            </div>
-            <div>
-                Late
-            </div>
-            <div>
-                progress
-            </div>
-
-        </div>
         <%if(order.hasStarted){ %>
 
 
@@ -250,7 +238,43 @@
                     Order started-<%=order.startedAt.toDateString()%>
                     </div>
                     <% chats.forEach(chat=>{ %>
-                    <% if(chat.from===loggedUser){%>
+                        <%if(chat.type==="cancellation request"){%>
+                            <div>
+                            <div class="border-smooth margin10-top margin10-bottom padd10 " style="background-color: #eee;" >
+                                <div style=" display: grid;grid-template-columns: 40px auto;align-items:center">
+                                <div class="margin10-right circle border3-dark-red flex-center" style="width: 30px;height:30px;">
+                                    <i class="fa fa-close font18 text-dark-red"></i>
+                                </div>
+                                <div>
+                                    <h4 class="bold font13 margin10-bottom">Order cancellation</h4>
+                                    <%if(chat.from===loggedUser){%>
+                                        <span class="font11">
+                                            You have requested a mutual cancellation for this order.
+                                        </span>
+
+                                        <%}else{%>
+                                    <span class="font11">The <%=order.seller===loggedUser?"buyer":"seller"%> has requested a cancellation for this order.</span>
+                                    <%}%>
+                                </div>
+                            </div>
+                                <div class="flex-end margin5-top">
+                                    <small><%=getDateAndTime(chat.createdAt)%></small>
+                                </div>
+                               
+                            </div>
+                            <%if(chat.to===loggedUser){%>
+                                <div>
+                                    <div class="margin10-bottom">
+                                        <button class="text-white bg-green no-outline border-green padd10 full-width border5-radius">Reject</button>
+                                    </div>
+                                    <div class="margin10-bottom">
+                                        <button class="bg-green no-outline padd10 full-width border5-radius" style="background-color: #f4f4f5;border:1px solid #f4f4f5">Accept</button>
+                                    </div>
+    
+                                </div>
+                                <%}%>
+                            </div>
+                    <%}else if(chat.from===loggedUser){%>
 
 
                     <div class="flex-end">

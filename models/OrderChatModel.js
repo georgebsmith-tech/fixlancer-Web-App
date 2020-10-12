@@ -28,7 +28,8 @@ const Schema = new mongoose.Schema({
     },
     message: {
         type: String,
-        required: true
+        required: true,
+        default: ""
     }
     ,
     createdAt: {
@@ -46,6 +47,15 @@ const Schema = new mongoose.Schema({
     },
     order_id: {
         type: Number
+    },
+    type: {
+        type: String,
+        enum: ["cancellation request", "accepted cancellation"]
+
+    },
+    content: {
+        type: Object
+
     }
 
 })

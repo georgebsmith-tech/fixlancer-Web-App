@@ -1,5 +1,7 @@
 const router = require("express").Router()
 const SalesModel = require("../models/SaleModel")
+const requestCancellation = require("../controlers/sales/requestCancellation")
+const cancelOrder = require("../controlers/sales/cancelOrder")
 
 router.post("/", async (req, res) => {
     const reqBody = req.body
@@ -24,6 +26,12 @@ router.get("/", async (req, res) => {
         data: data
     })
 })
+
+router.put("/state", cancelOrder)
+
+
+
+router.post("/cancellation", requestCancellation)
 
 
 

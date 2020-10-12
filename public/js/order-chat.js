@@ -1,3 +1,5 @@
+
+
 (function () {
     const sendMessageBTN = document.querySelector(".send-chat-button")
     const messageHolder = document.querySelector("#message")
@@ -23,6 +25,27 @@
     const disputeOrderBTN = document.querySelector(".dispute-order")
     const disputeSlideOutContainer = document.querySelector(".dispute-hide")
     const offerExtrasModal = document.querySelector(".offer-extras-modal")
+    const requestcancellationConfirmBTN = document.getElementById("request-cancellation")
+
+    async function requestCancellation() {
+        const body = JSON.stringify({
+            order_id: orderID,
+            username: sender,
+            to: receiver
+        })
+        const response = await fetch(`/api/sales/cancellation`, {
+            method: "post",
+            body,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const data = await response.json()
+        console.log(data)
+    }
+    requestcancellationConfirmBTN.addEventListener("click", function () {
+        requestCancellation()
+    })
 
     const closeOfferExtrasModal = document.querySelector(".close-offer-extra-modal")
 

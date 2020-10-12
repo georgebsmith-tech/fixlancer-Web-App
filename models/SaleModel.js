@@ -16,6 +16,27 @@ mongoose.connect(dataBaseUrl, { useNewUrlParser: true, useUnifiedTopology: true,
 
 })
 
+const CancellationSchema = new mongoose.Schema({
+    requested: {
+        type: Boolean
+    },
+    by: {
+        type: String
+    },
+    cancellation: {
+        type: String,
+        enum: ["automatic", "rejected", "accepted", "pending"],
+        default: "pending"
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    actionTakenAt: {
+        type: Date
+    }
+})
+
 
 const Schema = new mongoose.Schema({
 
@@ -61,6 +82,9 @@ const Schema = new mongoose.Schema({
     startedAt: {
         type: Date,
         default: null
+    },
+    cancellation: {
+        type: CancellationSchema
     }
 
 

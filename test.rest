@@ -17,12 +17,12 @@
 # }
 
 
-get http://localhost:5000/api/orderChats
+post http://localhost:5000/api/sales/cancellation
 Content-Type: application/json
 
 {
-    "username":"Betty3",
-    "amount":4000
+    "username":"Smith",
+    "order_id":1
 }
 
 # post http://localhost:5000/api/orderChats
