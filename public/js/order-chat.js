@@ -27,9 +27,36 @@
     const offerExtrasModal = document.querySelector(".offer-extras-modal")
     const requestcancellationConfirmBTN = document.getElementById("request-cancellation")
     const acceptCancellationBTN = document.getElementById("accept-cancellation")
+
+
+
+    const getDate = (date) => {
+        if (!date)
+            return "N/A"
+        let months = ["Jan", "Feb", "Mar", "Apr", "MAy", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        let newDate = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
+        return newDate
+    }
+
+    const getDateAndTime = () => {
+        let date = new Date()
+        let hr = date.getHours() >= 13 ? date.getHours() - 12 : date.getHours()
+        let period = date.getHours() >= 12 ? "pm" : "am"
+        return getDate(date) + ` ${hr}:${date.getMinutes()}${period}`
+
+    }
+
+
     if (acceptCancellationBTN)
         acceptCancellationBTN.addEventListener("click", function () {
             acceptCancellation(this)
+                .then(data => {
+                    this.parentElement.parentElement.classList.add("hide")
+                    const header = "Cancellation Accepted"
+                    const notice = "Mutual cancllation of the order was accepted."
+                    attachNotice(notice, header)
+
+                })
         })
     async function acceptCancellation(object) {
         // console.log("object")
@@ -51,7 +78,7 @@
             }
         })
         const data = await response.json()
-        console.log(data)
+        return data
     }
     async function requestCancellation() {
         const body = JSON.stringify({
@@ -67,10 +94,58 @@
             }
         })
         const data = await response.json()
-        console.log(data)
+        return data
     }
+
+    function attachNotice(theNotice, header) {
+        const notice = `
+            <div class="border-smooth margin10-top margin10-bottom padd10 " style="background-color: #eee;" >
+            <div style=" display: grid;grid-template-columns: 40px auto;align-items:center">
+            <div class="margin10-right circle border3-dark-red flex-center" style="width: 30px;height:30px;">
+                <i class="fa fa-close font18 text-dark-red"></i>
+            </div>
+            <div>
+                <h4 class="bold font13 margin10-bottom">${header}</h4>
+               
+                    <span class="font11">
+                        ${theNotice}
+                    </span>
+            </div>
+        </div>
+            <div class="flex-end margin5-top">
+                <small>${getDateAndTime()}</small>
+            </div>
+           
+        </div>
+            `
+        msgMainContainer.insertAdjacentHTML("beforeend", notice)
+        msgMainContainer.scrollTop = msgMainContainer.scrollHeight
+
+
+    }
+
+
+    function appendRequestTochat(data) {
+        const notice = "You have requested a mutual cancellation for this order."
+        const header = "Order cancellation"
+        attachNotice(notice, header)
+
+
+
+
+
+    }
+    msgMainContainer.scrollTop = msgMainContainer.scrollHeight
+
     requestcancellationConfirmBTN.addEventListener("click", function () {
+
         requestCancellation()
+            .then(data => {
+
+                cancellationModal.classList.add("hide")
+                appendRequestTochat(data)
+            })
+
     })
 
     const closeOfferExtrasModal = document.querySelector(".close-offer-extra-modal")
