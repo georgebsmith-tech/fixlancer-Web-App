@@ -189,6 +189,7 @@
             .then(data => {
 
                 cancellationModal.classList.add("hide")
+                requestCancellationBTN.parentElement.classList.add("hide")
                 appendRequestTochat(data)
             })
 
