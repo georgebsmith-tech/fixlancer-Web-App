@@ -28,6 +28,7 @@
     const requestcancellationConfirmBTN = document.getElementById("request-cancellation")
     const acceptCancellationBTN = document.getElementById("accept-cancellation")
     const rejectCancellationBTN = document.getElementById("reject-cancellation")
+    const messageController = document.querySelector(".message-control")
 
     if (rejectCancellationBTN) {
         rejectCancellationBTN.addEventListener("click", function () {
@@ -36,6 +37,8 @@
                     this.parentElement.parentElement.classList.add("hide")
                     const header = "Cancellation Rejected"
                     const notice = "Mutual cancllation of the order was rejected."
+                    requestCancellationBTN.parentElement.classList.remove("hide")
+
                     attachNotice(notice, header)
 
                 })
@@ -72,6 +75,15 @@
                     this.parentElement.parentElement.classList.add("hide")
                     const header = "Cancellation Accepted"
                     const notice = "Mutual cancllation of the order was accepted."
+
+                    if (document.querySelector(".milestone-form-container"))
+                        document.querySelector(".milestone-form-container").classList.add("hide")
+                    document.querySelector(".dispute-container").classList.add("hide")
+                    document.querySelector(".timer-container").classList.add("hide")
+                    messageController.classList.add("hide")
+                    disputeOrderBTN.classList.add("hide")
+                    if (deliveryModalBTN)
+                        deliveryModalBTN.classList.add("hide")
                     attachNotice(notice, header)
 
                 })
@@ -211,12 +223,12 @@
 
         })
 
-
-    disputeOrderBTN.addEventListener("click", function () {
-        console.log("Dispute")
-        disputeSlideOutContainer.classList.toggle("dispute-slide-in")
-        disputeSlideOutContainer.classList.toggle("dispute-slide-out")
-    })
+    if (disputeOrderBTN)
+        disputeOrderBTN.addEventListener("click", function () {
+            console.log("Dispute")
+            disputeSlideOutContainer.classList.toggle("dispute-slide-in")
+            disputeSlideOutContainer.classList.toggle("dispute-slide-out")
+        })
 
 
 
@@ -324,48 +336,48 @@
 
 
 
+    if (sendMessageBTN)
+
+        sendMessageBTN.addEventListener("click", function () {
+            const message = messageHolder.value.trim()
+
+            if (message === "") {
+                messageHolder.style.border = "1px solid red"
+                document.querySelector(".chat-input-error").classList.remove("hide")
+                return
+            }
+            messageHolder.style.border = "1px solid #ddd"
+            document.querySelector(".chat-input-error").classList.add("hide")
+            let state;
+            if (document.querySelector(".online-status-text").textContent === "Active now") state = "seen"
+            else
+                state = "sent"
+            socket.emit("order-chat", { sender, receiver, message, state, orderID })
+            // return
+            const msgContainer = document.createElement("div")
+            msgContainer.classList.add("flex-end")
+            const msgWrapper = document.createElement("div")
+            msgWrapper.setAttribute("class", "padd10 message-sent font13")
+            msgContainer.appendChild(msgWrapper)
+            const div = document.createElement("div")
+            msgWrapper.appendChild(div)
+            const theMessageDiv = document.createElement("div")
+            theMessageDiv.textContent = message
+            theMessageDiv.classList.add("padd20-bottom")
+            div.appendChild(theMessageDiv)
 
 
-    sendMessageBTN.addEventListener("click", function () {
-        const message = messageHolder.value.trim()
+            // time and reading status
+            const timeDiv = document.createElement("div")
+            timeDiv.textContent = "just now"
+            timeDiv.setAttribute("class", "flex-end font10")
+            div.appendChild(timeDiv)
 
-        if (message === "") {
-            messageHolder.style.border = "1px solid red"
-            document.querySelector(".chat-input-error").classList.remove("hide")
-            return
-        }
-        messageHolder.style.border = "1px solid #ddd"
-        document.querySelector(".chat-input-error").classList.add("hide")
-        let state;
-        if (document.querySelector(".online-status-text").textContent === "Active now") state = "seen"
-        else
-            state = "sent"
-        socket.emit("order-chat", { sender, receiver, message, state, orderID })
-        // return
-        const msgContainer = document.createElement("div")
-        msgContainer.classList.add("flex-end")
-        const msgWrapper = document.createElement("div")
-        msgWrapper.setAttribute("class", "padd10 message-sent font13")
-        msgContainer.appendChild(msgWrapper)
-        const div = document.createElement("div")
-        msgWrapper.appendChild(div)
-        const theMessageDiv = document.createElement("div")
-        theMessageDiv.textContent = message
-        theMessageDiv.classList.add("padd20-bottom")
-        div.appendChild(theMessageDiv)
+            document.querySelector(".message-container").appendChild(msgContainer);
+            messageHolder.value = ""
+            msgMainContainer.scrollTop = msgMainContainer.scrollHeight
 
-
-        // time and reading status
-        const timeDiv = document.createElement("div")
-        timeDiv.textContent = "just now"
-        timeDiv.setAttribute("class", "flex-end font10")
-        div.appendChild(timeDiv)
-
-        document.querySelector(".message-container").appendChild(msgContainer);
-        messageHolder.value = ""
-        msgMainContainer.scrollTop = msgMainContainer.scrollHeight
-
-    })
+        })
 
     socket.on("order-chat", function (data) {
         const msgContainer = document.createElement("div")

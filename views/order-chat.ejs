@@ -151,7 +151,14 @@
                     Request Cancellation
                 </button>
             </div>
-            <%}%>
+            <%}else{%>
+                <div class="margin10-right hide">
+                    <button
+                        class="request-cancellation margin10-top bg-dark-red text-white center-text border-dark-red font12 padd10-sides padd5-top-bottom border-radius5 margin10-bottom no-outline">
+                        Request Cancellation
+                    </button>
+                </div>
+                <%}%>
             <%if(order.seller===loggedUser){%>
             <div>
                 <button
@@ -354,7 +361,8 @@
 
                                 </div>
             </section>
-
+<%if(order.state!=="cancelled"){%>
+  
             <div class="message-control bg-white padd10 padd10-bottom margin10-bottom border-smooth">
                 <div style="margin-top: -5px;"><em class="typing-status invisible"></em></div>
                 <div style="position:relative">
@@ -384,6 +392,7 @@
                    
                 </div>
             </div>
+            <%} %>
             <%}%>
                             <div class="border-smooth bg-white">
                                 <header class="bg-heading padd20 margin20-bottom">
@@ -413,7 +422,8 @@
                                         Late
                                     </div>
                                     <%}else{%>
-                                    <div class="grid4 center-text margin30-sides border-smooth padd10">
+                                        <%if(order.state!=="cancelled"){%>
+                                    <div class="grid4 center-text margin30-sides border-smooth padd10 timer-container">
                                         <div class="display-flex flex-column">
                                             <span class="bold font20 text-orange" id="days">
                                                 <%=timer.days%>
@@ -440,6 +450,7 @@
                                         </div>
 
                                     </div>
+                                    <%}%>
                                     <%}%>
         </div>
 
@@ -492,6 +503,9 @@
 
                                             </div>
                                             <%if(order.buyer===loggedUser){%>
+                                                <%if(order.state!=="cancelled"){%>
+                                        <div
+                                        class="milestone-form-container">
 
                                             <p class="font11 margin10-top">
                                                 Enter the amount in percentage you want to release to the seller
@@ -518,6 +532,7 @@
                                                 <button
                                                     class="text-white button-green padd10 full-width">Release</button>
                                             </div>
+                                        </div>
                                             <%}else{%>
                                             <div>
 
@@ -530,10 +545,13 @@
                                             <%}%>
 
                                 </div>
+                                <%}%>
                                 <%} %>
                                         </div>
                                     </div>
-                                    <div>
+                                    <%if(order.state!=="cancelled"){%>
+                                      
+                                    <div class="dispute-container">
                                         <div class="margin20-top">
                                             <button
                                                 class="blocck text-white center-text padd10 bg-dark-blue bold no-outline border-dark-blue full-width dispute-order">
@@ -561,6 +579,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <%}%>
 
     </main>
     <%- include('./partials/footer.ejs') %>
