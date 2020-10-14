@@ -159,7 +159,7 @@
                     </button>
                 </div>
                 <%}%>
-            <%if(order.seller===loggedUser){%>
+            <%if(order.seller===loggedUser && order.state!=="cancelled"){%>
             <div>
                 <button
                     class="request-delivery margin10-top bg-green text-white center-text border-grren font12 padd10-sides padd5-top-bottom border-radius5 margin10-bottom no-outline">

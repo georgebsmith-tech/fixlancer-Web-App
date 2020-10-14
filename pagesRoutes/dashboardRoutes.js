@@ -259,10 +259,30 @@ router.get("/my-orders/cancelled", async (req, res) => {
             buyer: loggedUser,
             delivery_date: order.delivery_date,
             sellerColor: sellerData.userColor,
-            loggedUser
+            loggedUser,
+            hasStarted: order.hasStarted,
+            slug: offer.slug,
+            startedAt: order.startedAt,
+            order_id: order.order_id
 
 
         }
+        // let theFix = {
+        //     title: offer.title,
+        //     image_url: offer.image_url,
+        //     price: offer.price,
+        //     seller: loggedUser,
+        //     buyer: sale.buyer,
+        //     delivery_date: sale.delivery_date,
+        //     sellerColor: buyerData.userColor,
+        //     loggedUser,
+        //     
+
+
+
+
+
+        // }
         customOrders.push(theFix)
 
     }
@@ -480,7 +500,11 @@ router.get("/my-sales/cancelled", async (req, res) => {
             buyer: sale.buyer,
             delivery_date: sale.delivery_date,
             sellerColor: buyerData.userColor,
-            loggedUser
+            loggedUser,
+            hasStarted: sale.hasStarted,
+            slug: offer.slug,
+            startedAt: sale.startedAt,
+            order_id: sale.order_id
 
 
         }
