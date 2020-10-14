@@ -34,8 +34,8 @@
             rejectCancellation(this)
                 .then(data => {
                     this.parentElement.parentElement.classList.add("hide")
-                    const header = "Cancellation Accepted"
-                    const notice = "Mutual cancllation of the order was accepted."
+                    const header = "Cancellation Rejected"
+                    const notice = "Mutual cancllation of the order was rejected."
                     attachNotice(notice, header)
 
                 })
@@ -134,12 +134,22 @@
     }
 
     function attachNotice(theNotice, header) {
+
+        let signeDiv;
+        if (header === "Cancellation Rejected") {
+            signeDiv = `<div class="margin10-right  flex-center">
+            <i class="fa fa-ban font18 text-dark-red"></i>
+            </div>`
+        } else {
+            signeDiv = `<div class="margin10-right circle border3-dark-red flex-center" style="width: 30px;height:30px;">
+            <i class="fa fa-close font33 text-dark-red"></i>
+        </div>`
+        }
+
         const notice = `
             <div class="border-smooth margin10-top margin10-bottom padd10 " style="background-color: #eee;" >
             <div style=" display: grid;grid-template-columns: 40px auto;align-items:center">
-            <div class="margin10-right circle border3-dark-red flex-center" style="width: 30px;height:30px;">
-                <i class="fa fa-close font18 text-dark-red"></i>
-            </div>
+            
             <div>
                 <h4 class="bold font13 margin10-bottom">${header}</h4>
                

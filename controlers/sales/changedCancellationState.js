@@ -31,13 +31,13 @@ module.exports = async (req, res) => {
             }
         )
 
-
+        const message = state === "accept" ? "accepted cancellation" : "rejected cancellation"
         const newChatData = new OrderChatModel({
             order_id,
             from,
             to,
-            message: "accepted cancellation",
-            type: "accepted cancellation",
+            message: message,
+            type: message,
             content: {
                 accpted: true,
                 acceptedAt: new Date()

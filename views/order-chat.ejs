@@ -297,6 +297,25 @@
                                         </div>
                                        
                                     </div>
+                                    <%}else if(chat.type==="rejected cancellation"){%>
+                                        <div>
+                                            <div class="border-smooth margin10-top margin10-bottom padd10 " style="background-color: #eee;" >
+                                                <div style=" display: grid;grid-template-columns: 40px auto;align-items:center">
+                                                <div class="margin10-right  flex-center">
+                                                    <i class="fa fa-ban font33 text-dark-red"></i>
+                                                </div>
+                                                <div>
+                                                    <h4 class="bold font13 margin10-bottom">Cancellation Rejected</h4>
+                                                  
+                                                    <span class="font11">Mutual cancllation of the order was rejected.</span>
+                                                    
+                                                </div>
+                                            </div>
+                                                <div class="flex-end margin5-top">
+                                                    <small><%=getDateAndTime(chat.createdAt)%></small>
+                                                </div>
+                                               
+                                            </div>
                     <%}else if(chat.from===loggedUser){%>
 
 
