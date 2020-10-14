@@ -10,6 +10,7 @@ module.exports = async (req, res) => {
         const order_id = body.order_id
         const from = body.username
         const to = body.to
+        const state = body.state
         const chatID = body.chatID
         console.log("chatID")
         console.log(chatID)
@@ -19,9 +20,9 @@ module.exports = async (req, res) => {
                 order_id
             },
             {
-                state: "cancelled",
+                state: state === "accept" ? "cancelled" : "ongoing",
                 cancellation: {
-                    cancellation: "accepted",
+                    cancellation: state === "accept" ? "accepted" : "rejected",
                     actionTakenAt: new Date()
                 }
             },

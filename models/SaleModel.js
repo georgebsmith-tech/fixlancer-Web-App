@@ -84,7 +84,8 @@ const Schema = new mongoose.Schema({
         default: null
     },
     cancellation: {
-        type: CancellationSchema
+        type: CancellationSchema,
+        default: { cancellation: null }
     }
 
 

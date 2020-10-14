@@ -27,6 +27,24 @@
     const offerExtrasModal = document.querySelector(".offer-extras-modal")
     const requestcancellationConfirmBTN = document.getElementById("request-cancellation")
     const acceptCancellationBTN = document.getElementById("accept-cancellation")
+    const rejectCancellationBTN = document.getElementById("reject-cancellation")
+
+    if (rejectCancellationBTN) {
+        rejectCancellationBTN.addEventListener("click", function () {
+            rejectCancellation(this)
+                .then(data => {
+                    this.parentElement.parentElement.classList.add("hide")
+                    const header = "Cancellation Accepted"
+                    const notice = "Mutual cancllation of the order was accepted."
+                    attachNotice(notice, header)
+
+                })
+
+        })
+    }
+
+
+
 
 
 
@@ -59,11 +77,6 @@
                 })
         })
     async function acceptCancellation(object) {
-        // console.log("object")
-        // console.log(object)
-        // console.log(object.dataset)
-        // return
-
 
         const response = await fetch("/api/sales/cancellation", {
             method: "put",
@@ -71,6 +84,7 @@
                 order_id: orderID,
                 username: sender,
                 to: receiver,
+                state: "accept",
                 chatID: object.dataset.chatid
             }),
             headers: {
@@ -80,6 +94,28 @@
         const data = await response.json()
         return data
     }
+
+    async function rejectCancellation(object) {
+
+
+        const response = await fetch("/api/sales/cancellation", {
+            method: "put",
+            body: JSON.stringify({
+                order_id: orderID,
+                username: sender,
+                to: receiver,
+                state: "reject",
+                chatID: object.dataset.chatid
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const data = await response.json()
+        return data
+    }
+
+
     async function requestCancellation() {
         const body = JSON.stringify({
             order_id: orderID,

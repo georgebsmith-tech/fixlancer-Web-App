@@ -269,7 +269,7 @@
                             <%if(chat.to===loggedUser && !chat.content.accepted){%>
                                 <div class="grid2">
                                     <div class="margin10-bottom">
-                                        <button class="text-white bg-green no-outline border-green padd10 full-width border5-radius" data-chatid="<%=chat._id%>">Reject</button>
+                                        <button class="text-white bg-green no-outline border-green padd10 full-width border5-radius" data-chatid="<%=chat._id%>" id="reject-cancellation">Reject</button>
                                     </div>
                                     <div class="margin10-bottom">
                                         <button class="bg-green no-outline padd10 full-width border5-radius" id="accept-cancellation" style="background-color: #f4f4f5;border:1px solid #f4f4f5" data-chatid="<%=chat._id%>">Accept</button>
