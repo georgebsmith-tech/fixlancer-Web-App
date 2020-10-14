@@ -25,7 +25,7 @@ const CancellationSchema = new mongoose.Schema({
     },
     cancellation: {
         type: String,
-        enum: ["automatic", "rejected", "accepted", "pending"],
+        enum: ["automatic", "rejected", "accepted", "pending", null],
         default: "pending"
     },
     createdAt: {
