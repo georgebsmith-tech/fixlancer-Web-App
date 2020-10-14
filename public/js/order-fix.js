@@ -18,7 +18,10 @@
                     sendNotice(seller, "new sale", buyer)
                     createTransaction(buyer, data)
                         .then(data => {
-                            location.href = `/dashboard/order-requirements?fixid=${this.dataset.titleslug}`
+                            const order_id = data.order_id
+                            data = data.inData
+
+                            location.href = `/dashboard/order-requirements?fixid=${this.dataset.titleslug}&oid=${order_id}`
                             // console.log(data)
                         })
 
@@ -27,18 +30,19 @@
         })
 
     async function createTransaction(username, inData) {
+        const order_id = inData.data.order_id
         const data = {
             username,
             type: "order payment",
             amount: totalPrice,
             content: {
-                order_id: inData.data.order_id,
+                order_id,
                 job_id: inData.data.job_id
             }
         }
 
         const outData = await fetchData(data, "/api/transactions")
-        return outData
+        return { outData, order_id }
 
     }
 
