@@ -29,6 +29,54 @@
     const acceptCancellationBTN = document.getElementById("accept-cancellation")
     const rejectCancellationBTN = document.getElementById("reject-cancellation")
     const messageController = document.querySelector(".message-control")
+    const sendextraBTN = document.querySelector(".send-offer")
+    const extrasPriceInput = document.querySelector(".extras-price")
+    const extrasDaysInput = document.querySelector(".extras-days")
+    const extrasHeadingInput = document.querySelector(".extras-heading")
+
+    function getExtrasBody() {
+        const extraHeading = extrasHeadingInput.value
+        const extrasPrice = extrasPriceInput.value
+        const extrasDays = extrasDaysInput.value
+        const body = JSON.stringify({
+            username: sender,
+            to: receiver,
+            price: extrasPrice,
+            days: extrasDays,
+            description: extraHeading,
+            order_id: orderID,
+            type: "extras"
+
+        })
+        return body
+
+    }
+
+    async function sendextra(body) {
+        const response = await fetch(`/api/orderchats`, {
+            method: "post",
+            body,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const data = await response.json()
+        return data
+
+
+    }
+
+    if (sendextraBTN)
+        sendextraBTN.addEventListener("click", function () {
+            const body = getExtrasBody()
+            sendextra(body)
+                .then(data => {
+                    console.log(data)
+                })
+
+
+
+        })
 
     if (rejectCancellationBTN) {
         rejectCancellationBTN.addEventListener("click", function () {

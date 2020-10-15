@@ -822,6 +822,10 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 3rem;
 }
 
+.padd20-left {
+  padding-left: 20px !important;
+}
+
 .font33 {
   font-size: 3.3rem;
 }
@@ -868,6 +872,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .font15 {
   font-size: 1.5rem;
+}
+
+.border3-left-light-blue {
+  border-left: 3px solid #36b9cc !important;
 }
 
 .bg-orange {

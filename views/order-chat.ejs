@@ -72,26 +72,29 @@
                 </div>
                 <div>
                     <fieldset>
-                        <input type="text" placeholder="What are you offering?">
+                        <input type="text" placeholder="What are you offering?" class="extras-heading">
                     </fieldset>
                 </div>
                 <div>
                     <div class="grid2">
                         <fieldset>
-                            <select name="" id="" class="bg-white">
+                            <select name="" id="" class="bg-white extras-days">
                                 <option value="" class="bg-white">Extra Days</option>
+                                <%for(let day of [1,2,3,4,5,6,7,8,9,10,11]){%>
+                                    <option value="<%=day%>"><%=day%> day(s)</option>
+                                   <%} %>
                             </select>
                         </fieldset>
 
                         <fieldset>
-                            <input type="text" placeholder="Extra Price">
+                            <input type="number" placeholder="Extra Price" class="extras-price">
                         </fieldset>
 
                     </div>
                 </div>
 
                 <div>
-                    <button class=" font14 button-green full-width">
+                    <button class=" font14 button-green full-width send-offer">
                         Send
                     </button>
                 </div>
@@ -284,6 +287,29 @@
     
                                 </div>
                                 <%}%>
+                            </div>
+                            <%}else if(chat.type==="extras"){%>
+                                <div class="bg-">
+                                   <h3 class="bold font15">Extras</h3>
+                                <div class="bg-white padd10 padd20-left margin10-bottom border5-radius border3-left-light-blue">
+                                    <div class="font14">
+                                        <div class="margin5-bottom"><%=chat.content.description%></div>
+                                        <div class="flex-between">
+                                            <div>
+                                                <span>+ <%=chat.content.days%> days</span>
+                                                <span>|</span>
+                                                <span>₦<%=chat.content.price%></span>
+
+                                            </div>
+                                            <div>
+                                                <button class="padd10-sides padd5-top-bottom border5-radius bg-green border-green text-white <%order.seller===loggedUser:'hide':''%>">Accept offer</button> 
+                                            </div>
+                                           
+                                        </div>
+                                        
+                                    </div>
+
+                                </div>
                             </div>
                             <%}else if(chat.type==="accepted cancellation"){%>
                                 <div>

@@ -50,7 +50,7 @@ const Schema = new mongoose.Schema({
     },
     type: {
         type: String,
-        enum: ["cancellation request", "accepted cancellation", "rejected cancellation"]
+        enum: ["cancellation request", "accepted cancellation", "rejected cancellation", "extras"]
 
     },
     content: {
