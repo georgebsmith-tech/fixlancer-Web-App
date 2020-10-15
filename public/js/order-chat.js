@@ -8,7 +8,7 @@
     const orderID = document.querySelector(".order-id").value
     const status = document.querySelectorAll(".typing-status");
     const msgMainContainer = document.querySelector(".message-container")
-    msgMainContainer.scrollTop = document.querySelector(".message-container").scrollHeight
+    msgMainContainer.scrollTop = msgMainContainer.scrollHeight
 
     const requirementsDetailed = document.querySelector(".requirements-detailed")
     const requirementsToggle = document.querySelector(".requirements-toggle")
@@ -52,6 +52,39 @@
 
     }
 
+    function showExtraChat(data) {
+        data = data.chat
+
+        const notice = `<div class="bg-">
+        <h3 class="bold font15">Extras</h3>
+     <div class="bg-white padd10 padd20-left margin10-bottom border5-radius border3-left-light-blue">
+         <div class="font14">
+             <div class="margin5-bottom">${data.content.description}</div>
+             <div class="flex-between">
+                 <div>
+                     <span>+ ${data.content.days} days</span>
+                     <span>|</span>
+                     <span>₦${data.content.price}</span>
+
+                 </div>
+                 <div>
+                    
+                 </div>
+                
+             </div>
+             
+         </div>
+
+     </div>
+ </div>`
+        msgMainContainer.insertAdjacentHTML("beforeend", notice)
+        msgMainContainer.scrollTop = msgMainContainer.scrollHeight
+
+
+
+
+    }
+
     async function sendextra(body) {
         const response = await fetch(`/api/orderchats`, {
             method: "post",
@@ -71,7 +104,9 @@
             const body = getExtrasBody()
             sendextra(body)
                 .then(data => {
-                    console.log(data)
+                    showExtraChat(data)
+                    offerExtrasModal.classList.add("hide")
+
                 })
 
 
