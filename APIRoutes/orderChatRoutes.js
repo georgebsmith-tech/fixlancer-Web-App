@@ -13,8 +13,11 @@ router.post("/", async (req, res) => {
 
     if (type === "extras") {
         const { username, order_id, to } = body
+        const foundMax = await OrderChatModel.find({ order_id }).sort({ extra_id: -1 }).limit(1).select("extra_id")
+        const extra_id = foundMax.length === 0 ? 1 : foundMax[0].extra_id + 1
 
         body = {
+            extra_id,
             order_id,
             from: username,
             to,

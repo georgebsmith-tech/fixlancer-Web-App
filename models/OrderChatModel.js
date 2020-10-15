@@ -56,6 +56,9 @@ const Schema = new mongoose.Schema({
     content: {
         type: Object
 
+    },
+    extra_id: {
+        type: Number
     }
 
 

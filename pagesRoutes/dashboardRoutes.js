@@ -24,6 +24,8 @@ const checkAuthenticated = require("../middleware/userIsAuthenticated");
 
 
 const renderDashboard = require("../controlers/dashboard/renderDashboard")
+const payForExtra = require("../controlers/dashboard/renderPaymentForExtra")
+
 
 const renderRequirementForm = require("../controlers/dashboard/renderRequirementsForm")
 router.get("/order-requirements", renderRequirementForm)
@@ -31,6 +33,7 @@ router.get("/order-requirements", renderRequirementForm)
 
 
 router.get("/", checkAuthenticated, renderDashboard)
+router.get("/pay-for-extra", payForExtra)
 router.get("/my-requests", (req, res) => {
     const notice = req.query.notice
     const loggedUser = req.session.passport ? req.session.passport.user : "Betty"
@@ -574,3 +577,6 @@ router.get("/:slug", async (req, res) => {
     res.render("request", { title: "title", request: requestData, loggedUser, fixes })
 })
 module.exports = router
+
+
+

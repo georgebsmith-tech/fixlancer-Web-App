@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+    <script defer src="../../js/order-fix.js"></script>
+</head>
+
+<body>
+    <input type="hidden" value="" id="job-id">
+    <input type="hidden" value="" id="delivery_days">
+
+
+    <header class="explore-header" style="background-color: white;">
+        <div class="logo-wrapper">
+            <img src="../images/logo.png" alt="">
+        </div>
+        <div class="header-caption">
+            <h1 class="font20"> Pay for Extras</h1>
+        </div>
+    </header>
+    <main class="main" style="background-color: white; padding:15px ;">
+        <div  class="flex-center">
+            <div style="max-width: 500px; width: 100%;">
+            
+        <div class="order-fix-main">
+            <div>
+                <div>
+                  
+                    <a href="/dashboard/order-chat?oid=<%=order_id%>" class="block back-btn center-text ">
+                        <i class="fa fa-angle-double-left text-link"></i>
+                        <span class="text-link">Back</span>
+                    </a>
+                  
+                </div>
+               
+            </div>
+            </div>
+            <section class="border-smooth padd10 font15">
+                <div class="flex-between" style="margin-bottom: 10px;padding: 5px 0px; border-bottom: 1px solid #ddd;">
+                    <div>
+                        Available Balance
+                    </div>
+                    <div>₦<%=availableBalance%></div>
+                </div>
+                <div class="flex-between font15" style="margin-bottom: 25px;">
+                    <div>
+                        <%=extra.content.description%>
+                    </div>
+                    <div>
+                        ₦<%=extra.content.price%>
+                    </div>
+                </div>
+                <div class="flex-between" style="margin-bottom:10px;">
+                    <div>Fee</div>
+                    <div>₦<%=fee%></div>
+                </div>
+                <div class="flex-between">
+                    <div>
+                        <strong class="bold">Total Price</strong>
+                    </div>
+                    <div class="bold total-price">
+                        ₦<%=total%>
+                    </div>
+
+                </div>
+            </section>
+            <div>
+               
+                <button class="button confirm-payment" id="order-purchase-btn" style="margin-top: 15px;"
+                    data-titleSlug="">Pay Now</button>
+               
+
+            </div>
+            <div class="font13">
+                Your payment will be processed and cannot be undone.
+            </div>
+           
+                
+               
+            </div>
+       
+        </div>
+</div>
+
+    </main>
+    
+    
+
+<div class="modal-wrapper hide">
+
+
+    <div class="order-modal padd10 ">
+        <div class="bg-white padd10 border-smooth full-width">
+            <div class="font16">
+                <h2 class="margin20-bottom margin20-top bold center-text">
+                   Just a Sec...
+                </h2>
+                <div class="font16">
+                    <div class="center-text margin30-bottom">
+                        We're working out details of your Order.
+                    </div>
+                </div>
+               
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

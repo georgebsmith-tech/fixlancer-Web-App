@@ -68,6 +68,7 @@ module.exports = async (req, res) => {
         seconds,
         timeIt
     }
+    console.log(orderChats)
 
 
     const recipient = order_mod.seller === loggedUser ? order_mod.buyer : order_mod.seller

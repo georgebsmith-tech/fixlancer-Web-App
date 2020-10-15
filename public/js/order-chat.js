@@ -52,6 +52,16 @@
 
     }
 
+    const acceptExtraBTN = document.querySelectorAll(".accept-extra")
+    if (acceptExtraBTN)
+        acceptExtraBTN.forEach(button => {
+            button.addEventListener("click", function () {
+                location.href = `/dashboard/pay-for-extra?oid=${orderID}&eid=${button.dataset.extraid}`
+            })
+
+        })
+
+
     function showExtraChat(data) {
         data = data.chat
 
