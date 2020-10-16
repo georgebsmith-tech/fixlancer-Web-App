@@ -71,30 +71,41 @@
                     This is a way to offer extra services without creating a new order
                 </div>
                 <div>
-                    <fieldset>
+                    <fieldset class="relative">
                         <input type="text" placeholder="What are you offering?" class="extras-heading">
+                        <div class="absolute-error font11 hide">
+                            <i class="fa fa-exclamation-circle text-red"></i> <small class="text-red">Please make a valid selection</small>
+                         </div>
                     </fieldset>
                 </div>
                 <div>
                     <div class="grid2">
-                        <fieldset>
+                        <fieldset class="relative">
                             <select name="" id="" class="bg-white extras-days">
-                                <option value="" class="bg-white">Extra Days</option>
+                                <option value="-1" class="bg-white">Extra Days</option>
                                 <%for(let day of [1,2,3,4,5,6,7,8,9,10,11]){%>
                                     <option value="<%=day%>"><%=day%> day(s)</option>
                                    <%} %>
                             </select>
+                            <div class="absolute-error font11 hide">
+                                <i class="fa fa-exclamation-circle text-red"></i> <small class="text-red">Please make a valid selection</small>
+                             </div>
                         </fieldset>
-
+<div class="relative">
                         <fieldset>
                             <input type="number" placeholder="Extra Price" class="extras-price">
+                          
                         </fieldset>
+                        <div class="absolute-error font11 hide">
+                            <i class="fa fa-exclamation-circle text-red"></i> <small class="text-red">Please make a valid selection</small>
+                         </div>
+                        </div>
 
                     </div>
                 </div>
 
                 <div>
-                    <button class=" font14 button-green full-width send-offer">
+                    <button class=" font14 button-green full-width send-extra-offer">
                         Send
                     </button>
                 </div>
@@ -302,7 +313,14 @@
 
                                             </div>
                                             <div>
+                                                <%if(chat.content.paid){%>
+                                                    <div class="padd10-sides border5-radius paid-border center-text paid-text padd5-top-bottom">
+                                                        <i class="fa fa-check paid-text"></i>
+                                                        Paid
+                                                    </div>
+                                                    <%}else{%>
                                                 <button class="padd10-sides accept-extra no-outline padd5-top-bottom border5-radius bg-green border-green text-white <%=order.seller===loggedUser?'hide':''%>" data-extraid="<%=chat.extra_id%>" >Accept offer</button> 
+                                                <%}%>
                                             </div>
                                            
                                         </div>

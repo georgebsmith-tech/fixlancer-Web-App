@@ -29,10 +29,13 @@
     const acceptCancellationBTN = document.getElementById("accept-cancellation")
     const rejectCancellationBTN = document.getElementById("reject-cancellation")
     const messageController = document.querySelector(".message-control")
-    const sendextraBTN = document.querySelector(".send-offer")
+    const sendextraBTN = document.querySelector(".send-extra-offer")
     const extrasPriceInput = document.querySelector(".extras-price")
     const extrasDaysInput = document.querySelector(".extras-days")
     const extrasHeadingInput = document.querySelector(".extras-heading")
+
+
+
 
     function getExtrasBody() {
         const extraHeading = extrasHeadingInput.value
@@ -111,6 +114,11 @@
 
     if (sendextraBTN)
         sendextraBTN.addEventListener("click", function () {
+            const extraHeading = extrasHeadingInput.value.trim()
+            const extrasPrice = extrasPriceInput.value.trim()
+            const extrasDays = extrasDaysInput.value
+            if (!extraHeading || !extrasPrice || extrasDays === "-1")
+                return
             const body = getExtrasBody()
             sendextra(body)
                 .then(data => {

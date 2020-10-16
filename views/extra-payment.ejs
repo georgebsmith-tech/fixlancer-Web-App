@@ -3,7 +3,7 @@
 
 <head>
     <%- include('./partials/head.ejs') %>
-    <script defer src="../../js/order-fix.js"></script>
+    <script defer src="../../js/pay-for-extra.js"></script>
 </head>
 
 <body>
@@ -67,12 +67,12 @@
             </section>
             <div>
                
-                <button class="button confirm-payment" id="order-purchase-btn" style="margin-top: 15px;"
-                    data-titleSlug="">Pay Now</button>
+                <button class="button-orange margin5-bottom full-width" id="pay-now" style="margin-top: 15px; "
+                    data-orderid="<%=order_id%>" data-extraid="<%=extra.extra_id%>">Pay Now</button>
                
 
             </div>
-            <div class="font13">
+            <div class="font13 center-text">
                 Your payment will be processed and cannot be undone.
             </div>
            

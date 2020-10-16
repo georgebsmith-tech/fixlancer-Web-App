@@ -877,6 +877,8 @@ main{
 }
 
 
+
+
 .center-text{
     text-align: center;
 }
@@ -1272,6 +1274,14 @@ background-color: rgba(0,0,0,0.6);
   margin-right: 30px;
 }
 
+.paid-text{
+  color:#1cc88a;
+}
+
+.paid-border{
+  border: 1px solid #1cc88a;
+}
+
 
 
 .border-left-danger{
@@ -1364,6 +1374,16 @@ background-color: rgba(0,0,0,0.6);
 box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
 
 }
+
+.relative{
+  position: relative;
+}
+
+// .absolute-error{
+//  margin-top: -5px;
+
+// }
+
 
 .header-buy-chopbar{
     display: none;

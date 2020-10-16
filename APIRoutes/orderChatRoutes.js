@@ -1,4 +1,7 @@
 const router = require("express").Router()
+const RevenueModel = require("../models/RevenuesModel")
+const DepositModel = require("../models/DepositsModel")
+const RefundModel = require("../models/RefundsModel")
 
 const OrderChatModel = require("../models/OrderChatModel")
 
@@ -41,11 +44,24 @@ router.post("/", async (req, res) => {
 
 router.put("/", async (req, res) => {
     const body = req.body
+    console.log(body)
+
+    const order_id = body.order_id;
+    const extra_id = body.extra_id
+    const loggedUser = req.session.passport ? req.session.passport.user : "Betty"
 
 
-    // return res.status(201).json(body)
-    const chat = new OrderChatModel(req.body)
-    const data = await chat.save()
+    const refund = await RefundModel.findOne({ username: loggedUser })
+    const deposit = await DepositModel.findOne({ username: loggedUser })
+    const revenue = await RevenueModel.findOne({ username: loggedUser })
+
+
+
+    const chat = await OrderChatModel.findOne({ extra_id, order_id })
+    const newChat = { ...chat.toObject() }
+    newChat.content.paid = true
+
+    const data = await OrderChatModel.findOneAndUpdate({ extra_id, order_id }, { content: newChat.content }, { new: true })
     res.status(201).json({ chat: data })
 })
 

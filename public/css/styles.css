@@ -1347,6 +1347,14 @@ i.fa.fa-star {
   margin-right: 30px;
 }
 
+.paid-text {
+  color: #1cc88a;
+}
+
+.paid-border {
+  border: 1px solid #1cc88a;
+}
+
 .border-left-danger {
   border-left: 3px solid #e74a3b !important;
 }
@@ -1431,6 +1439,10 @@ i.fa.fa-star {
   border: 1px solid #ddd;
   margin-top: 40px;
   box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+.relative {
+  position: relative;
 }
 
 .header-buy-chopbar {
