@@ -14,6 +14,43 @@
 </head>
 
 <body>
+    <div class="confirm-dispute-modal the-modal hide">
+        <div class="bg-white border-smooth full-width" style="height: fit-content;max-width: 500px;">
+            <header class="flex-between bg-heading padd10">
+                <div class="font16 bold">
+                    <i class="fa fa-gavel"></i>
+                    <span class="bold">Create Dispute</span>
+
+                </div>
+                <div>
+                    <i class="fa fa-close modal-close close-dispute-modal font15"></i>
+                </div>
+            </header>
+            <div class="padd20">
+                <div class="font20 margin10-top margin20-bottom center-text">
+                   Are you sure you want to create Dispute?
+                </div>
+             
+          <div class="flex-between">
+            <div>
+                <button
+                    class="margin20-top bg-green text-white center-text border-grren font16 padd10-sides padd5-top-bottom border-radius5 margin10-bottom no-outline width">
+                   No
+                </button>
+            </div>
+
+          
+                <div>
+                    <button
+                        class="margin20-top   center-text  font16 padd10-sides padd5-top-bottom border-radius5 margin10-bottom no-outline border-grey bg-grey width confirm-dispute">
+                       Yes
+                    </button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </div>
     
     <div class="delivery-modal the-modal hide">
         <div class="bg-white border-smooth full-width" style="height: fit-content;max-width: 500px;">
@@ -321,8 +358,8 @@
                                     <%=chat.message%>
                                     </div>
                                     <div class="flex-end">
-                                    <div>
-                                    now
+                                    <div class="font10">
+                                   <%=getDateAndTime(chat.createdAt)%>
                                     </div>
                                     </div>
                             
@@ -623,7 +660,7 @@
                                 <%} %>
                                         </div>
                                     </div>
-                                    <%if(order.state!=="cancelled"){%>
+                                    <%if(order.state!=="cancelled" && !order.dispute){%>
                                       
                                     <div class="dispute-container">
                                         <div class="margin20-top">

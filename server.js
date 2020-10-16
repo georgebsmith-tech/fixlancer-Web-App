@@ -423,6 +423,7 @@ io.on("connection", socket => {
                 resolved: false
             }
         }
+        const sale = await SalesModel.findOneAndUpdate({ order_id: data.orderID }, { dispute: true }, { new: true })
         console.log(record)
 
 

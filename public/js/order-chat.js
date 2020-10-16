@@ -16,7 +16,9 @@
     const minutesHolder = document.getElementById("minutes")
     const hoursHolder = document.getElementById("hours")
     const daysHolder = document.getElementById("days")
+    const disputeModal = document.querySelector(".confirm-dispute-modal")
     const cancellationModal = document.querySelector(".cancellation-modal")
+
     const requestCancellationBTN = document.querySelector(".request-cancellation")
     const closeRequestBTN = document.querySelector(".close-request-modal")
     const deliveryModal = document.querySelector(".delivery-modal")
@@ -35,14 +37,26 @@
     const extrasHeadingInput = document.querySelector(".extras-heading")
     const sendDisputeBTN = document.querySelector(".send-dispute")
     const disputeMsgInput = document.querySelector("#dispute-message")
+    const confirmDispute = document.querySelector(".confirm-dispute")
+    const closeDispute = document.querySelector(".close-dispute-modal")
 
+    closeDispute.addEventListener("click", function () {
+        disputeModal.classList.add("hide")
+    })
+    confirmDispute.addEventListener("click", function () {
+        const disputeMessage = disputeMsgInput.value.trim()
+        sendOrderChat(disputeMessage)
+
+    })
     if (sendDisputeBTN)
         sendDisputeBTN.addEventListener("click", function () {
-            const disputeMessage = disputeMsgInput.value.trim()
-            sendOrderChat(disputeMessage)
+            disputeModal.classList.remove("hide")
+
 
 
         })
+
+
     function sendOrderChat(message) {
         if (document.querySelector(".online-status-text").textContent === "Active now") state = "seen"
         else
@@ -50,6 +64,8 @@
         socket.emit("order-chat", { sender, receiver, message, state, orderID, type: "dispute" })
         attacheDsiputeNotice()
         attachMessageToPage(message)
+        document.querySelector(".dispute-container").classList.add("hide")
+        disputeModal.classList.add("hide")
         document.querySelector(".go-top").click()
 
     }

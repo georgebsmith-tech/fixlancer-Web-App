@@ -86,6 +86,10 @@ const Schema = new mongoose.Schema({
     cancellation: {
         type: CancellationSchema,
         default: { cancellation: null }
+    },
+    dispute: {
+        type: Boolean,
+        default: false
     }
 
 
