@@ -1355,6 +1355,19 @@ i.fa.fa-star {
   border: 1px solid #1cc88a;
 }
 
+.bg-dispute {
+  background: #fee7da;
+}
+
+.text-dark-orange {
+  color: #b44021;
+}
+
+.margin20-sides {
+  margin-left: 20px !important;
+  margin-right: 20px !important;
+}
+
 .border-left-danger {
   border-left: 3px solid #e74a3b !important;
 }

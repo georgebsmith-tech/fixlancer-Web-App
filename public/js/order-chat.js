@@ -33,6 +33,60 @@
     const extrasPriceInput = document.querySelector(".extras-price")
     const extrasDaysInput = document.querySelector(".extras-days")
     const extrasHeadingInput = document.querySelector(".extras-heading")
+    const sendDisputeBTN = document.querySelector(".send-dispute")
+    const disputeMsgInput = document.querySelector("#dispute-message")
+
+    if (sendDisputeBTN)
+        sendDisputeBTN.addEventListener("click", function () {
+            const disputeMessage = disputeMsgInput.value.trim()
+            sendOrderChat(disputeMessage)
+
+
+        })
+    function sendOrderChat(message) {
+        if (document.querySelector(".online-status-text").textContent === "Active now") state = "seen"
+        else
+            state = "sent"
+        socket.emit("order-chat", { sender, receiver, message, state, orderID, type: "dispute" })
+        attacheDsiputeNotice()
+        attachMessageToPage(message)
+        document.querySelector(".go-top").click()
+
+    }
+
+    function attacheDsiputeNotice() {
+        const dispute = `
+        <div class="margin20-top margin20-sides">
+            <div class="center-text bg-dispute border5-radius padd10 font14 text-orange">
+            <i class="fa fa-gavel text-dark-orange"></i>
+                <span class="text-dark-orange">
+                    Under Dispute
+                </span>
+            </div>
+        </div>`
+        msgMainContainer.insertAdjacentHTML("beforeend", dispute)
+        msgMainContainer.scrollTop = msgMainContainer.scrollHeight
+    }
+
+    function attachMessageToPage(message) {
+        const theMessage = `<div class="flex-end margin5-bottom">
+        <div class="padd10 border5-radius font13 message-sent">
+        <div class="margin5-bottom">
+        ${message}
+        </div>
+        <div class="flex-end">
+        <div>
+        now
+        </div>
+        </div>
+
+        </div>
+        </div>`
+        msgMainContainer.insertAdjacentHTML("beforeend", theMessage)
+        msgMainContainer.scrollTop = msgMainContainer.scrollHeight
+
+
+    }
 
 
 
@@ -92,6 +146,7 @@
  </div>`
         msgMainContainer.insertAdjacentHTML("beforeend", notice)
         msgMainContainer.scrollTop = msgMainContainer.scrollHeight
+
 
 
 
@@ -352,7 +407,7 @@
 
     if (closeRequestBTN) {
         closeRequestBTN.addEventListener("click", function () {
-            console.log("request")
+
             cancellationModal.classList.add("hide")
         })
     }

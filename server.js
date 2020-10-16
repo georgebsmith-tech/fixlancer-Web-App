@@ -417,6 +417,12 @@ io.on("connection", socket => {
             message: data.message,
             read
         }
+        if (data.type === "dispute") {
+            record.type = data.type
+            record.content = {
+                resolved: false
+            }
+        }
         console.log(record)
 
 

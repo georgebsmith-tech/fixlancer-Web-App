@@ -5,6 +5,12 @@
     <%- include('./partials/head.ejs') %>
     <script defer src="../js/order-chat.js"></script>
 
+    <style>
+        html{
+            scroll-behavior: smooth;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -149,12 +155,13 @@
     <input type="hidden" class="receiver" value="<%=recipient%>">
     <input type="hidden" class="order-id" value="<%=order.order_id%>">
     <input type="hidden" class="timer" value="<%=timer.timeIt%>">
+    <a href="#main" class="go-top" style="visibility:hidden;">go to main</a>
 
 
 
     <%- include('./partials/header.ejs') %>
 
-    <main class="main">
+    <main class="main" id="main">
 
         <div class="flex-start">
             <%if(order.cancellation.cancellation!=="pending" && order.state==="ongoing"){%>
@@ -299,6 +306,29 @@
                                 </div>
                                 <%}%>
                             </div>
+                            <%}else if(chat.type==="dispute"){%>
+                                <div class="margin20-top margin20-sides">
+                                    <div class="center-text bg-dispute border5-radius padd10 font14 text-orange">
+                                        <i class="fa fa-gavel text-dark-orange" aria-hidden="true"></i>
+                                        <span class="text-dark-orange">
+                                            Under Dispute
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="flex-end margin5-bottom">
+                                    <div class="padd10 border5-radius font13 message-sent">
+                                    <div class="margin5-bottom">
+                                    <%=chat.message%>
+                                    </div>
+                                    <div class="flex-end">
+                                    <div>
+                                    now
+                                    </div>
+                                    </div>
+                            
+                                    </div>
+                                    </div>
+
                             <%}else if(chat.type==="extras"){%>
                                 <div class="bg-">
                                    <h3 class="bold font15">Extras</h3>
@@ -610,14 +640,14 @@
                                             </div>
                                             <div class="margin40-top">
                                                 <fieldset>
-                                                    <textarea name="" id="" cols="30" rows="4"
+                                                    <textarea name="" id="dispute-message" cols="30" rows="4"
                                                         placeholder="Be detailed as possible..."
                                                         class="font16"></textarea>
                                                 </fieldset>
                                             </div>
                                             <div>
                                                 <button
-                                                    class="blocck text-white center-text bg-dark-blue bold no-outline border-dark-blue full-width border-smooth padd10 font16 padd5-top-bottom">
+                                                    class="blocck text-white center-text bg-dark-blue bold no-outline border-dark-blue full-width border-smooth padd10 font16 padd5-top-bottom send-dispute">
                                                     Dispute
                                                 </button>
                                             </div>
