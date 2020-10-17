@@ -91,7 +91,7 @@
         ${message}
         </div>
         <div class="flex-end">
-        <div class="font10 italic font-faint">
+        <div class="font-small italic font-faint">
         now
         </div>
         </div>
@@ -535,14 +535,14 @@
             msgWrapper.appendChild(div)
             const theMessageDiv = document.createElement("div")
             theMessageDiv.textContent = message
-            theMessageDiv.classList.add("padd20-bottom")
+            theMessageDiv.classList.add("margin10-bottom")
             div.appendChild(theMessageDiv)
 
 
             // time and reading status
             const timeDiv = document.createElement("div")
             timeDiv.textContent = "just now"
-            timeDiv.setAttribute("class", "flex-end font10")
+            timeDiv.setAttribute("class", "italic font-faint font-small")
             div.appendChild(timeDiv)
 
             document.querySelector(".message-container").appendChild(msgContainer);
@@ -561,12 +561,12 @@
         msgWrapper.appendChild(div)
         const theMessageDiv = document.createElement("div")
         theMessageDiv.textContent = data.message
-        theMessageDiv.classList.add("padd20-bottom")
+        theMessageDiv.classList.add("margin10-bottom")
         div.appendChild(theMessageDiv)
 
         const timeDiv = document.createElement("div")
         timeDiv.textContent = "just now"
-        timeDiv.setAttribute("class", "flex-end font10")
+        timeDiv.setAttribute("class", "flex-end font-small italic font-faint")
         div.appendChild(timeDiv)
         document.querySelector(".message-container").appendChild(msgContainer);
         document.querySelector(".message-container>div:last-child").getElementsByClassName.display = "none"
