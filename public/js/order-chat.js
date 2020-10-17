@@ -87,11 +87,11 @@
     function attachMessageToPage(message) {
         const theMessage = `<div class="flex-end margin5-bottom">
         <div class="padd10 border5-radius font13 message-sent">
-        <div class="margin5-bottom">
+        <div class="margin10-bottom">
         ${message}
         </div>
         <div class="flex-end">
-        <div>
+        <div class="font10 italic font-faint">
         now
         </div>
         </div>

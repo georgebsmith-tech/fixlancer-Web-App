@@ -327,7 +327,7 @@
                                 </div>
                             </div>
                                 <div class="flex-end margin5-top">
-                                    <small><%=getDateAndTime(chat.createdAt)%></small>
+                                    <small class="font-small"><%=getDateAndTime(chat.createdAt)%></small>
                                 </div>
                                
                             </div>
@@ -354,11 +354,11 @@
                                 </div>
                                 <div class="flex-end margin5-bottom">
                                     <div class="padd10 border5-radius font13 message-sent">
-                                    <div class="margin5-bottom">
+                                    <div class="margin10-bottom">
                                     <%=chat.message%>
                                     </div>
                                     <div class="flex-end">
-                                    <div class="font10">
+                                    <div class="font-small italic font-faint">
                                    <%=getDateAndTime(chat.createdAt)%>
                                     </div>
                                     </div>
@@ -411,7 +411,7 @@
                                         </div>
                                     </div>
                                         <div class="flex-end margin5-top">
-                                            <small><%=getDateAndTime(chat.createdAt)%></small>
+                                            <small class="font-small"><%=getDateAndTime(chat.createdAt)%></small>
                                         </div>
                                        
                                     </div>
@@ -430,7 +430,7 @@
                                                 </div>
                                             </div>
                                                 <div class="flex-end margin5-top">
-                                                    <small><%=getDateAndTime(chat.createdAt)%></small>
+                                                    <small class="font-small"><%=getDateAndTime(chat.createdAt)%></small>
                                                 </div>
                                                
                                             </div>
@@ -440,15 +440,15 @@
                     <div class="flex-end">
                         <div class="padd10 message-sent font13 ">
                             <div>
-                                <div class="padd20-bottom">
+                                <div class="margin10-bottom">
                                     <%= chat.message%>
                                 </div>
-                                <div class="flex-end font10"><%=getDateAndTime(chat.createdAt) %>
+                                <div class="flex-end font-small italic font-faint"><%=getDateAndTime(chat.createdAt) %>
                                     <% if(chat.read){ %>
                                     <i class="fa fa-check text-blue"></i>
                                     <i class="fa fa-check text-blue"></i>
                                     <%}else{%>
-                                    <i class="fa fa-check unread"></i>
+                                    
                                     <%}%>
                             </div>
                                 
@@ -460,10 +460,10 @@
                                     <div class="flex-start">
                                         <div class="padd10 message-received font13">
                                             <div>
-                                                <div class="padd20-bottom">
+                                                <div class="margin10-bottom">
                                                     <%= chat.message%>
                                                 </div>
-                                                <div class="flex-end font10"><%=getDateAndTime(chat.createdAt)%></div>
+                                                <div class="flex-end font-small italic font-faint"><%=getDateAndTime(chat.createdAt)%></div>
                                             </div>
                                         </div>
                                     </div>
@@ -597,6 +597,19 @@
                                             </div>
 
 
+                                        </div>
+                                        <div class="margin30-sides margin20-top">
+                                            <%paidExtras.forEach(extra=>{%>
+                                                <div class="flex-between border-smooth padd10 padd5-top-bottom margin10-bottom bg-grey">
+                                                    <div class="font15">
+                                                        <%=extra.content.description%>
+                                                    </div>
+                                                    <div  class="font15">
+                                                        ₦<%=extra.content.price%>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <%})%>
                                         </div>
                                         <%if(order.price>=10000){%>
 

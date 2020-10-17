@@ -20,6 +20,8 @@ module.exports = async (req, res) => {
     let date = new Date()
 
     const orderChats = await OrderChat.find({ order_id })
+    const paidExtras = orderChats.filter(chat => (chat.type === "extras" && chat.content.paid))
+    // console.log(orderChats)
 
 
     let timeElapse = parseInt((date) / (1000 * 60))
@@ -66,9 +68,10 @@ module.exports = async (req, res) => {
         hours,
         minutes,
         seconds,
-        timeIt
+        timeIt,
+
     }
-    console.log(orderChats)
+
 
 
     const recipient = order_mod.seller === loggedUser ? order_mod.buyer : order_mod.seller
@@ -81,8 +84,11 @@ module.exports = async (req, res) => {
         timeElapse,
         ago,
         requirements,
-        timer
+        timer,
+        paidExtras
     }
+
+    // console.log(paidExtras)
 
     res.render("order-chat", context)
 
