@@ -117,11 +117,21 @@
                         </span>
 `)
                     } else {
-                        presentMilestoneAmount.textContent = presentMilestoneAmount.textContent * 1 + data.milestone.amount
+                        presentMilestoneAmount.textContent = (presentMilestoneAmount.textContent * 1 + data.milestone.amount).toFixed(2)
 
                     }
                     milestoneInput.value = ""
                     milestoneSuccess.classList.add("fade-notice")
+                    const milestonesCount = document.querySelector(".milestonesCount")
+                    setTimeout(() => {
+                        milestoneSuccess.classList.remove("fade-notice")
+                    }, 9000)
+                    if (milestonesCount.value >= 3) {
+                        document.querySelector(".milestone-form-container").classList.add("hide")
+
+                    } else {
+                        milestonesCount.value += 1
+                    }
 
 
                     // document.querySelector(".go-top").click()

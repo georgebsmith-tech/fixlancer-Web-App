@@ -16,6 +16,7 @@ module.exports = async (req, res) => {
     let requirements = await RequirementsModel.findOne({ order_id })
     const milestones = await MilestoneModel.find({ order_id })
     let totalMilestone = 0;
+    const milestonesCount = milestones.length
     if (milestones.length !== 0) {
         totalMilestone = milestones.map(milestone => milestone.amount).reduce((accumulatedAmount, currentAmount) => (accumulatedAmount + currentAmount)
 
@@ -98,7 +99,8 @@ module.exports = async (req, res) => {
         requirements,
         timer,
         paidExtras,
-        totalMilestone
+        totalMilestone,
+        milestonesCount
     }
 
     // console.log(paidExtras)

@@ -193,6 +193,8 @@
     <input type="hidden" class="receiver" value="<%=recipient%>">
     <input type="hidden" class="order-id" value="<%=order.order_id%>">
     <input type="hidden" class="timer" value="<%=timer.timeIt%>">
+    <input type="hidden" class="milestonesCount" value="<%=milestonesCount%>">
+    
     <a href="#main" class="go-top" style="visibility:hidden;">go to main</a>
 
 
@@ -616,7 +618,7 @@
                                       
                                         <%if(order.price>=10000){%>
 
-                                        <div class="border-top padd20-sides">
+                                        <div class="border-top padd20-sides padd20-bottom">
                                             <div class="padd10 border-green padd10-top  bg-green 
                                             zero-opacity
                                             border5-radius milestone-success">
@@ -650,7 +652,7 @@
 
                                             </div>
                                             <%if(order.buyer===loggedUser){%>
-                                                <%if(order.state!=="cancelled"){%>
+                                                <%if(order.state!=="cancelled" && !(milestonesCount>=3)){%>
                                         <div
                                         class="milestone-form-container">
 
