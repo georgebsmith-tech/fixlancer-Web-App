@@ -4,8 +4,8 @@ const RevenueModel = require("../../models/RevenuesModel")
 const SaleModel = require("../../models/SaleModel")
 const NoticeModel = require("../../models/NoticesModel")
 const axios = require("axios").default;
-let domain = "http://localhost:5000"
-// let domain = "https://fixlancer.herokuapp.com"
+// let domain = "http://localhost:5000"
+let domain = "https://fixlancer.herokuapp.com"
 
 
 
