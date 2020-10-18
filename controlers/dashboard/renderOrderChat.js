@@ -2,6 +2,7 @@ const SaleModel = require("../../models/SaleModel")
 const RequestModel = require("../../models/RequestModel")
 const OrderChat = require("../../models/OrderChatModel")
 const RequirementsModel = require("../../models/RequirementModel")
+const MilestoneModel = require("../../models/MilestoneModel")
 module.exports = async (req, res) => {
     const order_id = req.query.oid
     const loggedUser = req.session.passport ? req.session.passport.user : "Betty"
@@ -13,6 +14,18 @@ module.exports = async (req, res) => {
     order_mod.title = offer.title
     order_mod.imageURL = offer.image_url
     let requirements = await RequirementsModel.findOne({ order_id })
+    const milestones = await MilestoneModel.find({ order_id })
+    let totalMilestone = 0;
+    if (milestones.length !== 0) {
+        totalMilestone = milestones.map(milestone => milestone.amount).reduce((accumulatedAmount, currentAmount) => (accumulatedAmount + currentAmount)
+
+        )
+
+    }
+
+
+    console.log(milestones)
+    console.log(totalMilestone)
 
 
 
@@ -84,7 +97,8 @@ module.exports = async (req, res) => {
         ago,
         requirements,
         timer,
-        paidExtras
+        paidExtras,
+        totalMilestone
     }
 
     // console.log(paidExtras)

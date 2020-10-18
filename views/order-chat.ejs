@@ -618,12 +618,22 @@
                                                 Milestone
                                             </h2>
                                             <div>
+                                                <%if(totalMilestone===0){%>
+                                                    
+                                                <div class=" font15 margin10-top">
+                                                    No milestones released yet.
+
+                                                </div>
+
+                                                    <%}else{%>
+
                                                 <div class=" font15 margin10-top">
                                                     <i class="fa fa-check text-green"></i>
                                                     <span>Milestone released:
-                                                        ₦3000</span>
+                                                        ₦<%=totalMilestone%></span>
 
                                                 </div>
+                                                <%}%>
 
                                             </div>
                                             <%if(order.buyer===loggedUser){%>
