@@ -106,7 +106,7 @@
                 .then(data => {
                     console.log(presentMilestoneAmount.textContent)
                     presentMilestoneAmount.textContent = presentMilestoneAmount.textContent * 1 + data.milestone.amount
-                    milestonePercent.value = ""
+                    milestoneInput.value = ""
                 })
         })
 
