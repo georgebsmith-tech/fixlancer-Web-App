@@ -5,7 +5,7 @@ const RequirementsModel = require("../../models/RequirementModel")
 const MilestoneModel = require("../../models/MilestoneModel")
 module.exports = async (req, res) => {
     const order_id = req.query.oid
-    const loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
     const order = await SaleModel.findOne({ order_id })
 
     const request = await RequestModel.findOne({ job_id: order.job_id })
