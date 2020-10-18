@@ -10,7 +10,6 @@ module.exports = async (req, res) => {
     const request = await RequestModel.findOne({ job_id: order.job_id })
     const offer = request.offers.find((offers) => (offers.username === order.buyer || offers.username === order.seller))
     const order_mod = { ...order.toObject() }
-    order_mod.price = offer.price
     order_mod.title = offer.title
     order_mod.imageURL = offer.image_url
     let requirements = await RequirementsModel.findOne({ order_id })

@@ -213,6 +213,11 @@ const fixRoutes = require("./APIRoutes/fixRoutes")
 const requestRoutes = require("./APIRoutes/requestsRoutes")
 const salesRoutes = require("./APIRoutes/salesRoutes")
 const conversationRoutes = require("./APIRoutes/conversationRoutes")
+
+const milestoneRoutes = require("./APIRoutes/milestoneRoutes")
+
+
+
 const RevenueModel = require("./models/RevenuesModel")
 const UserModel = require("./models/UserModel")
 
@@ -617,6 +622,8 @@ app.use("/api/refunds", refundRoutes)
 app.use("/api/transactions", transactionRoutes)
 app.use("/api/orderChats", orderChatsRoutes)
 app.use("/api/requirements", requirementsRoutes)
+app.use("/api/milestones", milestoneRoutes)
+
 
 
 

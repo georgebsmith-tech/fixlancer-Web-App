@@ -90,6 +90,10 @@ const Schema = new mongoose.Schema({
     dispute: {
         type: Boolean,
         default: false
+    },
+    price: {
+        type: Number,
+        default: 0
     }
 
 

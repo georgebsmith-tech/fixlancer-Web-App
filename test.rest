@@ -17,7 +17,7 @@
 # }
 
 
-put http://localhost:5000/api/sales/cancellation
+get http://localhost:5000/api/milestones
 Content-Type: application/json
 
 {

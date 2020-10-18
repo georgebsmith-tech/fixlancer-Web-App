@@ -634,11 +634,18 @@
                                             <p class="font11 margin10-top">
                                                 Enter the amount in percentage you want to release to the seller
                                             </p>
+<div class="relative">
+                                            <input type="number" placeholder="Enter percent e.g 10"
+                                                class="padd10 font15 border-smooth block margin10-top no-outline full-width" id="milestone-input">
+                                                <div class="milestone-error invisible">
+                                                    <i class="fa fa-exclamation text-red font10"></i> <small class="text-red font10">Field cannot be empty.</small>
+                                                </div>
+                                                <div class="milestone-error invisible">
+                                                    <i class="fa fa-exclamation text-red font10"></i> <small class="text-red font10">Percentage must be greter than 0 and at most 10.</small>
+                                                </div>
+                                            </div>
 
-                                            <input type="text" placeholder="Enter percent e.g 10"
-                                                class="padd10 font15 border-smooth block margin10-top no-outline full-width">
-
-                                            <div class="font12 margin10-top">
+                                            <div class="font12 margin20-top ">
                                                 <p>
                                                     <small>
                                                         * Milestones released cannot be refunded
@@ -654,7 +661,7 @@
                                             </div>
                                             <div class="margin20-top">
                                                 <button
-                                                    class="text-white button-green padd10 full-width">Release</button>
+                                                    class="text-white button-green padd10 full-width release-milestone">Release</button>
                                             </div>
                                         </div>
                                             <%}else{%>

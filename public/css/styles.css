@@ -1245,8 +1245,17 @@ i.fa.fa-star {
   visibility: hidden;
 }
 
+.visible {
+  visibility: visible;
+}
+
 .text-blue {
   color: blue;
+}
+
+.milestone-error {
+  position: absolute;
+  top: 45px;
 }
 
 .font10 {

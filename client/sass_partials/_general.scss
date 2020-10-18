@@ -1178,9 +1178,17 @@ background-color: rgba(0,0,0,0.6);
 .invisible{
   visibility: hidden;
 }
+.visible{
+  visibility: visible;
+}
 
 .text-blue{
   color:blue;
+}
+
+.milestone-error{
+  position: absolute;
+  top:45px;
 }
 
 
@@ -1365,6 +1373,9 @@ background-color: rgba(0,0,0,0.6);
 .font-small{
   font-size: 8.4px!important;
 }
+
+
+
 
 
 

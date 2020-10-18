@@ -1,5 +1,7 @@
 
 
+
+
 (function () {
     const sendMessageBTN = document.querySelector(".send-message")
     const messageHolder = document.querySelector("#message")
@@ -18,6 +20,11 @@
     const daysHolder = document.getElementById("days")
     const disputeModal = document.querySelector(".confirm-dispute-modal")
     const cancellationModal = document.querySelector(".cancellation-modal")
+    const milestoneInput = document.querySelector("#milestone-input")
+
+    const milestoneBTN = document.querySelector(".release-milestone")
+
+
 
     const requestCancellationBTN = document.querySelector(".request-cancellation")
     const closeRequestBTN = document.querySelector(".close-request-modal")
@@ -39,6 +46,62 @@
     const disputeMsgInput = document.querySelector("#dispute-message")
     const confirmDispute = document.querySelector(".confirm-dispute")
     const closeDispute = document.querySelector(".close-dispute-modal")
+    const milestoneErrors = document.querySelectorAll(".milestone-error")
+
+    function isValidPercent(per) {
+        if (!per) {
+            milestoneErrors[0].classList.remove("invisible")
+            milestoneErrors[1].classList.add("invisible")
+            milestoneInput.style.borderColor = "red"
+            return false
+
+        } else if (per <= 0 || per < 10) {
+            milestoneErrors[1].classList.remove("invisible")
+            milestoneErrors[0].classList.add("invisible")
+
+            milestoneInput.style.borderColor = "red"
+            return false
+
+        } else {
+            milestoneErrors[1].classList.add("invisible")
+            milestoneErrors[0].classList.add("invisible")
+
+            milestoneInput.style.borderColor = "#ddd"
+            return true
+
+        }
+
+    }
+
+    async function releaaseMilestone(per) {
+        const body = JSON.stringify({
+            percent: per,
+            seller: receiver,
+            order_id: orderID
+        })
+
+        const response = await fetch(`/api/milestones`, {
+            method: "post",
+            body,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const data = await response.json()
+        console.log(data)
+
+    }
+
+    if (milestoneBTN)
+        milestoneBTN.addEventListener("click", function () {
+            const milestonePercent = milestoneInput.value.trim() * 1
+            const isValid = isValidPercent(milestonePercent)
+            if (!isValid)
+                return
+            releaaseMilestone(milestonePercent)
+
+
+        })
 
     closeDispute.addEventListener("click", function () {
         disputeModal.classList.add("hide")
