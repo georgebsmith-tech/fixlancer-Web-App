@@ -45,9 +45,9 @@ async function updateFunds(body) {
 
 router.post("/", async (req, res) => {
     const reqBody = req.body
-    // console.log(reqBody)
-    if (reqBody.type !== "deposit")
-        updateFunds(reqBody)
+
+    // if (reqBody.type !== "deposit")
+    //     updateFunds(reqBody)
     // return
     console.log(reqBody)
     TransactionModel.find().select("transaction_id").sort({ transaction_id: -1 }).limit(1)

@@ -30,7 +30,7 @@
 
 
                             <li>
-                                <div class="font16 grid3-221 padd10 a-transaction">
+                                <div class="font14 grid3-221 padd10 a-transaction">
                                     <span>
 
                                         Payment for Fix (<a href="#" class="text-link-with-hover">View Order</a>).
@@ -39,7 +39,7 @@
                                         <%=transaction.createdAt.toDateString()%>
                                         <%=transaction.createdAt.getHours()>12?(transaction.createdAt.getHours()-12):transaction.createdAt.getHours()%>:<%=transaction.createdAt.getMinutes()%><%=period=transaction.createdAt.getHours()>=12?"pm":"am"%>
                                     </span>
-                                    <span class="no-break fainted-red">
+                                    <span class="no-break fainted-red bold">
                                         -₦<%=transaction.amount%>
                                     </span>
 
@@ -48,7 +48,7 @@
                             </li>
                             <%}else if(transaction.type==="deposit"){ %>
                             <li>
-                                <div class="font16 grid3-221 padd10 a-transaction">
+                                <div class="font14 grid3-221 padd10 a-transaction">
                                     <span>
 
                                         Deposit Completed.
@@ -64,6 +64,24 @@
                                 </div>
 
                             </li>
+                            <%}else if(transaction.type==="milestone"){ %>
+                                <li>
+                                    <a href="/dashboard/order-chat?oid=<%=transaction.content.order_id%>" class="font14 grid3-221 padd10 a-transaction">
+                                        <span>
+    
+                                           Milestone released (View Order)
+                                        </span>
+                                        <span>
+                                            <%=getDateAndTime(transaction.createdAt)%>
+                                           
+                                        </span>
+                                        <span class="no-break text-green">
+                                            +₦<%=transaction.amount%>
+                                        </span>
+    
+                                    </a>
+    
+                                </li>
                             <%}%>
                             <%})%>
                         </ul>

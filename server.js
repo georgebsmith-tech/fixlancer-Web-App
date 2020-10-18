@@ -30,7 +30,15 @@ app.locals.getDate = (date) => {
 }
 
 app.locals.getDateAndTime = (date) => {
-    let hr = date.getHours() >= 13 ? date.getHours() - 12 : date.getHours()
+    let hr;
+    if (date.getHours() === 0)
+        hr = 12
+    else if (date.getHours() >= 13)
+        hr = date.getHours() - 12
+    else
+        hr = date.getHours()
+
+    // let hr = date.getHours() >= 13 ? date.getHours() - 12 : date.getHours()
     let period = date.getHours() >= 12 ? "pm" : "am"
     return getDate(date) + ` ${hr}:${date.getMinutes()}${period}`
 }

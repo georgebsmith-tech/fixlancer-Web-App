@@ -55,7 +55,7 @@
             milestoneInput.style.borderColor = "red"
             return false
 
-        } else if (per <= 0 || per < 10) {
+        } else if (per <= 0 || per > 10) {
             milestoneErrors[1].classList.remove("invisible")
             milestoneErrors[0].classList.add("invisible")
 

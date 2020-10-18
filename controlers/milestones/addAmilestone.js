@@ -2,6 +2,10 @@ const MilestoneModel = require("../../models/MilestoneModel")
 
 const RevenueModel = require("../../models/RevenuesModel")
 const SaleModel = require("../../models/SaleModel")
+const NoticeModel = require("../../models/NoticesModel")
+const axios = require("axios").default;
+let domain = "http://localhost:5000"
+// let domain = "https://fixlancer.herokuapp.com"
 
 
 
@@ -26,9 +30,33 @@ module.exports = async function (req, res) {
 
 
         const revenue = await RevenueModel.findOneAndUpdate({ username }, { $inc: { amount: milestoneAmount } }, { new: true })
-        // const data = await MilestoneModel.find({})
+        const data = await MilestoneModel.find({})
+        const response = await axios.post(`${domain}/api/transactions`, {
+            username,
+            type: "milestone",
+            content: {
+                order_id
 
-        res.status(201).json({ milestone, revenue })
+            },
+            amount: milestoneAmount
+        })
+
+        let notice = new NoticeModel({
+            username,
+            type: "milestone",
+            content: {
+                amount: milestoneAmount,
+                order_id
+            }
+
+        })
+        notice = await notice.save()
+
+
+
+        const transaction = response.data
+
+        res.status(201).json({ milestone, revenue, transaction, notice })
 
 
     } catch (err) {

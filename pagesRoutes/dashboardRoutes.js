@@ -541,11 +541,11 @@ router.get("/finance", async (req, res) => {
 })
 
 router.get("/finance/transactions", async (req, res) => {
-    const loggedUser = req.session.passport ? req.session.passport.user : "Betty"
+    const loggedUser = req.session.passport ? req.session.passport.user : "Smith"
     const transactions = await TransactionModel.find({ username: loggedUser })
     transactions.reverse()
     // console.log(transactions)
-    res.render("finance-transactions", { transactions })
+    res.render("finance-transactions", { transactions, loggedUser })
 })
 
 

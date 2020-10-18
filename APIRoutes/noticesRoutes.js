@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
 })
 
 
-router.patch("/:username", (req, res) => {
+router.patch("/:username", async (req, res) => {
     NoticesModel.find({ username: req.params.username, read: false })
         .then(data => {
             console.log(data)
@@ -17,15 +17,18 @@ router.patch("/:username", (req, res) => {
                 notice.read = true
                 notice.save()
                     .then(data => {
+                        console.log(data)
+
                     })
             })
-            res.end()
+            res.json({ done: true })
         })
 
 })
 
 router.post("/", async (req, res) => {
-    const notice = new NoticesModel(req.body)
+    const body = req.body
+    const notice = new NoticesModel(body)
     notice.save()
         .then(data => {
             return res.status(201).json(data)

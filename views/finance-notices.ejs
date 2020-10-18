@@ -41,7 +41,7 @@
                 </div>
                 <%}else if(notice.type==="new order"){ %>
                 <div class="notifications">
-                    <a href="#" class="<%= notice.read?undefined:'unread-notice'%>">
+                    <a href="#" class="<%= notice.read?'':'unread-notice'%>">
                         <div>
                             Thanks for your order! Click
                             here to
@@ -50,7 +50,7 @@
                         </div>
                         <div class="flex-end font12">
                             <em>
-                                <%=notice.createdAt.toDateString()%>
+                                <%=getDate(notice.createdAt)%>
                             </em>
 
                         </div>
@@ -58,16 +58,34 @@
 
                     </a>
                 </div>
+                <%}else if(notice.type==="milestone"){ %>
+                    <div class="notifications">
+                        <a href="/dashboard/order-chat?oid=<%=notice.content.order_id%>" class="<%= notice.read?'':'unread-notice'%>">
+                            <div>
+                                ₦<%=notice.content.amount%>  credited for milestone released for the order:
+                                <strong class="bold"> <%=notice.content.order_id%></strong>
+                            </div>
+                            <div class="flex-end font12">
+                                <em>
+                                    <%=getDate(notice.createdAt)%>
+                                </em>
+    
+                            </div>
+    
+    
+                        </a>
+                    </div>
+
                 <%}else if(notice.type==="new sale"){ %>
                 <div class="notifications">
-                    <a href="#" class="<%= notice.read?undefined:'unread-notice'%>">
+                    <a href="#" class="<%= notice.read?'':'unread-notice'%>">
                         <div>
                             Good News! You have a new order from
                             <strong class="bold"><%=notice.content.from %>.</strong>
                         </div>
                         <div class="flex-end font12">
                             <em>
-                                <%=notice.createdAt.toDateString()%>
+                                <%=getDate(notice.createdAt)%>
                             </em>
 
                         </div>
