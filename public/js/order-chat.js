@@ -47,6 +47,9 @@
     const confirmDispute = document.querySelector(".confirm-dispute")
     const closeDispute = document.querySelector(".close-dispute-modal")
     const milestoneErrors = document.querySelectorAll(".milestone-error")
+    const presentMilestoneAmount = document.querySelector(".milestone-present")
+
+
 
     function isValidPercent(per) {
         if (!per) {
@@ -89,6 +92,7 @@
         })
         const data = await response.json()
         console.log(data)
+        return data
 
     }
 
@@ -99,8 +103,11 @@
             if (!isValid)
                 return
             releaaseMilestone(milestonePercent)
-
-
+                .then(data => {
+                    console.log(presentMilestoneAmount.textContent)
+                    presentMilestoneAmount.textContent = presentMilestoneAmount.textContent * 1 + data.milestone.amount
+                    milestonePercent.value = ""
+                })
         })
 
     closeDispute.addEventListener("click", function () {
