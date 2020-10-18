@@ -47,7 +47,7 @@
     const confirmDispute = document.querySelector(".confirm-dispute")
     const closeDispute = document.querySelector(".close-dispute-modal")
     const milestoneErrors = document.querySelectorAll(".milestone-error")
-    const presentMilestoneAmount = document.querySelector(".milestone-present")
+    let presentMilestoneAmount = document.querySelector(".milestone-present")
     const milestoneSuccess = document.querySelector(".milestone-success")
 
 
@@ -106,10 +106,24 @@
                 return
             releaaseMilestone(milestonePercent)
                 .then(data => {
-                    console.log(presentMilestoneAmount.textContent)
-                    presentMilestoneAmount.textContent = presentMilestoneAmount.textContent * 1 + data.milestone.amount
+                    presentMilestoneAmount = document.querySelector(".milestone-present")
+                    if (!presentMilestoneAmount) {
+                        document.querySelector(".no-miles").textContent = ""
+                        document.querySelector(".no-miles").insertAdjacentHTML("beforeend", `<i class="fa fa-check text-green"></i>
+                        <span>Milestone released:
+
+                            ₦<span class="milestone-present"> ${data.milestone.amount.toFixed(2)}</span>
+                           
+                        </span>
+`)
+                    } else {
+                        presentMilestoneAmount.textContent = presentMilestoneAmount.textContent * 1 + data.milestone.amount
+
+                    }
                     milestoneInput.value = ""
                     milestoneSuccess.classList.add("fade-notice")
+
+
                     // document.querySelector(".go-top").click()
 
 
