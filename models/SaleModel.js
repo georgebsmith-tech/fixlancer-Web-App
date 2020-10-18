@@ -94,6 +94,10 @@ const Schema = new mongoose.Schema({
     price: {
         type: Number,
         default: 0
+    },
+    released: {
+        type: Number,
+        default: 0
     }
 
 

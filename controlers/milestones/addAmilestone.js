@@ -18,9 +18,11 @@ module.exports = async function (req, res) {
         const order_id = body.order_id
 
         const sale = await SaleModel.findOne({ order_id })
-        const milestoneAmount = per * sale.price
+        const milestoneAmount = per * (sale.price - sale.released)
+        const saleNew = await SaleModel.findOneAndUpdate({ order_id }, { $inc: { released: milestoneAmount } }, { new: true })
+
         console.log(sale)
-        console.log(milestoneAmount)
+        console.log(saleNew)
         let milestone = new MilestoneModel({
             order_id,
             amount: milestoneAmount
