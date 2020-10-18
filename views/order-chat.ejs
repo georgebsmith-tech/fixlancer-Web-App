@@ -14,6 +14,7 @@
 </head>
 
 <body>
+   
     <div class="confirm-dispute-modal the-modal hide">
         <div class="bg-white border-smooth full-width" style="height: fit-content;max-width: 500px;">
             <header class="flex-between bg-heading padd10">
@@ -199,6 +200,7 @@
     <%- include('./partials/header.ejs') %>
 
     <main class="main" id="main">
+       
 
         <div class="flex-start">
             <%if(order.cancellation.cancellation!=="pending" && order.state==="ongoing"){%>
@@ -611,9 +613,17 @@
                                                 </div>
                                                 <%})%>
                                         </div>
+                                      
                                         <%if(order.price>=10000){%>
 
-                                        <div class="border-top padd20">
+                                        <div class="border-top padd20-sides">
+                                            <div class="padd10 border-green padd10-top  bg-green 
+                                            zero-opacity
+                                            border5-radius milestone-success">
+                                                <div class="font14 text-white">
+                                                    Milestone released successfully.
+                                                </div>
+                                            </div>
                                             <h2 class="bold font16">
                                                 Milestone
                                             </h2>

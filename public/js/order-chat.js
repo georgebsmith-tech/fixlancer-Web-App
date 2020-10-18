@@ -48,6 +48,8 @@
     const closeDispute = document.querySelector(".close-dispute-modal")
     const milestoneErrors = document.querySelectorAll(".milestone-error")
     const presentMilestoneAmount = document.querySelector(".milestone-present")
+    const milestoneSuccess = document.querySelector(".milestone-success")
+
 
 
 
@@ -107,6 +109,10 @@
                     console.log(presentMilestoneAmount.textContent)
                     presentMilestoneAmount.textContent = presentMilestoneAmount.textContent * 1 + data.milestone.amount
                     milestoneInput.value = ""
+                    milestoneSuccess.classList.add("fade-notice")
+                    // document.querySelector(".go-top").click()
+
+
                 })
         })
 
