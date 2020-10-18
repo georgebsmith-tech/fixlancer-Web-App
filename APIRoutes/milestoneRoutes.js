@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const getAllMilestones = require("../controlers/milestones/getAllMilestones")
-const addAMilestone = require("../controlers/milestones/addAMilestone")
+const addAMilestone = require("../controlers/milestones/addAmilestone")
 
 
 

@@ -30,7 +30,7 @@ module.exports = async function (req, res) {
 
 
         const revenue = await RevenueModel.findOneAndUpdate({ username }, { $inc: { amount: milestoneAmount } }, { new: true })
-        const data = await MilestoneModel.find({})
+
         const response = await axios.post(`${domain}/api/transactions`, {
             username,
             type: "milestone",
@@ -56,7 +56,7 @@ module.exports = async function (req, res) {
 
         const transaction = response.data
 
-        res.status(201).json({ milestone, revenue, transaction, notice })
+        res.status(201).json({ milestone, revenue, notice, transaction })
 
 
     } catch (err) {

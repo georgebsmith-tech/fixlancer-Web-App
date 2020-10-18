@@ -17,12 +17,17 @@
 # }
 
 
-get http://localhost:5000/api/milestones
+# get http://localhost:5000/api/milestones
+# Content-Type: application/json
+
+post http://localhost:5000/api/milestones
 Content-Type: application/json
 
 {
-    "username":"Smith",
-    "order_id":1
+   
+    "order_id":1,
+    "percent":2,
+    "seller":"Betty"
 }
 
 # post http://localhost:5000/api/orderChats
