@@ -1737,6 +1737,10 @@ button.header-top-btn, a.header-top-btn {
   padding-top: 15px;
 }
 
+.absolute {
+  position: absolute;
+}
+
 .scroll-flex {
   display: flex;
   width: fit-content;

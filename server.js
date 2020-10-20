@@ -123,6 +123,9 @@ app.locals.renderSalesAndOrderMobile = (order, kind = "sale") => {
 </section>
     `
 }
+app.locals.commafy = (x) => {
+    return commafy(x)
+}
 function commafy(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }

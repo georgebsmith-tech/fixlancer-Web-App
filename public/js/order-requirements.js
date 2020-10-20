@@ -15,7 +15,6 @@
 
     });
     hiddenAttachment.addEventListener("input", function (e) {
-        console.log(this.files[0])
         fileNameHolder.textContent = this.files[0].name
     });
 

@@ -50,6 +50,27 @@
     let presentMilestoneAmount = document.querySelector(".milestone-present")
     const milestoneSuccess = document.querySelector(".milestone-success")
 
+    const hiddenAtachment = document.querySelector(".attachment")
+    const attachBTN = document.querySelector(".attach-btn")
+    const fileNameHolder = document.querySelector(".file-name-holder")
+    const fileName = document.querySelector(".file-name")
+
+
+
+    attachBTN.addEventListener("click", function () {
+        hiddenAtachment.click()
+    })
+
+    hiddenAtachment.addEventListener("input", function (e) {
+        fileName.textContent = this.files[0].name
+        fileNameHolder.classList.remove("invisible")
+    });
+
+
+
+
+
+
 
 
 

@@ -393,7 +393,7 @@
                                             <div>
                                                 <span>+ <%=chat.content.days%> days</span>
                                                 <span>|</span>
-                                                <span>₦<%=chat.content.price%></span>
+                                                <span>₦<%=commafy(chat.content.price)%></span>
 
                                             </div>
                                             <div>
@@ -514,14 +514,15 @@
                 <div style="position:relative">
                     <textarea name="" cols="30" rows="2" class="fill-width padd8 outline-none border-smooth font14"
                         placeholder="Enter your message..." id="message"></textarea>
-                    <small style="position:absolute;top:57px;left:10px;font-size:1rem"
+                    <small style="position:absolute;top:62px;left:10px;font-size:1rem"
                         class="font12 text-red hide chat-input-error"> <i class="fa fa-exclamation text-red"></i>
                         Message input field can no be empty</small>
                 </div>
                 <div>
                     <div class="flex-between margin20-top">
                         <div>
-                            <i class="fa fa-paperclip font16 margin10-right"></i>
+                            <i class="fa fa-paperclip font16 margin10-right padd10 attach-btn"></i>
+                            <input type="file" class="invisible absolute attachment">
                             <%if(order.seller===loggedUser){%>
 
 
@@ -534,6 +535,9 @@
                            
                         </div>
                         <button class="font13 send-message padd10-sides padd5-top-bottom border5-radius text-white bg-green no-outline border-green">Send</button>
+                    </div>
+                    <div class="margin10-top font14 file-name-holder invisible">
+                      <span class="bold">Attached file</span>  : <span class="file-name"></span> 
                     </div>
                    
                 </div>
@@ -620,7 +624,7 @@
                     </div>
                     <div>
 
-                        ₦<%=(order.price+totalPaidExtra)%>
+                        ₦<%=(commafy(order.price+totalPaidExtra))%>
                     </div>
                     <div>
                         <%=getDate(order.delivery_date)%>
@@ -640,7 +644,7 @@
                         <%=extra.content.description%>
                     </div>
                     <div class="font15">
-                        ₦<%=extra.content.price%>
+                        ₦<%=commafy(extra.content.price)%>
                     </div>
 
                 </div>
@@ -674,7 +678,7 @@
                         <i class="fa fa-check text-green"></i>
                         <span>Milestone released:
 
-                            ₦<span class="milestone-present"> <%=totalMilestone.toFixed(2)%></span>
+                            ₦<span class="milestone-present"> <%=commafy(totalMilestone.toFixed(2))%></span>
 
                         </span>
 
