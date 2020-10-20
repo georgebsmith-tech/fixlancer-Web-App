@@ -6,7 +6,7 @@
     <script defer src="../js/order-chat.js"></script>
 
     <style>
-        html{
+        html {
             scroll-behavior: smooth;
         }
     </style>
@@ -14,7 +14,7 @@
 </head>
 
 <body>
-   
+
     <div class="confirm-dispute-modal the-modal hide">
         <div class="bg-white border-smooth full-width" style="height: fit-content;max-width: 500px;">
             <header class="flex-between bg-heading padd10">
@@ -29,30 +29,30 @@
             </header>
             <div class="padd20">
                 <div class="font20 margin10-top margin20-bottom center-text">
-                   Are you sure you want to create Dispute?
+                    Are you sure you want to create Dispute?
                 </div>
-             
-          <div class="flex-between">
-            <div>
-                <button
-                    class="margin20-top bg-green text-white center-text border-grren font16 padd10-sides padd5-top-bottom border-radius5 margin10-bottom no-outline width">
-                   No
-                </button>
-            </div>
 
-          
-                <div>
-                    <button
-                        class="margin20-top   center-text  font16 padd10-sides padd5-top-bottom border-radius5 margin10-bottom no-outline border-grey bg-grey width confirm-dispute">
-                       Yes
-                    </button>
+                <div class="flex-between">
+                    <div>
+                        <button
+                            class="margin20-top bg-green text-white center-text border-grren font16 padd10-sides padd5-top-bottom border-radius5 margin10-bottom no-outline width">
+                            No
+                        </button>
+                    </div>
+
+
+                    <div>
+                        <button
+                            class="margin20-top   center-text  font16 padd10-sides padd5-top-bottom border-radius5 margin10-bottom no-outline border-grey bg-grey width confirm-dispute">
+                            Yes
+                        </button>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
 
     </div>
-    
+
     <div class="delivery-modal the-modal hide">
         <div class="bg-white border-smooth full-width" style="height: fit-content;max-width: 500px;">
             <header class="flex-between bg-heading padd10">
@@ -118,8 +118,9 @@
                     <fieldset class="relative">
                         <input type="text" placeholder="What are you offering?" class="extras-heading">
                         <div class="absolute-error font11 hide">
-                            <i class="fa fa-exclamation-circle text-red"></i> <small class="text-red">Please make a valid selection</small>
-                         </div>
+                            <i class="fa fa-exclamation-circle text-red"></i> <small class="text-red">Please make a
+                                valid selection</small>
+                        </div>
                     </fieldset>
                 </div>
                 <div>
@@ -128,21 +129,23 @@
                             <select name="" id="" class="bg-white extras-days">
                                 <option value="-1" class="bg-white">Extra Days</option>
                                 <%for(let day of [1,2,3,4,5,6,7,8,9,10,11]){%>
-                                    <option value="<%=day%>"><%=day%> day(s)</option>
-                                   <%} %>
+                                <option value="<%=day%>"><%=day%> day(s)</option>
+                                <%} %>
                             </select>
                             <div class="absolute-error font11 hide">
-                                <i class="fa fa-exclamation-circle text-red"></i> <small class="text-red">Please make a valid selection</small>
-                             </div>
+                                <i class="fa fa-exclamation-circle text-red"></i> <small class="text-red">Please make a
+                                    valid selection</small>
+                            </div>
                         </fieldset>
-<div class="relative">
-                        <fieldset>
-                            <input type="number" placeholder="Extra Price" class="extras-price">
-                          
-                        </fieldset>
-                        <div class="absolute-error font11 hide">
-                            <i class="fa fa-exclamation-circle text-red"></i> <small class="text-red">Please make a valid selection</small>
-                         </div>
+                        <div class="relative">
+                            <fieldset>
+                                <input type="number" placeholder="Extra Price" class="extras-price">
+
+                            </fieldset>
+                            <div class="absolute-error font11 hide">
+                                <i class="fa fa-exclamation-circle text-red"></i> <small class="text-red">Please make a
+                                    valid selection</small>
+                            </div>
                         </div>
 
                     </div>
@@ -175,7 +178,8 @@
             <div class="center-text padd20">
                 <div>
                     <button
-                        class="border-smooth padd10 padd5-top-bottom font15 bg-dark-red text-white pointer no-outline hover-red" id="request-cancellation">Yes
+                        class="border-smooth padd10 padd5-top-bottom font15 bg-dark-red text-white pointer no-outline hover-red"
+                        id="request-cancellation">Yes
                         Cancel</button>
                 </div>
                 <div class="font14 margin20-top">
@@ -194,7 +198,7 @@
     <input type="hidden" class="order-id" value="<%=order.order_id%>">
     <input type="hidden" class="timer" value="<%=timer.timeIt%>">
     <input type="hidden" class="milestonesCount" value="<%=milestonesCount%>">
-    
+
     <a href="#main" class="go-top" style="visibility:hidden;">go to main</a>
 
 
@@ -202,11 +206,11 @@
     <%- include('./partials/header.ejs') %>
 
     <main class="main" id="main">
-       
+
 
         <div class="flex-start">
             <%if(order.cancellation.cancellation!=="pending" && order.state==="ongoing"){%>
-           
+
             <div class="margin10-right">
                 <button
                     class="request-cancellation margin10-top bg-dark-red text-white center-text border-dark-red font12 padd10-sides padd5-top-bottom border-radius5 margin10-bottom no-outline">
@@ -214,13 +218,13 @@
                 </button>
             </div>
             <%}else{%>
-                <div class="margin10-right hide">
-                    <button
-                        class="request-cancellation margin10-top bg-dark-red text-white center-text border-dark-red font12 padd10-sides padd5-top-bottom border-radius5 margin10-bottom no-outline">
-                        Request Cancellation
-                    </button>
-                </div>
-                <%}%>
+            <div class="margin10-right hide">
+                <button
+                    class="request-cancellation margin10-top bg-dark-red text-white center-text border-dark-red font12 padd10-sides padd5-top-bottom border-radius5 margin10-bottom no-outline">
+                    Request Cancellation
+                </button>
+            </div>
+            <%}%>
             <%if(order.seller===loggedUser && order.state!=="cancelled"){%>
             <div>
                 <button
@@ -282,7 +286,8 @@
 
                         <span style="width: 20px;height: 20px;margin-right: 5px;"
                             class="font13 flex-center circle text-white user-icon bold"><%= recipient[0] %></span>
-                        <a  href="/u/<%=recipient%>" class="bold font13 margin5-right text-link-with-hover"><%= recipient %></a>
+                        <a href="/u/<%=recipient%>"
+                            class="bold font13 margin5-right text-link-with-hover"><%= recipient %></a>
                         <% if(online || 5>timeElapse){ %>
                         <i class="fa fa-circle user-online margin5-right online-status-icon"
                             style="font-size: 1.3rem;"></i>
@@ -311,69 +316,77 @@
                     Order started-<%=order.startedAt.toDateString()%>
                     </div>
                     <% chats.forEach(chat=>{ %>
-                        <%if(chat.type==="cancellation request"){%>
-                            <div>
-                            <div class="border-smooth margin10-top margin10-bottom padd10 " style="background-color: #eee;" >
-                                <div style=" display: grid;grid-template-columns: 40px auto;align-items:center">
-                                <div class="margin10-right circle border3-dark-red flex-center" style="width: 30px;height:30px;">
+                    <%if(chat.type==="cancellation request"){%>
+                    <div>
+                        <div class="border-smooth margin10-top margin10-bottom padd10 " style="background-color: #eee;">
+                            <div style=" display: grid;grid-template-columns: 40px auto;align-items:center">
+                                <div class="margin10-right circle border3-dark-red flex-center"
+                                    style="width: 30px;height:30px;">
                                     <i class="fa fa-close font18 text-dark-red"></i>
                                 </div>
                                 <div>
                                     <h4 class="bold font13 margin10-bottom">Order cancellation</h4>
                                     <%if(chat.from===loggedUser){%>
-                                        <span class="font11">
-                                            You have requested a mutual cancellation for this order.
-                                        </span>
+                                    <span class="font11">
+                                        You have requested a mutual cancellation for this order.
+                                    </span>
 
-                                        <%}else{%>
-                                    <span class="font11">The <%=order.seller===loggedUser?"buyer":"seller"%> has requested a cancellation for this order.</span>
+                                    <%}else{%>
+                                    <span class="font11">The <%=order.seller===loggedUser?"buyer":"seller"%> has
+                                        requested a cancellation for this order.</span>
                                     <%}%>
                                 </div>
                             </div>
                                 <div class="flex-end margin5-top">
                                     <small class="font-small"><%=getDateAndTime(chat.createdAt)%></small>
                                 </div>
-                               
+
                             </div>
                             <%if(chat.to===loggedUser && !chat.content.accepted){%>
-                                <div class="grid2">
-                                    <div class="margin10-bottom">
-                                        <button class="text-white bg-green no-outline border-green padd10 full-width border5-radius" data-chatid="<%=chat._id%>" id="reject-cancellation">Reject</button>
-                                    </div>
-                                    <div class="margin10-bottom">
-                                        <button class="bg-green no-outline padd10 full-width border5-radius" id="accept-cancellation" style="background-color: #f4f4f5;border:1px solid #f4f4f5" data-chatid="<%=chat._id%>">Accept</button>
-                                    </div>
-    
+                            <div class="grid2">
+                                <div class="margin10-bottom">
+                                    <button
+                                        class="text-white bg-green no-outline border-green padd10 full-width border5-radius"
+                                        data-chatid="<%=chat._id%>" id="reject-cancellation">Reject</button>
                                 </div>
-                                <%}%>
+                                <div class="margin10-bottom">
+                                    <button class="bg-green no-outline padd10 full-width border5-radius"
+                                        id="accept-cancellation"
+                                        style="background-color: #f4f4f5;border:1px solid #f4f4f5"
+                                        data-chatid="<%=chat._id%>">Accept</button>
+                                </div>
+
+                            </div>
+                            <%}%>
                             </div>
                             <%}else if(chat.type==="dispute"){%>
-                                <div class="margin20-top margin20-sides">
-                                    <div class="center-text bg-dispute border5-radius padd10 font14 text-orange">
-                                        <i class="fa fa-gavel text-dark-orange" aria-hidden="true"></i>
-                                        <span class="text-dark-orange">
-                                            Under Dispute
-                                        </span>
-                                    </div>
+                            <div class="margin20-top margin20-sides">
+                                <div class="center-text bg-dispute border5-radius padd10 font14 text-orange">
+                                    <i class="fa fa-gavel text-dark-orange" aria-hidden="true"></i>
+                                    <span class="text-dark-orange">
+                                        Under Dispute
+                                    </span>
                                 </div>
-                                <div class="flex-end margin5-bottom">
-                                    <div class="padd10 border5-radius font13 message-sent">
+                            </div>
+                            <div class="flex-end margin5-bottom">
+                                <div class="padd10 border5-radius font13 message-sent">
                                     <div class="margin10-bottom">
-                                    <%=chat.message%>
+                                        <%=chat.message%>
                                     </div>
                                     <div class="flex-end">
-                                    <div class="font-small italic font-faint">
-                                   <%=getDateAndTime(chat.createdAt)%>
-                                    </div>
-                                    </div>
-                            
-                                    </div>
+                                        <div class="font-small italic font-faint">
+                                            <%=getDateAndTime(chat.createdAt)%>
+                                        </div>
                                     </div>
 
+                                </div>
+                            </div>
+
                             <%}else if(chat.type==="extras"){%>
-                                <div class="bg-">
-                                   <h3 class="bold font15">Extras</h3>
-                                <div class="bg-white padd10 padd20-left margin10-bottom border5-radius border3-left-light-blue">
+                            <div class="bg-">
+                                <h3 class="bold font15 margin5-bottom">Extras</h3>
+                                <div
+                                    class="bg-white padd10 padd20-left margin10-bottom border5-radius border3-left-light-blue">
                                     <div class="font14">
                                         <div class="margin5-bottom"><%=chat.content.description%></div>
                                         <div class="flex-between">
@@ -385,12 +398,15 @@
                                             </div>
                                             <div>
                                                 <%if(chat.content.paid){%>
-                                                    <div class="padd10-sides border5-radius paid-border center-text paid-text padd5-top-bottom">
-                                                        <i class="fa fa-check paid-text"></i>
-                                                        Paid
-                                                    </div>
-                                                    <%}else{%>
-                                                <button class="padd10-sides accept-extra no-outline padd5-top-bottom border5-radius bg-green border-green text-white <%=order.seller===loggedUser?'hide':''%>" data-extraid="<%=chat.extra_id%>" >Accept offer</button> 
+                                                <div
+                                                    class="padd10-sides border5-radius paid-border center-text paid-text padd5-top-bottom">
+                                                    <i class="fa fa-check paid-text"></i>
+                                                    Paid
+                                                </div>
+                                                <%}else{%>
+                                                <button
+                                                    class="padd10-sides accept-extra no-outline padd5-top-bottom border5-radius bg-green border-green text-white <%=order.seller===loggedUser?'hide':''%>"
+                                                    data-extraid="<%=chat.extra_id%>">Accept offer</button>
                                                 <%}%>
                                             </div>
                                            
@@ -401,59 +417,71 @@
                                 </div>
                             </div>
                             <%}else if(chat.type==="accepted cancellation"){%>
-                                <div>
-                                    <div class="border-smooth margin10-top margin10-bottom padd10 " style="background-color: #eee;" >
-                                        <div style=" display: grid;grid-template-columns: 40px auto;align-items:center">
-                                        <div class="margin10-right circle border3-dark-red flex-center" style="width: 30px;height:30px;">
-                                            <i class="fa fa-close font18 text-dark-red"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="bold font13 margin10-bottom">Cancellation Accepted</h4>
-                                          
-                                            <span class="font11">Mutual cancllation of the order was accepted.</span>
-                                            
-                                        </div>
-                                    </div>
-                                        <div class="flex-end margin5-top">
-                                            <small class="font-small"><%=getDateAndTime(chat.createdAt)%></small>
-                                        </div>
-                                       
-                                    </div>
-                                    <%}else if(chat.type==="rejected cancellation"){%>
-                                        <div>
-                                            <div class="border-smooth margin10-top margin10-bottom padd10 " style="background-color: #eee;" >
-                                                <div style=" display: grid;grid-template-columns: 40px auto;align-items:center">
-                                                <div class="margin10-right  flex-center">
-                                                    <i class="fa fa-ban font33 text-dark-red"></i>
-                                                </div>
                                                 <div>
-                                                    <h4 class="bold font13 margin10-bottom">Cancellation Rejected</h4>
-                                                  
-                                                    <span class="font11">Mutual cancllation of the order was rejected.</span>
-                                                    
-                                                </div>
-                                            </div>
-                                                <div class="flex-end margin5-top">
-                                                    <small class="font-small"><%=getDateAndTime(chat.createdAt)%></small>
-                                                </div>
-                                               
-                                            </div>
-                    <%}else if(chat.from===loggedUser){%>
+                                                    <div class="border-smooth margin10-top margin10-bottom padd10 "
+                                                        style="background-color: #eee;">
+                                                        <div
+                                                            style=" display: grid;grid-template-columns: 40px auto;align-items:center">
+                                                            <div class="margin10-right circle border3-dark-red flex-center"
+                                                                style="width: 30px;height:30px;">
+                                                                <i class="fa fa-close font18 text-dark-red"></i>
+                                                            </div>
+                                                            <div>
+                                                                <h4 class="bold font13 margin10-bottom">Cancellation
+                                                                    Accepted</h4>
+
+                                                                <span class="font11">Mutual cancllation of the order was
+                                                                    accepted.</span>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-end margin5-top">
+                                                            <small
+                                                                class="font-small"><%=getDateAndTime(chat.createdAt)%></small>
+                                                        </div>
+
+                                                    </div>
+                                                    <%}else if(chat.type==="rejected cancellation"){%>
+                                                    <div>
+                                                        <div class="border-smooth margin10-top margin10-bottom padd10 "
+                                                            style="background-color: #eee;">
+                                                            <div
+                                                                style=" display: grid;grid-template-columns: 40px auto;align-items:center">
+                                                                <div class="margin10-right  flex-center">
+                                                                    <i class="fa fa-ban font33 text-dark-red"></i>
+                                                                </div>
+                                                                <div>
+                                                                    <h4 class="bold font13 margin10-bottom">Cancellation
+                                                                        Rejected</h4>
+
+                                                                    <span class="font11">Mutual cancllation of the order
+                                                                        was rejected.</span>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex-end margin5-top">
+                                                                <small
+                                                                    class="font-small"><%=getDateAndTime(chat.createdAt)%></small>
+                                                            </div>
+
+                                                        </div>
+                                                        <%}else if(chat.from===loggedUser){%>
 
 
-                    <div class="flex-end">
-                        <div class="padd10 message-sent font13 ">
-                            <div>
-                                <div class="margin10-bottom">
-                                    <%= chat.message%>
-                                </div>
-                                <div class="flex-end font-small italic font-faint"><%=getDateAndTime(chat.createdAt) %>
-                                    <% if(chat.read){ %>
-                                    <i class="fa fa-check text-blue"></i>
-                                    <i class="fa fa-check text-blue"></i>
-                                    <%}else{%>
-                                    
-                                    <%}%>
+                                                        <div class="flex-end">
+                                                            <div class="padd10 message-sent font13 ">
+                                                                <div>
+                                                                    <div class="margin10-bottom">
+                                                                        <%= chat.message%>
+                                                                    </div>
+                                                                    <div class="flex-end font-small italic font-faint">
+                                                                        <%=getDateAndTime(chat.createdAt) %>
+                                                                        <% if(chat.read){ %>
+                                                                        <i class="fa fa-check text-blue"></i>
+                                                                        <i class="fa fa-check text-blue"></i>
+                                                                        <%}else{%>
+
+                                                                        <%}%>
                             </div>
                                 
                         </div>
@@ -461,34 +489,37 @@
                 </div>
 
                 <%}else{%>
-                                    <div class="flex-start">
-                                        <div class="padd10 message-received font13">
-                                            <div>
-                                                <div class="margin10-bottom">
-                                                    <%= chat.message%>
-                                                </div>
-                                                <div class="flex-end font-small italic font-faint"><%=getDateAndTime(chat.createdAt)%></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <%}%>
+                                                                        <div class="flex-start">
+                                                                            <div class="padd10 message-received font13">
+                                                                                <div>
+                                                                                    <div class="margin10-bottom">
+                                                                                        <%= chat.message%>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class="flex-end font-small italic font-faint">
+                                                                                        <%=getDateAndTime(chat.createdAt)%>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <%}%>
             <%})%>
 
-                                </div>
+                                                                    </div>
             </section>
-<%if(order.state!=="cancelled"){%>
-  
+            <%if(order.state!=="cancelled"){%>
+
             <div class="message-control bg-white padd10 padd10-bottom margin10-bottom border-smooth">
                 <div style="margin-top: -5px;"><em class="typing-status invisible"></em></div>
                 <div style="position:relative">
-                    <textarea name="" cols="30" rows="2" class="fill-width padd8 outline-none border-smooth"
+                    <textarea name="" cols="30" rows="2" class="fill-width padd8 outline-none border-smooth font14"
                         placeholder="Enter your message..." id="message"></textarea>
                     <small style="position:absolute;top:57px;left:10px;font-size:1rem"
                         class="font12 text-red hide chat-input-error"> <i class="fa fa-exclamation text-red"></i>
                         Message input field can no be empty</small>
                 </div>
                 <div>
-                    <div class="flex-between margin10-top">
+                    <div class="flex-between margin20-top">
                         <div>
                             <i class="fa fa-paperclip font16 margin10-right"></i>
                             <%if(order.seller===loggedUser){%>
@@ -508,7 +539,7 @@
                 </div>
             </div>
             <%} %>
-            <%}%>
+                            <%}%>
                             <div class="border-smooth bg-white">
                                 <header class="bg-heading padd20 margin20-bottom">
                                     <h2 class=" bold font16">
@@ -519,57 +550,57 @@
                                 <div class="grid2-1-3 margin50-sides margin5-bottom margin5-top">
                                     <div>
                                         <img src="<%=order.imageURL%>" alt="image">
-                                    </div>
-                                    <div class="bold font20 ">
-<%=order.title%>
-                                    </div>
-                                </div>
-                                <%if(order.hasStarted){%>
-                                <div class="bg-white ">
-                                    <div class="font16 padd10 bold center-text hide">
-                                        <i class="fas fa-hourglass-start text-orange font18"></i>
-                                        Your Order is now in progress
-                                    </div>
-                                    <%if(!timer.timeIt){%>
+                        </div>
+                        <div class="bold font20 ">
+                            <%=order.title%>
+                        </div>
+                    </div>
+                    <%if(order.hasStarted){%>
+                    <div class="bg-white ">
+                        <div class="font16 padd10 bold center-text hide">
+                            <i class="fas fa-hourglass-start text-orange font18"></i>
+                            Your Order is now in progress
+                        </div>
+                        <%if(!timer.timeIt){%>
 
 
-                                    <div style="margin: 5px 50px;border-bottom:4px solid #e74a3b;padding-bottom: 5px; ">
-                                        Late
-                                    </div>
-                                    <%}else{%>
-                                        <%if(order.state!=="cancelled"){%>
-                                    <div class="grid4 center-text margin30-sides border-smooth padd10 timer-container">
-                                        <div class="display-flex flex-column">
-                                            <span class="bold font20 text-orange" id="days">
-                                                <%=timer.days%>
-                                            </span>
-                                            <span>DAYS</span>
-                                        </div>
-                                        <div class="display-flex flex-column">
-                                            <span class="bold font20 text-orange" id="hours">
-                                                <%=timer.hours%>
-                                            </span>
-                                            <span>HOURS</span>
-                                        </div>
-                                        <div class="display-flex flex-column">
-                                            <span class="bold font20 text-orange" id="minutes">
-                                                <%=timer.minutes%>
-                                            </span>
-                                            <span>MINUTES</span>
-                                        </div>
-                                        <div class="display-flex flex-column">
-                                            <span class="bold font20 text-orange" id="seconds">
-                                                <%=timer.seconds%>
-                                            </span>
-                                            <span>SECONDS</span>
-                                        </div>
+                        <div style="margin: 5px 50px;border-bottom:4px solid #e74a3b;padding-bottom: 5px; ">
+                            Late
+                        </div>
+                        <%}else{%>
+                        <%if(order.state!=="cancelled"){%>
+                        <div class="grid4 center-text margin30-sides border-smooth padd10 timer-container">
+                            <div class="display-flex flex-column">
+                                <span class="bold font20 text-orange" id="days">
+                                    <%=timer.days%>
+                                </span>
+                                <span>DAYS</span>
+                            </div>
+                            <div class="display-flex flex-column">
+                                <span class="bold font20 text-orange" id="hours">
+                                    <%=timer.hours%>
+                                </span>
+                                <span>HOURS</span>
+                            </div>
+                            <div class="display-flex flex-column">
+                                <span class="bold font20 text-orange" id="minutes">
+                                    <%=timer.minutes%>
+                                </span>
+                                <span>MINUTES</span>
+                            </div>
+                            <div class="display-flex flex-column">
+                                <span class="bold font20 text-orange" id="seconds">
+                                    <%=timer.seconds%>
+                                </span>
+                                <span>SECONDS</span>
+                            </div>
 
-                                    </div>
+                        </div>
+                        <%}%>
                                     <%}%>
-                                    <%}%>
-        </div>
+                    </div>
 
-        <%}%>
+                    <%}%>
                                     <div class="bg-white">
 
 
@@ -582,162 +613,161 @@
                                                 <h4>Total</h4>
                                                 <h4>To Deliver</h4>
                                                 <h4><%=order.seller===loggedUser?"Buyer":"Seller"%></h4>
-                                            </div>
-                                            <div class="padd10 grid4">
-                                                <div>
-                                                    #<%=order.order_id%>
-                                                </div>
-                                                <div>
+                </div>
+                <div class="padd10 grid4">
+                    <div>
+                        #<%=order.order_id%>
+                    </div>
+                    <div>
 
-                                                    ₦<%=order.price%>
-                                                </div>
-                                                <div>
-                                                    <%=getDate(order.delivery_date)%>
-                                                </div>
-                                                <div>
-                                                    <%=order.buyer===loggedUser?order.seller:order.buyer%>
-                                                </div>
+                        ₦<%=(order.price+totalPaidExtra)%>
+                    </div>
+                    <div>
+                        <%=getDate(order.delivery_date)%>
+                    </div>
+                    <div>
+                        <%=order.buyer===loggedUser?order.seller:order.buyer%>
+                    </div>
 
-                                            </div>
+                </div>
 
 
-                                        </div>
-                                        <div class="margin30-sides margin20-top">
-                                            <%paidExtras.forEach(extra=>{%>
-                                                <div class="flex-between border-smooth padd10 padd5-top-bottom margin10-bottom bg-grey">
-                                                    <div class="font15">
-                                                        <%=extra.content.description%>
-                                                    </div>
-                                                    <div  class="font15">
-                                                        ₦<%=extra.content.price%>
-                                                    </div>
-                                                    
-                                                </div>
-                                                <%})%>
-                                        </div>
-                                      
-                                        <%if(order.price>=10000){%>
+            </div>
+            <div class="margin30-sides margin20-top">
+                <%paidExtras.forEach(extra=>{%>
+                <div class="flex-between border-smooth padd10 padd5-top-bottom margin10-bottom bg-grey">
+                    <div class="font15">
+                        <%=extra.content.description%>
+                    </div>
+                    <div class="font15">
+                        ₦<%=extra.content.price%>
+                    </div>
 
-                                        <div class="border-top padd20-sides padd20-bottom">
-                                            <div class="padd10 border-green padd10-top  bg-green 
+                </div>
+                <%})%>
+            </div>
+
+            <%if(order.price>=10000){%>
+
+            <div class="border-top padd20-sides padd20-bottom">
+                <div class="padd10 border-green padd10-top  bg-green 
                                             zero-opacity
                                             border5-radius milestone-success">
-                                                <div class="font14 text-white">
-                                                    Milestone released successfully.
-                                                </div>
-                                            </div>
-                                            <h2 class="bold font16">
-                                                Milestone
-                                            </h2>
-                                            <div>
-                                                <%if(totalMilestone===0){%>
-                                                    
-                                                <div class=" font15 margin10-top no-miles">
-                                                    No milestones released yet.
+                    <div class="font14 text-white">
+                        Milestone released successfully.
+                    </div>
+                </div>
+                <h2 class="bold font16">
+                    Milestone
+                </h2>
+                <div>
+                    <%if(totalMilestone===0){%>
 
-                                                </div>
+                    <div class=" font15 margin10-top no-miles">
+                        No milestones released yet.
 
-                                                    <%}else{%>
+                    </div>
 
-                                                <div class=" font15 margin10-top">
-                                                    <i class="fa fa-check text-green"></i>
-                                                    <span>Milestone released:
+                    <%}else{%>
 
-                                                        ₦<span class="milestone-present"> <%=totalMilestone.toFixed(2)%></span>
-                                                       
-                                                    </span>
+                    <div class=" font15 margin10-top">
+                        <i class="fa fa-check text-green"></i>
+                        <span>Milestone released:
 
-                                                </div>
-                                                <%}%>
+                            ₦<span class="milestone-present"> <%=totalMilestone.toFixed(2)%></span>
+
+                        </span>
+
+                    </div>
+                    <%}%>
 
                                             </div>
                                             <%if(order.buyer===loggedUser){%>
-                                                <%if(order.state!=="cancelled" && !(milestonesCount>=3)){%>
-                                        <div
-                                        class="milestone-form-container">
+                    <%if(order.state!=="cancelled" && !(milestonesCount>=3)){%>
+                    <div class="milestone-form-container">
 
-                                            <p class="font11 margin10-top">
-                                                Enter the amount in percentage you want to release to the seller
-                                            </p>
-<div class="relative">
-                                            <input type="number" placeholder="Enter percent e.g 10"
-                                                class="padd10 font15 border-smooth block margin10-top no-outline full-width" id="milestone-input">
-                                                <div class="milestone-error invisible">
-                                                    <i class="fa fa-exclamation text-red font10"></i> <small class="text-red font10">Field cannot be empty.</small>
-                                                </div>
-                                                <div class="milestone-error invisible">
-                                                    <i class="fa fa-exclamation text-red font10"></i> <small class="text-red font10">Percentage must be greter than 0 and at most 10.</small>
-                                                </div>
-                                            </div>
+                        <p class="font11 margin10-top">
+                            Enter the amount in percentage you want to release to the seller
+                        </p>
+                        <div class="relative">
+                            <input type="number" placeholder="Enter percent e.g 10"
+                                class="padd10 font15 border-smooth block margin10-top no-outline full-width"
+                                id="milestone-input">
+                            <div class="milestone-error invisible">
+                                <i class="fa fa-exclamation text-red font10"></i> <small class="text-red font10">Field
+                                    cannot be empty.</small>
+                            </div>
+                            <div class="milestone-error invisible">
+                                <i class="fa fa-exclamation text-red font10"></i> <small
+                                    class="text-red font10">Percentage must be greter than 0 and at most 10.</small>
+                            </div>
+                        </div>
 
-                                            <div class="font12 margin20-top ">
-                                                <p>
-                                                    <small>
-                                                        * Milestones released cannot be refunded
-                                                    </small>
+                        <div class="font12 margin20-top ">
+                            <p>
+                                <small>
+                                    * Milestones released cannot be refunded
+                                </small>
 
-                                                </p>
-                                                <p class="margin5-top">
-                                                    <small>
-                                                        * It must not be higher than 10%
-                                                    </small>
-                                                </p>
+                            </p>
+                            <p class="margin5-top">
+                                <small>
+                                    * It must not be higher than 10%
+                                </small>
+                            </p>
 
-                                            </div>
-                                            <div class="margin20-top">
-                                                <button
-                                                    class="text-white button-green padd10 full-width release-milestone">Release</button>
-                                            </div>
-                                        </div>
-                                            <%}else{%>
-                                            <div>
+                        </div>
+                        <div class="margin20-top">
+                            <button class="text-white button-green padd10 full-width release-milestone">Release</button>
+                        </div>
+                    </div>
+                    <%}else{%>
+                    <div>
 
 
-                                                <div class="margin10-top font14 hide">
-                                                    No milestone released yet.
-                                                </div>
-                                            </div>
+                        <div class="margin10-top font14 hide">
+                            No milestone released yet.
+                        </div>
+                    </div>
 
-                                            <%}%>
+                    <%}%>
 
                                 </div>
                                 <%}%>
-                                <%} %>
-                                        </div>
-                                    </div>
-                                    <%if(order.state!=="cancelled" && !order.dispute){%>
-                                      
-                                    <div class="dispute-container">
-                                        <div class="margin20-top">
-                                            <button
-                                                class="blocck text-white center-text padd10 bg-dark-blue bold no-outline border-dark-blue full-width dispute-order">
-                                                Dispute Order
-                                            </button>
-                                        </div>
-                                        <div class="padd20 padd10-top dispute-hide dispute-slide-in">
-                                            <div>
-                                                <p>Having issues with this order?</p>
-                                                <p class="padd10-top">Open a dispute below, an admin will come in to
-                                                    assist</p>
-                                            </div>
-                                            <div class="margin40-top">
-                                                <fieldset>
-                                                    <textarea name="" id="dispute-message" cols="30" rows="4"
-                                                        placeholder="Be detailed as possible..."
-                                                        class="font16"></textarea>
-                                                </fieldset>
-                                            </div>
-                                            <div>
-                                                <button
-                                                    class="blocck text-white center-text bg-dark-blue bold no-outline border-dark-blue full-width border-smooth padd10 font16 padd5-top-bottom send-dispute">
-                                                    Dispute
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <%}%>
-                                    <a href="https://images.pexels.com/photos/5077462/pexels-photo-5077462.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-    download>download</a>
+                    <%} %>
+                </div>
+            </div>
+            <%if(order.state!=="cancelled" && !order.dispute){%>
+
+            <div class="dispute-container">
+                <div class="margin20-top">
+                    <button
+                        class="blocck text-white center-text padd10 bg-dark-blue bold no-outline border-dark-blue full-width dispute-order">
+                        Dispute Order
+                    </button>
+                </div>
+                <div class="padd20 padd10-top dispute-hide dispute-slide-in">
+                    <div>
+                        <p>Having issues with this order?</p>
+                        <p class="padd10-top">Open a dispute below, an admin will come in to
+                            assist</p>
+                    </div>
+                    <div class="margin40-top">
+                        <fieldset>
+                            <textarea name="" id="dispute-message" cols="30" rows="4"
+                                placeholder="Be detailed as possible..." class="font16"></textarea>
+                        </fieldset>
+                    </div>
+                    <div>
+                        <button
+                            class="blocck text-white center-text bg-dark-blue bold no-outline border-dark-blue full-width border-smooth padd10 font16 padd5-top-bottom send-dispute">
+                            Dispute
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <%}%>
+                                   
 
     </main>
     

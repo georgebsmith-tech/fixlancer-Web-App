@@ -35,6 +35,10 @@ module.exports = async (req, res) => {
     const orderChats = await OrderChat.find({ order_id })
     const paidExtras = orderChats.filter(chat => (chat.type === "extras" && chat.content.paid))
     // console.log(orderChats)
+    let totalPaidExtra = 0;
+    for (let extra of paidExtras) {
+        totalPaidExtra += extra.content.price * 1
+    }
 
 
     let timeElapse = parseInt((date) / (1000 * 60))
@@ -100,7 +104,8 @@ module.exports = async (req, res) => {
         timer,
         paidExtras,
         totalMilestone,
-        milestonesCount
+        milestonesCount,
+        totalPaidExtra
     }
 
     // console.log(paidExtras)

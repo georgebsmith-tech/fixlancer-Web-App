@@ -784,14 +784,15 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .padd10{
-  padding: 10px;
+  padding: 10px!important;
 }
+
 .font15{
-  font-size: 1.5rem;
+  font-size: 1.5rem!important;
 }
 
 .border3-left-light-blue{
-  border-left: 3px solid #36b9cc !important;
+  border-left: 3px solid #36b9cc!important;
 }
 
 .bg-orange{

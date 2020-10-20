@@ -44,7 +44,7 @@ router.post("/", async (req, res) => {
 
 router.put("/", async (req, res) => {
     const body = req.body
-    console.log(body)
+
 
     const order_id = body.order_id;
     const extra_id = body.extra_id
