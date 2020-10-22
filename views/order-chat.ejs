@@ -427,7 +427,23 @@
 
                                 </div>
                             </div>
+                            <%}else if(chat.type==="file"){%>
+                                <div class="flex-end margin10-top relative margin10-bottom">
+                                    <a href="<%=chat.content.fileURL%>" class="chat-img-wrapper1 border-smooth block">
+                                        <img src="<%=chat.content.fileURL%>">
+                                    </a>
+                                    <a href="<%=chat.content.fileURL%>" class="download-icon-holder absolute" download>
+                                        <i class="fa fa-download font16  pointer padd10 download-icon " aria-hidden="true"></i>
+                                    </a>
+                                   
+                                </div>
                             <%}else if(chat.type==="accepted cancellation"){%>
+
+                               
+
+
+
+
                                                 <div>
                                                     <div class="border-smooth margin10-top margin10-bottom padd10 "
                                                         style="background-color: #eee;">
@@ -515,15 +531,7 @@
                                                                         </div>
                                                                         <%}%>
             <%})%>
-            <div class="flex-end margin10-top relative margin10-bottom">
-                <div class="chat-img-wrapper1 border-smooth">
-                    <img src="https://res.cloudinary.com/dfm1c1iri/image/upload/v1603313449/ukarbywchimdzdhsfqd7.png" alt="" class="chat-img1">
-                </div>
-                <a href="https://res.cloudinary.com/dfm1c1iri/image/upload/v1603313449/ukarbywchimdzdhsfqd7.png" class="download-icon absolute" download="">
-                    <i class="fa fa-download font16  pointer padd10 " aria-hidden="true"></i>
-                </a>
-               
-            </div>
+     
 
                                                                     </div>
             </section>

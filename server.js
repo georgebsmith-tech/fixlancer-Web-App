@@ -311,7 +311,7 @@ function changeUserStatus(socket, user) {
     socket.broadcast.emit("user-online", user)
 }
 
-
+const upload = require("./configuration/cloudinaryConfig")
 io.on("connection", socket => {
 
 
@@ -404,6 +404,7 @@ io.on("connection", socket => {
             message: data.message,
             read
         }
+
         // console.log(record)
 
         const converse = new ConversationModel(record)
@@ -415,9 +416,17 @@ io.on("connection", socket => {
 
     //order
     socket.on("order-chat", async function (data) {
+
         let read;
         let socketId = users[data.receiver]
-        io.to(socketId).emit("order-chat", { sender: data.sender, message: data.message })
+        let content = { sender: data.sender, message: data.message }
+        let response;
+        if (data.attachedFile) {
+
+            response = await upload(data.attachedFile)
+            content = { ...content, fileURL: response.secure_url, attachedFileName: data.attachedFileName }
+        }
+        io.to(socketId).emit("order-chat", content)
 
         if (activeChats[data.receiver] === data.sender) {
             io.to(users[data.sender]).emit("order-message-sent", { status: "seen" })
@@ -432,6 +441,14 @@ io.on("connection", socket => {
             to: data.receiver,
             message: data.message,
             read
+        }
+        if (data.attachedFile) {
+            record.message = "file"
+            record.type = "file"
+            record.content = {
+                fileURL: response.secure_url,
+                attachedFileName: data.attachedFileName
+            }
         }
         if (data.type === "dispute") {
             record.type = data.type

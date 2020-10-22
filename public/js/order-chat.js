@@ -55,8 +55,8 @@
     const fileNameHolder = document.querySelector(".file-name-holder")
     const fileName = document.querySelector(".file-name")
 
-    let attchedFile = ''
-    let attchedFileName = ""
+    let attachedFile = ''
+    let attachedFileName = ""
 
     attachBTN.addEventListener("click", function () {
         hiddenAtachment.click()
@@ -68,22 +68,15 @@
         const reader = new FileReader()
         reader.readAsDataURL(hiddenAtachment.files[0])
         reader.onload = () => {
-            attchedFile = reader.result
-            attchedFileName = this.files[0].name
+            attachedFile = reader.result
+            attachedFileName = this.files[0].name
             messageHolder.classList.add("hide")
-            sendMessageBTN.textContent = "File File"
+            sendMessageBTN.textContent = "Send File"
+            document.querySelector(".chat-input-error").classList.add("hide")
 
 
         }
     });
-
-
-
-
-
-
-
-
 
     function isValidPercent(per) {
         if (!per) {
@@ -644,8 +637,19 @@
 
         sendMessageBTN.addEventListener("click", function () {
             const message = messageHolder.value.trim()
+            if (attachedFile) {
+                document.querySelector(".chat-input-error").classList.add("hide")
+                messageHolder.style.border = "1px solid #ddd"
+                document.querySelector(".chat-input-error").classList.add("hide")
+                let state;
+                if (document.querySelector(".online-status-text").textContent === "Active now") state = "seen"
+                else
+                    state = "sent"
+                socket.emit("order-chat", { sender, receiver, message, state, orderID, attachedFile, attachedFileName })
 
-            if (message === "") {
+                return
+
+            } else if (message === "") {
                 messageHolder.style.border = "1px solid red"
                 document.querySelector(".chat-input-error").classList.remove("hide")
                 return

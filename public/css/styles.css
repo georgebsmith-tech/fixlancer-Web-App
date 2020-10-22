@@ -1753,18 +1753,34 @@ button.header-top-btn, a.header-top-btn {
 }
 
 .chat-img-wrapper1 {
+  display: flex;
   width: 80%;
-  height: 100px;
+  height: 200px;
+  overflow: hidden;
 }
 
-.download-icon {
+.download-icon-holder {
   bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.download-icon-holder:hover {
+  background: white;
+  border-radius: 5px;
+}
+
+.download-icon-holder:hover .download-icon {
+  color: black;
 }
 
 .auto-scroll {
   width: 100%;
   overflow-x: auto;
   padding: 5px 0px;
+}
+
+.download-icon {
+  color: white;
 }
 
 .padd5-top-bottom {

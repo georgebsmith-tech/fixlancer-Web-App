@@ -55,7 +55,8 @@ const Schema = new mongoose.Schema({
             "accepted cancellation",
             "rejected cancellation",
             "extras",
-            "dispute"
+            "dispute",
+            "file"
         ]
 
     },
