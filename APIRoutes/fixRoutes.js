@@ -15,8 +15,7 @@ const multiple_uploads = upload.fields(
 
 router.post("/", multiple_uploads, async (req, res) => {
     const reqBody = req.body
-    console.log(reqBody)
-    console.log(req.files)
+
 
     reqBody.username = req.session.passport.user
 

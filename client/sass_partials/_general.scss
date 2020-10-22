@@ -1703,6 +1703,24 @@ button.header-top-btn,a.header-top-btn{
   width: fit-content;
 }
 
+.chat-img1{
+  object-fit: cover;
+  width:100%;
+  height: 100%;
+
+}
+  
+  
+.chat-img-wrapper1{
+  width:80%;
+  height: 100px;
+
+}
+
+.download-icon{
+bottom: 0;
+}
+
 .auto-scroll{
   width: 100%;
   overflow-x: auto;

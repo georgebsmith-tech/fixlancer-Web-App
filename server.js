@@ -274,11 +274,11 @@ app.use(passport.session())
 
 
 
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true, limit: "500mb" }))
 app.set("views", "views")
 app.set("view engine", "ejs")
 app.use(express.static("public"))
-app.use(express.json())
+app.use(express.json({ limit: "500mb" }))
 
 
 app.use((req, res, next) => {

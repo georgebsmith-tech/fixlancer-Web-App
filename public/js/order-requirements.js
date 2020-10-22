@@ -8,7 +8,8 @@
 
 
 
-
+    let file = ""
+    let fileName = ""
 
     attachHolder.addEventListener("click", function (e) {
         hiddenAttachment.click()
@@ -16,6 +17,15 @@
     });
     hiddenAttachment.addEventListener("input", function (e) {
         fileNameHolder.textContent = this.files[0].name
+
+        const reader = new FileReader()
+        reader.readAsDataURL(hiddenAttachment.files[0])
+        reader.onload = () => {
+            file = reader.result
+            fileName = this.files[0].name
+            console.log(reader.result)
+
+        }
     });
 
     startOrderBtn.addEventListener("click", function () {
@@ -25,10 +35,29 @@
     })
 
     const sendRequirements = (requirements) => {
+        // const formData = new FormData()
+        // formData.append("requirements", requirements)
+        // formData.append("order_id", orderID)
+        // formData.append("file", hiddenAttachment.files[0])
+        // for (let [key, value] of formData) {
+        //     console.log(key)
+        //     console.log(value)
+        // }
+
+
+
+
         const body = JSON.stringify({
+            order_id: orderID,
+            fileName,
             requirements,
-            order_id: orderID
+            file
+
+
         })
+        // console.log(body)
+        // return
+
 
         fetch("/api/requirements", {
             method: "post",
@@ -36,6 +65,7 @@
             headers: {
                 "Content-Type": "application/json"
             }
+
         })
             .then(response => response.json())
             .then(data => {

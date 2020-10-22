@@ -55,7 +55,8 @@
     const fileNameHolder = document.querySelector(".file-name-holder")
     const fileName = document.querySelector(".file-name")
 
-
+    let attchedFile = ''
+    let attchedFileName = ""
 
     attachBTN.addEventListener("click", function () {
         hiddenAtachment.click()
@@ -64,6 +65,16 @@
     hiddenAtachment.addEventListener("input", function (e) {
         fileName.textContent = this.files[0].name
         fileNameHolder.classList.remove("invisible")
+        const reader = new FileReader()
+        reader.readAsDataURL(hiddenAtachment.files[0])
+        reader.onload = () => {
+            attchedFile = reader.result
+            attchedFileName = this.files[0].name
+            messageHolder.classList.add("hide")
+            sendMessageBTN.textContent = "File File"
+
+
+        }
     });
 
 

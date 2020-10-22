@@ -272,9 +272,20 @@
                     </div>
                     <div class="margin10-top">
                         <h4 class="bold">Attachment:</h4>
-                        <ul>
-                            No attachment.
-                        </ul>
+                       <%if(requirements.content.fileName){%>
+                        <a href="<%=requirements.content.file%>" download>
+                            <span> <%=requirements.content.fileName%></span>
+
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                        </a>
+                          <%}else{%>
+                            <div>
+                                No attachment.
+                            </div>
+                            <%}%>
+                        
+                           
+                        
                     </div>
 
                 </div>
@@ -504,6 +515,15 @@
                                                                         </div>
                                                                         <%}%>
             <%})%>
+            <div class="flex-end margin10-top relative margin10-bottom">
+                <div class="chat-img-wrapper1 border-smooth">
+                    <img src="https://res.cloudinary.com/dfm1c1iri/image/upload/v1603313449/ukarbywchimdzdhsfqd7.png" alt="" class="chat-img1">
+                </div>
+                <a href="https://res.cloudinary.com/dfm1c1iri/image/upload/v1603313449/ukarbywchimdzdhsfqd7.png" class="download-icon absolute" download="">
+                    <i class="fa fa-download font16  pointer padd10 " aria-hidden="true"></i>
+                </a>
+               
+            </div>
 
                                                                     </div>
             </section>
@@ -511,7 +531,7 @@
 
             <div class="message-control bg-white padd10 padd10-bottom margin10-bottom border-smooth">
                 <div style="margin-top: -5px;"><em class="typing-status invisible"></em></div>
-                <div style="position:relative">
+                <div class="relative">
                     <textarea name="" cols="30" rows="2" class="fill-width padd8 outline-none border-smooth font14"
                         placeholder="Enter your message..." id="message"></textarea>
                     <small style="position:absolute;top:62px;left:10px;font-size:1rem"

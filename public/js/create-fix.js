@@ -78,7 +78,7 @@
 
     }
     function getBody() {
-        console.log(fixVideo.files)
+
         const formData = new FormData()
 
         formData.append("title", fixTitle.value.trim())
@@ -102,7 +102,7 @@
             // console.log(img.files)
             formData.append("photo", img.files[0])
         })
-        console.log(formData)
+        // console.log(formData)
         for (let [key, value] of formData) {
             console.log(key)
             console.log(value)

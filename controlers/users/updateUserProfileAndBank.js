@@ -46,7 +46,7 @@ module.exports = async (req, res) => {
         bank = await theData.save()
 
     }
-    console.log(`bank: ${bank}`)
+
 
 
 
