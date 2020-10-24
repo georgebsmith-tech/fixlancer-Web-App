@@ -4,27 +4,17 @@ const upload = require("../../configuration/cloudinaryConfig")
 
 
 
+
 module.exports = async function (req, res) {
     try {
 
-        let { file, requirements, order_id, fileName } = req.body
-        if (file) {
-            const response = await upload(file)
-            file = response.secure_url
-            console.log(response)
-
-        }
-
-
-        // res.status(200).json(response)
-
+        let { requirements, order_id, fileName } = req.body
 
         let newBody = {
             order_id,
             content: {
                 fileName,
-                requirements,
-                file
+                requirements
 
             }
         }

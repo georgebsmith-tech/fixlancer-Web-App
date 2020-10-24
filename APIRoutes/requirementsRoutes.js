@@ -1,10 +1,12 @@
 const router = require("express").Router()
-const RequirementModel = require("../models/RequirementModel")
+
+const multerUpload = require("../configuration/multerConfig")
+
 
 const addNewRequiremnts = require("../controlers/requirements/addNewRequirement")
 const upload = require("../controlers/awsConfig")
 
-router.post("/", upload.single("file"), addNewRequiremnts)
+router.post("/", multerUpload.single("file"), addNewRequiremnts)
 
 
 module.exports = router

@@ -4,6 +4,17 @@ const DepositModel = require("../models/DepositsModel")
 const RefundModel = require("../models/RefundsModel")
 
 const OrderChatModel = require("../models/OrderChatModel")
+const multerUpload = require("../configuration/multerConfig")
+
+const path = require('path')
+
+
+router.post("/uploads", multerUpload.single("file"), (req, res) => {
+    res.json({
+        mes: req.file
+    })
+})
+
 
 router.get("/", async (req, res) => {
     const chats = await OrderChatModel.find({})
@@ -41,6 +52,8 @@ router.post("/", async (req, res) => {
     const data = await chat.save()
     res.status(201).json({ chat: data })
 })
+
+
 
 router.put("/", async (req, res) => {
     const body = req.body

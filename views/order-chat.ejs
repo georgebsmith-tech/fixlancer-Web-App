@@ -273,7 +273,7 @@
                     <div class="margin10-top">
                         <h4 class="bold">Attachment:</h4>
                        <%if(requirements.content.fileName){%>
-                        <a href="<%=requirements.content.file%>" download>
+                        <a href="/api/download/<%=requirements.content.fileName%>">
                             <span> <%=requirements.content.fileName%></span>
 
                             <i class="fa fa-download" aria-hidden="true"></i>

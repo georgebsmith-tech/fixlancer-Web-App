@@ -218,6 +218,7 @@ const pushNoticeRoute = require("./APIRoutes/pushRoutes")
 const transactionRoutes = require("./APIRoutes/transactionRoutes")
 const affiliatesRoute = require("./APIRoutes/affiliates")
 const revenuesRoutes = require("./APIRoutes/revenueRoutes")
+const downloadRoutes = require("./APIRoutes/downloadsRoutes")
 const refundRoutes = require("./APIRoutes/refundRoutes")
 const depositRoutes = require("./APIRoutes/depositRoutes")
 const fixRoutes = require("./APIRoutes/fixRoutes")
@@ -416,58 +417,81 @@ io.on("connection", socket => {
 
     //order
     socket.on("order-chat", async function (data) {
+        try {
 
-        let read;
-        let socketId = users[data.receiver]
-        let content = { sender: data.sender, message: data.message }
-        let response;
-        if (data.attachedFile) {
 
-            response = await upload(data.attachedFile)
-            content = { ...content, fileURL: response.secure_url, attachedFileName: data.attachedFileName }
-        }
-        io.to(socketId).emit("order-chat", content)
+            console.log(data)
+            let read;
+            let socketId = users[data.receiver]
+            let content = { sender: data.sender, message: data.message }
+            let response;
+            if (data.attachedFile) {
 
-        if (activeChats[data.receiver] === data.sender) {
-            io.to(users[data.sender]).emit("order-message-sent", { status: "seen" })
-            read = true
-        } else {
-            io.to(users[data.sender]).emit("order-message-sent", { status: "sent" })
-            read = false
-        }
-        const record = {
-            order_id: data.orderID,
-            from: data.sender,
-            to: data.receiver,
-            message: data.message,
-            read
-        }
-        if (data.attachedFile) {
-            record.message = "file"
-            record.type = "file"
-            record.content = {
-                fileURL: response.secure_url,
-                attachedFileName: data.attachedFileName
+                response = await upload(data.attachedFile, data.type)
+                console.log(response)
+                content = { ...content, fileURL: response.secure_url, attachedFileName: data.attachedFileName }
             }
-        }
-        if (data.type === "dispute") {
-            record.type = data.type
-            record.content = {
-                resolved: false
+            io.to(socketId).emit("order-chat", content)
+
+            if (activeChats[data.receiver] === data.sender) {
+                io.to(users[data.sender]).emit("order-message-sent", { status: "seen" })
+                read = true
+            } else {
+                io.to(users[data.sender]).emit("order-message-sent", { status: "sent" })
+                read = false
             }
+            const record = {
+                order_id: data.orderID,
+                from: data.sender,
+                to: data.receiver,
+                message: data.message,
+                read
+            }
+            if (data.attachedFile) {
+                record.message = "file"
+                record.type = "file"
+                record.content = {
+                    fileURL: response.secure_url,
+                    attachedFileName: data.attachedFileName
+                }
+            }
+            if (data.type === "dispute") {
+                record.type = data.type
+                record.content = {
+                    resolved: false
+                }
+            }
+            const sale = await SalesModel.findOneAndUpdate({ order_id: data.orderID }, { dispute: true }, { new: true })
+            console.log(record)
+
+
+            const ordercahat = new OrderChatModel(record)
+            const newOrderChat = await ordercahat.save()
+            console.log(newOrderChat)
+        } catch (err) {
+            console.log(err)
         }
-        const sale = await SalesModel.findOneAndUpdate({ order_id: data.orderID }, { dispute: true }, { new: true })
-        console.log(record)
-
-
-        const ordercahat = new OrderChatModel(record)
-        const newOrderChat = await ordercahat.save()
-        console.log(newOrderChat)
 
 
     })
 })
+const path = require("path")
+const multerUpload = require("./configuration/multerConfig")
+app.get("/trial", (req, res) => {
+    res.render("trial")
+})
 
+
+app.get("/uploads/:fileName", multerUpload.single("file"), (req, res) => {
+    const fileName = req.params.fileName
+    res.download(path.join(__dirname, "uploads", fileName), fileName, (err) => {
+        if (err) {
+            res.json(err)
+        } else {
+            console.log("File downloaded")
+        }
+    })
+})
 
 const checkUserAuthenticated = require("./middleware/userIsAuthenticated");
 const checkUserNotAuthenticated = require("./middleware/userIsNotauthenticated");
@@ -635,6 +659,9 @@ app.use("/uploads", express.static("uploads"))
 
 
 //API routes
+
+
+app.use("/api/download", downloadRoutes)
 app.use("/api/notices", noticesRoute)
 app.use("/api/requests", requestRoutes)
 app.use("/api/users", usersRoute)

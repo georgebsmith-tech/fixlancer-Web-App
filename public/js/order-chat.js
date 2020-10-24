@@ -1,7 +1,4 @@
 
-
-
-
 (function () {
     const sendMessageBTN = document.querySelector(".send-message")
     const messageHolder = document.querySelector("#message")
@@ -11,7 +8,6 @@
     const status = document.querySelectorAll(".typing-status");
     const msgMainContainer = document.querySelector(".message-container")
     msgMainContainer.scrollTop = msgMainContainer.scrollHeight
-
     const requirementsDetailed = document.querySelector(".requirements-detailed")
     const requirementsToggle = document.querySelector(".requirements-toggle")
     const secondsHolder = document.getElementById("seconds")
@@ -21,11 +17,7 @@
     const disputeModal = document.querySelector(".confirm-dispute-modal")
     const cancellationModal = document.querySelector(".cancellation-modal")
     const milestoneInput = document.querySelector("#milestone-input")
-
     const milestoneBTN = document.querySelector(".release-milestone")
-
-
-
     const requestCancellationBTN = document.querySelector(".request-cancellation")
     const closeRequestBTN = document.querySelector(".close-request-modal")
     const deliveryModal = document.querySelector(".delivery-modal")
@@ -49,35 +41,30 @@
     const milestoneErrors = document.querySelectorAll(".milestone-error")
     let presentMilestoneAmount = document.querySelector(".milestone-present")
     const milestoneSuccess = document.querySelector(".milestone-success")
-
     const hiddenAtachment = document.querySelector(".attachment")
     const attachBTN = document.querySelector(".attach-btn")
     const fileNameHolder = document.querySelector(".file-name-holder")
     const fileName = document.querySelector(".file-name")
-
     let attachedFile = ''
     let attachedFileName = ""
-
+    let type = ""
     attachBTN.addEventListener("click", function () {
         hiddenAtachment.click()
     })
-
     hiddenAtachment.addEventListener("input", function (e) {
-        fileName.textContent = this.files[0].name
+        fileName.textContent = hiddenAtachment.files[0].name
         fileNameHolder.classList.remove("invisible")
         const reader = new FileReader()
         reader.readAsDataURL(hiddenAtachment.files[0])
         reader.onload = () => {
             attachedFile = reader.result
-            attachedFileName = this.files[0].name
+            type = hiddenAtachment.files[0].type
+            attachedFileName = hiddenAtachment.files[0].name
             messageHolder.classList.add("hide")
             sendMessageBTN.textContent = "Send File"
             document.querySelector(".chat-input-error").classList.add("hide")
-
-
         }
     });
-
     function isValidPercent(per) {
         if (!per) {
             milestoneErrors[0].classList.remove("invisible")
@@ -645,7 +632,7 @@
                 if (document.querySelector(".online-status-text").textContent === "Active now") state = "seen"
                 else
                     state = "sent"
-                socket.emit("order-chat", { sender, receiver, message, state, orderID, attachedFile, attachedFileName })
+                socket.emit("order-chat", { sender, receiver, message, state, orderID, attachedFile, attachedFileName, type })
 
                 return
 

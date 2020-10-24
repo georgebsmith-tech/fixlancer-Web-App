@@ -5,7 +5,11 @@ cloudinary.config({
     api_secret: 'RYdlbmtQ70ibH6SW1ewN1jFAoJM'
 });
 
-module.exports = async (file) => {
-    const response = await cloudinary.uploader.upload(file, { tags: 'images' })
+module.exports = async (file, type) => {
+    const config = {}
+    if (type === "text/plain") {
+        config.pages = true
+    }
+    const response = await cloudinary.uploader.upload(file, config)
     return response
 };
